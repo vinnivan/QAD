@@ -11,8 +11,13 @@ var showMenu = function () {
     if (mm.is(":visible")) {
         $("<div> History count:" + history.length + " showMenu - Current:" + kendo.history.current + " - Back</div>").appendTo('#debugDiv')
 
-        kendo.history.navigate("#:back");
-        //kendo.history.navigate("#logon.html");
+        // On Android phonegap build history comes in empty and will redirect to unknown page without this
+        if (history.length <= 1) {
+            kendo.history.navigate("#logon.html");
+        } else {
+            kendo.history.navigate("#:back");
+        }
+
     } else {
         $("<div> History count:" + history.length + " showMenu - Current:" + kendo.history.current + " - Main</div>").appendTo('#debugDiv')
 
