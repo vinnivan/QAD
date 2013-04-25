@@ -45,7 +45,16 @@ var menuItemSelected = function (e) {
     // Get History Cleared
     showView = e.dataItem.view;
     $("<div> menuSelected showView:" + showView + "</div>").appendTo('#debugDiv')
-    kendo.history.navigate("#:back");
+
+    alert("History length:" + history.length)
+
+    if (history.length <= 2) {
+        alert("head back to logon");
+        kendo.history.navigate("#logon.html");
+    } else {
+        alert("head #back");
+        kendo.history.navigate("#:back");
+    }
 };
 
 $(window).bind("hashchange", function (e) {
