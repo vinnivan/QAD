@@ -11,8 +11,8 @@ var showMenu = function () {
     if (mm.is(":visible")) {
         $("<div> showMenu - Current:" + kendo.history.current + " - Back</div>").appendTo('#debugDiv')
 
-        kendo.history.navigate("#:back");
-        //kendo.history.navigate("#logon.html");
+        //kendo.history.navigate("#:back");
+        kendo.history.navigate("#logon.html");
     } else {
         $("<div> showMenu - Current:" + kendo.history.current + " - Main</div>").appendTo('#debugDiv')
 
