@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmTMSChangeRegion' data-role='view' data-title='WFM Change Region' data-show='frmTMSChangeRegion.viewModel.initialize' data-model='frmTMSChangeRegion.viewModel' >
+<script>
+	var frmTMSChangeRegion = frmTMSChangeRegion || {};
+		frmTMSChangeRegion.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmTMSChangeRegion' );
+		frmTMSChangeRegion.RWC_PromptControl1_Region_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSChangeRegion.RWC_PromptControl1_Region_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("TMS_COMPANY",cdt.VariableManager.getGlobal("TMS_COMPANY"));
+			cdt.VariableManager.setLocal("TMS_IP_ADD",Utilities.Instance.GetIPAddress());
+			cdt.VariableManager.setLocal("TMS_COMPANY",cdt.VariableManager.getGlobal("TMS_COMPANY"));
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("t_TMSTaskOFF",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 5);cdt.NetworkManager.sendTransaction("t_TMSTaskON",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setGlobal("TMS_REGION",cdt.VariableManager.getLocal("TMS_REGION"));
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSChangeRegion.Region = new cdt.prompt("Region", // Name
+				"Region", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"v_TMSUserRegion", // Validation
+				false, // ValidIfNotEmpty
+				"TMS_REGION", // Variable
+				frmTMSChangeRegion.RWC_PromptControl1_Region_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSChangeRegion.RWC_PromptControl1.addPrompt(frmTMSChangeRegion.Region);
+
+		frmTMSChangeRegion.viewModel = new cdt.viewModel( "frmTMSChangeRegion",frmTMSChangeRegion.RWC_PromptControl1,"frmTMSChangeRegion");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmTMSChangeRegion-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmTMSChangeRegion-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmTMSChangeRegion-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSChangeRegion-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSChangeRegion-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSChangeRegion-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSChangeRegion-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

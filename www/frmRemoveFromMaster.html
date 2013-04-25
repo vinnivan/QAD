@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmRemoveFromMaster' data-role='view' data-title='Remove from Master/Mixed' data-show='frmRemoveFromMaster.viewModel.initialize' data-model='frmRemoveFromMaster.viewModel' >
+<script>
+	var frmRemoveFromMaster = frmRemoveFromMaster || {};
+		frmRemoveFromMaster.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmRemoveFromMaster' );
+		frmRemoveFromMaster.RWC_PromptControl1_MasterNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmRemoveFromMaster.RWC_PromptControl1_MasterNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("CONT_SER_MASTER",cdt.VariableManager.getLocal("CONT_SER"));
+			if(cdt.VariableManager.get("Mvr.VINTLI","IL_STATUS").toUpperCase() == "A".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.get("Mvr.VINTLI","TYPE").toUpperCase() == "M".toUpperCase()
+			 || 
+			cdt.VariableManager.get("Mvr.VINTLI","TYPE").toUpperCase() == "X".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("INT_ID",Utilities.Instance.GetNow("YYYYMTDDHHMMSS"));
+			cdt.NetworkManager.setSourceLine( 5);cdt.NetworkManager.sendTransaction("DILSTR",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("PALLET",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.VariableManager.setLocal("CONT_SER","");
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error","Serial is not Master or Mixed.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,12, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error","Serial is not Active.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,12, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 12:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmRemoveFromMaster.MasterNumber = new cdt.prompt("MasterNumber", // Name
+				"Master/Mixed Container", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VINTLI", // Validation
+				false, // ValidIfNotEmpty
+				"CONT_SER", // Variable
+				frmRemoveFromMaster.RWC_PromptControl1_MasterNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmRemoveFromMaster.RWC_PromptControl1.addPrompt(frmRemoveFromMaster.MasterNumber);
+
+		frmRemoveFromMaster.RWC_PromptControl1_ContainerNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmRemoveFromMaster.RWC_PromptControl1_ContainerNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("LABEL_QTY","1");
+			cdt.VariableManager.setLocal("CONT_SER",cdt.VariableManager.getLocal("CONT_SER_DETAIL"));
+			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("DILBLD",cdt.VariableManager.getNamespace());
+			RWC_PromptControl1.IsValid(true);
+			cdt.VariableManager.setLocal("CONT_SER","");
+			cdt.VariableManager.setLocal("ILABEL","");
+			frmRemoveFromMaster.RWC_PromptControl1.showPrompt("ContainerNumber");
+			shouldContinue = false;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmRemoveFromMaster.RWC_PromptControl1_ContainerNumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmRemoveFromMaster.RWC_PromptControl1_ContainerNumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("DILEND",cdt.VariableManager.getNamespace());
+			frmRemoveFromMaster.viewModel.promptControl.reset( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmRemoveFromMaster.ContainerNumber = new cdt.prompt("ContainerNumber", // Name
+				"Detail Container", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"(F1) Update", // Button Caption
+				frmRemoveFromMaster.ContainerNumber_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VMSDET", // Validation
+				false, // ValidIfNotEmpty
+				"Var.CONT_SER_DETAIL", // Variable
+				frmRemoveFromMaster.RWC_PromptControl1_ContainerNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmRemoveFromMaster.RWC_PromptControl1.addPrompt(frmRemoveFromMaster.ContainerNumber);
+
+		frmRemoveFromMaster.viewModel = new cdt.viewModel( "frmRemoveFromMaster",frmRemoveFromMaster.RWC_PromptControl1,"frmRemoveFromMaster");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmRemoveFromMaster-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmRemoveFromMaster-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmRemoveFromMaster-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmRemoveFromMaster-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmRemoveFromMaster-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmRemoveFromMaster-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmRemoveFromMaster-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmBackflushReject' data-role='view' data-title='Adv Rep Backflush Reject' data-show='frmBackflushReject.viewModel.initialize' data-model='frmBackflushReject.viewModel' >
+<script>
+	var frmBackflushReject = frmBackflushReject || {};
+		frmBackflushReject.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmBackflushReject' );
+		frmBackflushReject.RWC_PromptControl1_RejectQty_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackflushReject.RWC_PromptControl1_RejectQty_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocalNumeric("BAD_QTY",cdt.VariableManager.getLocalNumeric("QTY_REJECT") + cdt.VariableManager.getLocalNumeric("QTY_SCRAP"));
+			cdt.VariableManager.setLocalNumeric("QTY_DIFF",cdt.VariableManager.getLocalNumeric("QTY_PROC") - cdt.VariableManager.getLocalNumeric("BAD_QTY"));
+			if(cdt.VariableManager.getLocalNumeric("QTY_DIFF") <= 0)
+			{
+			
+			cdt.MessageBox.show("Cannot Over Report Reject Qty","Qty Error!",cdt.MessageBoxButton.Ok,null,function() { 
+			frmBackflushReject.RWC_PromptControl1.showPrompt("RejectQty");
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("REJECT_TXT","Reject Qty:" + cdt.VariableManager.getLocal("QTY_REJECT"));
+			cdt.VariableManager.setLocal("TRX_CODE","ARBKFL");
+			cdt.VariableManager.setLocal("TRX_TYPE","R");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackflushReject.RejectQty = new cdt.prompt("RejectQty", // Name
+				"Reject Qty", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY_REJECT", // Variable
+				frmBackflushReject.RWC_PromptControl1_RejectQty_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackflushReject.RWC_PromptControl1.addPrompt(frmBackflushReject.RejectQty);
+
+		frmBackflushReject.RWC_PromptControl1_RejectReason_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackflushReject.RWC_PromptControl1_RejectReason_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("RJCT_RSN",cdt.VariableManager.getLocal("RSN_CODE"));
+			
+			
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackflushReject.RejectReason = new cdt.prompt("RejectReason", // Name
+				"Reject Reason", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VCDRSN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.RSN_CODE", // Variable
+				frmBackflushReject.RWC_PromptControl1_RejectReason_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackflushReject.RWC_PromptControl1.addPrompt(frmBackflushReject.RejectReason);
+
+		frmBackflushReject.viewModel = new cdt.viewModel( "frmBackflushReject",frmBackflushReject.RWC_PromptControl1,"frmBackflushReject");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmBackflushReject-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmBackflushReject-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmBackflushReject-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmBackflushReject-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmBackflushReject-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmBackflushReject-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmBackflushReject-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

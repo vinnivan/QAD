@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmInventoyTransfer' data-role='view' data-title='Transfer w/Lot Serial Change' data-show='frmInventoyTransfer.viewModel.initialize' data-model='frmInventoyTransfer.viewModel' >
+<script>
+	var frmInventoyTransfer = frmInventoyTransfer || {};
+		frmInventoyTransfer.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmInventoyTransfer' );
+		frmInventoyTransfer.RWC_PromptControl1_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
+			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
+			cdt.VariableManager.setLocal("LOT_SER","");
+			cdt.VariableManager.setLocal("FR_LOT_SER","");
+			cdt.VariableManager.setLocal("TO_LOT_SER","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.ItemNumber);
+
+		frmInventoyTransfer.RWC_PromptControl1_FromSite_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_FromSite_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			cdt.VariableManager.set("Mvr.VLSQTY","SITE",cdt.VariableManager.getLocal("SITE"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.FromSite = new cdt.prompt("FromSite", // Name
+				"From Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_FromSite_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.FromSite);
+
+		frmInventoyTransfer.RWC_PromptControl1_FromLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_FromLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("LOCATION",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.FromLocation = new cdt.prompt("FromLocation", // Name
+				"From Loc", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_FromLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.FromLocation);
+
+		frmInventoyTransfer.RWC_PromptControl1_ReferenceNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ReferenceNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.set("Mvr.VLSQTY","REF",cdt.VariableManager.getLocal("REF"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.ReferenceNumber = new cdt.prompt("ReferenceNumber", // Name
+				"From Ref", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.REF", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_ReferenceNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.ReferenceNumber);
+
+		frmInventoyTransfer.RWC_PromptControl1_FromSerial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_FromSerial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
+			cdt.VariableManager.set("Mvr.VLSQTY","LOT_SER",cdt.VariableManager.getLocal("FR_LOT_SER"));
+			frmInventoyTransfer.RWC_PromptControl1.showPrompt("Quantity");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.FromSerial = new cdt.prompt("FromSerial", // Name
+				"From Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCLT", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_FromSerial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.FromSerial);
+
+		frmInventoyTransfer.RWC_PromptControl1_FromLot_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_FromLot_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
+			cdt.VariableManager.set("Mvr.VLSQTY","LOT_SER",cdt.VariableManager.getLocal("FR_LOT_SER"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.FromLot = new cdt.prompt("FromLot", // Name
+				"From Lot", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCLT", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_FromLot_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.FromLot);
+
+		
+		frmInventoyTransfer.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VLSQTY", // Validation
+				false, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.Quantity);
+
+		frmInventoyTransfer.RWC_PromptControl1_ToSite_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToSite_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("TEMP",cdt.VariableManager.getLocal("SITE"));
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("TO_SITE"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VSITEN",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VSITEN","STATUS") != "Y")
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			frmInventoyTransfer.RWC_PromptControl1.returnToPrompt("ToSite",false,false);
+			}
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("TEMP"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.ToSite = new cdt.prompt("ToSite", // Name
+				"To Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.TO_SITE", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_ToSite_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.ToSite);
+
+		
+		frmInventoyTransfer.ToLocation = new cdt.prompt("ToLocation", // Name
+				"To Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VTOLOC", // Validation
+				false, // ValidIfNotEmpty
+				"Var.TO_LOC", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.ToLocation);
+
+		frmInventoyTransfer.RWC_PromptControl1_ToRef_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToRef_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("SER_CTRL") == "Y")
+			{
+			
+			frmInventoyTransfer.RWC_PromptControl1.showPrompt("ToSerial");
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocal("LOT_CTRL") == "Y")
+			{
+			
+			frmInventoyTransfer.RWC_PromptControl1.showPrompt("ToLot");
+			}
+		else
+		{
+			
+			cdt.NetworkManager.setSourceLine( 6);cdt.NetworkManager.sendValidation("VTSTAT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VTSTAT","STATUS") == "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 8);cdt.NetworkManager.sendTransaction("ICLOLS",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			frmInventoyTransfer.viewModel.promptControl.reset( );
+			
+			currentMethod(_value, _completeAction,11, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 11:
+		{
+			
+			cdt.MessageBox.show("Invalid transactions - re-enter transaction.","ERROR",cdt.MessageBoxButton.Ok,null,function() { 
+			frmInventoyTransfer.viewModel.promptControl.reset( );
+			
+			currentMethod(_value, _completeAction,14, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 14:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmInventoyTransfer.RWC_PromptControl1_ToRef_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToRef_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("SER_CTRL") == "N"
+			 && 
+			cdt.VariableManager.getLocal("LOT_CTRL") == "N")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendValidation("VTSTAT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VTSTAT","STATUS") == "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("ICLOLS",cdt.VariableManager.getNamespace());
+			cdt.MessageBox.show("Transaction Sent!","Sent",cdt.MessageBoxButton.Ok,null,function() { 
+			frmInventoyTransfer.viewModel.promptControl.reset( );
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 7:
+		{
+			
+			cdt.MessageBox.show("Invalid Transaction - re-enter transaction","ERROR",cdt.MessageBoxButton.Ok,null,function() { 
+			frmInventoyTransfer.viewModel.promptControl.reset( );
+			
+			currentMethod(_value, _completeAction,10, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocal("SER_CTRL") == "Y")
+			{
+			
+			frmInventoyTransfer.RWC_PromptControl1.showPrompt("ToSerial");
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocal("LOT_CTRL") == "Y")
+			{
+			
+			frmInventoyTransfer.RWC_PromptControl1.showPrompt("ToLot");
+			}
+		
+		case 10:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.ToRef = new cdt.prompt("ToRef", // Name
+				"To Ref", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.TO_REF", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_ToRef_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.ToRef);
+
+		frmInventoyTransfer.RWC_PromptControl1_ToLot_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToLot_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VTSTAT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VTSTAT","STATUS") == "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("ICLOLS",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			frmInventoyTransfer.viewModel.promptControl.reset( );
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 6:
+		{
+			
+			cdt.MessageBox.show("Invalid Transaction - re-enter transactions.","ERROR",cdt.MessageBoxButton.Ok,null,function() { 
+			frmInventoyTransfer.viewModel.promptControl.reset( );
+			
+			currentMethod(_value, _completeAction,9, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 9:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.ToLot = new cdt.prompt("ToLot", // Name
+				"To Lot", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.TO_LOT_SER", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_ToLot_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.ToLot);
+
+		frmInventoyTransfer.RWC_PromptControl1_ToSerial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToSerial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VTSTAT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VTSTAT","STATUS") == "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("ICLOLS",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			frmInventoyTransfer.viewModel.promptControl.reset( );
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 6:
+		{
+			
+			cdt.MessageBox.show("Invalid Transaction - re-enter transaction.","ERROR",cdt.MessageBoxButton.Ok,null,function() { 
+			frmInventoyTransfer.viewModel.promptControl.reset( );
+			
+			currentMethod(_value, _completeAction,9, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 9:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoyTransfer.ToSerial = new cdt.prompt("ToSerial", // Name
+				"To Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILSER", // Validation
+				false, // ValidIfNotEmpty
+				"Var.TO_LOT_SER", // Variable
+				frmInventoyTransfer.RWC_PromptControl1_ToSerial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.ToSerial);
+
+		
+		frmInventoyTransfer.ContainerNumber = new cdt.prompt("ContainerNumber", // Name
+				"Cont Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.CONT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoyTransfer.RWC_PromptControl1.addPrompt(frmInventoyTransfer.ContainerNumber);
+
+		frmInventoyTransfer.viewModel = new cdt.viewModel( "frmInventoyTransfer",frmInventoyTransfer.RWC_PromptControl1,"frmInventoyTransfer");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmInventoyTransfer-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmInventoyTransfer-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmInventoyTransfer-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmInventoyTransfer-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmInventoyTransfer-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmInventoyTransfer-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmInventoyTransfer-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

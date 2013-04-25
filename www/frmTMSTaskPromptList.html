@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmTMSTaskPromptList' data-role='view' data-title='Task List' data-show='frmTMSTaskPromptList.viewModel.initialize' data-model='frmTMSTaskPromptList.viewModel' >
+<script>
+	var frmTMSTaskPromptList = frmTMSTaskPromptList || {};
+		frmTMSTaskPromptList.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}]  });
+		frmTMSTaskPromptList.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmTMSTaskPromptList' );
+		frmTMSTaskPromptList.RWC_PromptControl1_Task_List_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Task_List_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.TRAN_TYPE = ICLOLS
+			// Line#  2 : Var.TMS_REGION = Gvr.TMS_REGION
+			// Line#  3 : Var.TMS_USER_ID = Gvr.TMS_USER_ID
+			// Line#  4 : Var.BIN_DISP = To Bin:  {Var.TMS_BIN}
+			// Line#  5 : Var.UNIT_DISP = Unit:  {Var.TMS_UNITS}
+			// Line#  6 : Var.ITEM_DISP = Item:  {Var.ITEM}
+			// Line#  7 : Var.QTY_DISP = Qty:  {Var.QTY}
+			// Line#  8 : Var.LOC_DISP = Loc:  {Var.FR_LOC}
+			// Line#  9 : Var.PRIORITY_DISP = Priority:  {Var.TMS_PRIORITY}
+			// Line#  10 : Var.TEMP_MSG1 = Priority:  {Var.TMS_PRIORITY}                 From Loc:  {Var.TMS_FROM_BIN}
+			// Line#  11 : Var.TEMP_MSG2 = Unit:   {Var.TMS_SERIAL}         To Loc:    {Var.TO_LOC}
+			// Line#  12 : Var.TO_LOC = Dsv.RWC_DataSet1.TO_LOC
+			// Line#  13 : Var.TMS_SERIAL = Dsv.RWC_DataSet1.TMS_SERIAL
+			// Line#  14 : Var.TMS_TASK_ID = Dsv.RWC_DataSet1.TMS_TASK_ID
+			// Line#  15 : Var.TMS_ILABEL = Dsv.RWC_DataSet1.TMS_SERIAL
+			// Line#  16 : Var.TMS_FROM_BIN = Dsv.RWC_DataSet1.TMS_FROM_BIN
+			// Line#  17 : Var.TMS_BIN = Dsv.RWC_DataSet1.TMS_BIN
+			// Line#  18 : Var.TMS_ITEM = Dsv.RWC_DataSet1.ITEM
+			// Line#  19 : Var.TMS_UNITS = Dsv.RWC_DataSet1.NUM_UNITS
+			// Line#  20 : Gvr.TMS_ILABEL = Var.TMS_ILABEL
+			// Line#  21 : Var.TMS_TASK_TYPE = Dsv.RWC_DataSet1.TMS_TASK_TYPE
+			// Line#  22 : Var.TMS_PRIORITY = Dsv.RWC_DataSet1.TMS_PRIORITY
+			// Line#  23 : Var.TMS_PICKING_BIN = Dsv.RWC_DataSet1.TMS_PICKING_BIN
+			// Line#  24 : Var.BULK = Dsv.RWC_DataSet1.BULK
+			// Line#  25 : Var.TASKTYPE1 = Var.TMS_TASK_TYPE
+			// Line#  26 : Var.TASKTYPE2 = Var.TMS_TASK_TYPE
+			// Line#  27 : Var.ITEM = Var.TMS_ITEM
+			// Line#  28 : Var.FR_SITE = Var.SITE
+			// Line#  29 : Var.FR_LOT_SER = Var.TMS_LOT_SER
+			// Line#  30 : Var.FR_LOC = Var.TMS_FROM_BIN
+			// Line#  31 : Var.QTY = Var.TMS_UNITS
+			// Line#  32 : Var.BIN_MSG = BuildTemplateString ( Var.BIN_DISP ) 
+			// Line#  33 : Var.ITEM_MSG = BuildTemplateString ( Var.ITEM_DISP ) 
+			// Line#  34 : Var.QTY_MSG = BuildTemplateString ( Var.QTY_DISP ) 
+			// Line#  35 : Var.LOC_MSG = BuildTemplateString ( Var.LOC_DISP ) 
+			// Line#  36 : Var.PRIORITY_MSG = BuildTemplateString ( Var.PRIORITY_DISP ) 
+			// Line#  37 : Var.TMP_MSG1 = BuildTemplateString ( Var.TEMP_MSG1 ) 
+			// Line#  38 : Var.TMP_MSG2 = BuildTemplateString ( Var.TEMP_MSG2 ) 
+			// Line#  39 : UpdateData ( Get ) 
+			// Line#  40 : SetHistoryTextEx ( RWC_PromptControl1 , Task_List , To Loc , Var.TMS_BIN , True ) 
+			// Line#  41 : SetHistoryTextEx ( RWC_PromptControl1 , Task_List , Item , Var.TMS_ITEM , False ) 
+			// Line#  42 : SetHistoryTextEx ( RWC_PromptControl1 , Task_List , Pallet , Var.TMS_SERIAL , False ) 
+			// Line#  43 : SetHistoryTextEx ( RWC_PromptControl1 , Task_List , From Loc , Var.TMS_FROM_BIN , False ) 
+			// Line#  44 : SetHistoryTextEx ( RWC_PromptControl1 , Task_List , Task Type , Var.TMS_TASK_TYPE , False ) 
+			// Line#  45 : Var.ILABEL = 
+			// Line#  46 : If Var.TMS_TASK_TYPE = (Alpha) PickingBulk2Bin Or Var.TMS_TASK_TYPE = (Alpha) Stage2Bin
+			// Line#  47 : SendTransaction ( t_TMSStatusStart ) 
+			// Line#  48 : SendValidation ( v_TMSGetTaskDetails ) 
+			// Line#  49 : If Mvr.v_TMSGetTaskDetails.STATUS <> (Alpha) Y
+			// Line#  50 : StatusWindow ( @Error , @Task Removed , 2 ) 
+			// Line#  51 : ReturnToPrompt ( RWC_PromptControl1 , Task_List , True , True ) 
+			// Line#  52 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Task_List ) 
+			// Line#  53 : ListPromptMoveToRow ( RWC_PromptControl1 , Task_List , 0 ) 
+			// Line#  54 : UpdateData ( Get ) 
+			// Line#  55 : CancelDefault( )
+			// Line#  56 : ExitEvent( )
+			// Line#  57 : End If
+			// Line#  58 : ShowPrompt ( RWC_PromptControl1 , PickingBulk2BinUnit ) 
+			// Line#  59 : Else If Var.TMS_TASK_TYPE = (Alpha) Bulk2Stage
+			// Line#  60 : SendTransaction ( t_TMSStatusStart ) 
+			// Line#  61 : SendValidation ( v_TMSGetTaskDetails ) 
+			// Line#  62 : If Mvr.v_TMSGetTaskDetails.STATUS <> (Alpha) Y
+			// Line#  63 : StatusWindow ( @Error , @Task Removed , 2 ) 
+			// Line#  64 : ReturnToPrompt ( RWC_PromptControl1 , Task_List , True , True ) 
+			// Line#  65 : DownloadListPromptFromQueue ( RWC_PromptControl1 , Task_List ) 
+			// Line#  66 : ListPromptMoveToRow ( RWC_PromptControl1 , Task_List , 0 ) 
+			// Line#  67 : UpdateData ( Get ) 
+			// Line#  68 : CancelDefault( )
+			// Line#  69 : ExitEvent( )
+			// Line#  70 : End If
+			// Line#  71 : ShowPrompt ( RWC_PromptControl1 , Bulk2StageUnit ) 
+			// Line#  72 : Else If Var.TMS_TASK_TYPE = (Alpha) Stage2PickingBulk
+			// Line#  73 : ShowPrompt ( RWC_PromptControl1 , Stage2PickingBulkUnit ) 
+			// Line#  74 : Else If Var.TMS_TASK_TYPE = (Alpha) Bulk2Shipping Or Var.TMS_TASK_TYPE = (Alpha) PickingBulk2Shipping
+			// Line#  75 : ShowPrompt ( RWC_PromptControl1 , Bulk2ShipperUnit ) 
+			// Line#  76 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Task_List_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Task_List_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.RWC_PromptControl1LP0 = new cdt.prompt( "Task_List", // name 
+			"", // Caption
+			null, // default text 
+			false, // ResetEnabled
+			false, // PreviousEnabled
+			true, // AbortEnabled
+			true, // ShowButton
+			"F1 Accept", // Button Caption
+			frmTMSTaskPromptList.RWC_PromptControl1_Task_List_Click , // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			true, // ShowButton3
+			"F4 Abort", // Button3 Caption
+			frmTMSTaskPromptList.RWC_PromptControl1_Task_List_Click3 , // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			null, // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.RWC_PromptControl1LP0);
+
+
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 40%;text-align:left;'>Priority:&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 4%;text-align:left;'>#= data.TMS_PRIORITY #&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<br/>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 52%;text-align:left;'>Requested By:&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 56%;width: 40%;text-align:left;'>#= data.USERID #&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<br/>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 20%;text-align:left;'>From:&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 20%;width: 28%;text-align:left;'>#= data.TMS_FROM_BIN #&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 56%;width: 12%;text-align:left;'>To:&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 68%;width: 24%;text-align:left;'>#= data.TMS_BIN #&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<br/>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 20%;text-align:left;'>Item:&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 20%;width: 72%;text-align:left;'>#= data.ITEM #&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<br/>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 32%;text-align:left;'>Pallet:&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 32%;width: 40%;text-align:left;'>#= data.TMS_SERIAL #&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP0.setLayout( kendo.template(frmTMSTaskPromptList.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmTMSTaskPromptList.RWC_PromptControl1LP0.setDataSource(frmTMSTaskPromptList.RWC_DataSet1);
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
+			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Item # Does Not Match",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 7:
+			cdt.VariableManager.setLocal("MASTERIL",cdt.VariableManager.get("Mvr.VILBLE","IL_MST_SER"));
+			if(cdt.VariableManager.getLocal("MASTERIL").toUpperCase() != "".toUpperCase()
+			 && 
+			cdt.VariableManager.get("Mvr.VILBLE","BCIL_TYPE").toUpperCase() == "D".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("MSG","Master:" + cdt.VariableManager.get("Mvr.VILBLE","IL_MST_SER"));
+			cdt.MessageBox.show(cdt.VariableManager.getLocal("MSG"),"Please Use Master!",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,15, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 15:
+			// Line#  16 : If Var.ILABEL <> (Alpha) Var.TMS_ILABEL
+			// Line#  17 : StatusWindow ( Error , Unit Does Not Match , 2 ) 
+			// Line#  18 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  19 : CancelDefault( )
+			// Line#  20 : ExitEvent( )
+			// Line#  21 : End If
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
+			cdt.VariableManager.setLocal("ITEMLABEL",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
+			cdt.VariableManager.setLocal("LOTLABEL",cdt.VariableManager.get("Mvr.VILBLE","LOT_SER"));
+			cdt.VariableManager.setLocal("QTYLABEL",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.VariableManager.setLocal("SITELABEL",cdt.VariableManager.get("Mvr.VILBLE","SITE"));
+			cdt.VariableManager.setLocal("LOCLABEL",cdt.VariableManager.get("Mvr.VILBLE","LOC"));
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.get("Mvr.VILBLE","SITE"));
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOTLABEL"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.get("Mvr.VILBLE","LOC"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.get("Mvr.VILBLE","SITE"));
+			cdt.VariableManager.setLocal("FR_REF",cdt.VariableManager.getLocal("ILABEL"));
+			if(cdt.VariableManager.getLocal("ILABEL").toUpperCase() != cdt.VariableManager.getLocal("TMS_ILABEL").toUpperCase())
+			{
+			
+			cdt.NetworkManager.setSourceLine( 35);cdt.NetworkManager.sendValidation("v_TMSGetTaskforIlabel",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt,cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() != "N".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Unit On Different Task",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,41, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 41:
+			if(cdt.VariableManager.getLocal("TO_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_LOC").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("TMS_FROM_BIN"));
+			}
+			cdt.VariableManager.setLocal("ITEM_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("ITEM_DISP")));
+			cdt.VariableManager.setLocal("LOT_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOT_DISP")));
+			cdt.VariableManager.setLocal("QTY_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("QTY_DISP")));
+			cdt.VariableManager.setLocal("SITE_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("SITE_DISP")));
+			cdt.VariableManager.setLocal("LOC_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOC_DISP")));
+			UpdateData( false );
+			RWC_PromptControl1.SetHistoryText("Bulk2StageUnit","To Bin",cdt.VariableManager.getLocal("TMS_BIN"),true);
+			RWC_PromptControl1.SetHistoryText("Bulk2StageUnit","Item",cdt.VariableManager.getLocal("TMS_ITEM"),false);
+			RWC_PromptControl1.SetHistoryText("Bulk2StageUnit","Unit",cdt.VariableManager.getLocal("TMS_SERIAL"),false);
+			RWC_PromptControl1.SetHistoryText("Bulk2StageUnit","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
+			RWC_PromptControl1.SetHistoryText("Bulk2StageUnit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
+			frmTMSTaskPromptList.RWC_PromptControl1.showPrompt("Bulk2StageToLocation");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("URGENCY",cdt.VariableManager.getLocal("TMS_PRIORITY"));
+			cdt.VariableManager.setLocal("NUM_UNITS","1");
+			cdt.VariableManager.setLocal("REGION1","1");
+			cdt.VariableManager.setLocal("REGION2","");
+			cdt.VariableManager.setLocal("TASKTYPE1","Bulk2Stage");
+			cdt.VariableManager.setLocal("TMS_ZONE",cdt.VariableManager.getLocal("TO_BIN"));
+			cdt.VariableManager.setLocal("TASKTYPE2","");
+			cdt.NetworkManager.setSourceLine( 8);cdt.NetworkManager.sendValidation("v_TMSFindReplenishment",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("STATUS",cdt.VariableManager.get("Mvr.v_TMSFindReplenishment","STATUS"));
+			cdt.VariableManager.setLocal("NEW_TASK_ID",cdt.VariableManager.get("Mvr.v_TMSFindReplenishment","TMS_TASK_ID"));
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Could not find new Unit.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,16, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 16:
+			cdt.NetworkManager.setSourceLine( 17);cdt.NetworkManager.sendTransaction("t_TMS_Cancel_Task",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("TMS_TASK_ID",cdt.VariableManager.getLocal("NEW_TASK_ID"));
+			cdt.NetworkManager.setSourceLine( 19);cdt.NetworkManager.sendTransaction("t_TMSStatusStart",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 20);cdt.NetworkManager.sendValidation("v_TMSGetTaskDetails",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt,cdt.VariableManager.getNamespace());
+			RWC_PromptControl1.SetHistoryText("Task_List","To Bin",cdt.VariableManager.getLocal("TMS_BIN"),true);
+			RWC_PromptControl1.SetHistoryText("Task_List","Item",cdt.VariableManager.getLocal("TMS_ITEM"),false);
+			RWC_PromptControl1.SetHistoryText("Task_List","Unit",cdt.VariableManager.getLocal("TMS_SERIAL"),false);
+			RWC_PromptControl1.SetHistoryText("Task_List","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
+			RWC_PromptControl1.SetHistoryText("Task_List","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
+			RWC_PromptControl1.Focus();
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_OnClick2 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_OnClick2;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			RWC_PromptControl1.ReturnToPrompt("Task_List",false,false);
+			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSetFromQueue("Task_List");
+			RWC_PromptControl1.MoveToRow("Task_List",0);
+			UpdateData( false );
+			_completeAction(shouldContinue);
+			return;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.Bulk2StageUnit = new cdt.prompt("Bulk2StageUnit", // Name
+				"Unit", // Caption
+				"", // Default
+				false, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"F1 - Find Unit", // Button Caption
+				frmTMSTaskPromptList.Bulk2StageUnit_Click , // ButtonClick Delegate
+				true, // ShowButton2
+				"F3 - Previous", // Button2 Caption
+				frmTMSTaskPromptList.Bulk2StageUnit_Click2 , // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSTaskPromptList.Bulk2StageUnit_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"ILABEL", // Variable
+				frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.Bulk2StageUnit);
+
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.TMS_TASK_ID <> (Alpha) ""
+			// Line#  2 : If Var.LOC <> (Alpha) Var.TMS_BIN
+			// Line#  3 : StatusWindow ( Error , Location Does Not Match , 2 ) 
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : End If
+			// Line#  9 : SendValidation ( VXPTST ) 
+			// Line#  10 : If Mvr.VXPTST.STATUS <> (Alpha) Y
+			// Line#  11 : MessageBox ( Error! , Mvr.VXPTST.RTMSG , mbOk ) 
+			// Line#  12 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  13 : CancelDefault( )
+			// Line#  14 : ExitEvent( )
+			// Line#  15 : End If
+			// Line#  16 : If Var.LOC <> (Alpha) ""
+			// Line#  17 : Var.LOCLABEL = Trim ( Var.LOCLABEL ) 
+			// Line#  18 : If Var.LOCLABEL = Var.LOC
+			// Line#  19 : MessageBox ( Error! , Unit Already in Location , mbOk ) 
+			// Line#  20 : Var.LOC = 
+			// Line#  21 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  22 : CancelDefault( )
+			// Line#  23 : ExitEvent( )
+			// Line#  24 : Else
+			// Line#  25 : If Var.LOC = 1
+			// Line#  26 : Var.ILBL_ST = I
+			// Line#  27 : SendTransaction ( PINUPD ) 
+			// Line#  28 : End If
+			// Line#  29 : Var.CONT_SER = Var.ILABEL
+			// Line#  30 : Var.TO_LOC = Var.LOC
+			// Line#  31 : SendTransaction ( ICLOTR ) 
+			// Line#  32 : SendTransaction ( t_TMSStatusComplete ) 
+			// Line#  33 : Var.TMS_COMPANY = Gvr.TMS_COMPANY
+			// Line#  34 : Var.WAREHOUSE = Gvr.WAREHOUSE
+			// Line#  35 : Var.TMS_REFERENCE = Var.TMS_BIN
+			// Line#  36 : Var.TMS_BIN = Var.TMS_PICKING_BIN
+			// Line#  37 : Var.TMS_REGION_TEMP = Var.TMS_REGION
+			// Line#  38 : Var.TMS_REGION = 2
+			// Line#  39 : Var.TMS_PRIORITY = Var.TMS_PRIORITY
+			// Line#  40 : Var.TO_BIN = Var.TMS_BIN
+			// Line#  41 : Var.TMS_TO_BIN = Var.TMS_BIN
+			// Line#  42 : If Var.BULK = (Alpha) YES
+			// Line#  43 : Var.TMS_TASK_TYPE = Stage2PickingBulk
+			// Line#  44 : Else
+			// Line#  45 : Var.TMS_TASK_TYPE = Stage2Bin
+			// Line#  46 : End If
+			// Line#  47 : Var.TMS_SERIAL = Var.ILABEL
+			// Line#  48 : SendTransaction ( t_TMS_Create_Task ) 
+			// Line#  49 : StatusWindow ( Info , Transaction Sent! , 2 ) 
+			// Line#  50 : Var.TMS_REGION = Var.TMS_REGION_TEMP
+			// Line#  51 : Var.LAST_LABEL = Var.ILABEL
+			// Line#  52 : ReturnToParentPrompt ( RWC_PromptControl1 , Task_List , False , False ) 
+			// Line#  53 : DownloadParentListPromptFromQueue ( RWC_PromptControl1 , Task_List ) 
+			// Line#  54 : ParentListPromptMoveToRow ( RWC_PromptControl1 , Task_List , 0 ) 
+			// Line#  55 : UpdateData ( Get ) 
+			// Line#  56 : ExitEvent( )
+			// Line#  57 : End If
+			// Line#  58 : Else
+			// Line#  59 : MessageBox ( Error! , Location Cannot be Blank! , mbOk ) 
+			// Line#  60 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  61 : CancelDefault( )
+			// Line#  62 : ExitEvent( )
+			// Line#  63 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_OnClick2 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_OnClick2;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmTMSTaskPromptList.RWC_PromptControl1.returnToPrompt("Bulk2StageUnit",true,true);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.Bulk2StageToLocation = new cdt.prompt("Bulk2StageToLocation", // Name
+				"To Location", // Caption
+				"", // Default
+				false, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				true, // ShowButton2
+				"F3 - Previous", // Button2 Caption
+				frmTMSTaskPromptList.Bulk2StageToLocation_Click2 , // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSTaskPromptList.Bulk2StageToLocation_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.Bulk2StageToLocation);
+
+		frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
+			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Item # Does Not Match",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 7:
+			cdt.VariableManager.setLocal("MASTERIL",cdt.VariableManager.get("Mvr.VILBLE","IL_MST_SER"));
+			if(cdt.VariableManager.getLocal("MASTERIL").toUpperCase() != "".toUpperCase()
+			 && 
+			cdt.VariableManager.get("Mvr.VILBLE","BCIL_TYPE").toUpperCase() == "D".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("MSG","Master:" + cdt.VariableManager.get("Mvr.VILBLE","IL_MST_SER"));
+			cdt.MessageBox.show(cdt.VariableManager.getLocal("MSG"),"Please Use Master!",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,15, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 15:
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
+			cdt.VariableManager.setLocal("ITEMLABEL",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
+			cdt.VariableManager.setLocal("LOTLABEL",cdt.VariableManager.get("Mvr.VILBLE","LOT_SER"));
+			cdt.VariableManager.setLocal("QTYLABEL",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.VariableManager.setLocal("SITELABEL",cdt.VariableManager.get("Mvr.VILBLE","SITE"));
+			cdt.VariableManager.setLocal("LOCLABEL",cdt.VariableManager.get("Mvr.VILBLE","LOC"));
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.get("Mvr.VILBLE","SITE"));
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOTLABEL"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.get("Mvr.VILBLE","LOC"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.get("Mvr.VILBLE","SITE"));
+			cdt.VariableManager.setLocal("FR_REF",cdt.VariableManager.getLocal("ILABEL"));
+			if(cdt.VariableManager.getLocal("TO_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_LOC").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("TMS_FROM_BIN"));
+			}
+			cdt.NetworkManager.setSourceLine( 37);cdt.NetworkManager.sendValidation("v_TMSGetTaskforIlabel",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt,cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			cdt.MessageBox.show("Task not found for Unit","Error",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,43, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 43:
+			cdt.VariableManager.setLocal("TMS_SERIAL",cdt.VariableManager.getLocal("ILABEL"));
+			cdt.NetworkManager.setSourceLine( 45);cdt.NetworkManager.sendTransaction("t_TMSStatusStart",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("ITEM_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("ITEM_DISP")));
+			cdt.VariableManager.setLocal("LOT_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOT_DISP")));
+			cdt.VariableManager.setLocal("QTY_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("QTY_DISP")));
+			cdt.VariableManager.setLocal("SITE_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("SITE_DISP")));
+			cdt.VariableManager.setLocal("LOC_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOC_DISP")));
+			UpdateData( false );
+			RWC_PromptControl1.SetHistoryText("Stage2PickingBulkUnit","To Bin",cdt.VariableManager.getLocal("TMS_BIN"),true);
+			RWC_PromptControl1.SetHistoryText("Stage2PickingBulkUnit","Item",cdt.VariableManager.getLocal("TMS_ITEM"),false);
+			RWC_PromptControl1.SetHistoryText("Stage2PickingBulkUnit","Unit",cdt.VariableManager.getLocal("TMS_SERIAL"),false);
+			RWC_PromptControl1.SetHistoryText("Stage2PickingBulkUnit","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
+			RWC_PromptControl1.SetHistoryText("Stage2PickingBulkUnit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_OnClick2 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_OnClick2;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			RWC_PromptControl1.ReturnToPrompt("Task_List",false,false);
+			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSetFromQueue("Task_List");
+			RWC_PromptControl1.MoveToRow("Task_List",0);
+			UpdateData( false );
+			_completeAction(shouldContinue);
+			return;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.Stage2PickingBulkUnit = new cdt.prompt("Stage2PickingBulkUnit", // Name
+				"Unit", // Caption
+				"", // Default
+				false, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				true, // ShowButton2
+				"F3 - Previous", // Button2 Caption
+				frmTMSTaskPromptList.Stage2PickingBulkUnit_Click2 , // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSTaskPromptList.Stage2PickingBulkUnit_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"ILABEL", // Variable
+				frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.Stage2PickingBulkUnit);
+
+		frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.LOC_SNGL = Mvr.VLOCNO.LOC_SNGL
+			// Line#  2 : If Var.LOC_SNGL <> (Alpha) N
+			// Line#  3 : StatusWindow ( Error , Bin must be a Bulk Location , 2 ) 
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : SendValidation ( VXPTST ) 
+			// Line#  9 : If Mvr.VXPTST.STATUS <> (Alpha) Y
+			// Line#  10 : MessageBox ( Error! , Mvr.VXPTST.RTMSG , mbOk ) 
+			// Line#  11 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  12 : CancelDefault( )
+			// Line#  13 : ExitEvent( )
+			// Line#  14 : End If
+			// Line#  15 : If Var.LOC <> (Alpha) ""
+			// Line#  16 : Var.LOCLABEL = Trim ( Var.LOCLABEL ) 
+			// Line#  17 : If Var.LOCLABEL = Var.LOC
+			// Line#  18 : MessageBox ( Error! , Unit Already in Location , mbOk ) 
+			// Line#  19 : Var.LOC = 
+			// Line#  20 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  21 : CancelDefault( )
+			// Line#  22 : ExitEvent( )
+			// Line#  23 : Else
+			// Line#  24 : If Var.LOC = 1
+			// Line#  25 : Var.ILBL_ST = I
+			// Line#  26 : SendTransaction ( PINUPD ) 
+			// Line#  27 : End If
+			// Line#  28 : Var.CONT_SER = Var.ILABEL
+			// Line#  29 : Var.TO_LOC = Var.LOC
+			// Line#  30 : SendTransaction ( ICLOTR ) 
+			// Line#  31 : SendTransaction ( t_TMSStatusComplete ) 
+			// Line#  32 : StatusWindow ( Info , Transaction Sent! , 2 ) 
+			// Line#  33 : ReturnToParentPrompt ( RWC_PromptControl1 , Task_List , False , False ) 
+			// Line#  34 : DownloadParentListPromptFromQueue ( RWC_PromptControl1 , Task_List ) 
+			// Line#  35 : ParentListPromptMoveToRow ( RWC_PromptControl1 , Task_List , 0 ) 
+			// Line#  36 : UpdateData ( Get ) 
+			// Line#  37 : ExitEvent( )
+			// Line#  38 : End If
+			// Line#  39 : Else
+			// Line#  40 : MessageBox ( Error! , Location Cannot be Blank! , mbOk ) 
+			// Line#  41 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  42 : CancelDefault( )
+			// Line#  43 : ExitEvent( )
+			// Line#  44 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_OnClick2 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_OnClick2;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmTMSTaskPromptList.RWC_PromptControl1.returnToPrompt("Stage2PickingBulkUnit",true,true);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.Stage2PickingBulkToLocation = new cdt.prompt("Stage2PickingBulkToLocation", // Name
+				"To Location", // Caption
+				"", // Default
+				false, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				true, // ShowButton2
+				"F3 - Previous", // Button2 Caption
+				frmTMSTaskPromptList.Stage2PickingBulkToLocation_Click2 , // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSTaskPromptList.Stage2PickingBulkToLocation_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.Stage2PickingBulkToLocation);
+
+		frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinUnit_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinUnit_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLX","ITEM"));
+			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Item # Does Not Match",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 7:
+			cdt.VariableManager.setLocal("DETLABEL",cdt.VariableManager.getLocal("ILABEL"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLX","ITEM"));
+			cdt.VariableManager.setLocal("LOT_SER",cdt.VariableManager.get("Mvr.VILBLX","LOT_SER"));
+			cdt.VariableManager.setLocal("TO_LOT_SER",cdt.VariableManager.get("Mvr.VILBLX","LOT_SER"));
+			cdt.VariableManager.setLocal("QTYLABEL",cdt.VariableManager.get("Mvr.VILBLX","QTY"));
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.get("Mvr.VILBLX","SITE"));
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.get("Mvr.VILBLE","LOC"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.get("Mvr.VILBLX","LOT_SER"));
+			cdt.VariableManager.setLocal("REF",cdt.VariableManager.getLocal("ILABEL"));
+			cdt.VariableManager.setLocal("TO_REF",cdt.VariableManager.getLocal("ILABEL"));
+			cdt.VariableManager.setLocal("TO_LOT_SER_REF",cdt.VariableManager.getLocal("ILABEL"));
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.get("Mvr.VILBLX","SITE"));
+			cdt.VariableManager.setLocal("RANDOM",cdt.VariableManager.get("Mvr.VILBLE","IS_RANDOM"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLX","QTY"));
+			cdt.VariableManager.setLocal("INPUTQTY",cdt.VariableManager.get("Mvr.VILBLX","QTY"));
+			cdt.VariableManager.setLocal("SITELABEL",cdt.VariableManager.get("Mvr.VILBLX","SITE"));
+			cdt.VariableManager.setLocal("LOCLABEL",cdt.VariableManager.get("Mvr.VILBLX","LOC"));
+			if(cdt.VariableManager.getLocal("ILABEL").toUpperCase() != cdt.VariableManager.getLocal("TMS_ILABEL").toUpperCase())
+			{
+			
+			cdt.NetworkManager.setSourceLine( 27);cdt.NetworkManager.sendValidation("v_TMSGetTaskforIlabel",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt,cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() != "N".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Unit On Different Task",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,33, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 33:
+			cdt.VariableManager.setLocal("TMS_SERIAL",cdt.VariableManager.getLocal("ILABEL"));
+			if(cdt.VariableManager.getLocal("TO_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_LOC").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("TMS_FROM_BIN"));
+			}
+			cdt.VariableManager.setLocal("ITEM_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("ITEM_DISP")));
+			cdt.VariableManager.setLocal("LOT_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOT_DISP")));
+			cdt.VariableManager.setLocal("QTY_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("QTY_DISP")));
+			cdt.VariableManager.setLocal("SITE_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("SITE_DISP")));
+			cdt.VariableManager.setLocal("LOC_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOC_DISP")));
+			UpdateData( false );
+			RWC_PromptControl1.SetHistoryText("PickingBulk2BinUnit","To Loc",cdt.VariableManager.getLocal("TMS_BIN"),true);
+			RWC_PromptControl1.SetHistoryText("PickingBulk2BinUnit","Item",cdt.VariableManager.getLocal("TMS_ITEM"),false);
+			RWC_PromptControl1.SetHistoryText("PickingBulk2BinUnit","Pallet",cdt.VariableManager.getLocal("TMS_SERIAL"),false);
+			RWC_PromptControl1.SetHistoryText("PickingBulk2BinUnit","From Loc",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
+			RWC_PromptControl1.SetHistoryText("PickingBulk2BinUnit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
+			cdt.VariableManager.setLocal("LOC","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinUnit_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinUnit_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.PickingBulk2BinUnit = new cdt.prompt("PickingBulk2BinUnit", // Name
+				"Pallet", // Caption
+				"", // Default
+				false, // ResetEnabled
+				false, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSTaskPromptList.PickingBulk2BinUnit_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLX", // Validation
+				false, // ValidIfNotEmpty
+				"ILABEL", // Variable
+				frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinUnit_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.PickingBulk2BinUnit);
+
+		frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinToLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinToLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("LOC").toUpperCase() != cdt.VariableManager.getLocal("TMS_BIN").toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Location Does Not Match",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("TO_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocalNumeric("NEWLABQTY",cdt.VariableManager.getLocalNumeric("QTYLABEL") - cdt.VariableManager.getLocalNumeric("INPUTQTY"));
+			cdt.VariableManager.setLocal("QTY","0");
+			cdt.NetworkManager.setSourceLine( 10);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("INPUTQTY"));
+			cdt.NetworkManager.setSourceLine( 12);cdt.NetworkManager.sendTransaction("ICLOLS",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("LAST_LABEL",cdt.VariableManager.getLocal("ILABEL"));
+			if(cdt.VariableManager.getLocalNumeric("NEWLABQTY") == 0)
+			{
+			
+			cdt.VariableManager.setLocal("ILBL_ST","I");
+			cdt.NetworkManager.setSourceLine( 16);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
+			}
+			cdt.NetworkManager.setSourceLine( 18);cdt.NetworkManager.sendTransaction("t_TMSStatusComplete",cdt.VariableManager.getNamespace());
+			RWC_PromptControl1.ReturnToPrompt("Task_List",true,true);
+			cdt.StatusBox.show("Info","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 20,_shouldContinue); } );
+			return;
+		case  20:
+			cdt.NetworkManager.setSourceLine( 21);RWC_PromptControl1.ReceiveDataSetFromQueue("Task_List");
+			RWC_PromptControl1.MoveToRow("Task_List",0);
+			UpdateData( false );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinToLocation_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinToLocation_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.PickingBulk2BinToLocation = new cdt.prompt("PickingBulk2BinToLocation", // Name
+				"To Location", // Caption
+				"", // Default
+				false, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSTaskPromptList.PickingBulk2BinToLocation_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinToLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.PickingBulk2BinToLocation);
+
+		frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceCount_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceCount_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocalNumeric("DWNLDQTY",cdt.VariableManager.getLocalNumeric("DWNLDQTY") + 0);
+			if(cdt.VariableManager.getLocalNumeric("DWNLDQTY") < cdt.VariableManager.getLocalNumeric("PIECES"))
+			{
+			
+			cdt.StatusBox.show("Error","Input Exceeds Avail!",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			CloseForm( );
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("MULTLENGTH",cdt.VariableManager.getLocal("LENGTH"));
+			cdt.VariableManager.setLocal("MULTPIECES",cdt.VariableManager.getLocal("DWNLDQTY"));
+			cdt.VariableManager.setLocalNumeric("MULTTOTAL",cdt.VariableManager.getLocalNumeric("MULTLENGTH") * cdt.VariableManager.getLocalNumeric("PIECES"));
+			cdt.VariableManager.setLocalNumeric("TOTALQTY",cdt.VariableManager.getLocalNumeric("MULTTOTAL") + cdt.VariableManager.getLocalNumeric("TOTALQTY"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("LENGTH"));
+			cdt.VariableManager.setLocalNumeric("PIECES",cdt.VariableManager.getLocalNumeric("DWNLDQTY") - cdt.VariableManager.getLocalNumeric("PIECES"));
+			cdt.NetworkManager.setSourceLine( 13);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("MULTTOTAL"));
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getGlobal("SITE"));
+			cdt.NetworkManager.setSourceLine( 16);cdt.NetworkManager.sendTransaction("ICLOLS",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("PIECES","");
+			UpdateData( false );
+			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.getLocal("DETLABEL"));
+			cdt.NetworkManager.setSourceLine( 20);RWC_PromptControl1.ReceiveDataSetFromQueue("PickingBulk2BinPieceList");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceCount_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceCount_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("t_TMSStatusComplete",cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("TMS_USER_ID").toUpperCase() != "".toUpperCase())
+			{
+			
+			cdt.NetworkManager.setSourceLine( 3);RWC_PromptControl1.ReceiveDataSetFromQueue("Task_List");
+			RWC_PromptControl1.ReturnToPrompt("Task_List",true,true);
+			_completeAction(shouldContinue);
+			return;
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.PickingBulk2BinPieceCount = new cdt.prompt("PickingBulk2BinPieceCount", // Name
+				"# of Pieces", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"F1 Done", // Button Caption
+				frmTMSTaskPromptList.PickingBulk2BinPieceCount_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"PIECES", // Variable
+				frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceCount_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.PickingBulk2BinPieceCount);
+
+		frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceList_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceList_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("DWNLDQTY",cdt.VariableManager.get("Dsv.dtsUnitToBin","PIECES"));
+			cdt.VariableManager.setLocal("LENGTH",cdt.VariableManager.get("Dsv.dtsUnitToBin","LENGTH"));
+			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.get("Dsv.dtsUnitToBin","ILABEL"));
+			frmTMSTaskPromptList.RWC_PromptControl1.showPrompt("PickingBulk2BinPieceCount");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.RWC_PromptControl1LP1 = new cdt.prompt( "PickingBulk2BinPieceList", // name 
+			"", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceList_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.RWC_PromptControl1LP1);
+
+
+		frmTMSTaskPromptList.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 24%;text-align:left;'>Length:&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 24%;width: 38%;text-align:left;'>#= data.LENGTH #&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP1_template += "<br/>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 24%;text-align:left;'>Pieces:&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 24%;width: 38%;text-align:left;'>#= data.PIECES #&nbsp;&nbsp;</span>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		frmTMSTaskPromptList.RWC_PromptControl1LP1.setLayout( kendo.template(frmTMSTaskPromptList.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		frmTMSTaskPromptList.RWC_PromptControl1LP1.setDataSource(frmTMSTaskPromptList.RWC_DataSet2);
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
+			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Item # Does Not Match",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 7:
+			cdt.VariableManager.setLocal("MASTERIL",cdt.VariableManager.get("Mvr.VILBLE","IL_MST_SER"));
+			if(cdt.VariableManager.getLocal("MASTERIL").toUpperCase() != "".toUpperCase()
+			 && 
+			cdt.VariableManager.get("Mvr.VILBLE","BCIL_TYPE").toUpperCase() == "D".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("MSG","Master:" + cdt.VariableManager.get("Mvr.VILBLE","IL_MST_SER"));
+			cdt.MessageBox.show(cdt.VariableManager.getLocal("MSG"),"Please Use Master!",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,15, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 15:
+			// Line#  16 : If Var.ILABEL <> (Alpha) Var.TMS_ILABEL
+			// Line#  17 : StatusWindow ( Error , Unit Does Not Match , 2 ) 
+			// Line#  18 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  19 : CancelDefault( )
+			// Line#  20 : ExitEvent( )
+			// Line#  21 : End If
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
+			cdt.VariableManager.setLocal("ITEMLABEL",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
+			cdt.VariableManager.setLocal("LOTLABEL",cdt.VariableManager.get("Mvr.VILBLE","LOT_SER"));
+			cdt.VariableManager.setLocal("QTYLABEL",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.VariableManager.setLocal("SITELABEL",cdt.VariableManager.get("Mvr.VILBLE","SITE"));
+			cdt.VariableManager.setLocal("LOCLABEL",cdt.VariableManager.get("Mvr.VILBLE","LOC"));
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.get("Mvr.VILBLE","SITE"));
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOTLABEL"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.get("Mvr.VILBLE","LOC"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.get("Mvr.VILBLE","SITE"));
+			cdt.VariableManager.setLocal("FR_REF",cdt.VariableManager.getLocal("ILABEL"));
+			if(cdt.VariableManager.getLocal("ILABEL").toUpperCase() != cdt.VariableManager.getLocal("TMS_ILABEL").toUpperCase())
+			{
+			
+			cdt.NetworkManager.setSourceLine( 35);cdt.NetworkManager.sendValidation("v_TMSGetTaskforIlabel",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt,cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() != "N".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Unit On Different Task",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,41, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 41:
+			if(cdt.VariableManager.getLocal("TO_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_LOC").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("TMS_FROM_BIN"));
+			}
+			cdt.VariableManager.setLocal("ITEM_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("ITEM_DISP")));
+			cdt.VariableManager.setLocal("LOT_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOT_DISP")));
+			cdt.VariableManager.setLocal("QTY_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("QTY_DISP")));
+			cdt.VariableManager.setLocal("SITE_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("SITE_DISP")));
+			cdt.VariableManager.setLocal("LOC_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOC_DISP")));
+			UpdateData( false );
+			RWC_PromptControl1.SetHistoryText("Bulk2ShipperUnit","To Bin",cdt.VariableManager.getLocal("TMS_BIN"),true);
+			RWC_PromptControl1.SetHistoryText("Bulk2ShipperUnit","Item",cdt.VariableManager.getLocal("TMS_ITEM"),false);
+			RWC_PromptControl1.SetHistoryText("Bulk2ShipperUnit","Unit",cdt.VariableManager.getLocal("TMS_SERIAL"),false);
+			RWC_PromptControl1.SetHistoryText("Bulk2ShipperUnit","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
+			RWC_PromptControl1.SetHistoryText("Bulk2ShipperUnit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
+			frmTMSTaskPromptList.RWC_PromptControl1.showPrompt("Bulk2ShipperToLocation");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("URGENCY",cdt.VariableManager.getLocal("TMS_PRIORITY"));
+			cdt.VariableManager.setLocal("NUM_UNITS","1");
+			cdt.VariableManager.setLocal("REGION1","1");
+			cdt.VariableManager.setLocal("REGION2","");
+			cdt.VariableManager.setLocal("TMS_ZONE",cdt.VariableManager.getLocal("TO_BIN"));
+			cdt.VariableManager.setLocal("TASKTYPE2","");
+			cdt.VariableManager.setLocal("TASKTYPE1","Bulk2Shipping");
+			cdt.VariableManager.setLocal("BULK","NO");
+			cdt.NetworkManager.setSourceLine( 9);cdt.NetworkManager.sendValidation("v_TMSFindReplenishment",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("STATUS",cdt.VariableManager.get("Mvr.v_TMSFindReplenishment","STATUS"));
+			cdt.VariableManager.setLocal("NEW_TASK_ID",cdt.VariableManager.get("Mvr.v_TMSFindReplenishment","TMS_TASK_ID"));
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Could not find new Unit.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,17, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 17:
+			cdt.NetworkManager.setSourceLine( 18);cdt.NetworkManager.sendTransaction("t_TMS_Cancel_Task",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("TMS_TASK_ID",cdt.VariableManager.getLocal("NEW_TASK_ID"));
+			cdt.NetworkManager.setSourceLine( 20);cdt.NetworkManager.sendTransaction("t_TMSStatusStart",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 21);cdt.NetworkManager.sendValidation("v_TMSGetTaskDetails",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt,cdt.VariableManager.getNamespace());
+			RWC_PromptControl1.SetHistoryText("Task_List","To Bin",cdt.VariableManager.getLocal("TMS_BIN"),true);
+			RWC_PromptControl1.SetHistoryText("Task_List","Item",cdt.VariableManager.getLocal("TMS_ITEM"),false);
+			RWC_PromptControl1.SetHistoryText("Task_List","Unit",cdt.VariableManager.getLocal("TMS_SERIAL"),false);
+			RWC_PromptControl1.SetHistoryText("Task_List","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
+			RWC_PromptControl1.SetHistoryText("Task_List","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
+			RWC_PromptControl1.Focus();
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_OnClick2 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_OnClick2;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			RWC_PromptControl1.ReturnToPrompt("Task_List",false,false);
+			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSetFromQueue("Task_List");
+			RWC_PromptControl1.MoveToRow("Task_List",0);
+			UpdateData( false );
+			_completeAction(shouldContinue);
+			return;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.Bulk2ShipperUnit = new cdt.prompt("Bulk2ShipperUnit", // Name
+				"Unit", // Caption
+				"", // Default
+				false, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"F1 - Find Unit", // Button Caption
+				frmTMSTaskPromptList.Bulk2ShipperUnit_Click , // ButtonClick Delegate
+				true, // ShowButton2
+				"F3 - Previous", // Button2 Caption
+				frmTMSTaskPromptList.Bulk2ShipperUnit_Click2 , // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSTaskPromptList.Bulk2ShipperUnit_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"ILABEL", // Variable
+				frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.Bulk2ShipperUnit);
+
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.TMS_TASK_ID <> (Alpha) ""
+			// Line#  2 : If Var.LOC <> (Alpha) Var.TMS_BIN
+			// Line#  3 : StatusWindow ( Error , Location Does Not Match , 2 ) 
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : End If
+			// Line#  9 : SendValidation ( VXPTST ) 
+			// Line#  10 : If Mvr.VXPTST.STATUS <> (Alpha) Y
+			// Line#  11 : MessageBox ( Error! , Mvr.VXPTST.RTMSG , mbOk ) 
+			// Line#  12 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  13 : CancelDefault( )
+			// Line#  14 : ExitEvent( )
+			// Line#  15 : End If
+			// Line#  16 : If Var.LOC <> (Alpha) ""
+			// Line#  17 : Var.LOCLABEL = Trim ( Var.LOCLABEL ) 
+			// Line#  18 : If Var.LOCLABEL = Var.LOC
+			// Line#  19 : MessageBox ( Error! , Unit Already in Location , mbOk ) 
+			// Line#  20 : Var.LOC = 
+			// Line#  21 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  22 : CancelDefault( )
+			// Line#  23 : ExitEvent( )
+			// Line#  24 : Else
+			// Line#  25 : If Var.LOC = 1
+			// Line#  26 : Var.ILBL_ST = I
+			// Line#  27 : SendTransaction ( PINUPD ) 
+			// Line#  28 : End If
+			// Line#  29 : Var.CONT_SER = Var.ILABEL
+			// Line#  30 : Var.TO_LOC = Var.LOC
+			// Line#  31 : SendTransaction ( ICLOTR ) 
+			// Line#  32 : SendTransaction ( t_TMSStatusComplete ) 
+			// Line#  33 : StatusWindow ( Info , Transaction Sent! , 2 ) 
+			// Line#  34 : ReturnToParentPrompt ( RWC_PromptControl1 , Task_List , False , False ) 
+			// Line#  35 : DownloadParentListPromptFromQueue ( RWC_PromptControl1 , Task_List ) 
+			// Line#  36 : ParentListPromptMoveToRow ( RWC_PromptControl1 , Task_List , 0 ) 
+			// Line#  37 : UpdateData ( Get ) 
+			// Line#  38 : ExitEvent( )
+			// Line#  39 : End If
+			// Line#  40 : Else
+			// Line#  41 : MessageBox ( Error! , Location Cannot be Blank! , mbOk ) 
+			// Line#  42 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  43 : CancelDefault( )
+			// Line#  44 : ExitEvent( )
+			// Line#  45 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_OnClick2 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_OnClick2;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmTMSTaskPromptList.RWC_PromptControl1.returnToPrompt("Bulk2ShipperUnit",true,true);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSTaskPromptList.Bulk2ShipperToLocation = new cdt.prompt("Bulk2ShipperToLocation", // Name
+				"To Location", // Caption
+				"", // Default
+				false, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				true, // ShowButton2
+				"F3 - Previous", // Button2 Caption
+				frmTMSTaskPromptList.Bulk2ShipperToLocation_Click2 , // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSTaskPromptList.Bulk2ShipperToLocation_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSTaskPromptList.RWC_PromptControl1.addPrompt(frmTMSTaskPromptList.Bulk2ShipperToLocation);
+
+		frmTMSTaskPromptList.viewModel = new cdt.viewModel( "frmTMSTaskPromptList",frmTMSTaskPromptList.RWC_PromptControl1,"frmTMSTaskPromptList");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmTMSTaskPromptList-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmTMSTaskPromptList-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmTMSTaskPromptList-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSTaskPromptList-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSTaskPromptList-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSTaskPromptList-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSTaskPromptList-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmPhysicalRecount' data-role='view' data-title='Tag Recount' data-show='frmPhysicalRecount.viewModel.initialize' data-model='frmPhysicalRecount.viewModel' >
+<script>
+	var frmPhysicalRecount = frmPhysicalRecount || {};
+		frmPhysicalRecount.pmtMain = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmPhysicalRecount' );
+		frmPhysicalRecount.pmtMain_PITag_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPhysicalRecount.pmtMain_PITag_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VTAGNO","ITEM"));
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.get("Mvr.VTAGNO","LOC"));
+			cdt.VariableManager.setLocal("LOT_SER",cdt.VariableManager.get("Mvr.VTAGNO","LOT_SER"));
+			cdt.VariableManager.setLocal("REF",cdt.VariableManager.get("Mvr.VTAGNO","REF"));
+			if(cdt.VariableManager.get("Mvr.VTAGNO","TYPE") == "I")
+			{
+			
+			UpdateData( true );
+			RWC_PageControl1.ShowPage("BulkDisplay");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPhysicalRecount.PITag = new cdt.prompt("PITag", // Name
+				"Tag", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VTAGNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.TAG", // Variable
+				frmPhysicalRecount.pmtMain_PITag_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPhysicalRecount.pmtMain.addPrompt(frmPhysicalRecount.PITag);
+
+		
+		frmPhysicalRecount.Location = new cdt.prompt("Location", // Name
+				"Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPhysicalRecount.pmtMain.addPrompt(frmPhysicalRecount.Location);
+
+		frmPhysicalRecount.pmtMain_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPhysicalRecount.pmtMain_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("SERCTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
+			cdt.VariableManager.setLocal("LOTCTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPhysicalRecount.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmPhysicalRecount.pmtMain_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPhysicalRecount.pmtMain.addPrompt(frmPhysicalRecount.ItemNumber);
+
+		
+		frmPhysicalRecount.Serial = new cdt.prompt("Serial", // Name
+				"Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCLT", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPhysicalRecount.pmtMain.addPrompt(frmPhysicalRecount.Serial);
+
+		
+		frmPhysicalRecount.Lot = new cdt.prompt("Lot", // Name
+				"Lot", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCLT", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPhysicalRecount.pmtMain.addPrompt(frmPhysicalRecount.Lot);
+
+		frmPhysicalRecount.pmtMain_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPhysicalRecount.pmtMain_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("PITCMR",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
+			return;
+		case  2:
+			frmPhysicalRecount.viewModel.promptControl.reset( );
+			shouldContinue = false;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPhysicalRecount.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				frmPhysicalRecount.pmtMain_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPhysicalRecount.pmtMain.addPrompt(frmPhysicalRecount.Quantity);
+
+		frmPhysicalRecount.viewModel = new cdt.viewModel( "frmPhysicalRecount",frmPhysicalRecount.pmtMain,"frmPhysicalRecount");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmPhysicalRecount-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmPhysicalRecount-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmPhysicalRecount-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmPhysicalRecount-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmPhysicalRecount-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmPhysicalRecount-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmPhysicalRecount-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

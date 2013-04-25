@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmMasterMixBuild' data-role='view' data-title='Master Mix Build' data-show='frmMasterMixBuild.viewModel.initialize' data-model='frmMasterMixBuild.viewModel' >
+<script>
+	var frmMasterMixBuild = frmMasterMixBuild || {};
+		frmMasterMixBuild.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmMasterMixBuild' );
+		frmMasterMixBuild.RWC_PromptControl1_LabelType_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_LabelType_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("BCIL_TYPE").toUpperCase() != "X".toUpperCase()
+			 && 
+			cdt.VariableManager.getLocal("BCIL_TYPE").toUpperCase() != "M".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Please Enter M or X.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,5, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 5:
+		{
+			
+			cdt.VariableManager.setLocal("LBL_TYPE",cdt.VariableManager.getLocal("BCIL_TYPE"));
+			RWC_PromptControl1.SetHistoryText("LabelType","Label Type",cdt.VariableManager.getLocal("BCIL_TYPE"),false);
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMasterMixBuild.LabelType = new cdt.prompt("LabelType", // Name
+				"Label Type (M)aster or mi(X)ed", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"BCIL_TYPE", // Variable
+				frmMasterMixBuild.RWC_PromptControl1_LabelType_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMasterMixBuild.RWC_PromptControl1.addPrompt(frmMasterMixBuild.LabelType);
+
+		frmMasterMixBuild.RWC_PromptControl1_Choice_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_Choice_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("TO_STATUS","M");
+			cdt.VariableManager.setLocal("INT_ID",Utilities.Instance.GetNow("YYYYMTDDHHMMSS"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("ILMSTR",cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocalNumeric("ACTION_CHOICE") == 1)
+			{
+			
+			cdt.VariableManager.setLocal("CHOICE_DISP","New Pallet");
+			cdt.VariableManager.setLocal("BCIL_STATUS","A");
+			cdt.VariableManager.setLocal("IL_STATUS","A");
+			cdt.VariableManager.setLocal("ILBLDOPT","1");
+			frmMasterMixBuild.RWC_PromptControl1.showPrompt("ContainerNumber");
+			shouldContinue = false;
+			if(1 == 0)
+			{
+			
+			cdt.NetworkManager.setSourceLine( 12);cdt.NetworkManager.sendValidation("VGETIL",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VGETIL","STATUS").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("PALLET",cdt.VariableManager.get("Mvr.VGETIL","CONT_SER"));
+			cdt.StatusBox.show("Error",cdt.VariableManager.getLocal("PALLET"),cdt.MessageBoxButton.Ok,5, function() { 
+			frmMasterMixBuild.RWC_PromptControl1.showPrompt("ContainerNumber");
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,18, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 18:
+		{
+			
+			cdt.StatusBox.show("Error",cdt.VariableManager.get("Mvr.VGETIL","RTMSG"),cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,23, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocalNumeric("ACTION_CHOICE") == 2)
+			{
+			
+			cdt.VariableManager.setLocal("CHOICE_DISP","Add to Pallet");
+			cdt.VariableManager.setLocal("ILBLDOPT","2");
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocalNumeric("ACTION_CHOICE") == 3)
+			{
+			
+			cdt.VariableManager.setLocal("CHOICE_DISP","Pre-Print Pallet");
+			cdt.VariableManager.setLocal("ILBLDOPT","3");
+			frmMasterMixBuild.RWC_PromptControl1.showPrompt("LabelQuantity");
+			shouldContinue = false;
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error","Please Enter 1, 2, or 3.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,23, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 23:
+			RWC_PromptControl1.SetHistoryText("Choice","Choice",cdt.VariableManager.getLocal("CHOICE_DISP"),false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMasterMixBuild.Choice = new cdt.prompt("Choice", // Name
+				"(1) New - (2) Add - (3) PrePrint", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"ACTION_CHOICE", // Variable
+				frmMasterMixBuild.RWC_PromptControl1_Choice_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMasterMixBuild.RWC_PromptControl1.addPrompt(frmMasterMixBuild.Choice);
+
+		frmMasterMixBuild.RWC_PromptControl1_MasterSerial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_MasterSerial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("MASTER_ITEM",cdt.VariableManager.get("Mvr.VINTLI","PART"));
+			if(cdt.VariableManager.get("Mvr.VINTLI","IL_STATUS").toUpperCase() == "A".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("LBL_TYPE").toUpperCase() == cdt.VariableManager.get("Mvr.VINTLI","TYPE").toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("PALLET",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.VariableManager.setLocal("CONT_SER","");
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error","Serial is not Master or Mixed.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,10, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error","Serial is not Active.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,10, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 10:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMasterMixBuild.MasterSerial = new cdt.prompt("MasterSerial", // Name
+				"Master/Mixed Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VINTLI", // Validation
+				false, // ValidIfNotEmpty
+				"CONT_SER", // Variable
+				frmMasterMixBuild.RWC_PromptControl1_MasterSerial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMasterMixBuild.RWC_PromptControl1.addPrompt(frmMasterMixBuild.MasterSerial);
+
+		frmMasterMixBuild.RWC_PromptControl1_ContainerNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_ContainerNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.get("Mvr.VINTLI","DUPLICATE").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.get("Mvr.VINTLI","IL_STATUS").toUpperCase() == "A".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("LABEL_QTY","1");
+			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.VariableManager.setLocal("DET_ITEM",cdt.VariableManager.get("Mvr.VINTLI","PART"));
+			if(cdt.VariableManager.getLocal("LBL_TYPE").toUpperCase() == "M".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("DET_ITEM").toUpperCase() != cdt.VariableManager.getLocal("MASTER_ITEM").toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("MASTER_ITEM").toUpperCase() != "".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Part does not match Master.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,13, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 13:
+		{
+			
+			cdt.VariableManager.setLocal("MASTER_ITEM",cdt.VariableManager.getLocal("DET_ITEM"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("DET_ITEM"));
+			cdt.VariableManager.setLocal("TEMP_DET_SER",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.getLocal("PALLET"));
+			cdt.VariableManager.setLocal("CONT_SER",cdt.VariableManager.getLocal("PALLET"));
+			cdt.VariableManager.setLocal("PALLET","");
+			cdt.VariableManager.setLocal("QTY","");
+			cdt.VariableManager.setLocal("BCIL_TYPE","");
+			cdt.NetworkManager.setSourceLine( 22);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("BCIL_TYPE","M");
+			cdt.VariableManager.setLocal("PALLET",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.getLocal("TEMP_DET_SER"));
+			cdt.VariableManager.setLocal("CONT_SER",cdt.VariableManager.getLocal("TEMP_DET_SER"));
+			}
+			}
+			}
+			cdt.NetworkManager.setSourceLine( 30);cdt.NetworkManager.sendTransaction("ILMBLD",cdt.VariableManager.getNamespace());
+			RWC_PromptControl1.IsValid(true);
+			frmMasterMixBuild.RWC_PromptControl1.showPrompt("ContainerNumber");
+			shouldContinue = false;
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error","Serial is not a Detail.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,38, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error","Container already assigned to Master.",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,38, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 38:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmMasterMixBuild.RWC_PromptControl1_ContainerNumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_ContainerNumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("ILMEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Information","Transaction Complete.",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
+			return;
+		case  2:
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMasterMixBuild.ContainerNumber = new cdt.prompt("ContainerNumber", // Name
+				"Container Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"(F1) Update", // Button Caption
+				frmMasterMixBuild.ContainerNumber_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VINTLI", // Validation
+				false, // ValidIfNotEmpty
+				"CONT_SER", // Variable
+				frmMasterMixBuild.RWC_PromptControl1_ContainerNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMasterMixBuild.RWC_PromptControl1.addPrompt(frmMasterMixBuild.ContainerNumber);
+
+		frmMasterMixBuild.RWC_PromptControl1_LabelQuantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_LabelQuantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("ILMEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Information","Transaction Complete.",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
+			return;
+		case  2:
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMasterMixBuild.LabelQuantity = new cdt.prompt("LabelQuantity", // Name
+				"Number of Labels", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"LABEL_QTY", // Variable
+				frmMasterMixBuild.RWC_PromptControl1_LabelQuantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMasterMixBuild.RWC_PromptControl1.addPrompt(frmMasterMixBuild.LabelQuantity);
+
+		frmMasterMixBuild.viewModel = new cdt.viewModel( "frmMasterMixBuild",frmMasterMixBuild.RWC_PromptControl1,"frmMasterMixBuild");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmMasterMixBuild-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmMasterMixBuild-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmMasterMixBuild-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmMasterMixBuild-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmMasterMixBuild-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmMasterMixBuild-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmMasterMixBuild-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

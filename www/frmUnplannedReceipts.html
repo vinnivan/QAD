@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmUnplannedReceipts' data-role='view' data-title='Unplanned Receipts' data-show='frmUnplannedReceipts.viewModel.initialize' data-model='frmUnplannedReceipts.viewModel' >
+<script>
+	var frmUnplannedReceipts = frmUnplannedReceipts || {};
+		frmUnplannedReceipts.pmtUnplannedReceipt = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmUnplannedReceipts' );
+		frmUnplannedReceipts.pmtUnplannedReceipt_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.DESC = Mvr.VPARTN.DESC
+			// Line#  2 : SetDetailText ( pmtUnplannedReceipt , ItemNumber , Var.DESC , False ) 
+			// Line#  3 : Var.ORD_MULT = Mvr.VPARTN.ORD_MULT
+			// Line#  4 : Var.LOT_CTRL = Mvr.VPARTN.LOT_CTRL
+			// Line#  5 : Var.SER_CTRL = Mvr.VPARTN.SER_CTRL
+			// Line#  6 : SendTransaction ( URCSTR ) 
+			// Line#  7 : If Var.LOT_CTRL = (Alpha) Y
+			// Line#  8 : ShowPrompt ( pmtUnplannedReceipt , Lot ) 
+			// Line#  9 : Else If Var.SER_CTRL = (Alpha) Y
+			// Line#  10 : ShowPrompt ( pmtUnplannedReceipt , Serial ) 
+			// Line#  11 : Else If Var.ITEM <> (Alpha) ""
+			// Line#  12 : ShowPrompt ( pmtUnplannedReceipt , Location ) 
+			// Line#  13 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmUnplannedReceipts.pmtUnplannedReceipt_ItemNumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_ItemNumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("RAN_ONCE") == "Y")
+			{
+			
+			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Order");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedReceipts.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"DONE", // Button Caption
+				frmUnplannedReceipts.ItemNumber_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"ITEM", // Variable
+				frmUnplannedReceipts.pmtUnplannedReceipt_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.ItemNumber);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt_Serial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Serial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Location");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmUnplannedReceipts.pmtUnplannedReceipt_Serial_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Serial_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("RAN_ONCE") == "Y")
+			{
+			
+			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Order");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedReceipts.Serial = new cdt.prompt("Serial", // Name
+				"Serial Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"DONE", // Button Caption
+				frmUnplannedReceipts.Serial_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VSENEE", // Validation
+				false, // ValidIfNotEmpty
+				"LOT_SER", // Variable
+				frmUnplannedReceipts.pmtUnplannedReceipt_Serial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.Serial);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt_Lot_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Lot_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Location");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmUnplannedReceipts.pmtUnplannedReceipt_Lot_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Lot_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("RAN_ONCE") == "Y")
+			{
+			
+			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Order");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedReceipts.Lot = new cdt.prompt("Lot", // Name
+				"Lot Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"DONE", // Button Caption
+				frmUnplannedReceipts.Lot_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"LOT_SER", // Variable
+				frmUnplannedReceipts.pmtUnplannedReceipt_Lot_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.Lot);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt_Site_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Site_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("RAN_ONCE") == "Y")
+			{
+			
+			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Order");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedReceipts.Site = new cdt.prompt("Site", // Name
+				"Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"DONE", // Button Caption
+				frmUnplannedReceipts.Site_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"SITE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.Site);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt_Location_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Location_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("URCEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Unplanned Receipt","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
+			return;
+		case  2:
+			frmUnplannedReceipts.pmtUnplannedReceipt.returnToPrompt("ItemNumber",true,true);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedReceipts.Location = new cdt.prompt("Location", // Name
+				"Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"DONE", // Button Caption
+				frmUnplannedReceipts.Location_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"LOC", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.Location);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("ICUNRC",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("RAN_ONCE","Y");
+			cdt.VariableManager.setLocal("LBL_QTY","1");
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("URCEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Unplanned Receipt","Transaction Sent!",cdt.MessageBoxButton.Ok,1, function() { currentMethod(_value,_completeAction, 5,_shouldContinue); } );
+			return;
+		case  5:
+			frmUnplannedReceipts.pmtUnplannedReceipt.returnToPrompt("ItemNumber",true,true);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedReceipts.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"QTY", // Variable
+				frmUnplannedReceipts.pmtUnplannedReceipt_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.Quantity);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt_LabelQuantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_LabelQuantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("USE_IL") != "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("LNITEM",cdt.VariableManager.getNamespace());
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedReceipts.LabelQuantity = new cdt.prompt("LabelQuantity", // Name
+				"Label Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"LBL_QTY", // Variable
+				frmUnplannedReceipts.pmtUnplannedReceipt_LabelQuantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.LabelQuantity);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt_QtyOnLabel_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_QtyOnLabel_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : SendTransaction ( ICRCPR ) 
+			// Line#  2 : If Var.SER_CTRL = Y
+			// Line#  3 : ReturnToPrompt ( pmtUnplannedReceipt , Serial , True , False ) 
+			// Line#  4 : Else If Var.LOT_CTRL = Y
+			// Line#  5 : ReturnToPrompt ( pmtUnplannedReceipt , Lot , True , False ) 
+			// Line#  6 : Else
+			// Line#  7 : ReturnToPrompt ( pmtUnplannedReceipt , Site , True , False ) 
+			// Line#  8 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedReceipts.QtyOnLabel = new cdt.prompt("QtyOnLabel", // Name
+				"Qty On Label", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"QTY_ONLB", // Variable
+				frmUnplannedReceipts.pmtUnplannedReceipt_QtyOnLabel_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.QtyOnLabel);
+
+		
+		frmUnplannedReceipts.Order = new cdt.prompt("Order", // Name
+				"Order", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"ORDERNBR", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.Order);
+
+		
+		frmUnplannedReceipts.LineNumber = new cdt.prompt("LineNumber", // Name
+				"Line Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"ORDERLINE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.LineNumber);
+
+		
+		frmUnplannedReceipts.SalesJob = new cdt.prompt("SalesJob", // Name
+				"Sales Job", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"SO_JOB", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.SalesJob);
+
+		
+		frmUnplannedReceipts.Address = new cdt.prompt("Address", // Name
+				"Address", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"ADDR", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.Address);
+
+		
+		frmUnplannedReceipts.Remarks = new cdt.prompt("Remarks", // Name
+				"Remarks", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"REMARKS", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.Remarks);
+
+		
+		frmUnplannedReceipts.ProjectNumber = new cdt.prompt("ProjectNumber", // Name
+				"ProjectNumber", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"PROJECT", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.ProjectNumber);
+
+		
+		frmUnplannedReceipts.AccountNumber = new cdt.prompt("AccountNumber", // Name
+				"Account Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VGLACC", // Validation
+				false, // ValidIfNotEmpty
+				"ACTNUM", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.AccountNumber);
+
+		
+		frmUnplannedReceipts.CostCenter = new cdt.prompt("CostCenter", // Name
+				"Cost Center", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VGLCC", // Validation
+				false, // ValidIfNotEmpty
+				"CST_CTR", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.CostCenter);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt_EffectiveDate_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_EffectiveDate_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("URCEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Unplanned Receipt","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
+			return;
+		case  2:
+			frmUnplannedReceipts.pmtUnplannedReceipt.returnToPrompt("ItemNumber",true,true);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedReceipts.EffectiveDate = new cdt.prompt("EffectiveDate", // Name
+				"Effective Date", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"EFF_DATE", // Variable
+				frmUnplannedReceipts.pmtUnplannedReceipt_EffectiveDate_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedReceipts.pmtUnplannedReceipt.addPrompt(frmUnplannedReceipts.EffectiveDate);
+
+		frmUnplannedReceipts.viewModel = new cdt.viewModel( "frmUnplannedReceipts",frmUnplannedReceipts.pmtUnplannedReceipt,"frmUnplannedReceipts");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmUnplannedReceipts-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmUnplannedReceipts-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmUnplannedReceipts-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmUnplannedReceipts-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmUnplannedReceipts-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmUnplannedReceipts-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmUnplannedReceipts-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

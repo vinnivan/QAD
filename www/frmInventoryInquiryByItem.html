@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmInventoryInquiryByItem' data-role='view' data-title='Inventory Inquiry by Item' data-show='frmInventoryInquiryByItem.viewModel.initialize' data-model='frmInventoryInquiryByItem.viewModel' >
+<script>
+	var frmInventoryInquiryByItem = frmInventoryInquiryByItem || {};
+		frmInventoryInquiryByItem.dtsInventoryInquiry = new kendo.data.DataSource({ data: [{}]  });
+		frmInventoryInquiryByItem.pmtInventoryInquiry = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmInventoryInquiryByItem' );
+		frmInventoryInquiryByItem.pmtInventoryInquiry_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoryInquiryByItem.pmtInventoryInquiry_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);pmtInventoryInquiry.ReceiveDataSet("InventoryDownload");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoryInquiryByItem.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmInventoryInquiryByItem.pmtInventoryInquiry_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInventoryInquiryByItem.pmtInventoryInquiry.addPrompt(frmInventoryInquiryByItem.ItemNumber);
+
+		frmInventoryInquiryByItem.pmtInventoryInquiry_InventoryDownload_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInventoryInquiryByItem.pmtInventoryInquiry_InventoryDownload_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmInventoryInquiryByItem.viewModel.promptControl.reset( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0 = new cdt.prompt( "InventoryDownload", // name 
+			"Current Inventory", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmInventoryInquiryByItem.pmtInventoryInquiry_InventoryDownload_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmInventoryInquiryByItem.pmtInventoryInquiry.addPrompt(frmInventoryInquiryByItem.pmtInventoryInquiryLP0);
+
+
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 7%;width: 10%;text-align:left;'>Row&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 20%;width: 13%;text-align:left;'>#= data._CURRENT #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 7%;text-align:left;'>of&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 43%;width: 10%;text-align:right;'>#= data._COUNT #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Site:&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.SITE #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Loc:&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.LOC #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Part:&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.ITEM #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 100%;text-align:left;'>#= data.DESC1 #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 100%;text-align:left;'>#= data.DESC2 #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Lot/Ser:&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.LOT_SER #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Reference:&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.REF #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>QtyOnHand:&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.QTY_OH #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Create Dt:&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.DATE #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br/>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Expire Dt:&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.EXP_DATE #&nbsp;&nbsp;</span>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template += "<br /></a></li>";
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0.setLayout( kendo.template(frmInventoryInquiryByItem.pmtInventoryInquiryLP0_template, { useWithBlock: false } ) );
+
+		frmInventoryInquiryByItem.pmtInventoryInquiryLP0.setDataSource(frmInventoryInquiryByItem.dtsInventoryInquiry);
+		frmInventoryInquiryByItem.viewModel = new cdt.viewModel( "frmInventoryInquiryByItem",frmInventoryInquiryByItem.pmtInventoryInquiry,"frmInventoryInquiryByItem");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmInventoryInquiryByItem-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmInventoryInquiryByItem-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmInventoryInquiryByItem-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmInventoryInquiryByItem-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmInventoryInquiryByItem-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmInventoryInquiryByItem-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmInventoryInquiryByItem-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

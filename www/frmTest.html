@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmTest' data-role='view' data-title='Form1' data-show='frmTest.viewModel.initialize' data-model='frmTest.viewModel' >
+<script>
+	var frmTest = frmTest || {};
+		frmTest.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmTest' );
+		frmTest.RWC_PromptControl1_First_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTest.RWC_PromptControl1_First_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.MessageBox.show("Hello World","Test",cdt.MessageBoxButton.Ok,"var.Result",function() { currentMethod(_value,_completeAction, 1,_shouldContinue); } );
+			return;
+		case  1:
+			if(cdt.VariableManager.getLocalNumeric("Result") == 1)
+			{
+			
+			cdt.MessageBox.show("Hello World2","Test2",cdt.MessageBoxButton.Ok,"var.Result",function() { 
+			cdt.MessageBox.show("Hello World2","Test3",cdt.MessageBoxButton.Ok,"var.Result",function() { 
+			cdt.VariableManager.setLocalNumeric("Test",cdt.VariableManager.getLocalNumeric("Test") + 1);
+			if(cdt.VariableManager.getLocalNumeric("Test") == 1)
+			{
+			
+			cdt.VariableManager.setLocalNumeric("Test",cdt.VariableManager.getLocalNumeric("Test") + 1);
+			
+			}
+			
+			currentMethod(_value, _completeAction,9, _shouldContinue);
+			return;
+			}); 
+			}); 
+			return;
+		}
+		case 9:
+		{
+			
+			cdt.MessageBox.show("One more!!","Test",cdt.MessageBoxButton.Ok,null,function() { 
+			
+			currentMethod(_value, _completeAction,11, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 11:
+			cdt.MessageBox.show("Hello World2","Test4",cdt.MessageBoxButton.Ok,"var.Result",function() { currentMethod(_value,_completeAction, 12,_shouldContinue); } );
+			return;
+		case  12:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTest.First = new cdt.prompt("First", // Name
+				"Test", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"", // Variable
+				frmTest.RWC_PromptControl1_First_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTest.RWC_PromptControl1.addPrompt(frmTest.First);
+
+		frmTest.RWC_PromptControl1_Second_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTest.RWC_PromptControl1_Second_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("Result").toUpperCase() > "299".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("Result").toUpperCase() == "100".toUpperCase())
+			{
+			
+			}
+			cdt.MessageBox.show("First","Test",cdt.MessageBoxButton.Ok,null,function() { 
+			if(cdt.VariableManager.getLocal("Result").toUpperCase() == "100".toUpperCase())
+			{
+			
+			
+			}
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 7:
+		{
+			}
+			else if(cdt.VariableManager.getLocalNumeric("Result") == 200)
+			{
+			
+			cdt.MessageBox.show("Second","Test",cdt.MessageBoxButton.Ok,null,function() { 
+			
+			currentMethod(_value, _completeAction,9, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 9:
+			while(cdt.VariableManager.getLocalNumeric("Result") < 100)
+			{
+			
+			}
+			cdt.VariableManager.setLocal("Result","100");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTest.Second = new cdt.prompt("Second", // Name
+				"", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"", // Variable
+				frmTest.RWC_PromptControl1_Second_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTest.RWC_PromptControl1.addPrompt(frmTest.Second);
+
+		frmTest.viewModel = new cdt.viewModel( "frmTest",frmTest.RWC_PromptControl1,"frmTest");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmTest-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmTest-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmTest-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTest-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTest-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTest-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTest-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

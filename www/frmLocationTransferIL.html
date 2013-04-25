@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmLocationTransferIL' data-role='view' data-title='Single Item Transfer - IL' data-show='frmLocationTransferIL.viewModel.initialize' data-model='frmLocationTransferIL.viewModel' >
+<script>
+	var frmLocationTransferIL = frmLocationTransferIL || {};
+		frmLocationTransferIL.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmLocationTransferIL' );
+		frmLocationTransferIL.RWC_PromptControl1_ContainerNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLocationTransferIL.RWC_PromptControl1_ContainerNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : SetHistoryTextEx ( RWC_PromptControl1 , ContainerNumber , Container , Var.CONT_SER , False ) 
+			// Line#  2 : If Var.CONT_SER <> ""
+			// Line#  3 : Var.QTY = Mvr.VILBLE.QTY
+			// Line#  4 : Var.FR_LOT_SER = Mvr.VILBLE.LOT_SER
+			// Line#  5 : Var.ITEM = Mvr.VILBLE.ITEM
+			// Line#  6 : SendValidation ( VPARTN ) 
+			// Line#  7 : If Mvr.VPARTN.STATUS <> Y
+			// Line#  8 : MessageBox ( Error! , Invalid Item! , mbOk ) 
+			// Line#  9 : Else
+			// Line#  10 : Var.LOT_CTRL = Mvr.VPARTN.LOT_CTRL
+			// Line#  11 : Var.SER_CTRL = Mvr.VPARTN.SER_CTRL
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , FromLocation ) 
+			// Line#  13 : CancelDefault( )
+			// Line#  14 : End If
+			// Line#  15 : End If
+			// Line#  16 : Var.REMARKS = Var.CONT_SER
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLocationTransferIL.ContainerNumber = new cdt.prompt("ContainerNumber", // Name
+				"Container Serial" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.CONT_SER", // Variable
+				frmLocationTransferIL.RWC_PromptControl1_ContainerNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLocationTransferIL.RWC_PromptControl1.addPrompt(frmLocationTransferIL.ContainerNumber);
+
+		frmLocationTransferIL.RWC_PromptControl1_FromLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLocationTransferIL.RWC_PromptControl1_FromLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("LOC","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLocationTransferIL.FromLocation = new cdt.prompt("FromLocation", // Name
+				"From Location" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmLocationTransferIL.RWC_PromptControl1_FromLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLocationTransferIL.RWC_PromptControl1.addPrompt(frmLocationTransferIL.FromLocation);
+
+		frmLocationTransferIL.RWC_PromptControl1_ToLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLocationTransferIL.RWC_PromptControl1_ToLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.FR_LOC = (Alpha) Var.LOC
+			// Line#  2 : StatusWindow ( Error! , From Loc and To Loc cannot be the same , 1 ) 
+			// Line#  3 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  4 : CancelDefault( )
+			// Line#  5 : ExitEvent( )
+			// Line#  6 : End If
+			// Line#  7 : Var.TO_LOC = Var.LOC
+			// Line#  8 : Var.LOC = Var.FR_LOC
+			// Line#  9 : Var.SITE = Var.FR_SITE
+			// Line#  10 : SendValidation ( VTSTAT ) 
+			// Line#  11 : If Mvr.VTSTAT.STATUS <> Y
+			// Line#  12 : StatusWindow ( Error! , Mvr.VTSTAT.RTMSG , 3 ) 
+			// Line#  13 : If Gvr.USE_IL = Y
+			// Line#  14 : ReturnToPrompt ( RWC_PromptControl1 , ContainerNumber , True , True ) 
+			// Line#  15 : Else
+			// Line#  16 : ReturnToPrompt ( RWC_PromptControl1 , ItemNumber , True , True ) 
+			// Line#  17 : End If
+			// Line#  18 : End If
+			// Line#  19 : SendTransaction ( ICLOTR ) 
+			// Line#  20 : StatusWindow (  , Transaction Sent! , 1 ) 
+			// Line#  21 : Var.CONT_SER = 
+			// Line#  22 : ReturnToPrompt ( RWC_PromptControl1 , ContainerNumber , False , True ) 
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLocationTransferIL.ToLocation = new cdt.prompt("ToLocation", // Name
+				"To Location" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VTOLOC", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmLocationTransferIL.RWC_PromptControl1_ToLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLocationTransferIL.RWC_PromptControl1.addPrompt(frmLocationTransferIL.ToLocation);
+
+		frmLocationTransferIL.viewModel = new cdt.viewModel( "frmLocationTransferIL",frmLocationTransferIL.RWC_PromptControl1,"frmLocationTransferIL");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmLocationTransferIL-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmLocationTransferIL-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmLocationTransferIL-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmLocationTransferIL-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmLocationTransferIL-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmLocationTransferIL-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmLocationTransferIL-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

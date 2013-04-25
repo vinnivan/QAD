@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmTMSCancelBinByLoc' data-role='view' data-title='Cancel Bin Replenishment' data-show='frmTMSCancelBinByLoc.viewModel.initialize' data-model='frmTMSCancelBinByLoc.viewModel' >
+<script>
+	var frmTMSCancelBinByLoc = frmTMSCancelBinByLoc || {};
+		frmTMSCancelBinByLoc.pmtTMSCancelBinByLoc = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmTMSCancelBinByLoc' );
+		frmTMSCancelBinByLoc.pmtTMSCancelBinByLoc_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSCancelBinByLoc.pmtTMSCancelBinByLoc_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getGlobal("SITE"));
+			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendValidation("VLOCNO",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VLOCNO","STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			pmtTMSCancelBinByLoc.IsValid(false);
+			_completeAction(shouldContinue);
+			return;
+			}
+			cdt.VariableManager.setLocal("TMS_BIN",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("TMS_USERID",cdt.VariableManager.getGlobal("USERID"));
+			cdt.VariableManager.setLocal("TMS_TASK_TYPE","PickingBulk2Bin");
+			cdt.VariableManager.setLocal("TMS_TASK_TYPE2","Bulk2Stage");
+			cdt.NetworkManager.setSourceLine( 11);cdt.NetworkManager.sendTransaction("t_TMS_Cancel_TaskByBin",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Info","Transaction Sent",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 12,_shouldContinue); } );
+			return;
+		case  12:
+			cdt.VariableManager.setLocal("LOC","");
+			frmTMSCancelBinByLoc.pmtTMSCancelBinByLoc.returnToPrompt("Location",true,true);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSCancelBinByLoc.Location = new cdt.prompt("Location", // Name
+				"Loc", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmTMSCancelBinByLoc.pmtTMSCancelBinByLoc_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSCancelBinByLoc.pmtTMSCancelBinByLoc.addPrompt(frmTMSCancelBinByLoc.Location);
+
+		frmTMSCancelBinByLoc.viewModel = new cdt.viewModel( "frmTMSCancelBinByLoc",frmTMSCancelBinByLoc.pmtTMSCancelBinByLoc,"frmTMSCancelBinByLoc");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmTMSCancelBinByLoc-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmTMSCancelBinByLoc-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmTMSCancelBinByLoc-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSCancelBinByLoc-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSCancelBinByLoc-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSCancelBinByLoc-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSCancelBinByLoc-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

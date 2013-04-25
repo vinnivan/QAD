@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmPOReceipt' data-role='view' data-title='PO Receipt' data-show='frmPOReceipt.viewModel.initialize' data-model='frmPOReceipt.viewModel' >
+<script>
+	var frmPOReceipt = frmPOReceipt || {};
+		frmPOReceipt.CurrentInv = new kendo.data.DataSource({ data: [{}]  });
+		frmPOReceipt.POLines = new kendo.data.DataSource({ data: [{}]  });
+		frmPOReceipt.PONumber = new kendo.data.DataSource({ data: [{}]  });
+		frmPOReceipt.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmPOReceipt' );
+		frmPOReceipt.RWC_PromptControl1_PO_Number_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_PO_Number_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.SITE = Gvr.SITE
+			// Line#  2 : Var.USE_IL = N
+			// Line#  3 : Var.TRAN_TYPE = PORECT
+			// Line#  4 : Var.LOT_SER = 
+			// Line#  5 : SendTransaction ( PORSTR ) 
+			// Line#  6 : If Var.PO = (Alpha) ""
+			// Line#  7 : DownloadListPrompt ( RWC_PromptControl1 , PONumber ) 
+			// Line#  8 : ShowPrompt ( RWC_PromptControl1 , PONumber ) 
+			// Line#  9 : Else
+			// Line#  10 : SendValidation ( VPONBR ) 
+			// Line#  11 : If Mvr.VPONBR.STATUS = (Alpha) N
+			// Line#  12 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  13 : CancelDefault( )
+			// Line#  14 : ResetPrompt ( RWC_PromptControl1 , PO_Number ) 
+			// Line#  15 : Else
+			// Line#  16 : ShowPrompt ( RWC_PromptControl1 , Item_Number ) 
+			// Line#  17 : End If
+			// Line#  18 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.PO_Number = new cdt.prompt("PO_Number", // Name
+				"PO Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.PO", // Variable
+				frmPOReceipt.RWC_PromptControl1_PO_Number_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.PO_Number);
+
+		frmPOReceipt.RWC_PromptControl1_PONumber_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_PONumber_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.PO = Dsv.PONumber.PO
+			// Line#  2 : Var.SITE = Dsv.PONumber.SITE
+			// Line#  3 : Var.VENDOR = Dsv.PONumber.VENDOR
+			// Line#  4 : Var.DUE_DATE = Dsv.PONumber.DUE_DATE
+			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , PO_Number , @PO Number , Var.PO , True ) 
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.RWC_PromptControl1LP0 = new cdt.prompt( "PONumber", // name 
+			"Open PO Numbers", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmPOReceipt.RWC_PromptControl1_PONumber_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.RWC_PromptControl1LP0);
+
+
+		frmPOReceipt.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmPOReceipt.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 30%;text-align:right;'>PO:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 50%;text-align:left;'>#= data.PO #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP0_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 30%;text-align:right;'>Vendor:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 50%;text-align:left;'>#= data.VENDOR #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmPOReceipt.RWC_PromptControl1LP0.setLayout( kendo.template(frmPOReceipt.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmPOReceipt.RWC_PromptControl1LP0.setDataSource(frmPOReceipt.PONumber);
+		frmPOReceipt.RWC_PromptControl1_Item_Number_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Item_Number_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.ITEM = (Alpha) ""
+			// Line#  2 : DownloadListPrompt ( RWC_PromptControl1 , POLine ) 
+			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , POLine ) 
+			// Line#  4 : Else
+			// Line#  5 : SendValidation ( VPOITM ) 
+			// Line#  6 : Var.PART = Mvr.VPOITM.PART
+			// Line#  7 : Var.ITEM = Mvr.VPOITM.PART
+			// Line#  8 : Var.LOT_CTRL = Mvr.VPOITM.LOT_CTRL
+			// Line#  9 : Var.SER_CTRL = Mvr.VPOITM.SER_CTRL
+			// Line#  10 : Var.U_OF_M = Mvr.VPOITM.U_OF_M
+			// Line#  11 : Var.SITE = Mvr.VPOITM.SITE
+			// Line#  12 : Var.DESC = Mvr.VPOITM.DESC
+			// Line#  13 : Var.LOC = DOCK
+			// Line#  14 : SetDetailText ( RWC_PromptControl1 , Item_Number , Var.DESC , True ) 
+			// Line#  15 : If Mvr.VPOITM.STATUS = (Alpha) N
+			// Line#  16 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  17 : CancelDefault( )
+			// Line#  18 : ResetPrompt ( RWC_PromptControl1 , Item_Number ) 
+			// Line#  19 : Else If Mvr.VPOITM.LOT_CTRL = (Alpha) Y
+			// Line#  20 : ShowPrompt ( RWC_PromptControl1 , Lot_Number ) 
+			// Line#  21 : Else If Mvr.VPOITM.SER_CTRL = (Alpha) Y
+			// Line#  22 : ShowPrompt ( RWC_PromptControl1 , Serial_Number ) 
+			// Line#  23 : Else
+			// Line#  24 : ShowPrompt ( RWC_PromptControl1 , Quantity ) 
+			// Line#  25 : End If
+			// Line#  26 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmPOReceipt.RWC_PromptControl1_Item_Number_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Item_Number_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : SendTransaction ( POREND ) 
+			// Line#  2 : StatusWindow (  , Transaction Sent , 3 ) 
+			// Line#  3 : ResetForm( )
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.Item_Number = new cdt.prompt("Item_Number", // Name
+				"Item" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Finished", // Button Caption
+				frmPOReceipt.Item_Number_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmPOReceipt.RWC_PromptControl1_Item_Number_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.Item_Number);
+
+		frmPOReceipt.RWC_PromptControl1_POLine_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_POLine_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.PO_LINE = Dsv.POLines.PO_LINE
+			// Line#  2 : Var.SITE = Dsv.POLines.SITE
+			// Line#  3 : Var.LOC = Dsv.POLines.LOC
+			// Line#  4 : Var.DESC = Dsv.POLines.PART_DESC1
+			// Line#  5 : Var.ITEM = Dsv.POLines.PART
+			// Line#  6 : Var.PART = Dsv.POLines.PART
+			// Line#  7 : Var.LOT_CTRL = Dsv.POLines.LOT
+			// Line#  8 : Var.SER_CTRL = Dsv.POLines.SERIAL
+			// Line#  9 : Var.U_OF_M = Dsv.POLines.U_OF_M
+			// Line#  10 : Var.LOC = DOCK
+			// Line#  11 : SendValidation ( VPOITM ) 
+			// Line#  12 : Var.LOT_CTRL = Mvr.VPOITM.LOT_CTRL
+			// Line#  13 : Var.SER_CTRL = Mvr.VPOITM.SER_CTRL
+			// Line#  14 : SetHistoryTextEx ( RWC_PromptControl1 , Item_Number , @Item , Var.ITEM , True ) 
+			// Line#  15 : SetDetailText ( RWC_PromptControl1 , Item_Number , Var.DESC , True ) 
+			// Line#  16 : SendValidation ( VPOITM ) 
+			// Line#  17 : If Var.LOT_CTRL = (Alpha) Y
+			// Line#  18 : ShowPrompt ( RWC_PromptControl1 , Lot_Number ) 
+			// Line#  19 : Else If Var.SER_CTRL = (Alpha) Y
+			// Line#  20 : ShowPrompt ( RWC_PromptControl1 , Serial_Number ) 
+			// Line#  21 : Else
+			// Line#  22 : ShowPrompt ( RWC_PromptControl1 , Quantity ) 
+			// Line#  23 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.RWC_PromptControl1LP1 = new cdt.prompt( "POLine", // name 
+			"Open PO Lines", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmPOReceipt.RWC_PromptControl1_POLine_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.RWC_PromptControl1LP1);
+
+
+		frmPOReceipt.RWC_PromptControl1LP1_template = "<li data-uid='#= data.uid #'><a>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 7%;width: 10%;text-align:left;'>Row&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 20%;width: 10%;text-align:right;'>#= data._CURRENT #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 7%;text-align:left;'>of&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 43%;width: 10%;text-align:right;'>#= data._COUNT #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>PO:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.PO #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>PO Line:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.PO_LINE #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Part:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.PART #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.PART_DESC1 #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.PART_DESC2 #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 50%;text-align:left;'>Quantities -&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Ordered:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.ORD_QTY #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Open:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.OPN_QTY #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Received:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.RCD_QTY #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP1_template += "<br /></a></li>";
+		frmPOReceipt.RWC_PromptControl1LP1.setLayout( kendo.template(frmPOReceipt.RWC_PromptControl1LP1_template, { useWithBlock: false } ) );
+
+		frmPOReceipt.RWC_PromptControl1LP1.setDataSource(frmPOReceipt.POLines);
+		frmPOReceipt.RWC_PromptControl1_Lot_Number_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Lot_Number_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : SendTransaction ( PORECT ) 
+			// Line#  2 : StatusWindow ( Success , Transaction Sent! , 3 ) 
+			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , Item_Number ) 
+			// Line#  4 : CancelDefault( )
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.Lot_Number = new cdt.prompt("Lot_Number", // Name
+				"Lot Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Done", // Button Caption
+				frmPOReceipt.Lot_Number_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.Lot_Number);
+
+		frmPOReceipt.RWC_PromptControl1_Serial_Number_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Serial_Number_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : SendTransaction ( PORECT ) 
+			// Line#  2 : StatusWindow ( Success , Transaction Sent! , 3 ) 
+			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , Item_Number ) 
+			// Line#  4 : CancelDefault( )
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.Serial_Number = new cdt.prompt("Serial_Number", // Name
+				"Serial Number" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Done", // Button Caption
+				frmPOReceipt.Serial_Number_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSENEE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.Serial_Number);
+
+		frmPOReceipt.RWC_PromptControl1_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.SER_CTRL = Y
+			// Line#  2 : If Var.QTY = 1 Or Var.QTY = -1
+			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , Print_Barcode_Label ) 
+			// Line#  4 : CancelDefault( )
+			// Line#  5 : Else
+			// Line#  6 : MessageBox (  , Quantity Must be 1 or -1! , mbOk ) 
+			// Line#  7 : ResetPrompt ( RWC_PromptControl1 , Quantity ) 
+			// Line#  8 : End If
+			// Line#  9 : Else
+			// Line#  10 : SendTransaction ( PORECT ) 
+			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , Print_Barcode_Label ) 
+			// Line#  12 : CancelDefault( )
+			// Line#  13 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmPOReceipt.RWC_PromptControl1_Quantity_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Quantity_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.ITEM = (Alpha) 48175
+			// Line#  2 : ShowImage ( bmp\48175.bmp ) 
+			// Line#  3 : End If
+			// Line#  4 : If Var.ITEM = (Alpha) 49180
+			// Line#  5 : ShowImage ( bmp\49180.bmp ) 
+			// Line#  6 : End If
+			// Line#  7 : If Var.ITEM = (Alpha) 49288
+			// Line#  8 : ShowImage ( bmp\49288.bmp ) 
+			// Line#  9 : End If
+			// Line#  10 : If Var.ITEM = (Alpha) 0994485-0018
+			// Line#  11 : ShowImage ( bmp\0994485-0018.bmp ) 
+			// Line#  12 : End If
+			// Line#  13 : If Var.ITEM = (Alpha) 0995576-0019
+			// Line#  14 : ShowImage ( bmp\0995576-0019.bmp ) 
+			// Line#  15 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Visually Verify", // Button Resource ID
+				frmPOReceipt.Quantity_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPOITQ", // Validation
+				false, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				frmPOReceipt.RWC_PromptControl1_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.Quantity);
+
+		
+		frmPOReceipt.Site = new cdt.prompt("Site", // Name
+				"Site" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.Site);
+
+		frmPOReceipt.RWC_PromptControl1_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : SendValidation ( VTSTAT ) 
+			// Line#  2 : If Mvr.VTSTAT.STATUS <> (Alpha) Y
+			// Line#  3 : StatusWindow ( Error , Mvr.VTSTAT.RTMSG , 2 ) 
+			// Line#  4 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : SendTransaction ( PORECT ) 
+			// Line#  9 : StatusWindow (  , Transaction Sent! , 2 ) 
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmPOReceipt.RWC_PromptControl1_Location_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Location_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.TEMP_REF = Var.REF
+			// Line#  2 : Var.TEMP_LOC = Var.LOC
+			// Line#  3 : Var.TEMP_LOT_SER = Var.LOT_SER
+			// Line#  4 : Var.LOC = 
+			// Line#  5 : Var.REF = 
+			// Line#  6 : Var.LOT_SER = 
+			// Line#  7 : DownloadListPrompt ( RWC_PromptControl1 , CurrentInv ) 
+			// Line#  8 : Var.LOC = Var.TEMP_LOC
+			// Line#  9 : Var.REF = Var.TEMP_REF
+			// Line#  10 : Var.LOT_SER = Var.TEMP_LOT_SER
+			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , CurrentInv ) 
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.Location = new cdt.prompt("Location", // Name
+				"Location" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Display Current Inventory", // Button Caption
+				frmPOReceipt.Location_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmPOReceipt.RWC_PromptControl1_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.Location);
+
+		frmPOReceipt.RWC_PromptControl1_Print_Barcode_Label_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Print_Barcode_Label_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.PRT_BARC <> N And Var.PRT_BARC <> Y
+			// Line#  2 : StatusWindow ( Error , Value entered must be Y or N , 4 ) 
+			// Line#  3 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  4 : ShowPrompt ( RWC_PromptControl1 , Print_Barcode_Label ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : Else
+			// Line#  7 : If Var.PRT_BARC = Y
+			// Line#  8 : If Var.USE_IL = Y
+			// Line#  9 : Var.LABEL_QTY = 
+			// Line#  10 : ShowPrompt ( RWC_PromptControl1 , Quantity_on_Label ) 
+			// Line#  11 : CancelDefault( )
+			// Line#  12 : Else
+			// Line#  13 : Var.LABEL_QTY = 
+			// Line#  14 : ShowPrompt ( RWC_PromptControl1 , Quantity_on_Label ) 
+			// Line#  15 : CancelDefault( )
+			// Line#  16 : End If
+			// Line#  17 : Else
+			// Line#  18 : Var.ITEM = 
+			// Line#  19 : Var.LOT_SER = 
+			// Line#  20 : Var.QTY = 
+			// Line#  21 : Var.PART = 
+			// Line#  22 : Var.REF = 
+			// Line#  23 : Var.PO_LINE = 
+			// Line#  24 : Var.LOC = 
+			// Line#  25 : ReturnToPrompt ( RWC_PromptControl1 , Item_Number , True , False ) 
+			// Line#  26 : CancelDefault( )
+			// Line#  27 : End If
+			// Line#  28 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.Print_Barcode_Label = new cdt.prompt("Print_Barcode_Label", // Name
+				"Print Label (Y/N)" , // Caption Resource ID
+				"N", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.PRT_BARC", // Variable
+				frmPOReceipt.RWC_PromptControl1_Print_Barcode_Label_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.Print_Barcode_Label);
+
+		frmPOReceipt.RWC_PromptControl1_Label_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Label_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : SendTransaction ( LPOREC ) 
+			// Line#  2 : StatusWindow (  , Label Sent! , 1 ) 
+			// Line#  3 : Var.ITEM = 
+			// Line#  4 : Var.LOT_SER = 
+			// Line#  5 : Var.PART = 
+			// Line#  6 : Var.QTY = 
+			// Line#  7 : Var.REF = 
+			// Line#  8 : Var.PO_LINE = 
+			// Line#  9 : Var.LOC = 
+			// Line#  10 : ReturnToPrompt ( RWC_PromptControl1 , Item_Number , True , True ) 
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.Label_Quantity = new cdt.prompt("Label_Quantity", // Name
+				"Label Quantity" , // Caption Resource ID
+				"1", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.LABEL_QTY", // Variable
+				frmPOReceipt.RWC_PromptControl1_Label_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.Label_Quantity);
+
+		frmPOReceipt.RWC_PromptControl1_Quantity_on_Label_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_Quantity_on_Label_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.LBL_QTY = Var.QTY_ONLB
+			// Line#  2 : Var.LABEL_QTY = Var.QTY_ONLB
+			// Line#  3 : Var.ILBL_ST = A
+			// Line#  4 : SendTransaction ( LPOREC ) 
+			// Line#  5 : Var.QTY_ONLB = Var.QTY
+			// Line#  6 : If 1 = (Numeric) 2
+			// Line#  7 : SendTransaction ( PINLBL ) 
+			// Line#  8 : End If
+			// Line#  9 : StatusWindow (  , Label Sent! , 1 ) 
+			// Line#  10 : Var.ITEM = 
+			// Line#  11 : Var.LOT_SER = 
+			// Line#  12 : Var.QTY = 
+			// Line#  13 : Var.LOC = 
+			// Line#  14 : ReturnToPrompt ( RWC_PromptControl1 , Item_Number , True , True ) 
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.Quantity_on_Label = new cdt.prompt("Quantity_on_Label", // Name
+				"Number of Labels" , // Caption Resource ID
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY_ONLB", // Variable
+				frmPOReceipt.RWC_PromptControl1_Quantity_on_Label_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.Quantity_on_Label);
+
+		frmPOReceipt.RWC_PromptControl1_CurrentInv_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmPOReceipt.RWC_PromptControl1_CurrentInv_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : ReturnToPrompt ( RWC_PromptControl1 , Location , False , False ) 
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmPOReceipt.RWC_PromptControl1LP2 = new cdt.prompt( "CurrentInv", // name 
+			"Current Inventory", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmPOReceipt.RWC_PromptControl1_CurrentInv_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.RWC_PromptControl1LP2);
+
+
+		frmPOReceipt.RWC_PromptControl1LP2_template = "<li data-uid='#= data.uid #'><a>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 7%;width: 10%;text-align:left;'>Row&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 20%;width: 13%;text-align:left;'>#= data._CURRENT #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 7%;text-align:left;'>of&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 43%;width: 10%;text-align:right;'>#= data._COUNT #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Site:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Site:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.SITE #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.SITE #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Loc:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Loc:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.LOC #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.LOC #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Part:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Part:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.ITEM #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.ITEM #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 100%;text-align:left;'>#= data.DESC1 #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 100%;text-align:left;'>#= data.DESC2 #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Lot/Ser:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.LOT_SER #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Reference:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.REF #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>QtyOnHand:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.QTY_OH #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Create Dt:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.DATE #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br/>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Expire Dt:&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 33%;width: 67%;text-align:left;'>#= data.EXP_DATE #&nbsp;&nbsp;</span>";
+		frmPOReceipt.RWC_PromptControl1LP2_template += "<br /></a></li>";
+		frmPOReceipt.RWC_PromptControl1LP2.setLayout( kendo.template(frmPOReceipt.RWC_PromptControl1LP2_template, { useWithBlock: false } ) );
+
+		frmPOReceipt.RWC_PromptControl1LP2.setDataSource(frmPOReceipt.CurrentInv);
+		frmPOReceipt.viewModel = new cdt.viewModel( "frmPOReceipt",frmPOReceipt.RWC_PromptControl1,"frmPOReceipt");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmPOReceipt-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmPOReceipt-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmPOReceipt-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmPOReceipt-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmPOReceipt-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmPOReceipt-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmPOReceipt-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

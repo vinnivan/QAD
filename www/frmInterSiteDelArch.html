@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmInterSiteDelArch' data-role='view' data-title='Intersite Del/Archive' data-show='frmInterSiteDelArch.viewModel.initialize' data-model='frmInterSiteDelArch.viewModel' >
+<script>
+	var frmInterSiteDelArch = frmInterSiteDelArch || {};
+		frmInterSiteDelArch.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmInterSiteDelArch' );
+		
+		frmInterSiteDelArch.OrderNum = new cdt.prompt("OrderNum", // Name
+				"Fr Order Num:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.ORDERNBR", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.OrderNum);
+
+		
+		frmInterSiteDelArch.OrderNum1 = new cdt.prompt("OrderNum1", // Name
+				"To Order Num:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.ORDERNBR1", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.OrderNum1);
+
+		
+		frmInterSiteDelArch.Site = new cdt.prompt("Site", // Name
+				"Fr Site:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.Site);
+
+		
+		frmInterSiteDelArch.Site1 = new cdt.prompt("Site1", // Name
+				"To Site:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE1", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.Site1);
+
+		
+		frmInterSiteDelArch.ShipSite = new cdt.prompt("ShipSite", // Name
+				"Fr Ship Site:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.FR_SITE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.ShipSite);
+
+		
+		frmInterSiteDelArch.ShipSite1 = new cdt.prompt("ShipSite1", // Name
+				"To Ship Site:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.FR_SITE1", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.ShipSite1);
+
+		
+		frmInterSiteDelArch.Requisition = new cdt.prompt("Requisition", // Name
+				"Fr Req Num:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.REQ_NUM", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.Requisition);
+
+		
+		frmInterSiteDelArch.Req1 = new cdt.prompt("Req1", // Name
+				"To Req Num:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.REQ_NUM1", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.Req1);
+
+		
+		frmInterSiteDelArch.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Fr Item Number:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.ItemNumber);
+
+		
+		frmInterSiteDelArch.Item1 = new cdt.prompt("Item1", // Name
+				"To Item:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM1", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.Item1);
+
+		frmInterSiteDelArch.RWC_PromptControl1_ShipDate_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInterSiteDelArch.RWC_PromptControl1_ShipDate_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if("SHP_DATE" != "")
+			{
+			
+			cdt.VariableManager.setLocal("DATE",cdt.VariableManager.getLocal("SHP_DATE"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VDATE",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VDATE","STATUS") != "Y")
+			{
+			
+			cdt.StatusBox.show("Date Format Error","Enter (mmddyy)",cdt.MessageBoxButton.Ok,3, function() { 
+			cdt.VariableManager.setLocal("SHP_DATE","");
+			frmInterSiteDelArch.RWC_PromptControl1.showPrompt("ShipDate");
+			
+			currentMethod(_value, _completeAction,8, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 8:
+			cdt.VariableManager.setLocal("DATE","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInterSiteDelArch.ShipDate = new cdt.prompt("ShipDate", // Name
+				"To Ship Dt(mmddyy):", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.SHP_DATE", // Variable
+				frmInterSiteDelArch.RWC_PromptControl1_ShipDate_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.ShipDate);
+
+		frmInterSiteDelArch.RWC_PromptControl1_ShipDate1_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInterSiteDelArch.RWC_PromptControl1_ShipDate1_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("SHP_DATE1") != "")
+			{
+			
+			cdt.VariableManager.setLocal("DATE",cdt.VariableManager.getLocal("SHP_DATE1"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VDATE",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VDATE","STATUS") != "Y")
+			{
+			
+			cdt.StatusBox.show("Date Format Error","Enter (mmddyy)",cdt.MessageBoxButton.Ok,3, function() { 
+			cdt.VariableManager.setLocal("SHP_DATE1","");
+			frmInterSiteDelArch.RWC_PromptControl1.showPrompt("ShipDate1");
+			
+			currentMethod(_value, _completeAction,8, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 8:
+			cdt.VariableManager.setLocal("DATE","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInterSiteDelArch.ShipDate1 = new cdt.prompt("ShipDate1", // Name
+				"Fr Ship Dt(mmddyy):", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.SHP_DATE1", // Variable
+				frmInterSiteDelArch.RWC_PromptControl1_ShipDate1_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.ShipDate1);
+
+		frmInterSiteDelArch.RWC_PromptControl1_DueDate_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInterSiteDelArch.RWC_PromptControl1_DueDate_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("DUE_DATE") != "")
+			{
+			
+			cdt.VariableManager.setLocal("DATE",cdt.VariableManager.getLocal("DUE_DATE"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VDATE",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VDATE","STATUS") != "Y")
+			{
+			
+			cdt.StatusBox.show("Date Format Error","Enter (mmddyy)",cdt.MessageBoxButton.Ok,3, function() { 
+			cdt.VariableManager.setLocal("DUE_DATE","");
+			frmInterSiteDelArch.RWC_PromptControl1.showPrompt("DueDate");
+			
+			currentMethod(_value, _completeAction,8, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 8:
+			cdt.VariableManager.setLocal("DATE","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInterSiteDelArch.DueDate = new cdt.prompt("DueDate", // Name
+				"Fr Due Dt (mmddyy):", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.DUE_DATE", // Variable
+				frmInterSiteDelArch.RWC_PromptControl1_DueDate_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.DueDate);
+
+		frmInterSiteDelArch.RWC_PromptControl1_DueDate1_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInterSiteDelArch.RWC_PromptControl1_DueDate1_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("DUE_DATE1") != "")
+			{
+			
+			cdt.VariableManager.setLocal("DATE",cdt.VariableManager.getLocal("DUE_DATE1"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VDATE",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VDATE","STATUS") != "Y")
+			{
+			
+			cdt.StatusBox.show("Date Format Error","Enter (mmddyy)",cdt.MessageBoxButton.Ok,3, function() { 
+			cdt.VariableManager.setLocal("DUE_DATE1","");
+			frmInterSiteDelArch.RWC_PromptControl1.showPrompt("DueDate1");
+			
+			currentMethod(_value, _completeAction,8, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 8:
+			cdt.VariableManager.setLocal("DATE","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInterSiteDelArch.DueDate1 = new cdt.prompt("DueDate1", // Name
+				"To Due Dt(mmddyy):", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.DUE_DATE1", // Variable
+				frmInterSiteDelArch.RWC_PromptControl1_DueDate1_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.DueDate1);
+
+		frmInterSiteDelArch.RWC_PromptControl1_Project_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInterSiteDelArch.RWC_PromptControl1_Project_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.get("Mvr.VDSDMP","STATUS") != "Y")
+			{
+			
+			cdt.StatusBox.show("No Records Found to Process","DSD Status must be C.",cdt.MessageBoxButton.Ok,3, function() { 
+			
+			currentMethod(_value, _completeAction,3, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 3:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInterSiteDelArch.Project = new cdt.prompt("Project", // Name
+				"Project:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VDSDMP", // Validation
+				false, // ValidIfNotEmpty
+				"Var.PROJECT", // Variable
+				frmInterSiteDelArch.RWC_PromptControl1_Project_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.Project);
+
+		
+		frmInterSiteDelArch.DeleteYN = new cdt.prompt("DeleteYN", // Name
+				"Delete (Y/N):", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.DEL_YN", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.DeleteYN);
+
+		frmInterSiteDelArch.RWC_PromptControl1_ArchiveYN_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInterSiteDelArch.RWC_PromptControl1_ArchiveYN_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmInterSiteDelArch.RWC_PromptControl1.showPrompt("RUReady");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInterSiteDelArch.ArchiveYN = new cdt.prompt("ArchiveYN", // Name
+				"Archive (Y/N):", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.ARCHIVE_YN", // Variable
+				frmInterSiteDelArch.RWC_PromptControl1_ArchiveYN_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.ArchiveYN);
+
+		
+		frmInterSiteDelArch.OutPutDev = new cdt.prompt("OutPutDev", // Name
+				"Output Dev:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.OUTPUT", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.OutPutDev);
+
+		
+		frmInterSiteDelArch.BatchID = new cdt.prompt("BatchID", // Name
+				"Batch ID:", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.BATCH_ID", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.BatchID);
+
+		frmInterSiteDelArch.RWC_PromptControl1_RUReady_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmInterSiteDelArch.RWC_PromptControl1_RUReady_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("READY") != "N"
+			 && 
+			cdt.VariableManager.getLocal("READY") != "Y")
+			{
+			
+			cdt.StatusBox.show("Error","Value entered must be Y or N",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.ResetPrompt("RUReady");
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 4:
+		{
+			
+			if(cdt.VariableManager.getLocal("READY") != "Y")
+			{
+			
+			frmInterSiteDelArch.RWC_PromptControl1.showPrompt("OrderNum");
+			}
+		else
+		{
+			
+			cdt.VariableManager.setLocal("OUTPUT","PRINTER");
+			cdt.VariableManager.setLocal("BATCH_ID","");
+			cdt.NetworkManager.setSourceLine( 10);cdt.NetworkManager.sendTransaction("DSDMUP",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Transaction Sent","Successful!",cdt.MessageBoxButton.Ok,2, function() { 
+			frmInterSiteDelArch.RWC_PromptControl1.showPrompt("OrderNum");
+			
+			currentMethod(_value, _completeAction,13, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 13:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmInterSiteDelArch.RUReady = new cdt.prompt("RUReady", // Name
+				"Run Trx (Y/N)?", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.READY", // Variable
+				frmInterSiteDelArch.RWC_PromptControl1_RUReady_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmInterSiteDelArch.RWC_PromptControl1.addPrompt(frmInterSiteDelArch.RUReady);
+
+		frmInterSiteDelArch.viewModel = new cdt.viewModel( "frmInterSiteDelArch",frmInterSiteDelArch.RWC_PromptControl1,"frmInterSiteDelArch");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmInterSiteDelArch-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmInterSiteDelArch-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmInterSiteDelArch-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmInterSiteDelArch-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmInterSiteDelArch-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmInterSiteDelArch-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmInterSiteDelArch-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

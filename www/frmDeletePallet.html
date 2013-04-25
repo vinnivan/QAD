@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmDeletePallet' data-role='view' data-title='Remove Pallet from Shipper' data-show='frmDeletePallet.viewModel.initialize' data-model='frmDeletePallet.viewModel' >
+<script>
+	var frmDeletePallet = frmDeletePallet || {};
+		frmDeletePallet.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmDeletePallet' );
+		frmDeletePallet.RWC_PromptControl1_Shipper2_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDeletePallet.RWC_PromptControl1_Shipper2_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("INT_ID",Utilities.Instance.GetNow("YYYYMTDDHHMMSS"));
+			cdt.VariableManager.setLocal("SHIP_TO",cdt.VariableManager.get("Mvr.VSHPPR","ABS_SHIPTO"));
+			cdt.VariableManager.setLocal("TO_STATUS","A");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmDeletePallet.Shipper2 = new cdt.prompt("Shipper2", // Name
+				"Shipper", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSHPPR", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SHIPPER", // Variable
+				frmDeletePallet.RWC_PromptControl1_Shipper2_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDeletePallet.RWC_PromptControl1.addPrompt(frmDeletePallet.Shipper2);
+
+		frmDeletePallet.RWC_PromptControl1_Pallet2_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDeletePallet.RWC_PromptControl1_Pallet2_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("SHWBDC",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("SHWBDE",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("INT_ID","");
+			cdt.VariableManager.setLocal("CONT_SER","");
+			cdt.NetworkManager.setSourceLine( 5);cdt.NetworkManager.sendTransaction("SHWBDS",cdt.VariableManager.getNamespace());
+			frmDeletePallet.RWC_PromptControl1.showPrompt("Shipper2");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmDeletePallet.Pallet2 = new cdt.prompt("Pallet2", // Name
+				"Pallet", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VDSHPR", // Validation
+				false, // ValidIfNotEmpty
+				"Var.CONT_SER", // Variable
+				frmDeletePallet.RWC_PromptControl1_Pallet2_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDeletePallet.RWC_PromptControl1.addPrompt(frmDeletePallet.Pallet2);
+
+		frmDeletePallet.viewModel = new cdt.viewModel( "frmDeletePallet",frmDeletePallet.RWC_PromptControl1,"frmDeletePallet");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmDeletePallet-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmDeletePallet-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmDeletePallet-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmDeletePallet-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmDeletePallet-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmDeletePallet-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmDeletePallet-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

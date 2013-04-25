@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmCycleCount' data-role='view' data-title='Cycle Count' data-show='frmCycleCount.viewModel.initialize' data-model='frmCycleCount.viewModel' >
+<script>
+	var frmCycleCount = frmCycleCount || {};
+		frmCycleCount.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmCycleCount' );
+		frmCycleCount.RWC_PromptControl1_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmCycleCount.RWC_PromptControl1_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("SERCTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
+			cdt.VariableManager.setLocal("LOTCTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
+			cdt.VariableManager.setLocal("INITIAL","INITIAL");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmCycleCount.RWC_PromptControl1_ItemNumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmCycleCount.RWC_PromptControl1_ItemNumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmCycleCount.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"DONE", // Button Caption
+				frmCycleCount.ItemNumber_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmCycleCount.RWC_PromptControl1_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmCycleCount.RWC_PromptControl1.addPrompt(frmCycleCount.ItemNumber);
+
+		
+		frmCycleCount.Location = new cdt.prompt("Location", // Name
+				"Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmCycleCount.RWC_PromptControl1.addPrompt(frmCycleCount.Location);
+
+		frmCycleCount.RWC_PromptControl1_Serial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmCycleCount.RWC_PromptControl1_Serial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmCycleCount.RWC_PromptControl1.showPrompt("ReferenceNumber");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmCycleCount.Serial = new cdt.prompt("Serial", // Name
+				"Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCLT", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				frmCycleCount.RWC_PromptControl1_Serial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmCycleCount.RWC_PromptControl1.addPrompt(frmCycleCount.Serial);
+
+		
+		frmCycleCount.Lot = new cdt.prompt("Lot", // Name
+				"Lot", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCLT", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmCycleCount.RWC_PromptControl1.addPrompt(frmCycleCount.Lot);
+
+		frmCycleCount.RWC_PromptControl1_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmCycleCount.RWC_PromptControl1_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : SetHistoryTextEx ( RWC_PromptControl1 , Quantity , Qty Cntd , Var.QTY , False ) 
+			// Line#  2 : SendValidation ( VCYTOL ) 
+			// Line#  3 : Var.INTOL = Mvr.VCYTOL.STATUS
+			// Line#  4 : Var.RTMSG = Mvr.VCYTOL.RTMSG
+			// Line#  5 : If Var.INTOL = N
+			// Line#  6 : SendValidation ( VLLSCO ) 
+			// Line#  7 : If Mvr.VLLSCO.STATUS = Y
+			// Line#  8 : SendValidation ( VTSTAT ) 
+			// Line#  9 : If Mvr.VTSTAT.STATUS = Y
+			// Line#  10 : SendTransaction ( ICCCAJ ) 
+			// Line#  11 : StatusWindow ( Tolerance , Var.RTMSG , 2 ) 
+			// Line#  12 : ShowPrompt ( RWC_PromptControl1 , OOTolerance ) 
+			// Line#  13 : Else
+			// Line#  14 : StatusWindow ( Error , Mvr.VTSTAT.RTMSG , 2 ) 
+			// Line#  15 : If Var.LOTCTRL = Y
+			// Line#  16 : ReturnToPrompt ( RWC_PromptControl1 , Lot , False , False ) 
+			// Line#  17 : Else
+			// Line#  18 : ReturnToPrompt ( RWC_PromptControl1 , Location , False , False ) 
+			// Line#  19 : End If
+			// Line#  20 : End If
+			// Line#  21 : Else
+			// Line#  22 : StatusWindow ( Error , Mvr.VLLSCO.RTMSG , 2 ) 
+			// Line#  23 : If Var.LOTCTRL = Y
+			// Line#  24 : ReturnToPrompt ( RWC_PromptControl1 , Lot , False , False ) 
+			// Line#  25 : Else
+			// Line#  26 : ReturnToPrompt ( RWC_PromptControl1 , Location , False , False ) 
+			// Line#  27 : End If
+			// Line#  28 : End If
+			// Line#  29 : Else
+			// Line#  30 : SendTransaction ( ICCCAJ ) 
+			// Line#  31 : StatusWindow ( Cycle Count , Transaction Sent! , 2 ) 
+			// Line#  32 : ReturnToPrompt ( RWC_PromptControl1 , ItemNumber , True , True ) 
+			// Line#  33 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmCycleCount.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity Counted", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"DONE", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				frmCycleCount.RWC_PromptControl1_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmCycleCount.RWC_PromptControl1.addPrompt(frmCycleCount.Quantity);
+
+		frmCycleCount.RWC_PromptControl1_OOTolerance_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmCycleCount.RWC_PromptControl1_OOTolerance_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : SetHistoryTextEx ( RWC_PromptControl1 , OOTolerance , Tol. Recount? , Var.RECOUNT , False ) 
+			// Line#  2 : If Var.RECOUNT = Y
+			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , QtyRecount ) 
+			// Line#  4 : Else If Var.RECOUNT = N
+			// Line#  5 : ResetForm( )
+			// Line#  6 : Else
+			// Line#  7 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  8 : CancelDefault( )
+			// Line#  9 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmCycleCount.OOTolerance = new cdt.prompt("OOTolerance", // Name
+				"Out of Tol. Recount? (Y/N)", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.RECOUNT", // Variable
+				frmCycleCount.RWC_PromptControl1_OOTolerance_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmCycleCount.RWC_PromptControl1.addPrompt(frmCycleCount.OOTolerance);
+
+		frmCycleCount.RWC_PromptControl1_QtyRecount_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmCycleCount.RWC_PromptControl1_QtyRecount_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			RWC_PromptControl1.SetHistoryText("QtyRecount","Qty Rcnt",cdt.VariableManager.getLocal("QTY"),false);
+			cdt.VariableManager.setLocal("INITIAL","RECOUNT");
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("ICCCAR",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Cycle Count","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 4,_shouldContinue); } );
+			return;
+		case  4:
+			frmCycleCount.viewModel.promptControl.reset( );
+			shouldContinue = false;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmCycleCount.QtyRecount = new cdt.prompt("QtyRecount", // Name
+				"Quantity Recounted", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				frmCycleCount.RWC_PromptControl1_QtyRecount_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmCycleCount.RWC_PromptControl1.addPrompt(frmCycleCount.QtyRecount);
+
+		frmCycleCount.viewModel = new cdt.viewModel( "frmCycleCount",frmCycleCount.RWC_PromptControl1,"frmCycleCount");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmCycleCount-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmCycleCount-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmCycleCount-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmCycleCount-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmCycleCount-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmCycleCount-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmCycleCount-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmAdvRepScrap' data-role='view' data-title='Adv Rep Scrap' data-show='frmAdvRepScrap.viewModel.initialize' data-model='frmAdvRepScrap.viewModel' >
+<script>
+	var frmAdvRepScrap = frmAdvRepScrap || {};
+		frmAdvRepScrap.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmAdvRepScrap' );
+		frmAdvRepScrap.RWC_PromptControl1_Employee_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_Employee_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepScrap.Employee = new cdt.prompt("Employee", // Name
+				"Employee", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"Done", // Button Caption
+				frmAdvRepScrap.Employee_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VEMPLY", // Validation
+				false, // ValidIfNotEmpty
+				"EMPLOYEE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepScrap.RWC_PromptControl1.addPrompt(frmAdvRepScrap.Employee);
+
+		frmAdvRepScrap.RWC_PromptControl1_ContainerNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_ContainerNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLX","ITEM"));
+			cdt.VariableManager.setLocal("ITEM_QTY",cdt.VariableManager.get("Mvr.VILBLX","QTY"));
+			cdt.VariableManager.setLocal("OUTPUT_QTY",cdt.VariableManager.getLocal("ITEM_QTY"));
+			cdt.VariableManager.setLocal("BCIL_STATUS",cdt.VariableManager.get("Mvr.VILBLX","BCIL_STATUS"));
+			if(cdt.VariableManager.getLocal("BCIL_STATUS") != "W")
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			}
+		else
+		{
+			
+			cdt.VariableManager.setLocal("ITEM_DISP","Part - " + cdt.VariableManager.getLocal("ITEM"));
+			RWC_PromptControl1.SetDetailText("ContainerNumber",cdt.VariableManager.getLocal("ITEM_DISP"),false);
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepScrap.ContainerNumber = new cdt.prompt("ContainerNumber", // Name
+				"Container Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"CONT_SER", // Variable
+				frmAdvRepScrap.RWC_PromptControl1_ContainerNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepScrap.RWC_PromptControl1.addPrompt(frmAdvRepScrap.ContainerNumber);
+
+		frmAdvRepScrap.RWC_PromptControl1_Operation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_Operation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("WRK_CNTR",cdt.VariableManager.get("Mvr.VOPRTN","WRK_CNTR"));
+			cdt.VariableManager.setLocal("MACHINE",cdt.VariableManager.get("Mvr.VOPRTN","MACHINE"));
+			cdt.VariableManager.setLocal("WRK_DISP","Work Center - " + cdt.VariableManager.getLocal("WRK_CNTR"));
+			RWC_PromptControl1.SetDetailText("Operation",cdt.VariableManager.getLocal("WRK_DISP"),false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepScrap.Operation = new cdt.prompt("Operation", // Name
+				"Operation", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VOPRTN", // Validation
+				false, // ValidIfNotEmpty
+				"OPERATION", // Variable
+				frmAdvRepScrap.RWC_PromptControl1_Operation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepScrap.RWC_PromptControl1.addPrompt(frmAdvRepScrap.Operation);
+
+		
+		frmAdvRepScrap.LineNumber = new cdt.prompt("LineNumber", // Name
+				"Line Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VREPLN", // Validation
+				false, // ValidIfNotEmpty
+				"LINE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepScrap.RWC_PromptControl1.addPrompt(frmAdvRepScrap.LineNumber);
+
+		frmAdvRepScrap.RWC_PromptControl1_Machine_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_Machine_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("QTY_DISPLAY_1","Output Queue Qty - " + cdt.VariableManager.getLocal("OUTPUT_QTY"));
+			RWC_PromptControl1.SetDetailText("Machine",cdt.VariableManager.getLocal("QTY_DISPLAY_1"),false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepScrap.Machine = new cdt.prompt("Machine", // Name
+				"Machine", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VWKCTR", // Validation
+				false, // ValidIfNotEmpty
+				"MACHINE", // Variable
+				frmAdvRepScrap.RWC_PromptControl1_Machine_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepScrap.RWC_PromptControl1.addPrompt(frmAdvRepScrap.Machine);
+
+		frmAdvRepScrap.RWC_PromptControl1_RejectQty_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_RejectQty_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocalNumeric("RJCT_QTY") > cdt.VariableManager.getLocalNumeric("OUTPUT_QTY"))
+			{
+			
+			cdt.MessageBox.show("Reject Qty exceeds Qty in Output.","Error",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,5, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 5:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepScrap.RejectQty = new cdt.prompt("RejectQty", // Name
+				"Reject Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"RJCT_QTY", // Variable
+				frmAdvRepScrap.RWC_PromptControl1_RejectQty_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepScrap.RWC_PromptControl1.addPrompt(frmAdvRepScrap.RejectQty);
+
+		frmAdvRepScrap.RWC_PromptControl1_RejectReason_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_RejectReason_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("RJCT_RSN",cdt.VariableManager.getLocal("RSN_CODE"));
+			cdt.VariableManager.setLocal("RSN_CODE","");
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("ARSCRP",cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("PARENT_CHECK").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			
+			}
+			cdt.VariableManager.setLocalNumeric("QTY",cdt.VariableManager.getLocalNumeric("OUTPUT_QTY") - cdt.VariableManager.getLocalNumeric("RJCT_QTY"));
+			cdt.NetworkManager.setSourceLine( 8);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
+			frmAdvRepScrap.RWC_PromptControl1.returnToPrompt("ContainerNumber",true,false);
+			shouldContinue = false;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepScrap.RejectReason = new cdt.prompt("RejectReason", // Name
+				"Reject Reason", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VCDRSN", // Validation
+				false, // ValidIfNotEmpty
+				"RSN_CODE", // Variable
+				frmAdvRepScrap.RWC_PromptControl1_RejectReason_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepScrap.RWC_PromptControl1.addPrompt(frmAdvRepScrap.RejectReason);
+
+		frmAdvRepScrap.viewModel = new cdt.viewModel( "frmAdvRepScrap",frmAdvRepScrap.RWC_PromptControl1,"frmAdvRepScrap");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmAdvRepScrap-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmAdvRepScrap-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmAdvRepScrap-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmAdvRepScrap-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmAdvRepScrap-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmAdvRepScrap-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmAdvRepScrap-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmDOPickNoCtr' data-role='view' data-title='DO Pick No Container' data-show='frmDOPickNoCtr.viewModel.initialize' data-model='frmDOPickNoCtr.viewModel' >
+<script>
+	var frmDOPickNoCtr = frmDOPickNoCtr || {};
+		frmDOPickNoCtr.dtspreDO = new kendo.data.DataSource({ data: [{}]  });
+		frmDOPickNoCtr.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmDOPickNoCtr' );
+		frmDOPickNoCtr.RWC_PromptControl1_Site_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_Site_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			Utilities.Instance.Beep(MessageBoxIcon.Exclamation);
+			cdt.MessageBox.show("Enter a valid Ship To","Entry Required",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("ORIG_TO_SITE",cdt.VariableManager.getLocal("SITE"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmDOPickNoCtr.Site = new cdt.prompt("Site", // Name
+				"Ship To", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"SITE", // Variable
+				frmDOPickNoCtr.RWC_PromptControl1_Site_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDOPickNoCtr.RWC_PromptControl1.addPrompt(frmDOPickNoCtr.Site);
+
+		frmDOPickNoCtr.RWC_PromptControl1_DONumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_DONumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("DIST_ORD").toUpperCase() == "".toUpperCase())
+			{
+			
+			Utilities.Instance.Beep(MessageBoxIcon.Exclamation);
+			cdt.MessageBox.show("Enter a valid DO Number","Entry Required",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("ORDER",cdt.VariableManager.getLocal("DIST_ORD"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmDOPickNoCtr.DONumber = new cdt.prompt("DONumber", // Name
+				"DO Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VDSDSS", // Validation
+				false, // ValidIfNotEmpty
+				"DIST_ORD", // Variable
+				frmDOPickNoCtr.RWC_PromptControl1_DONumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDOPickNoCtr.RWC_PromptControl1.addPrompt(frmDOPickNoCtr.DONumber);
+
+		
+		frmDOPickNoCtr.Carrer = new cdt.prompt("Carrer", // Name
+				"Carrier", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VXCARR", // Validation
+				false, // ValidIfNotEmpty
+				"CARRIER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDOPickNoCtr.RWC_PromptControl1.addPrompt(frmDOPickNoCtr.Carrer);
+
+		
+		frmDOPickNoCtr.TrackingNumber = new cdt.prompt("TrackingNumber", // Name
+				"Tracking #", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.BOL", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDOPickNoCtr.RWC_PromptControl1.addPrompt(frmDOPickNoCtr.TrackingNumber);
+
+		frmDOPickNoCtr.RWC_PromptControl1_ItemSearch_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_ItemSearch_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);RWC_PromptControl1.ReceiveDataSetFromQueue("PreDOList");
+			cdt.VariableManager.setLocalNumeric("COUNT",RWC_PromptControl1.GetRowCount("PreDOList"));
+			if(cdt.VariableManager.getLocalNumeric("COUNT") < 1)
+			{
+			
+			cdt.MessageBox.show("No lines to ship on DO","Error!",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 7:
+		{
+			
+			cdt.VariableManager.setLocal("MASTER","");
+			cdt.NetworkManager.setSourceLine( 9);cdt.NetworkManager.sendTransaction("DOSSTR",cdt.VariableManager.getNamespace());
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmDOPickNoCtr.ItemSearch = new cdt.prompt("ItemSearch", // Name
+				"Item Search", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"ITEMSCH", // Variable
+				frmDOPickNoCtr.RWC_PromptControl1_ItemSearch_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDOPickNoCtr.RWC_PromptControl1.addPrompt(frmDOPickNoCtr.ItemSearch);
+
+		frmDOPickNoCtr.RWC_PromptControl1_PreDOList_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_PreDOList_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Dsv.dtspreDO","PART").Trim());
+			cdt.VariableManager.setLocal("LIST_ITEM",cdt.VariableManager.getLocal("ITEM"));
+			cdt.VariableManager.setLocal("SV_ITEM",cdt.VariableManager.getLocal("ITEM"));
+			cdt.VariableManager.setLocal("REQ_NUM",cdt.VariableManager.get("Dsv.dtspreDO","REQ_NBR"));
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("SHIP_FROM"));
+			cdt.NetworkManager.setSourceLine( 6);cdt.NetworkManager.sendValidation("VPARTN",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("TO_SITE"));
+			UpdateData( false );
+			frmDOPickNoCtr.RWC_PromptControl1.showPrompt("Location");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmDOPickNoCtr.RWC_PromptControl1_PreDOList_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_PreDOList_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmDOPickNoCtr.RWC_PromptControl1.showPrompt("Site");
+			cdt.VariableManager.setLocal("DIST_ORD","");
+			cdt.VariableManager.setLocal("BOL","");
+			cdt.VariableManager.setLocal("SHIP_VIA","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmDOPickNoCtr.RWC_PromptControl1LP0 = new cdt.prompt( "PreDOList", // name 
+			"Items to Ship", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			true, // ShowButton
+			"F1 Done", // Button Caption
+			frmDOPickNoCtr.RWC_PromptControl1_PreDOList_Click , // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmDOPickNoCtr.RWC_PromptControl1_PreDOList_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmDOPickNoCtr.RWC_PromptControl1.addPrompt(frmDOPickNoCtr.RWC_PromptControl1LP0);
+
+
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<br/>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 26%;text-align:left;'>Line:&nbsp;&nbsp;</span>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 26%;width: 68%;text-align:left;'>#= data.REQ_NBR #&nbsp;&nbsp;</span>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<br/>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 26%;text-align:left;'>Part:&nbsp;&nbsp;</span>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 26%;width: 68%;text-align:left;'>#= data.PART #&nbsp;&nbsp;</span>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<br/>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 26%;text-align:left;'>Desc:&nbsp;&nbsp;</span>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 26%;width: 68%;text-align:left;'>#= data.DESC #&nbsp;&nbsp;</span>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<br/>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 26%;text-align:left;'>Loc:&nbsp;&nbsp;</span>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 26%;width: 68%;text-align:left;'>#= data.LOC #&nbsp;&nbsp;</span>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<br/>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 5%;text-align:left;'>&nbsp;&nbsp;</span>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmDOPickNoCtr.RWC_PromptControl1LP0.setLayout( kendo.template(frmDOPickNoCtr.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmDOPickNoCtr.RWC_PromptControl1LP0.setDataSource(frmDOPickNoCtr.dtspreDO);
+		frmDOPickNoCtr.RWC_PromptControl1_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("SHIP_FROM"));
+			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendValidation("VLOCNO",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("ORIG_TO_SITE"));
+			if(cdt.VariableManager.get("Mvr.VLOCNO","STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			}
+			cdt.VariableManager.setLocal("ITEM","");
+			cdt.VariableManager.setLocal("LOT_SER","");
+			cdt.VariableManager.setLocal("QTY","");
+			cdt.VariableManager.setLocal("QTY_ONLB","");
+			cdt.VariableManager.setLocal("NUM_LABELS","");
+			cdt.VariableManager.setLocal("COUNT_QTY","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmDOPickNoCtr.RWC_PromptControl1_Location_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_Location_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEMSCH","");
+			cdt.VariableManager.setLocal("LOC","");
+			cdt.NetworkManager.setSourceLine( 3);RWC_PromptControl1.ReceiveDataSetFromQueue("PreDOList");
+			cdt.VariableManager.setLocalNumeric("COUNT",RWC_PromptControl1.GetRowCount("PreDOList"));
+			if(cdt.VariableManager.getLocalNumeric("COUNT") < 1)
+			{
+			
+			cdt.MessageBox.show("No more lines to ship on DO","Finished",cdt.MessageBoxButton.Ok,null,function() { 
+			cdt.StatusBox.show("","Transactions Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			frmDOPickNoCtr.RWC_PromptControl1.showPrompt("Site");
+			
+			currentMethod(_value, _completeAction,9, _shouldContinue);
+			return;
+			}); 
+			}); 
+			return;
+		}
+		case 9:
+		{
+			
+			cdt.VariableManager.setLocal("ITEMSCH","");
+			frmDOPickNoCtr.RWC_PromptControl1.showPrompt("ItemSearch");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmDOPickNoCtr.Location = new cdt.prompt("Location", // Name
+				"Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"F1 Done", // Button Caption
+				frmDOPickNoCtr.Location_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmDOPickNoCtr.RWC_PromptControl1_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDOPickNoCtr.RWC_PromptControl1.addPrompt(frmDOPickNoCtr.Location);
+
+		frmDOPickNoCtr.RWC_PromptControl1_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("ITEM").toUpperCase() != cdt.VariableManager.getLocal("LIST_ITEM").toUpperCase())
+			{
+			
+			cdt.MessageBox.show("Item must match selected item!","Error",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocalNumeric("QTY",cdt.VariableManager.getLocalNumeric("QTY") + 1);
+			cdt.VariableManager.setLocal("ITEM","");
+			RWC_PromptControl1.SetHistoryText("ItemNumber","Item",cdt.VariableManager.getLocal("SV_ITEM"),true);
+			RWC_PromptControl1.SetHistoryText("ItemNumber","Loc",cdt.VariableManager.getLocal("LOC"),false);
+			frmDOPickNoCtr.RWC_PromptControl1.showPrompt("ItemNumber");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmDOPickNoCtr.RWC_PromptControl1_ItemNumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_ItemNumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("QTY").toUpperCase() < "1".toUpperCase())
+			{
+			
+			cdt.MessageBox.show("Item Entry Required","Error",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			RWC_PromptControl1.SetHistoryText("ItemNumber","Item",cdt.VariableManager.getLocal("SV_ITEM"),true);
+			RWC_PromptControl1.SetHistoryText("ItemNumber","Loc",cdt.VariableManager.getLocal("LOC"),false);
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("LIST_ITEM"));
+			cdt.VariableManager.setLocal("QTY","");
+			frmDOPickNoCtr.RWC_PromptControl1.showPrompt("Quantity");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmDOPickNoCtr.RWC_PromptControl1_ItemNumber_OnClick2 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_ItemNumber_OnClick2;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("QTY").toUpperCase() < "1".toUpperCase())
+			{
+			
+			cdt.MessageBox.show("Item Entry Required","Error",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			if(cdt.VariableManager.getLocalNumeric("QTY") != 0)
+			{
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("LIST_ITEM"));
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SHIP_FROM"));
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SHIP_FROM"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("TO_LOC",cdt.VariableManager.getGlobal("DOCK_LOC"));
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getGlobal("DOCK_LOC"));
+			cdt.NetworkManager.setSourceLine( 14);cdt.NetworkManager.sendTransaction("ICLOTR",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 15);cdt.NetworkManager.sendTransaction("DSDOIS",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 16);cdt.NetworkManager.sendTransaction("DOSEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transactions Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			
+			currentMethod(_value, _completeAction,18, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 18:
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("ORIG_TO_SITE"));
+			cdt.VariableManager.setLocal("LOC","");
+			RWC_PromptControl1.SetHistoryText("ItemNumber","Qty",cdt.VariableManager.getLocal("QTY"),true);
+			RWC_PromptControl1.SetHistoryText("ItemNumber","Item",cdt.VariableManager.getLocal("SV_ITEM"),false);
+			RWC_PromptControl1.SetHistoryText("ItemNumber","Loc",cdt.VariableManager.getLocal("LOC"),false);
+			frmDOPickNoCtr.RWC_PromptControl1.showPrompt("Location");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmDOPickNoCtr.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"F1 Qty", // Button Caption
+				frmDOPickNoCtr.ItemNumber_Click , // ButtonClick Delegate
+				true, // ShowButton2
+				"F2 Done", // Button2 Caption
+				frmDOPickNoCtr.ItemNumber_Click2 , // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"ITEM", // Variable
+				frmDOPickNoCtr.RWC_PromptControl1_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDOPickNoCtr.RWC_PromptControl1.addPrompt(frmDOPickNoCtr.ItemNumber);
+
+		frmDOPickNoCtr.RWC_PromptControl1_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmDOPickNoCtr.RWC_PromptControl1_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocalNumeric("QTY") == 0)
+			{
+			
+			Utilities.Instance.Beep(MessageBoxIcon.Exclamation);
+			cdt.MessageBox.show("Quantity cannot be 0","",cdt.MessageBoxButton.OkCancel,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 7:
+		{
+			
+			cdt.VariableManager.setLocal("SV_SITE",cdt.VariableManager.getLocal("SITE"));
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("SHIP_FROM"));
+			cdt.NetworkManager.setSourceLine( 10);cdt.NetworkManager.sendValidation("VLSQTY",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VLSQTY","STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			}
+			if(cdt.VariableManager.get("Mvr.VLSQTY","WARN").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			cdt.MessageBox.show("Inventory will go negative","Warning",cdt.MessageBoxButton.Ok,null,function() { 
+			
+			currentMethod(_value, _completeAction,18, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("SV_SITE"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("LIST_ITEM"));
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SHIP_FROM"));
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SHIP_FROM"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("TO_LOC",cdt.VariableManager.getGlobal("DOCK_LOC"));
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getGlobal("DOCK_LOC"));
+			cdt.NetworkManager.setSourceLine( 26);cdt.NetworkManager.sendTransaction("ICLOTR",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 27);cdt.NetworkManager.sendTransaction("DSDOIS",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 28);cdt.NetworkManager.sendTransaction("DOSEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transactions Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("ORIG_TO_SITE"));
+			cdt.VariableManager.setLocal("LOC","");
+			RWC_PromptControl1.SetHistoryText("Quantity","Qty",cdt.VariableManager.getLocal("QTY"),true);
+			RWC_PromptControl1.SetHistoryText("Quantity","Item",cdt.VariableManager.getLocal("SV_ITEM"),false);
+			RWC_PromptControl1.SetHistoryText("Quantity","Loc",cdt.VariableManager.getLocal("LOC"),false);
+			frmDOPickNoCtr.RWC_PromptControl1.showPrompt("Location");
+			
+			currentMethod(_value, _completeAction,18, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 18:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmDOPickNoCtr.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VDSDOI", // Validation
+				false, // ValidIfNotEmpty
+				"QTY", // Variable
+				frmDOPickNoCtr.RWC_PromptControl1_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmDOPickNoCtr.RWC_PromptControl1.addPrompt(frmDOPickNoCtr.Quantity);
+
+		frmDOPickNoCtr.viewModel = new cdt.viewModel( "frmDOPickNoCtr",frmDOPickNoCtr.RWC_PromptControl1,"frmDOPickNoCtr");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmDOPickNoCtr-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmDOPickNoCtr-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmDOPickNoCtr-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmDOPickNoCtr-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmDOPickNoCtr-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmDOPickNoCtr-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmDOPickNoCtr-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

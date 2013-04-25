@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmBackFlush' data-role='view' data-title='Adv Rep Backflush' data-show='frmBackFlush.viewModel.initialize' data-model='frmBackFlush.viewModel' >
+<script>
+	var frmBackFlush = frmBackFlush || {};
+		frmBackFlush.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}]  });
+		frmBackFlush.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmBackFlush' );
+		frmBackFlush.RWC_PromptControl1_EmployeeNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_EmployeeNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("TO_STATUS","A");
+			cdt.VariableManager.setLocal("BKFL_TYPE","A");
+			cdt.VariableManager.setLocal("CLK_NBR",cdt.VariableManager.getLocal("EMPLOYEE"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.EmployeeNumber = new cdt.prompt("EmployeeNumber", // Name
+				"Employee", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VEMPLY", // Validation
+				false, // ValidIfNotEmpty
+				"Var.EMPLOYEE", // Variable
+				frmBackFlush.RWC_PromptControl1_EmployeeNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.EmployeeNumber);
+
+		frmBackFlush.RWC_PromptControl1_ContainerNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_ContainerNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.QTY_SCRAP = 
+			// Line#  2 : Var.QTY_REJECT = 
+			// Line#  3 : Var.SCRAP_RSN = 
+			// Line#  4 : Var.RJCT_RSN = 
+			// Line#  5 : Var.MOD_BKFL = N
+			// Line#  6 : If Var.CONT_SER <> ""
+			// Line#  7 : If Mvr.VILBLE.PART <> (Alpha) ""
+			// Line#  8 : Var.OUTPUT_QTY = Mvr.VILBLE.QTY
+			// Line#  9 : Var.QTY_PROC = Mvr.VILBLE.QTY
+			// Line#  10 : Var.DESC1 = Mvr.VILBLE.DESC1
+			// Line#  11 : Var.ITEM = Mvr.VILBLE.PART
+			// Line#  12 : Var.L_PART = Concatenate ( Part:  , Mvr.VILBLE.PART ) 
+			// Line#  13 : Var.L_DESC1 = Concatenate ( Desc: , Mvr.VILBLE.DESC1 ) 
+			// Line#  14 : SetDetailText ( RWC_PromptControl1 , ContainerNumber , Var.L_DESC1 , False ) 
+			// Line#  15 : SetDetailText ( RWC_PromptControl1 , ContainerNumber , Var.L_PART , False ) 
+			// Line#  16 : SendValidation ( VRPART ) 
+			// Line#  17 : If Mvr.VRPART.STATUS <> Y
+			// Line#  18 : MessageBox ( Error! , Invalid! , mbOk ) 
+			// Line#  19 : Else
+			// Line#  20 : Var.LOT_CTRL = Mvr.VRPART.LOT_CTRL
+			// Line#  21 : Var.SER_CTRL = Mvr.VRPART.SER_CTRL
+			// Line#  22 : Var.ROUTING = Mvr.VRPART.ROUTING
+			// Line#  23 : Var.BOM_CODE = Mvr.VRPART.BOM_CODE
+			// Line#  24 : Var.SITE = Mvr.VRPART.SITE
+			// Line#  25 : Var.COMP_SIT = Mvr.VRPART.SITE
+			// Line#  26 : SendTransaction ( ARBSTR ) 
+			// Line#  27 : ShowPrompt ( RWC_PromptControl1 , Operation ) 
+			// Line#  28 : CancelDefault( )
+			// Line#  29 : End If
+			// Line#  30 : Else
+			// Line#  31 : ShowPrompt ( RWC_PromptControl1 , ItemNumber ) 
+			// Line#  32 : End If
+			// Line#  33 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.ContainerNumber = new cdt.prompt("ContainerNumber", // Name
+				"Container Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.CONT_SER", // Variable
+				frmBackFlush.RWC_PromptControl1_ContainerNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.ContainerNumber);
+
+		frmBackFlush.RWC_PromptControl1_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ROUTING",cdt.VariableManager.get("Mvr.VRPART","ROUTING"));
+			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VRPART","LOT_CTRL"));
+			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VRPART","SER_CTRL"));
+			cdt.VariableManager.setLocal("BOM_CODE",cdt.VariableManager.get("Mvr.VRPART","BOM_CODE"));
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.get("Mvr.VRPART","SITE"));
+			cdt.VariableManager.setLocal("COMP_SIT",cdt.VariableManager.get("Mvr.VRPART","SITE"));
+			if(cdt.VariableManager.getLocal("CONT_SER").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("IL_STATUS","I");
+			cdt.NetworkManager.setSourceLine( 9);cdt.NetworkManager.sendValidation("VGETIL",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("CONT_SER",cdt.VariableManager.get("Mvr.VGETIL","CONT_SER"));
+			}
+			cdt.VariableManager.setLocal("DISPLAY","Item: " + cdt.VariableManager.getLocal("ITEM"));
+			cdt.VariableManager.setLocal("DISPLAY",cdt.VariableManager.getLocal("DISPLAY") + "assigned to container: ");
+			cdt.VariableManager.setLocal("DISPLAY",cdt.VariableManager.getLocal("DISPLAY") + cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.VariableManager.setLocal("CONT_DETAIL","Container: " + cdt.VariableManager.getLocal("CONT_SER"));
+			RWC_PromptControl1.SetDetailText("ItemNumber",cdt.VariableManager.getLocal("CONT_DETAIL"),false);
+			cdt.NetworkManager.setSourceLine( 17);cdt.NetworkManager.sendTransaction("ARBSTR",cdt.VariableManager.getNamespace());
+			UpdateData( false );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VRPART", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmBackFlush.RWC_PromptControl1_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.ItemNumber);
+
+		frmBackFlush.RWC_PromptControl1_QuantityProcessed_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_QuantityProcessed_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("OUTPUT_QTY",cdt.VariableManager.getLocal("QTY_PROC"));
+			frmBackFlush.RWC_PromptControl1.showPrompt("Operation");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.QuantityProcessed = new cdt.prompt("QuantityProcessed", // Name
+				"Qty Processed", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY_PROC", // Variable
+				frmBackFlush.RWC_PromptControl1_QuantityProcessed_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.QuantityProcessed);
+
+		
+		frmBackFlush.Routing = new cdt.prompt("Routing", // Name
+				"Routing", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VROUTE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ROUTING", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.Routing);
+
+		
+		frmBackFlush.BOMCode = new cdt.prompt("BOM Code", // Name
+				"BOM Code", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VBOMCD", // Validation
+				false, // ValidIfNotEmpty
+				"Var.BOM_CODE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.BOMCode);
+
+		frmBackFlush.RWC_PromptControl1_Operation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_Operation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("MACHINE",cdt.VariableManager.get("Mvr.VOPRTN","MACHINE"));
+			cdt.VariableManager.setLocal("WRK_CNTR",cdt.VariableManager.get("Mvr.VOPRTN","WRK_CNTR"));
+			cdt.VariableManager.setLocal("LAST_OP",cdt.VariableManager.get("Mvr.VOPRTN","LAST_OP"));
+			cdt.VariableManager.setLocal("LAST_OP",cdt.VariableManager.getLocal("LAST_OP").TrimEnd(null));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.Operation = new cdt.prompt("Operation", // Name
+				"Operation", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VOPRTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.OPERATION", // Variable
+				frmBackFlush.RWC_PromptControl1_Operation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.Operation);
+
+		frmBackFlush.RWC_PromptControl1_LineNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_LineNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("LOC","LINESIDE");
+			if(cdt.VariableManager.getLocal("LAST_OP").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			frmBackFlush.RWC_PromptControl1.showPrompt("CompLoc");
+			}
+		else
+		{
+			
+			frmBackFlush.RWC_PromptControl1.showPrompt("Print_Barcode_Label");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmBackFlush.RWC_PromptControl1_LineNumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_LineNumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmBackFlush.RWC_PromptControl1.showPrompt("ARScrapScrapQty");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmBackFlush.RWC_PromptControl1_LineNumber_OnClick2 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_LineNumber_OnClick2;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmBackFlush.RWC_PromptControl1.showPrompt("ARRejectRejectQty");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.LineNumber = new cdt.prompt("LineNumber", // Name
+				"Prod Line", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Scrap", // Button Caption
+				frmBackFlush.LineNumber_Click , // ButtonClick Delegate
+				true, // ShowButton2
+				"Reject", // Button2 Caption
+				frmBackFlush.LineNumber_Click2 , // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPRDLN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LINE", // Variable
+				frmBackFlush.RWC_PromptControl1_LineNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.LineNumber);
+
+		frmBackFlush.RWC_PromptControl1_CompLoc_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_CompLoc_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("COMP_LOC",cdt.VariableManager.getLocal("LOC"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.CompLoc = new cdt.prompt("CompLoc", // Name
+				"Completed Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmBackFlush.RWC_PromptControl1_CompLoc_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.CompLoc);
+
+		
+		frmBackFlush.Lot = new cdt.prompt("Lot", // Name
+				"Lot", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.Lot);
+
+		frmBackFlush.RWC_PromptControl1_Print_Barcode_Label_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_Print_Barcode_Label_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.PRTLBL <> Y
+			// Line#  2 : SendTransaction ( ARBEND ) 
+			// Line#  3 : StatusWindow (  , Transaction Sent! , 2 ) 
+			// Line#  4 : If Gvr.TRACE = (Alpha) ON
+			// Line#  5 : Var.SAVE_PORT = GetConfigValue ( Port ) 
+			// Line#  6 : SetConfigValue ( Port , Gvr.TRACE_PORT , False ) 
+			// Line#  7 : If Var.OPERATION = (Alpha) 30
+			// Line#  8 : Var.STATUS = Active
+			// Line#  9 : Else
+			// Line#  10 : Var.STATUS = Wip
+			// Line#  11 : End If
+			// Line#  12 : Var.INTELLILABEL = Var.CONT_SER
+			// Line#  13 : Var.INT_SER = Var.CONT_SER
+			// Line#  14 : Var.WOID = 404376
+			// Line#  15 : SendTransaction ( til_Update_Intellilabel_BKFL ) 
+			// Line#  16 : If Var.OPERATION = (Alpha) 10
+			// Line#  17 : Var.INTELLILABEL_CMP1 = 18914
+			// Line#  18 : Var.INTELLILABEL_CMP2 = 18915
+			// Line#  19 : Var.INTELLILABEL_CMP3 = 18916
+			// Line#  20 : SendTransaction ( til_Update_Intellilabel_BKFL_CMP1 ) 
+			// Line#  21 : SendTransaction ( til_Update_Intellilabel_BKFL_CMP2 ) 
+			// Line#  22 : SendTransaction ( til_Update_Intellilabel_BKFL_CMP3 ) 
+			// Line#  23 : Else
+			// Line#  24 : Var.LOT = Var.LOT_SER
+			// Line#  25 : Var.PAR = Var.ITEM
+			// Line#  26 : Var.QTY = Var.QTY_PROC
+			// Line#  27 : SendTransaction ( til_Update_LotSerial ) 
+			// Line#  28 : SendTransaction ( til_AddLotSerial_Intelli ) 
+			// Line#  29 : End If
+			// Line#  30 : SetConfigValue ( Port , Var.SAVE_PORT , False ) 
+			// Line#  31 : End If
+			// Line#  32 : Var.CONT_SER = 
+			// Line#  33 : Var.LOC = Gvr.SHIPLOC
+			// Line#  34 : Var.PRTLBL = Y
+			// Line#  35 : Var.LBL_QTY = 1
+			// Line#  36 : Var.OPERATION = 
+			// Line#  37 : Var.LINE = 
+			// Line#  38 : Var.YES_NO = Y
+			// Line#  39 : Var.LOT_SER = 
+			// Line#  40 : ReturnToPrompt ( RWC_PromptControl1 , ContainerNumber , True , True ) 
+			// Line#  41 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmBackFlush.RWC_PromptControl1_Print_Barcode_Label_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_Print_Barcode_Label_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("PARENT_CHECK","Y");
+			frmBackFlush.RWC_PromptControl1.showPrompt("AdvRepScrapRejectQty");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.Print_Barcode_Label = new cdt.prompt("Print_Barcode_Label", // Name
+				"Print Label?", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				frmBackFlush.Print_Barcode_Label_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.PRTLBL", // Variable
+				frmBackFlush.RWC_PromptControl1_Print_Barcode_Label_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.Print_Barcode_Label);
+
+		frmBackFlush.RWC_PromptControl1_NumberOfLabels_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_NumberOfLabels_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("LABEL_QTY","1");
+			// Line#  2 : Var.LABEL_QTY = Var.LBL_QTY
+			cdt.VariableManager.setLocal("BC_PRTR",cdt.VariableManager.getGlobal("BC_PRTR"));
+			cdt.VariableManager.setLocalNumeric("TEMP_QTY",cdt.VariableManager.getLocalNumeric("QTY_PROC") - cdt.VariableManager.getLocalNumeric("QTY_SCRAP"));
+			cdt.VariableManager.setLocalNumeric("QTY",cdt.VariableManager.getLocalNumeric("TEMP_QTY") - cdt.VariableManager.getLocalNumeric("QTY_REJECT"));
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getLocal("COMP_LOC"));
+			// Line#  7 : SendTransaction ( LNITEM ) 
+			cdt.VariableManager.setLocal("IL_COUNT","0");
+			cdt.VariableManager.setLocal("NUM_OF_COPIES_TEMP",cdt.VariableManager.getLocal("LBL_QTY"));
+			cdt.VariableManager.setLocal("NUM_OF_COPIES","1");
+			while(cdt.VariableManager.getLocalNumeric("IL_COUNT") < cdt.VariableManager.getLocalNumeric("NUM_OF_COPIES_TEMP"))
+			{
+			
+			cdt.NetworkManager.setSourceLine( 12);cdt.NetworkManager.sendTransaction("PINLBL",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocalNumeric("IL_COUNT",cdt.VariableManager.getLocalNumeric("IL_COUNT") + 1);
+			}
+			cdt.StatusBox.show("","Label Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 15,_shouldContinue); } );
+			return;
+		case  15:
+			cdt.NetworkManager.setSourceLine( 16);cdt.NetworkManager.sendTransaction("ARBEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 17,_shouldContinue); } );
+			return;
+		case  17:
+			if(cdt.VariableManager.getGlobal("TRACE").toUpperCase() == "ON".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("SAVE_PORT",ConfigManager.Instance.GetSetting("Port"));
+			ConfigManager.Instance.ChangeSetting("Port",cdt.VariableManager.getGlobal("TRACE_PORT"),false);
+			if(cdt.VariableManager.getLocal("OPERATION").toUpperCase() == "30".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("STATUS","Active");
+			}
+		else
+		{
+			
+			cdt.VariableManager.setLocal("STATUS","Wip");
+			}
+			cdt.VariableManager.setLocal("INTELLILABEL",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.VariableManager.setLocal("INT_SER",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.VariableManager.setLocal("WOID","404376");
+			cdt.NetworkManager.setSourceLine( 29);cdt.NetworkManager.sendTransaction("til_Update_Intellilabel_BKFL",cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("OPERATION").toUpperCase() == "10".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("INTELLILABEL_CMP1","18914");
+			cdt.VariableManager.setLocal("INTELLILABEL_CMP2","18915");
+			cdt.VariableManager.setLocal("INTELLILABEL_CMP3","18916");
+			cdt.NetworkManager.setSourceLine( 34);cdt.NetworkManager.sendTransaction("til_Update_Intellilabel_BKFL_CMP1",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 35);cdt.NetworkManager.sendTransaction("til_Update_Intellilabel_BKFL_CMP2",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 36);cdt.NetworkManager.sendTransaction("til_Update_Intellilabel_BKFL_CMP3",cdt.VariableManager.getNamespace());
+			}
+		else
+		{
+			
+			cdt.VariableManager.setLocal("LOT",cdt.VariableManager.getLocal("LOT_SER"));
+			cdt.VariableManager.setLocal("PAR",cdt.VariableManager.getLocal("ITEM"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("QTY_PROC"));
+			cdt.NetworkManager.setSourceLine( 41);cdt.NetworkManager.sendTransaction("til_Update_LotSerial",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 42);cdt.NetworkManager.sendTransaction("til_AddLotSerial_Intelli",cdt.VariableManager.getNamespace());
+			}
+			ConfigManager.Instance.ChangeSetting("Port",cdt.VariableManager.getLocal("SAVE_PORT"),false);
+			}
+			cdt.VariableManager.setLocal("CONT_SER","");
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getGlobal("SHIPLOC"));
+			cdt.VariableManager.setLocal("PRTLBL","Y");
+			cdt.VariableManager.setLocal("LBL_QTY","1");
+			cdt.VariableManager.setLocal("OPERATION","");
+			cdt.VariableManager.setLocal("LINE","");
+			cdt.VariableManager.setLocal("YES_NO","Y");
+			cdt.VariableManager.setLocal("LOT_SER","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.NumberOfLabels = new cdt.prompt("NumberOfLabels", // Name
+				"Number Of Labels", // Caption
+				"1", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.LBL_QTY", // Variable
+				frmBackFlush.RWC_PromptControl1_NumberOfLabels_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.NumberOfLabels);
+
+		frmBackFlush.RWC_PromptControl1_ARScrapScrapQty_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_ARScrapScrapQty_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocalNumeric("BAD_QTY",cdt.VariableManager.getLocalNumeric("QTY_REJECT") + cdt.VariableManager.getLocalNumeric("QTY_SCRAP"));
+			cdt.VariableManager.setLocalNumeric("QTY_DIFF",cdt.VariableManager.getLocalNumeric("QTY_PROC") - cdt.VariableManager.getLocalNumeric("BAD_QTY"));
+			if(cdt.VariableManager.getLocalNumeric("QTY_DIFF") <= 0)
+			{
+			
+			cdt.MessageBox.show("Cannot Over Report Scrap Qty","Qty Error!",cdt.MessageBoxButton.Ok,null,function() { 
+			frmBackFlush.RWC_PromptControl1.showPrompt("ARScrapScrapQty");
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("TRX_CODE","ARBKFL");
+			cdt.VariableManager.setLocal("TRX_TYPE","S");
+			cdt.VariableManager.setLocal("SCRAP_TXT","Scrap Qty:" + cdt.VariableManager.getLocal("QTY_SCRAP"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.ARScrapScrapQty = new cdt.prompt("ARScrapScrapQty", // Name
+				"Scrap Qty", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY_SCRAP", // Variable
+				frmBackFlush.RWC_PromptControl1_ARScrapScrapQty_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.ARScrapScrapQty);
+
+		frmBackFlush.RWC_PromptControl1_ARScrapScrapReason_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_ARScrapScrapReason_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("SCRAP_RSN",cdt.VariableManager.getLocal("RSN_CODE"));
+			RWC_PromptControl1.SetDetailText("Operation",cdt.VariableManager.getLocal("SCRAP_TXT"),false);
+			RWC_PromptControl1.ReturnToPrompt("LineNumber",true,false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.ARScrapScrapReason = new cdt.prompt("ARScrapScrapReason", // Name
+				"Reason Code", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VCDRSN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.RSN_CODE", // Variable
+				frmBackFlush.RWC_PromptControl1_ARScrapScrapReason_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.ARScrapScrapReason);
+
+		frmBackFlush.RWC_PromptControl1_ARRejectRejectQty_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_ARRejectRejectQty_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocalNumeric("BAD_QTY",cdt.VariableManager.getLocalNumeric("QTY_REJECT") + cdt.VariableManager.getLocalNumeric("QTY_SCRAP"));
+			cdt.VariableManager.setLocalNumeric("QTY_DIFF",cdt.VariableManager.getLocalNumeric("QTY_PROC") - cdt.VariableManager.getLocalNumeric("BAD_QTY"));
+			if(cdt.VariableManager.getLocalNumeric("QTY_DIFF") <= 0)
+			{
+			
+			cdt.MessageBox.show("Cannot Over Report Reject Qty","Qty Error!",cdt.MessageBoxButton.Ok,null,function() { 
+			frmBackFlush.RWC_PromptControl1.showPrompt("ARRejectRejectQty");
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("REJECT_TXT","Reject Qty:" + cdt.VariableManager.getLocal("QTY_REJECT"));
+			cdt.VariableManager.setLocal("TRX_CODE","ARBKFL");
+			cdt.VariableManager.setLocal("TRX_TYPE","R");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.ARRejectRejectQty = new cdt.prompt("ARRejectRejectQty", // Name
+				"Reject Qty", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY_REJECT", // Variable
+				frmBackFlush.RWC_PromptControl1_ARRejectRejectQty_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.ARRejectRejectQty);
+
+		frmBackFlush.RWC_PromptControl1_ARRejectRejectReason_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmBackFlush.RWC_PromptControl1_ARRejectRejectReason_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("RJCT_RSN",cdt.VariableManager.getLocal("RSN_CODE"));
+			RWC_PromptControl1.SetDetailText("Operation",cdt.VariableManager.getLocal("REJECT_TXT"),false);
+			RWC_PromptControl1.ReturnToPrompt("LineNumber",true,false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmBackFlush.ARRejectRejectReason = new cdt.prompt("ARRejectRejectReason", // Name
+				"Reject Reason", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VCDRSN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.RSN_CODE", // Variable
+				frmBackFlush.RWC_PromptControl1_ARRejectRejectReason_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmBackFlush.RWC_PromptControl1.addPrompt(frmBackFlush.ARRejectRejectReason);
+
+		frmBackFlush.viewModel = new cdt.viewModel( "frmBackFlush",frmBackFlush.RWC_PromptControl1,"frmBackFlush");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmBackFlush-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmBackFlush-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmBackFlush-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmBackFlush-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmBackFlush-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmBackFlush-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmBackFlush-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

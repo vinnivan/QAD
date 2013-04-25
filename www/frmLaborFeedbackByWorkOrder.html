@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmLaborFeedbackByWorkOrder' data-role='view' data-title='Labor Feedback by WO' data-show='frmLaborFeedbackByWorkOrder.viewModel.initialize' data-model='frmLaborFeedbackByWorkOrder.viewModel' >
+<script>
+	var frmLaborFeedbackByWorkOrder = frmLaborFeedbackByWorkOrder || {};
+		frmLaborFeedbackByWorkOrder.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}]  });
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmLaborFeedbackByWorkOrder' );
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1_EmployeeNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLaborFeedbackByWorkOrder.RWC_PromptControl1_EmployeeNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.get("Mvr.VEMPNO","ACTIVE_JBS").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("DATE",Utilities.Instance.GetNow("YYYYMTDD"));
+			cdt.VariableManager.setLocal("TIME",Utilities.Instance.GetNow("HHMMSS"));
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendValidation("VNXTJB",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("WO_NUM",cdt.VariableManager.get("Mvr.VNXTJB","WO_NBR"));
+			cdt.VariableManager.setLocal("QTY_OPEN",cdt.VariableManager.get("Mvr.VNXTJB","OPEN_QTY"));
+			cdt.VariableManager.setLocal("WOID",cdt.VariableManager.get("Mvr.VNXTJB","WO_ID"));
+			cdt.VariableManager.setLocal("WO_LOT",cdt.VariableManager.get("Mvr.VNXTJB","WO_ID"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VNXTJB","ITEM"));
+			cdt.VariableManager.setLocal("OPER",cdt.VariableManager.get("Mvr.VNXTJB","OPER"));
+			cdt.VariableManager.setLocal("OPERATION",cdt.VariableManager.get("Mvr.VNXTJB","OPER"));
+			cdt.VariableManager.setLocal("WKCTR",cdt.VariableManager.get("Mvr.VNXTJB","WKCTR"));
+			cdt.VariableManager.setLocal("SETRUN",cdt.VariableManager.get("Mvr.VNXTJB","SET_RUN"));
+			cdt.VariableManager.setLocal("REF",cdt.VariableManager.get("Mvr.VNXTJB","REFHEAT"));
+			RWC_PromptControl1.SetHistoryText("EmployeeNumber","Set/Run",cdt.VariableManager.getLocal("SETRUN"),false);
+			RWC_PromptControl1.SetHistoryText("EmployeeNumber","Work Center",cdt.VariableManager.getLocal("WKCTR"),false);
+			RWC_PromptControl1.SetHistoryText("EmployeeNumber","Operation",cdt.VariableManager.getLocal("OPER"),false);
+			RWC_PromptControl1.SetHistoryText("EmployeeNumber","Item",cdt.VariableManager.getLocal("ITEM"),false);
+			RWC_PromptControl1.SetHistoryText("EmployeeNumber","WO Number",cdt.VariableManager.getLocal("WO_NUM"),false);
+			RWC_PromptControl1.SetHistoryText("EmployeeNumber","Employee",cdt.VariableManager.getLocal("CLK_NBR"),false);
+			RWC_PromptControl1.SetHistoryText("EmployeeNumber","Report Against WO","",false);
+			if(cdt.VariableManager.getLocal("SETRUN").toUpperCase() == "R".toUpperCase())
+			{
+			
+			frmLaborFeedbackByWorkOrder.RWC_PromptControl1.showPrompt("PreviousQty");
+			}
+		else
+		{
+			
+			cdt.VariableManager.setLocal("CLK_DATE",Utilities.Instance.GetNow("YYYYMTDD"));
+			cdt.VariableManager.setLocal("CLK_TIME",Utilities.Instance.GetNow("HHMMSS"));
+			cdt.NetworkManager.setSourceLine( 27);cdt.NetworkManager.sendTransaction("LBREWO",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			cdt.StatusBox.show("Start New WO","Starting Work Order!",cdt.MessageBoxButton.Ok,2, function() { 
+			cdt.VariableManager.setLocal("WOID","");
+			cdt.VariableManager.setLocal("REF","");
+			cdt.VariableManager.setLocal("WO_LOT","");
+			cdt.VariableManager.setLocal("WO_NUM","");
+			cdt.VariableManager.setLocal("OPERATION","");
+			RWC_PromptControl1.SetHistoryText("PreviousQty","START WORK ORDER","",false);
+			frmLaborFeedbackByWorkOrder.RWC_PromptControl1.showPrompt("WONumber");
+			
+			currentMethod(_value, _completeAction,37, _shouldContinue);
+			return;
+			}); 
+			}); 
+			return;
+			}
+			}
+		
+		case 37:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLaborFeedbackByWorkOrder.EmployeeNumber = new cdt.prompt("EmployeeNumber", // Name
+				"Employee", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VEMPNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.CLK_NBR", // Variable
+				frmLaborFeedbackByWorkOrder.RWC_PromptControl1_EmployeeNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1.addPrompt(frmLaborFeedbackByWorkOrder.EmployeeNumber);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1_WONumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLaborFeedbackByWorkOrder.RWC_PromptControl1_WONumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("SETRUN","R");
+			cdt.VariableManager.setLocal("REF",cdt.VariableManager.get("Mvr.VWRKIX","REF"));
+			cdt.VariableManager.setLocal("ITEM1",cdt.VariableManager.get("Mvr.VWRKIX","ITEM") + "/");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLaborFeedbackByWorkOrder.WONumber = new cdt.prompt("WONumber", // Name
+				"WO Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VWRKIX", // Validation
+				false, // ValidIfNotEmpty
+				"Var.WO_NUM", // Variable
+				frmLaborFeedbackByWorkOrder.RWC_PromptControl1_WONumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1.addPrompt(frmLaborFeedbackByWorkOrder.WONumber);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1_SetRun_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLaborFeedbackByWorkOrder.RWC_PromptControl1_SetRun_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("SETRUN").toUpperCase() == "R".toUpperCase()
+			 || 
+			cdt.VariableManager.getLocal("SETRUN").toUpperCase() == "S".toUpperCase())
+			{
+			
+			frmLaborFeedbackByWorkOrder.RWC_PromptControl1.showPrompt("Operation");
+			}
+		else
+		{
+			
+			RWC_PromptControl1.ResetPrompt("SetRun");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLaborFeedbackByWorkOrder.SetRun = new cdt.prompt("SetRun", // Name
+				"Setup/Run?", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.SETRUN", // Variable
+				frmLaborFeedbackByWorkOrder.RWC_PromptControl1_SetRun_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1.addPrompt(frmLaborFeedbackByWorkOrder.SetRun);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1_Operation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLaborFeedbackByWorkOrder.RWC_PromptControl1_Operation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("WRK_CNTR",cdt.VariableManager.get("Mvr.VWRKOP","WRK_CNTR"));
+			cdt.VariableManager.setLocal("OPEN_QTY",cdt.VariableManager.get("Mvr.VWRKOP","QTY_OPEN"));
+			cdt.VariableManager.setLocal("OPER",cdt.VariableManager.getLocal("OPERATION"));
+			cdt.VariableManager.setLocal("TYPE","ISS-WO");
+			cdt.VariableManager.setLocal("WO_NBR",cdt.VariableManager.getLocal("WO_NUM"));
+			cdt.NetworkManager.setSourceLine( 6);RWC_PromptControl1.ReceiveDataSetFromQueue("Heat");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLaborFeedbackByWorkOrder.Operation = new cdt.prompt("Operation", // Name
+				"Operation", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VWRKOP", // Validation
+				false, // ValidIfNotEmpty
+				"Var.OPERATION", // Variable
+				frmLaborFeedbackByWorkOrder.RWC_PromptControl1_Operation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1.addPrompt(frmLaborFeedbackByWorkOrder.Operation);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1_Heat_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLaborFeedbackByWorkOrder.RWC_PromptControl1_Heat_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("HEAT",cdt.VariableManager.get("Dsv.RWC_DataSet1","REF"));
+			cdt.VariableManager.setLocal("REF",cdt.VariableManager.getLocal("HEAT"));
+			cdt.VariableManager.setLocal("ITEMHEAT",cdt.VariableManager.getLocal("ITEM1") + cdt.VariableManager.getLocal("HEAT"));
+			frmLaborFeedbackByWorkOrder.RWC_PromptControl1.showPrompt("WorkCenter");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1LP0 = new cdt.prompt( "Heat", // name 
+			"", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmLaborFeedbackByWorkOrder.RWC_PromptControl1_Heat_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1.addPrompt(frmLaborFeedbackByWorkOrder.RWC_PromptControl1LP0);
+
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 33%;text-align:right;'>Heat:&nbsp;&nbsp;</span>";
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 40%;width: 60%;text-align:left;'>#= data.REF #&nbsp;&nbsp;</span>";
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1LP0_template += "<br /></a></li>";
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1LP0.setLayout( kendo.template(frmLaborFeedbackByWorkOrder.RWC_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1LP0.setDataSource(frmLaborFeedbackByWorkOrder.RWC_DataSet1);
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1_WorkCenter_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLaborFeedbackByWorkOrder.RWC_PromptControl1_WorkCenter_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			RWC_PromptControl1.SetHistoryText("WorkCenter","Work Center",cdt.VariableManager.getLocal("WRK_CNTR"),false);
+			RWC_PromptControl1.SetHistoryText("WorkCenter","Item/Heat",cdt.VariableManager.getLocal("ITEMHEAT"),false);
+			cdt.VariableManager.setLocal("CLK_DATE",Utilities.Instance.GetNow("YYYYMTDD"));
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("LBRSWO",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Start WO","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 5,_shouldContinue); } );
+			return;
+		case  5:
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLaborFeedbackByWorkOrder.WorkCenter = new cdt.prompt("WorkCenter", // Name
+				"Work Center", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.WRK_CNTR", // Variable
+				frmLaborFeedbackByWorkOrder.RWC_PromptControl1_WorkCenter_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1.addPrompt(frmLaborFeedbackByWorkOrder.WorkCenter);
+
+		
+		frmLaborFeedbackByWorkOrder.PreviousQty = new cdt.prompt("PreviousQty", // Name
+				"Qty Complete", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY_COMP", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1.addPrompt(frmLaborFeedbackByWorkOrder.PreviousQty);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1_Printer_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmLaborFeedbackByWorkOrder.RWC_PromptControl1_Printer_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("CLK_DATE",Utilities.Instance.GetNow("YYYYMTDD"));
+			cdt.VariableManager.setLocal("CLK_TIME",Utilities.Instance.GetNow("HHMMSS"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("LBREWO",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 4,_shouldContinue); } );
+			return;
+		case  4:
+			cdt.StatusBox.show("Start New WO","Starting Work Order!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 5,_shouldContinue); } );
+			return;
+		case  5:
+			cdt.VariableManager.setLocal("WOID","");
+			cdt.VariableManager.setLocal("REF","");
+			cdt.VariableManager.setLocal("WO_LOT","");
+			cdt.VariableManager.setLocal("WO_NUM","");
+			cdt.VariableManager.setLocal("OPERATION","");
+			cdt.VariableManager.setLocal("SETRUN","R");
+			RWC_PromptControl1.SetHistoryText("WONumber","Employee",cdt.VariableManager.getLocal("CLK_NBR"),false);
+			RWC_PromptControl1.SetHistoryText("WONumber","START WORK ORDER","",false);
+			frmLaborFeedbackByWorkOrder.RWC_PromptControl1.showPrompt("WONumber");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmLaborFeedbackByWorkOrder.Printer = new cdt.prompt("Printer", // Name
+				"Printer", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.PRINTER", // Variable
+				frmLaborFeedbackByWorkOrder.RWC_PromptControl1_Printer_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmLaborFeedbackByWorkOrder.RWC_PromptControl1.addPrompt(frmLaborFeedbackByWorkOrder.Printer);
+
+		frmLaborFeedbackByWorkOrder.viewModel = new cdt.viewModel( "frmLaborFeedbackByWorkOrder",frmLaborFeedbackByWorkOrder.RWC_PromptControl1,"frmLaborFeedbackByWorkOrder");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmLaborFeedbackByWorkOrder-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmLaborFeedbackByWorkOrder-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmLaborFeedbackByWorkOrder-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmLaborFeedbackByWorkOrder-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmLaborFeedbackByWorkOrder-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmLaborFeedbackByWorkOrder-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmLaborFeedbackByWorkOrder-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

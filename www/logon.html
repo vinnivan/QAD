@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='main' data-role='view' data-title='Login' data-show='logon.viewModel.initialize' data-model='logon.viewModel' >
+<script>
+	var logon = logon || {};
+		logon.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'logon' );
+		logon.RWC_PromptControl1_Username_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = logon.RWC_PromptControl1_Username_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("USERID",cdt.VariableManager.getGlobal("USERID"));
+			cdt.VariableManager.setLocal("ATTEMPTS","0");
+			if(cdt.VariableManager.getLocal("USERID") == "")
+			{
+			
+			cdt.StatusBox.show("Security Error","Username required. Please enter.",cdt.MessageBoxButton.Ok,6, function() { 
+			// Line#  5 : ShowPrompt ( RWC_PromptControl1 , Username ) 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,8, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 8:
+		{
+			
+			cdt.VariableManager.setGlobal("USERID",cdt.VariableManager.getLocal("USERID"));
+			cdt.NetworkManager.setSourceLine( 10);cdt.NetworkManager.sendValidation("VUSRID",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VUSRID","STATUS") != "Y")
+			{
+			
+			// Line#  12 : StatusWindow ( Security Error , Invalid UserName , 5 ) 
+			// Line#  13 : ShowPrompt ( RWC_PromptControl1 , Username ) 
+			// Line#  14 : PromptIsValid ( RWC_PromptControl1 , False ) 
+			// Line#  15 : CancelDefault( )
+			}
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		logon.Username = new cdt.prompt("Username", // Name
+				"Username", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VUSRID", // Validation
+				false, // ValidIfNotEmpty
+				"Gvr.USERID", // Variable
+				logon.RWC_PromptControl1_Username_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		logon.RWC_PromptControl1.addPrompt(logon.Username);
+
+		logon.RWC_PromptControl1_Password_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = logon.RWC_PromptControl1_Password_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setGlobal("PASSWD",cdt.VariableManager.getLocal("PASSWD"));
+			cdt.VariableManager.setLocal("VER","1.0.B");
+			// Line#  3 : If Mvr.VLOGON.STATUS = Y
+			// Line#  4 : Var.USER_DESC = Mvr.VLOGON.USER_NAME
+			// Line#  5 : Gvr.BC_PRTR = Mvr.VLOGON.BC_PRTR
+			// Line#  6 : StatusWindow ( Welcome! , Var.USER_DESC , 2 ) 
+			// Line#  7 : CloseForm( )
+			// Line#  8 : Else If Var.ATTEMPTS >= 2
+			// Line#  9 : StatusWindow ( Security Error , Your 3 attempts have failed. , 4 ) 
+			// Line#  10 : Var.Temppassword = Gvr.PASSWD
+			// Line#  11 : Var.Tempusername = Gvr.USERID
+			// Line#  12 : Gvr.PASSWD = 
+			// Line#  13 : Gvr.USERID = 
+			// Line#  14 : ReturnToPrompt ( RWC_PromptControl1 , Username , True , True ) 
+			// Line#  15 : End If
+			// Line#  16 : Var.ATTEMPTS = Var.ATTEMPTS + 1
+			logon.viewModel.logIn(cdt.VariableManager.get("Mvr.VLOGON","USER_NAME"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		logon.Password = new cdt.prompt("Password", // Name
+				"Password", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VLOGON", // Validation
+				false, // ValidIfNotEmpty
+				"Gvr.PASSWD", // Variable
+				logon.RWC_PromptControl1_Password_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Password
+				);
+
+		logon.RWC_PromptControl1.addPrompt(logon.Password);
+
+		logon.viewModel = new cdt.viewModel( "logon",logon.RWC_PromptControl1,"main");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='logon-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='logon-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='logon-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='logon-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='logon-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='logon-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='logon-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+	
+
+	        <div data-bind='visible: isLoggedIn'>
+	            <img data-bind='attr: { src: customerLogo }' class='overviewLogo' />
+	            <div id='overview'>
+	                <div data-role='header'>
+	                    <div data-role='navbar'>Overview</div>
+	                </div>
+	                <span style='font:x-large;margin-right:5px;'>User:</span><span style='font:large' data-bind='text: currentUser'></span>
+	                <div style='width:50px;margin-left:auto;margin-right:auto;margin-top:20px;'>
+	                    <a  data-role='button' data-click='logon.viewModel.logOut'>Logout</a>
+	                </div>
+	            </div>
+	            <img data-bind='attr: { src: radleyLogo }' class='overviewLogo' />
+	        </div>
+	
+
+	        <div data-role='popover' id='popupMenu' data-popup='{'height': 280, 'width': 280}'>
+	            <div data-role='view' data-title='Options'>
+	                <div data-role='header'>
+	                    <div data-role='navbar'>
+	                        <span data-role='view-title'></span>
+	                        <a data-role='button' data-align='right' data-click='closeParentPopover'>Close</a>
+	                    </div>
+	                </div>
+	                    <ul data-role='listview' data-click='cdt.Application.onPopupItemClick'>
+	                    <li data-icon='refresh'><a data-role='listview-link' id='resetPopup'>Reset</a></li>
+	                    <li  data-icon='reply'><a data-role='listview-link' id='previousPopup' >Previous</a></li>
+	                    <li  data-icon='action'><a data-role='listview-link' id='abortPopup' >Abort</a></li>
+	                    <li></li>
+	                    <li data-icon='settings'><a data-role='listview-link' data-rel='modalview' href='#configurationModalView' id='configurationOpenButton'>Configuration</a></li>
+	                </ul>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

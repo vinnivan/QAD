@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmTMSBinReplenishment' data-role='view' data-title='Request Bin Replenishment' data-show='frmTMSBinReplenishment.viewModel.initialize' data-model='frmTMSBinReplenishment.viewModel' >
+<script>
+	var frmTMSBinReplenishment = frmTMSBinReplenishment || {};
+		frmTMSBinReplenishment.pmtTMSBinReplenishment = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmTMSBinReplenishment' );
+		frmTMSBinReplenishment.pmtTMSBinReplenishment_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSBinReplenishment.pmtTMSBinReplenishment_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("UNITS","1");
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getGlobal("SITE"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VLOCNX",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VLOCNX","STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			pmtTMSBinReplenishment.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			}
+			cdt.VariableManager.setLocal("TMS_BIN",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VLOCNX","ITEM"));
+			cdt.VariableManager.setLocal("LOC_SNGL",cdt.VariableManager.get("Mvr.VLOCNX","LOC_SNGL"));
+			if(cdt.VariableManager.getLocal("ITEM").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Item not found for location",cdt.MessageBoxButton.Ok,2, function() { 
+			pmtTMSBinReplenishment.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,17, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 17:
+			if(cdt.VariableManager.getLocal("LOC_SNGL").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Not a Single Location Type",cdt.MessageBoxButton.Ok,2, function() { 
+			pmtTMSBinReplenishment.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,23, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 23:
+			cdt.VariableManager.setLocal("TMS_TASK_TYPE","PickingBulk2Bin");
+			cdt.VariableManager.setLocal("TMS_TASK_TYPE2","Bulk2Stage");
+			cdt.VariableManager.setLocal("TMS_USER_ID",cdt.VariableManager.getGlobal("USERID"));
+			cdt.NetworkManager.setSourceLine( 27);cdt.NetworkManager.sendValidation("v_TMSGetTaskForBin",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("STATUS",cdt.VariableManager.get("Mvr.v_TMSGetTaskForBin","STATUS"));
+			cdt.VariableManager.setLocal("TMS_NUM_TASK",cdt.VariableManager.get("Mvr.v_TMSGetTaskForBin","TMS_NUM_TASK"));
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocalNumeric("TMS_NUM_TASK") > 0)
+			{
+			
+			if(cdt.VariableManager.getLocalNumeric("HOUR") < 7)
+			{
+			
+			cdt.MessageBox.show("Request has already been made in the last 7 hours. Continue?","Warning",cdt.MessageBoxButton.YesNo,"Var.RESULT",function() { 
+			if(cdt.VariableManager.getLocalNumeric("RESULT") != 6)
+			{
+			
+			pmtTMSBinReplenishment.IsValid(false);
+			shouldContinue = false;
+			
+			}
+			
+			currentMethod(_value, _completeAction,38, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+			}
+		else
+		{
+			
+			pmtTMSBinReplenishment.IsValid(false);
+			shouldContinue = false;
+			}
+		
+		case 38:
+			cdt.NetworkManager.setSourceLine( 44);cdt.NetworkManager.sendValidation("v_TMSGetTaskType",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("STATUS",cdt.VariableManager.get("Mvr.v_TMSGetTaskType","STATUS"));
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("URGENT","N");
+			cdt.VariableManager.setLocal("URGENCY",cdt.VariableManager.get("Mvr.v_TMSGetTaskType","TMS_PRIORITY"));
+			}
+			cdt.VariableManager.setLocal("TMS_REGION","2");
+			cdt.VariableManager.setLocal("TMS_WAREHOUSE",cdt.VariableManager.getGlobal("SITE"));
+			cdt.NetworkManager.setSourceLine( 52);cdt.NetworkManager.sendValidation("v_TMSPassBin",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("STATUS",cdt.VariableManager.get("Mvr.v_TMSPassBin","STATUS"));
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","TMS Bin not found",cdt.MessageBoxButton.Ok,2, function() { 
+			pmtTMSBinReplenishment.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,59, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 59:
+			cdt.VariableManager.setLocal("TMS_ZONE",cdt.VariableManager.get("Mvr.v_TMSPassBin","TMS_ZONE"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSBinReplenishment.Location = new cdt.prompt("Location", // Name
+				"Loc", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmTMSBinReplenishment.pmtTMSBinReplenishment_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSBinReplenishment.pmtTMSBinReplenishment.addPrompt(frmTMSBinReplenishment.Location);
+
+		frmTMSBinReplenishment.pmtTMSBinReplenishment_Units_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSBinReplenishment.pmtTMSBinReplenishment_Units_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocalNumeric("UNITS") > 0)
+			{
+			
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error","# of Units must be greater than zero",cdt.MessageBoxButton.Ok,2, function() { 
+			pmtTMSBinReplenishment.IsValid(false);
+			
+			currentMethod(_value, _completeAction,5, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 5:
+			cdt.VariableManager.setLocal("NUM_UNITS",cdt.VariableManager.getLocal("UNITS"));
+			pmtTMSBinReplenishment.SetHistoryText("Units","Units",cdt.VariableManager.getLocal("UNITS"),true);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSBinReplenishment.Units = new cdt.prompt("Units", // Name
+				"# of Pallets", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"UNITS", // Variable
+				frmTMSBinReplenishment.pmtTMSBinReplenishment_Units_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSBinReplenishment.pmtTMSBinReplenishment.addPrompt(frmTMSBinReplenishment.Units);
+
+		frmTMSBinReplenishment.pmtTMSBinReplenishment_Urgent_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSBinReplenishment.pmtTMSBinReplenishment_Urgent_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("URGENT").toUpperCase() == "Y".toUpperCase()
+			 || 
+			cdt.VariableManager.getLocal("URGENT").toUpperCase() == "N".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("URGENT").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("URGENCY","1");
+			}
+			cdt.VariableManager.setLocal("REGION1","2");
+			cdt.VariableManager.setLocal("REGION2","1");
+			cdt.VariableManager.setLocal("TASKTYPE1","PickingBulk2Bin");
+			cdt.VariableManager.setLocal("TASKTYPE2","Bulk2Stage");
+			cdt.VariableManager.setLocal("BULK","NO");
+			cdt.NetworkManager.setSourceLine( 10);cdt.NetworkManager.sendValidation("v_TMSFindReplenishment",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("STATUS",cdt.VariableManager.get("Mvr.v_TMSFindReplenishment","STATUS"));
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Info","Transaction Sent",cdt.MessageBoxButton.Ok,2, function() { 
+			
+			currentMethod(_value, _completeAction,14, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			// Line#  15 : ReturnToPrompt ( pmtTMSBinReplenishment , Location , True , True ) 
+				/* Test for memory issue	*/ 
+			frmTMSBinReplenishment.viewModel.promptControl.reset( );
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error","Urgency must be Y or N",cdt.MessageBoxButton.Ok,2, function() { 
+			pmtTMSBinReplenishment.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,14, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 14:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSBinReplenishment.Urgent = new cdt.prompt("Urgent", // Name
+				"Urgent Y/N", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"URGENT", // Variable
+				frmTMSBinReplenishment.pmtTMSBinReplenishment_Urgent_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSBinReplenishment.pmtTMSBinReplenishment.addPrompt(frmTMSBinReplenishment.Urgent);
+
+		frmTMSBinReplenishment.viewModel = new cdt.viewModel( "frmTMSBinReplenishment",frmTMSBinReplenishment.pmtTMSBinReplenishment,"frmTMSBinReplenishment");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmTMSBinReplenishment-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmTMSBinReplenishment-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmTMSBinReplenishment-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSBinReplenishment-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSBinReplenishment-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSBinReplenishment-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSBinReplenishment-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

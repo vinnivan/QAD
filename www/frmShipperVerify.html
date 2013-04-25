@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmShipperVerify' data-role='view' data-title='Shipper Verify' data-show='frmShipperVerify.viewModel.initialize' data-model='frmShipperVerify.viewModel' >
+<script>
+	var frmShipperVerify = frmShipperVerify || {};
+		frmShipperVerify.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmShipperVerify' );
+		frmShipperVerify.RWC_PromptControl1_Shipper_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmShipperVerify.RWC_PromptControl1_Shipper_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.get("Mvr.VSHPPR","CONFIRMED") == "Y")
+			{
+			
+			cdt.MessageBox.show("Shipper Previously Confirmed.","Confirmed",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 4:
+		{
+			
+			cdt.VariableManager.setLocal("SHIP_TO",cdt.VariableManager.get("Mvr.VSHPPR","ABS_SHIPTO"));
+			cdt.NetworkManager.setSourceLine( 6);cdt.NetworkManager.sendTransaction("SHVSTR",cdt.VariableManager.getNamespace());
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmShipperVerify.Shipper = new cdt.prompt("Shipper", // Name
+				"Shipper", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VSHPPR", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SHIPPER", // Variable
+				frmShipperVerify.RWC_PromptControl1_Shipper_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmShipperVerify.RWC_PromptControl1.addPrompt(frmShipperVerify.Shipper);
+
+		frmShipperVerify.RWC_PromptControl1_ContainerNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmShipperVerify.RWC_PromptControl1_ContainerNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","PART"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.VariableManager.setLocal("ITEM_DESC",cdt.VariableManager.get("Mvr.VILBLE","DESC1") + cdt.VariableManager.get("Mvr.VILBLE","DESC2"));
+			cdt.VariableManager.setLocal("DISP_QTY","QTY: " + cdt.VariableManager.getLocal("QTY"));
+			cdt.VariableManager.setLocal("DISP_DESC","DESC: " + cdt.VariableManager.getLocal("ITEM_DESC"));
+			cdt.VariableManager.setLocal("DISP_ITEM","ITEM: " + cdt.VariableManager.getLocal("ITEM"));
+			RWC_PromptControl1.SetDetailText("ContainerNumber",cdt.VariableManager.getLocal("DISP_QTY"),false);
+			RWC_PromptControl1.SetDetailText("ContainerNumber",cdt.VariableManager.getLocal("DISP_DESC"),false);
+			RWC_PromptControl1.SetDetailText("ContainerNumber",cdt.VariableManager.getLocal("DISP_ITEM"),false);
+			UpdateData( false );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmShipperVerify.RWC_PromptControl1_ContainerNumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmShipperVerify.RWC_PromptControl1_ContainerNumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VSHCMP",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VSHCMP","STATUS") == "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("SHVEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			frmShipperVerify.viewModel.promptControl.reset( );
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 6:
+		{
+			
+			cdt.MessageBox.show(cdt.VariableManager.get("Mvr.VSHCMP","RTMSG"),"Full Scan?",cdt.MessageBoxButton.Ok,null,function() { 
+			frmShipperVerify.RWC_PromptControl1.showPrompt("ContainerNumber");
+			
+			currentMethod(_value, _completeAction,9, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 9:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmShipperVerify.ContainerNumber = new cdt.prompt("ContainerNumber", // Name
+				"Container Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Finished", // Button Caption
+				frmShipperVerify.ContainerNumber_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.CONT_SER", // Variable
+				frmShipperVerify.RWC_PromptControl1_ContainerNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmShipperVerify.RWC_PromptControl1.addPrompt(frmShipperVerify.ContainerNumber);
+
+		frmShipperVerify.RWC_PromptControl1_VehicleReference_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmShipperVerify.RWC_PromptControl1_VehicleReference_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("VEHICLE") == "")
+			{
+			
+			cdt.VariableManager.setLocal("VEHICLE",cdt.VariableManager.getLocal("VEH_REF"));
+			}
+			if(cdt.VariableManager.getLocal("VEHICLE") != cdt.VariableManager.getLocal("VEH_REF"))
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			cdt.MessageBox.show("Vehicles must match","Wrong Vehicle",cdt.MessageBoxButton.Ok,null,function() { 
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,9, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 9:
+			cdt.NetworkManager.setSourceLine( 10);cdt.NetworkManager.sendTransaction("SHVBLD",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Container Serial Sent!",cdt.MessageBoxButton.Ok,1, function() { currentMethod(_value,_completeAction, 11,_shouldContinue); } );
+			return;
+		case  11:
+			if(cdt.VariableManager.getGlobal("TRACE").toUpperCase() == "ON".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("SAVE_PORT",ConfigManager.Instance.GetSetting("Port"));
+			ConfigManager.Instance.ChangeSetting("Port",cdt.VariableManager.getGlobal("TRACE_PORT"),false);
+			cdt.VariableManager.setLocal("INTELLILABEL",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.NetworkManager.setSourceLine( 16);cdt.NetworkManager.sendTransaction("til_Update_Intellilabel_VERIFY",cdt.VariableManager.getNamespace());
+			ConfigManager.Instance.ChangeSetting("Port",cdt.VariableManager.getLocal("SAVE_PORT"),false);
+			}
+			cdt.VariableManager.setLocal("CONT_SER","");
+			frmShipperVerify.RWC_PromptControl1.returnToPrompt("ContainerNumber",false,false);
+			shouldContinue = false;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmShipperVerify.VehicleReference = new cdt.prompt("VehicleReference", // Name
+				"VehicleReference", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.VEH_REF", // Variable
+				frmShipperVerify.RWC_PromptControl1_VehicleReference_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmShipperVerify.RWC_PromptControl1.addPrompt(frmShipperVerify.VehicleReference);
+
+		frmShipperVerify.viewModel = new cdt.viewModel( "frmShipperVerify",frmShipperVerify.RWC_PromptControl1,"frmShipperVerify");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmShipperVerify-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmShipperVerify-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmShipperVerify-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmShipperVerify-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmShipperVerify-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmShipperVerify-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmShipperVerify-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

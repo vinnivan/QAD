@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmWORecBckFlsh' data-role='view' data-title='WO Receipt Backflush IL' data-show='frmWORecBckFlsh.viewModel.initialize' data-model='frmWORecBckFlsh.viewModel' >
+<script>
+	var frmWORecBckFlsh = frmWORecBckFlsh || {};
+		frmWORecBckFlsh.RWC_PromptControl2 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmWORecBckFlsh' );
+		frmWORecBckFlsh.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmWORecBckFlsh' );
+		frmWORecBckFlsh.RWC_PromptControl2_WONumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWORecBckFlsh.RWC_PromptControl2_WONumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("WO_LOT",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
+			cdt.VariableManager.setLocal("WOID",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VWRKID","PART"));
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.get("Mvr.VWRKID","SITE"));
+			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VWRKID","LOT_CTRL"));
+			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VWRKID","SER_CTRL"));
+			cdt.VariableManager.setLocal("TO_STATUS","A");
+			cdt.VariableManager.setLocal("BACK_TYPE","W");
+			cdt.VariableManager.setLocal("CLOSE","N");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWORecBckFlsh.WONumber = new cdt.prompt("WONumber", // Name
+				"WO Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VWRKID", // Validation
+				false, // ValidIfNotEmpty
+				"WO_NUM", // Variable
+				frmWORecBckFlsh.RWC_PromptControl2_WONumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWORecBckFlsh.RWC_PromptControl2.addPrompt(frmWORecBckFlsh.WONumber);
+
+		frmWORecBckFlsh.RWC_PromptControl2_Cont_Serial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWORecBckFlsh.RWC_PromptControl2_Cont_Serial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","PART"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.VariableManager.setLocal("LOT_SER",cdt.VariableManager.get("Mvr.VILBLE","LOT_SER"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWORecBckFlsh.Cont_Serial = new cdt.prompt("Cont_Serial", // Name
+				"Container Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"CONT_SER", // Variable
+				frmWORecBckFlsh.RWC_PromptControl2_Cont_Serial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWORecBckFlsh.RWC_PromptControl2.addPrompt(frmWORecBckFlsh.Cont_Serial);
+
+		
+		frmWORecBckFlsh.SITE = new cdt.prompt("SITE", // Name
+				"Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"SITE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWORecBckFlsh.RWC_PromptControl2.addPrompt(frmWORecBckFlsh.SITE);
+
+		frmWORecBckFlsh.RWC_PromptControl2_LOCATION_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWORecBckFlsh.RWC_PromptControl2_LOCATION_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VTSTAT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VTSTAT","STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error",cdt.VariableManager.get("Mvr.VTSTAT","RTMSG"),cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 7:
+			cdt.NetworkManager.setSourceLine( 8);cdt.NetworkManager.sendTransaction("WOISRC",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 9,_shouldContinue); } );
+			return;
+		case  9:
+			frmWORecBckFlsh.viewModel.promptControl.reset( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWORecBckFlsh.LOCATION = new cdt.prompt("LOCATION", // Name
+				"Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmWORecBckFlsh.RWC_PromptControl2_LOCATION_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWORecBckFlsh.RWC_PromptControl2.addPrompt(frmWORecBckFlsh.LOCATION);
+
+		frmWORecBckFlsh.RWC_PromptControl1_WONumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWORecBckFlsh.RWC_PromptControl1_WONumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("WO_LOT",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
+			cdt.VariableManager.setLocal("WOID",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VWRKID","PART"));
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.get("Mvr.VWRKID","SITE"));
+			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VWRKID","LOT_CTRL"));
+			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VWRKID","SER_CTRL"));
+			cdt.VariableManager.setLocal("TO_STATUS","A");
+			cdt.VariableManager.setLocal("BACK_TYPE","W");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWORecBckFlsh.WONumber = new cdt.prompt("WONumber", // Name
+				"WO Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VWRKID", // Validation
+				false, // ValidIfNotEmpty
+				"Var.WO_NUM", // Variable
+				frmWORecBckFlsh.RWC_PromptControl1_WONumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWORecBckFlsh.RWC_PromptControl1.addPrompt(frmWORecBckFlsh.WONumber);
+
+		frmWORecBckFlsh.RWC_PromptControl1_Container_Serial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWORecBckFlsh.RWC_PromptControl1_Container_Serial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","PART"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.VariableManager.setLocal("LOT_SER",cdt.VariableManager.get("Mvr.VILBLE","LOT_SER"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWORecBckFlsh.Container_Serial = new cdt.prompt("Container_Serial", // Name
+				"Container Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLE", // Validation
+				false, // ValidIfNotEmpty
+				"CONT_SER", // Variable
+				frmWORecBckFlsh.RWC_PromptControl1_Container_Serial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWORecBckFlsh.RWC_PromptControl1.addPrompt(frmWORecBckFlsh.Container_Serial);
+
+		frmWORecBckFlsh.RWC_PromptControl1_Site_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWORecBckFlsh.RWC_PromptControl1_Site_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmWORecBckFlsh.RWC_PromptControl1.returnToPrompt("ItemNumber",false,false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWORecBckFlsh.Site = new cdt.prompt("Site", // Name
+				"Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"DONE", // Button Caption
+				frmWORecBckFlsh.Site_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWORecBckFlsh.RWC_PromptControl1.addPrompt(frmWORecBckFlsh.Site);
+
+		frmWORecBckFlsh.RWC_PromptControl1_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWORecBckFlsh.RWC_PromptControl1_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("WOISRC",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
+			return;
+		case  2:
+			frmWORecBckFlsh.viewModel.promptControl.reset( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWORecBckFlsh.Location = new cdt.prompt("Location", // Name
+				"Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmWORecBckFlsh.RWC_PromptControl1_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWORecBckFlsh.RWC_PromptControl1.addPrompt(frmWORecBckFlsh.Location);
+
+		frmWORecBckFlsh.viewModel = new cdt.viewModel( "frmWORecBckFlsh",frmWORecBckFlsh.RWC_PromptControl1,"frmWORecBckFlsh");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmWORecBckFlsh-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmWORecBckFlsh-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmWORecBckFlsh-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmWORecBckFlsh-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmWORecBckFlsh-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmWORecBckFlsh-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmWORecBckFlsh-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

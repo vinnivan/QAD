@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmSalesOrderManualAlloc' data-role='view' data-title='SO Manual Allocations' data-show='frmSalesOrderManualAlloc.viewModel.initialize' data-model='frmSalesOrderManualAlloc.viewModel' >
+<script>
+	var frmSalesOrderManualAlloc = frmSalesOrderManualAlloc || {};
+		frmSalesOrderManualAlloc.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmSalesOrderManualAlloc' );
+		frmSalesOrderManualAlloc.RWC_PromptControl1_SalesOrder_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_SalesOrder_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ALLC_DAY",cdt.VariableManager.get("Mvr.VSONMA","ALLC_DAY"));
+			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("SMASTR",cdt.VariableManager.getNamespace());
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmSalesOrderManualAlloc.RWC_PromptControl1_SalesOrder_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_SalesOrder_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("SAL_ORD") == "")
+			{
+			
+			CloseForm( );
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSalesOrderManualAlloc.SalesOrder = new cdt.prompt("SalesOrder", // Name
+				"SO Num", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSONMA", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SAL_ORD", // Variable
+				frmSalesOrderManualAlloc.RWC_PromptControl1_SalesOrder_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.SalesOrder);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1_AllocateDays_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_AllocateDays_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ALLC_AVL","Y");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSalesOrderManualAlloc.AllocateDays = new cdt.prompt("AllocateDays", // Name
+				"Allc Days", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.ALLC_DAY", // Variable
+				frmSalesOrderManualAlloc.RWC_PromptControl1_AllocateDays_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.AllocateDays);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1_AllocateAvailable_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_AllocateAvailable_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("DET_ALLC","N");
+			if(cdt.VariableManager.getLocal("ALLC_AVL") != "Y"
+			 && 
+			cdt.VariableManager.getLocal("ALLC_AVL") != "N")
+			{
+			
+			cdt.StatusBox.show("Error!","Enter Y or N!",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.ResetPrompt("AllocateAvailable");
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSalesOrderManualAlloc.AllocateAvailable = new cdt.prompt("AllocateAvailable", // Name
+				"Allc Avl?", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.ALLC_AVL", // Variable
+				frmSalesOrderManualAlloc.RWC_PromptControl1_AllocateAvailable_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.AllocateAvailable);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1_DetailAlloc_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_DetailAlloc_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("DET_ALLC") != "Y"
+			 && 
+			cdt.VariableManager.getLocal("DET_ALLC") != "N")
+			{
+			
+			cdt.StatusBox.show("Error!","Enter Y or N!",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.ResetPrompt("DetailAlloc");
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,5, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 5:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSalesOrderManualAlloc.DetailAlloc = new cdt.prompt("DetailAlloc", // Name
+				"Det Alloc?", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.DET_ALLC", // Variable
+				frmSalesOrderManualAlloc.RWC_PromptControl1_DetailAlloc_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.DetailAlloc);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1_FromSite_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_FromSite_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSalesOrderManualAlloc.FromSite = new cdt.prompt("FromSite", // Name
+				"Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSOSTE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE", // Variable
+				frmSalesOrderManualAlloc.RWC_PromptControl1_FromSite_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.FromSite);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("SAL_ORDL",cdt.VariableManager.get("Mvr.VSOITM","SO_LINE"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VSOITM","QTY").Trim());
+			cdt.VariableManager.setLocal("DESC",cdt.VariableManager.get("Mvr.VSOITM","DESC").Trim());
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendValidation("VPARTN",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VPARTN","STATUS") == "Y")
+			{
+			
+			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
+			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
+			cdt.VariableManager.setLocal("PART",cdt.VariableManager.getLocal("ITEM"));
+			RWC_PromptControl1.SetDetailText("ItemNumber",cdt.VariableManager.getLocal("DESC"),false);
+			if(cdt.VariableManager.getLocal("DET_ALLC") == "N")
+			{
+			
+			if(cdt.VariableManager.getLocal("SER_CTRL") == "Y")
+			{
+			
+			frmSalesOrderManualAlloc.RWC_PromptControl1.showPrompt("Serial");
+			shouldContinue = false;
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocal("LOT_CRTL") == "Y")
+			{
+			
+			frmSalesOrderManualAlloc.RWC_PromptControl1.showPrompt("Lot");
+			shouldContinue = false;
+			}
+		else
+		{
+			
+			frmSalesOrderManualAlloc.RWC_PromptControl1.showPrompt("Location");
+			shouldContinue = false;
+			}
+			}
+		else
+		{
+			
+			frmSalesOrderManualAlloc.RWC_PromptControl1.showPrompt("Quantity");
+			shouldContinue = false;
+			}
+			}
+		else
+		{
+			
+			cdt.StatusBox.show("Error!","Invalid Item!",cdt.MessageBoxButton.Ok,3, function() { 
+			RWC_PromptControl1.IsValid(false);
+			
+			currentMethod(_value, _completeAction,28, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 28:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmSalesOrderManualAlloc.RWC_PromptControl1_ItemNumber_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_ItemNumber_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("ITEM") == "")
+			{
+			
+			if("VarBUILD_SENT" == "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("SMAEND",cdt.VariableManager.getNamespace());
+			}
+			frmSalesOrderManualAlloc.RWC_PromptControl1.showPrompt("SalesOrder");
+			shouldContinue = false;
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSalesOrderManualAlloc.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSOITM", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmSalesOrderManualAlloc.RWC_PromptControl1_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.ItemNumber);
+
+		
+		frmSalesOrderManualAlloc.Serial = new cdt.prompt("Serial", // Name
+				"Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSENUE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.Serial);
+
+		
+		frmSalesOrderManualAlloc.Lot = new cdt.prompt("Lot", // Name
+				"Lot", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSENUE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.Lot);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("LOC") == "")
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSalesOrderManualAlloc.Location = new cdt.prompt("Location", // Name
+				"Loc", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmSalesOrderManualAlloc.RWC_PromptControl1_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.Location);
+
+		
+		frmSalesOrderManualAlloc.ReferenceNumber = new cdt.prompt("ReferenceNumber", // Name
+				"Ref Num", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.REF", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.ReferenceNumber);
+
+		
+		frmSalesOrderManualAlloc.Quantity = new cdt.prompt("Quantity", // Name
+				"Qty Alloc", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VMAQTY", // Validation
+				false, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.Quantity);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1_QuantityPicked_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_QuantityPicked_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("BUILD_SENT","Y");
+			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("SMABLD",cdt.VariableManager.getNamespace());
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSalesOrderManualAlloc.QuantityPicked = new cdt.prompt("QuantityPicked", // Name
+				"Qty Pickd", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.PICK_QTY", // Variable
+				frmSalesOrderManualAlloc.RWC_PromptControl1_QuantityPicked_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSalesOrderManualAlloc.RWC_PromptControl1.addPrompt(frmSalesOrderManualAlloc.QuantityPicked);
+
+		frmSalesOrderManualAlloc.viewModel = new cdt.viewModel( "frmSalesOrderManualAlloc",frmSalesOrderManualAlloc.RWC_PromptControl1,"frmSalesOrderManualAlloc");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmSalesOrderManualAlloc-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmSalesOrderManualAlloc-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmSalesOrderManualAlloc-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmSalesOrderManualAlloc-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmSalesOrderManualAlloc-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmSalesOrderManualAlloc-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmSalesOrderManualAlloc-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

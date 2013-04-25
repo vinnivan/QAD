@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmSOShipment' data-role='view' data-title='SO Shipment' data-show='frmSOShipment.viewModel.initialize' data-model='frmSOShipment.viewModel' >
+<script>
+	var frmSOShipment = frmSOShipment || {};
+		frmSOShipment.pmtSOShipment = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmSOShipment' );
+		frmSOShipment.pmtSOShipment_SalesOrder_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOShipment.pmtSOShipment_SalesOrder_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("INT_ID",Utilities.Instance.GetNow("MTDDYYYYHHMMSS"));
+				/* A boolean to test if we've sent a SOSBLD yet.	*/ 
+			cdt.VariableManager.setLocal("SENT","N");
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("SOSSTR",cdt.VariableManager.getNamespace());
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOShipment.SalesOrder = new cdt.prompt("SalesOrder", // Name
+				"Sales Order", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSORDR", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SAL_ORD", // Variable
+				frmSOShipment.pmtSOShipment_SalesOrder_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOShipment.pmtSOShipment.addPrompt(frmSOShipment.SalesOrder);
+
+		frmSOShipment.pmtSOShipment_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOShipment.pmtSOShipment_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("LOT_SER","");
+			cdt.VariableManager.setLocal("ORDERLINE",cdt.VariableManager.get("Mvr.VSOITM","SO_LINE"));
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.get("Mvr.VSOITM","SO_LOC"));
+			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VSOITM","LOT_CTRL"));
+			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VSOITM","SER_CTRL"));
+			cdt.VariableManager.setLocal("DESC",cdt.VariableManager.get("Mvr.VSOITM","DESC"));
+			pmtSOShipment.SetDetailText("ItemNumber",cdt.VariableManager.getLocal("DESC"),false);
+			cdt.VariableManager.setLocal("ABC","");
+			cdt.NetworkManager.setSourceLine( 9);cdt.NetworkManager.sendValidation("VPARTN",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VPARTN","STATUS").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("ABC",cdt.VariableManager.get("Mvr.VPARTN","ABC"));
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmSOShipment.pmtSOShipment_ItemNumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOShipment.pmtSOShipment_ItemNumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("SENT") == "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("SOSEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("SO Shipment","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 4:
+			cdt.VariableManager.setLocal("SAL_ORD","");
+			frmSOShipment.pmtSOShipment.returnToPrompt("ShipFrom",false,false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOShipment.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"DONE", // Button Caption
+				frmSOShipment.ItemNumber_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSOITM", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmSOShipment.pmtSOShipment_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOShipment.pmtSOShipment.addPrompt(frmSOShipment.ItemNumber);
+
+		frmSOShipment.pmtSOShipment_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOShipment.pmtSOShipment_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.SER_CTRL = Y
+			// Line#  2 : ShowPrompt ( pmtSOShipment , Serial ) 
+			// Line#  3 : Else If Var.LOT_CTRL = Y
+			// Line#  4 : ShowPrompt ( pmtSOShipment , Lot ) 
+			// Line#  5 : Else
+			// Line#  6 : ShowPrompt ( pmtSOShipment , Quantity ) 
+			// Line#  7 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOShipment.Location = new cdt.prompt("Location", // Name
+				"Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmSOShipment.pmtSOShipment_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOShipment.pmtSOShipment.addPrompt(frmSOShipment.Location);
+
+		frmSOShipment.pmtSOShipment_Serial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOShipment.pmtSOShipment_Serial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("TO_LOC",cdt.VariableManager.getGlobal("DOCK_LOC"));
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
+			cdt.VariableManager.setLocal("SO_JOB",cdt.VariableManager.getLocal("SAL_ORD"));
+			cdt.VariableManager.setLocal("QTY","1");
+			cdt.NetworkManager.setSourceLine( 8);cdt.NetworkManager.sendTransaction("ICLOTR",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getGlobal("DOCK_LOC"));
+			cdt.NetworkManager.setSourceLine( 10);cdt.NetworkManager.sendTransaction("SOSBLD",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 11,_shouldContinue); } );
+			return;
+		case  11:
+			cdt.VariableManager.setLocal("SENT","Y");
+			cdt.VariableManager.setLocal("FR_LOC","");
+			cdt.VariableManager.setLocal("TO_LOC","");
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getGlobal("SHIPLOC"));
+			cdt.VariableManager.setLocal("LOT_SER","");
+			cdt.VariableManager.setLocal("FR_LOT_SER","");
+			cdt.VariableManager.setLocal("ITEM","");
+			cdt.VariableManager.setLocal("QTY","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOShipment.Serial = new cdt.prompt("Serial", // Name
+				"Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSENUE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				frmSOShipment.pmtSOShipment_Serial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOShipment.pmtSOShipment.addPrompt(frmSOShipment.Serial);
+
+		frmSOShipment.pmtSOShipment_Lot_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOShipment.pmtSOShipment_Lot_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOShipment.Lot = new cdt.prompt("Lot", // Name
+				"Lot", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCLT", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				frmSOShipment.pmtSOShipment_Lot_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOShipment.pmtSOShipment.addPrompt(frmSOShipment.Lot);
+
+		frmSOShipment.pmtSOShipment_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOShipment.pmtSOShipment_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("TO_LOC",cdt.VariableManager.getGlobal("DOCK_LOC"));
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
+			cdt.VariableManager.setLocal("SO_JOB",cdt.VariableManager.getLocal("SAL_ORD"));
+			cdt.NetworkManager.setSourceLine( 7);cdt.NetworkManager.sendTransaction("ICLOTR",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getGlobal("DOCK_LOC"));
+			cdt.NetworkManager.setSourceLine( 9);cdt.NetworkManager.sendTransaction("SOSBLD",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 10,_shouldContinue); } );
+			return;
+		case  10:
+			cdt.VariableManager.setLocal("SENT","Y");
+			if(cdt.VariableManager.getLocal("ABC").toUpperCase() == "A".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("CYCLE_MESSAGE","Cycle Count Required!");
+			pmtSOShipment.SetDetailText("Quantity",cdt.VariableManager.getLocal("CYCLE_MESSAGE"),false);
+			frmSOShipment.pmtSOShipment.showPrompt("Count_Quantity");
+			}
+		else
+		{
+			
+			cdt.VariableManager.setLocal("ITEM","");
+			cdt.VariableManager.setLocal("FR_LOC","");
+			cdt.VariableManager.setLocal("TO_LOC","");
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getGlobal("SHIPLOC"));
+			cdt.VariableManager.setLocal("LOT_SER","");
+			cdt.VariableManager.setLocal("FR_LOT_SER","");
+			cdt.VariableManager.setLocal("QTY","");
+			frmSOShipment.pmtSOShipment.showPrompt("ItemNumber");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOShipment.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VSOQTY", // Validation
+				false, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				frmSOShipment.pmtSOShipment_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOShipment.pmtSOShipment.addPrompt(frmSOShipment.Quantity);
+
+		frmSOShipment.pmtSOShipment_Count_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOShipment.pmtSOShipment_Count_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getLocal("FR_LOC"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("COUNT_QTY"));
+			cdt.VariableManager.setLocal("REMARKS",cdt.VariableManager.getLocal("SAL_ORD"));
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("ICCCAJ",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Cycle Count","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 5,_shouldContinue); } );
+			return;
+		case  5:
+			cdt.VariableManager.setLocal("ITEM","");
+			cdt.VariableManager.setLocal("FR_LOC","");
+			cdt.VariableManager.setLocal("TO_LOC","");
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getGlobal("SHIPLOC"));
+			cdt.VariableManager.setLocal("LOT_SER","");
+			cdt.VariableManager.setLocal("FR_LOT_SER","");
+			cdt.VariableManager.setLocal("COUNT_QTY","");
+			cdt.VariableManager.setLocal("QTY","");
+			cdt.VariableManager.setLocal("REMARKS","");
+			frmSOShipment.pmtSOShipment.showPrompt("ItemNumber");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOShipment.Count_Quantity = new cdt.prompt("Count_Quantity", // Name
+				"Count Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.COUNT_QTY", // Variable
+				frmSOShipment.pmtSOShipment_Count_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOShipment.pmtSOShipment.addPrompt(frmSOShipment.Count_Quantity);
+
+		frmSOShipment.viewModel = new cdt.viewModel( "frmSOShipment",frmSOShipment.pmtSOShipment,"frmSOShipment");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmSOShipment-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmSOShipment-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmSOShipment-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmSOShipment-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmSOShipment-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmSOShipment-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmSOShipment-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmMultiItemTransfer' data-role='view' data-title='Multi-Item Transfer' data-show='frmMultiItemTransfer.viewModel.initialize' data-model='frmMultiItemTransfer.viewModel' >
+<script>
+	var frmMultiItemTransfer = frmMultiItemTransfer || {};
+		frmMultiItemTransfer.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmMultiItemTransfer' );
+		frmMultiItemTransfer.RWC_PromptControl1_FR_ITEM_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_FR_ITEM_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_ITEM",cdt.VariableManager.getLocal("ITEM").Trim());
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmMultiItemTransfer.RWC_PromptControl1_FR_ITEM_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_FR_ITEM_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmMultiItemTransfer.RWC_PromptControl1.showPrompt("TO_ITEM");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmMultiItemTransfer.RWC_PromptControl1_FR_ITEM_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_FR_ITEM_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM","");
+			cdt.VariableManager.setLocal("SITE","");
+			cdt.VariableManager.setLocal("LOC","");
+			UpdateData( false );
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMultiItemTransfer.FR_ITEM = new cdt.prompt("FR_ITEM", // Name
+				"From Item", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"Done", // Button Caption
+				frmMultiItemTransfer.FR_ITEM_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmMultiItemTransfer.RWC_PromptControl1_FR_ITEM_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMultiItemTransfer.RWC_PromptControl1.addPrompt(frmMultiItemTransfer.FR_ITEM);
+
+		frmMultiItemTransfer.RWC_PromptControl1_TO_ITEM_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_TO_ITEM_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("TO_ITEM",cdt.VariableManager.getLocal("ITEM").Trim());
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmMultiItemTransfer.RWC_PromptControl1_TO_ITEM_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_TO_ITEM_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmMultiItemTransfer.RWC_PromptControl1.showPrompt("FromSite");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMultiItemTransfer.TO_ITEM = new cdt.prompt("TO_ITEM", // Name
+				"To Item", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmMultiItemTransfer.RWC_PromptControl1_TO_ITEM_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMultiItemTransfer.RWC_PromptControl1.addPrompt(frmMultiItemTransfer.TO_ITEM);
+
+		frmMultiItemTransfer.RWC_PromptControl1_FromSite_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_FromSite_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE").Trim());
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmMultiItemTransfer.RWC_PromptControl1_FromSite_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_FromSite_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmMultiItemTransfer.RWC_PromptControl1.showPrompt("FromLocation");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMultiItemTransfer.FromSite = new cdt.prompt("FromSite", // Name
+				"From Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE", // Variable
+				frmMultiItemTransfer.RWC_PromptControl1_FromSite_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMultiItemTransfer.RWC_PromptControl1.addPrompt(frmMultiItemTransfer.FromSite);
+
+		frmMultiItemTransfer.RWC_PromptControl1_FromLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_FromLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC").Trim());
+			cdt.VariableManager.setLocal("SITE","");
+			UpdateData( false );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMultiItemTransfer.FromLocation = new cdt.prompt("FromLocation", // Name
+				"From Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmMultiItemTransfer.RWC_PromptControl1_FromLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMultiItemTransfer.RWC_PromptControl1.addPrompt(frmMultiItemTransfer.FromLocation);
+
+		frmMultiItemTransfer.RWC_PromptControl1_ToSite_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_ToSite_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE").Trim());
+			cdt.VariableManager.setLocal("LOC","");
+			UpdateData( false );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmMultiItemTransfer.RWC_PromptControl1_ToSite_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_ToSite_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmMultiItemTransfer.RWC_PromptControl1.showPrompt("ToLocation");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMultiItemTransfer.ToSite = new cdt.prompt("ToSite", // Name
+				"To Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE", // Variable
+				frmMultiItemTransfer.RWC_PromptControl1_ToSite_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMultiItemTransfer.RWC_PromptControl1.addPrompt(frmMultiItemTransfer.ToSite);
+
+		frmMultiItemTransfer.RWC_PromptControl1_ToLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmMultiItemTransfer.RWC_PromptControl1_ToLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("TO_LOC",cdt.VariableManager.getLocal("LOC").Trim());
+			cdt.VariableManager.setLocal("SITE","");
+			cdt.VariableManager.setLocal("ITEM","");
+			cdt.VariableManager.setLocal("LOC","");
+			cdt.VariableManager.setLocal("USE_IL","N");
+			cdt.VariableManager.setLocal("TRAN_TYPE","ICLOTM");
+			UpdateData( false );
+			if(cdt.VariableManager.getLocal("FR_SITE").toUpperCase() == cdt.VariableManager.getLocal("TO_SITE").toUpperCase()
+			 && 
+			cdt.VariableManager.getLocal("FR_LOC").toUpperCase() == cdt.VariableManager.getLocal("TO_LOC").toUpperCase())
+			{
+			
+			cdt.StatusBox.show("ERROR:","Data results in a  NULL  transfer.  Please try again.",cdt.MessageBoxButton.Ok,4, function() { 
+			frmMultiItemTransfer.RWC_PromptControl1.returnToPrompt("ToSite",false,false);
+			
+			currentMethod(_value, _completeAction,11, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 11:
+		{
+			
+			cdt.NetworkManager.setSourceLine( 12);cdt.NetworkManager.sendValidation("VTSTAT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VTSTAT","STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error",cdt.VariableManager.get("Mvr.VTSTAT","RTMSG"),cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,18, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			cdt.VariableManager.setLocal("EFF_DATE",Utilities.Instance.GetNow("MTDDYY"));
+			cdt.NetworkManager.setSourceLine( 20);cdt.NetworkManager.sendTransaction("ICLOTM",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("EFF_DATE",Utilities.Instance.GetNow("YYYYMTDDHHMMSS"));
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { 
+			frmMultiItemTransfer.RWC_PromptControl1.returnToPrompt("FR_ITEM",true,true);
+			
+			currentMethod(_value, _completeAction,18, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 18:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmMultiItemTransfer.ToLocation = new cdt.prompt("ToLocation", // Name
+				"To Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmMultiItemTransfer.RWC_PromptControl1_ToLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmMultiItemTransfer.RWC_PromptControl1.addPrompt(frmMultiItemTransfer.ToLocation);
+
+		frmMultiItemTransfer.viewModel = new cdt.viewModel( "frmMultiItemTransfer",frmMultiItemTransfer.RWC_PromptControl1,"frmMultiItemTransfer");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmMultiItemTransfer-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmMultiItemTransfer-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmMultiItemTransfer-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmMultiItemTransfer-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmMultiItemTransfer-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmMultiItemTransfer-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmMultiItemTransfer-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

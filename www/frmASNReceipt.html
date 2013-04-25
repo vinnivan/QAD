@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmASNReceipt' data-role='view' data-title='ASN Receipt' data-show='frmASNReceipt.viewModel.initialize' data-model='frmASNReceipt.viewModel' >
+<script>
+	var frmASNReceipt = frmASNReceipt || {};
+		frmASNReceipt.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmASNReceipt' );
+		frmASNReceipt.RWC_PromptControl1_Supplier_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmASNReceipt.RWC_PromptControl1_Supplier_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("SUPPLIER",cdt.VariableManager.getLocal("SHIP_TO"));
+			cdt.VariableManager.setLocal("SHIP_FROM",cdt.VariableManager.getLocal("SUPPLIER"));
+			cdt.VariableManager.setLocal("SHIP_TO",cdt.VariableManager.getLocal("SITE"));
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("SHVSTR",cdt.VariableManager.getNamespace());
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmASNReceipt.Supplier = new cdt.prompt("Supplier", // Name
+				"Supplier", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSHPTO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SHIP_TO", // Variable
+				frmASNReceipt.RWC_PromptControl1_Supplier_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmASNReceipt.RWC_PromptControl1.addPrompt(frmASNReceipt.Supplier);
+
+		frmASNReceipt.RWC_PromptControl1_Shipper_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmASNReceipt.RWC_PromptControl1_Shipper_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.get("Mvr.VSHPPR","CONFIRMED") == "Y")
+			{
+			
+			cdt.MessageBox.show("Shipper Previously Received.","Confirmed",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 4:
+		{
+			
+			cdt.VariableManager.setLocal("SHIP_TO",cdt.VariableManager.get("Mvr.VSHPPR","ABS_SHIPTO"));
+			if(cdt.VariableManager.getGlobal("REC_BY_CONT").toUpperCase() == "N".toUpperCase())
+			{
+			
+			cdt.NetworkManager.setSourceLine( 7);cdt.NetworkManager.sendTransaction("RSPORC",cdt.VariableManager.getNamespace());
+			CloseForm( );
+			}
+		else
+		{
+			
+			frmASNReceipt.RWC_PromptControl1.showPrompt("ContainerNumber");
+			}
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmASNReceipt.Shipper = new cdt.prompt("Shipper", // Name
+				"Shipper", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSHPPR", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SHIPPER", // Variable
+				frmASNReceipt.RWC_PromptControl1_Shipper_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmASNReceipt.RWC_PromptControl1.addPrompt(frmASNReceipt.Shipper);
+
+		frmASNReceipt.RWC_PromptControl1_ContainerNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmASNReceipt.RWC_PromptControl1_ContainerNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","PART"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("SHVBLD",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("CONT_SER","");
+			frmASNReceipt.RWC_PromptControl1.showPrompt("ContainerNumber");
+			shouldContinue = false;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmASNReceipt.RWC_PromptControl1_ContainerNumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmASNReceipt.RWC_PromptControl1_ContainerNumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VSHCMP",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VSHCMP","STATUS") == "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("RSPORC",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("SHVSTR",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,1, function() { 
+			CloseForm( );
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 7:
+		{
+			
+			cdt.MessageBox.show(cdt.VariableManager.get("Mvr.VSHCMP","RTMSG"),"Full Scan?",cdt.MessageBoxButton.Ok,null,function() { 
+			frmASNReceipt.RWC_PromptControl1.showPrompt("ContainerNumber");
+			
+			currentMethod(_value, _completeAction,10, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 10:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmASNReceipt.ContainerNumber = new cdt.prompt("ContainerNumber", // Name
+				"Container Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"Finished", // Button Caption
+				frmASNReceipt.ContainerNumber_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILASX", // Validation
+				false, // ValidIfNotEmpty
+				"Var.CONT_SER", // Variable
+				frmASNReceipt.RWC_PromptControl1_ContainerNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmASNReceipt.RWC_PromptControl1.addPrompt(frmASNReceipt.ContainerNumber);
+
+		frmASNReceipt.viewModel = new cdt.viewModel( "frmASNReceipt",frmASNReceipt.RWC_PromptControl1,"frmASNReceipt");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmASNReceipt-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmASNReceipt-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmASNReceipt-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmASNReceipt-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmASNReceipt-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmASNReceipt-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmASNReceipt-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

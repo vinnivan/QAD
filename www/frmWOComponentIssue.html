@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmWOComponentIssue' data-role='view' data-title='WO Component Issue' data-show='frmWOComponentIssue.viewModel.initialize' data-model='frmWOComponentIssue.viewModel' >
+<script>
+	var frmWOComponentIssue = frmWOComponentIssue || {};
+		frmWOComponentIssue.RWC_DataSet1 = new kendo.data.DataSource({ data: [{}]  });
+		frmWOComponentIssue.pmptMain = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmWOComponentIssue' );
+		frmWOComponentIssue.pmptMain_WONumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWOComponentIssue.pmptMain_WONumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+				/* A boolean to test if we've sent a WOWOIS.	*/ 
+			cdt.VariableManager.setLocal("SENT","N");
+			cdt.VariableManager.setLocal("WOID",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
+			cdt.VariableManager.setLocal("WO_LOT",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
+			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("WORSTR",cdt.VariableManager.getNamespace());
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmWOComponentIssue.pmptMain_WONumber_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWOComponentIssue.pmptMain_WONumber_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWOComponentIssue.WONumber = new cdt.prompt("WONumber", // Name
+				"WO Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"DONE", // Button Caption
+				frmWOComponentIssue.WONumber_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VWRKID", // Validation
+				false, // ValidIfNotEmpty
+				"Var.WO_NUM", // Variable
+				frmWOComponentIssue.pmptMain_WONumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWOComponentIssue.pmptMain.addPrompt(frmWOComponentIssue.WONumber);
+
+		frmWOComponentIssue.pmptMain_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWOComponentIssue.pmptMain_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("ITEM").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.NetworkManager.setSourceLine( 2);pmptMain.ReceiveDataSet("WO_Lines");
+			frmWOComponentIssue.pmptMain.showPrompt("WO_Lines");
+			}
+		else
+		{
+			
+			cdt.NetworkManager.setSourceLine( 5);cdt.NetworkManager.sendValidation("VWOITM",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VWOITM","STATUS").toUpperCase() == "N".toUpperCase())
+			{
+			
+			pmptMain.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			}
+			cdt.VariableManager.setLocal("LOT_SER","");
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.get("Mvr.VWOITM","SITE"));
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getGlobal("SITE"));
+			pmptMain.SetDefaultText("Site",cdt.VariableManager.get("Mvr.VWOITM","SITE"));
+			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VWOITM","SER_CTRL"));
+			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VWOITM","LOT_CTRL"));
+			cdt.VariableManager.setLocal("WARN",cdt.VariableManager.get("Mvr.VWOITM","WARN"));
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.get("Mvr.VWOITM","LOC"));
+			pmptMain.SetDefaultText("Location",cdt.VariableManager.get("Mvr.VWOITM","LOC"));
+			if(cdt.VariableManager.getLocal("WARN") == "Y")
+			{
+			
+			cdt.MessageBox.show("Item not on B.O.M.","Warning",cdt.MessageBoxButton.Ok,null,function() { 
+			
+			currentMethod(_value, _completeAction,22, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 22:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWOComponentIssue.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmWOComponentIssue.pmptMain_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWOComponentIssue.pmptMain.addPrompt(frmWOComponentIssue.ItemNumber);
+
+		frmWOComponentIssue.pmptMain_WO_Lines_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWOComponentIssue.pmptMain_WO_Lines_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.LOT_SER = 
+			// Line#  2 : Var.SITE = Gvr.SITE
+			// Line#  3 : Var.ITEM = Dsv.RWC_DataSet1.ITEM
+			// Line#  4 : Var.DESC = Dsv.RWC_DataSet1.DESC
+			// Line#  5 : Var.LOT_CTRL = Dsv.RWC_DataSet1.LOT_CTRL
+			// Line#  6 : Var.SER_CTRL = Dsv.RWC_DataSet1.SER_CTRL
+			// Line#  7 : SetHistoryTextEx ( pmptMain , ItemNumber , Item , Var.ITEM , True ) 
+			// Line#  8 : SetDetailText ( pmptMain , ItemNumber , Var.DESC , True ) 
+			// Line#  9 : If Var.LOT_CTRL = (Alpha) Y
+			// Line#  10 : ShowPrompt ( pmptMain , Lot ) 
+			// Line#  11 : Else If Var.SER_CTRL = (Alpha) Y
+			// Line#  12 : ShowPrompt ( pmptMain , Serial ) 
+			// Line#  13 : Else
+			// Line#  14 : ShowPrompt ( pmptMain , Location ) 
+			// Line#  15 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWOComponentIssue.pmptMainLP0 = new cdt.prompt( "WO_Lines", // name 
+			"", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmWOComponentIssue.pmptMain_WO_Lines_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmWOComponentIssue.pmptMain.addPrompt(frmWOComponentIssue.pmptMainLP0);
+
+
+		frmWOComponentIssue.pmptMainLP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 19%;text-align:left;'>Row&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 24%;width: 19%;text-align:left;'>#= data._CURRENT #&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 48%;width: 14%;text-align:left;'>of&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 67%;width: 19%;text-align:left;'>#= data._COUNT #&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<br/>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 24%;text-align:left;'>Item&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 29%;width: 71%;text-align:left;'>#= data.ITEM #&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<br/>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 24%;text-align:left;'>Desc&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 29%;width: 71%;text-align:left;'>#= data.DESC #&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<br/>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 24%;text-align:left;'>Iss&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 29%;width: 48%;text-align:left;'>#= data.QTY_ISSUED #&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<br/>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 24%;text-align:left;'>Req&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 29%;width: 48%;text-align:left;'>#= data.ORD_QTY #&nbsp;&nbsp;</span>";
+		frmWOComponentIssue.pmptMainLP0_template += "<br /></a></li>";
+		frmWOComponentIssue.pmptMainLP0.setLayout( kendo.template(frmWOComponentIssue.pmptMainLP0_template, { useWithBlock: false } ) );
+
+		frmWOComponentIssue.pmptMainLP0.setDataSource(frmWOComponentIssue.RWC_DataSet1);
+		frmWOComponentIssue.pmptMain_Serial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWOComponentIssue.pmptMain_Serial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("QTY","1");
+			frmWOComponentIssue.pmptMain.showPrompt("Site");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWOComponentIssue.Serial = new cdt.prompt("Serial", // Name
+				"Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				frmWOComponentIssue.pmptMain_Serial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWOComponentIssue.pmptMain.addPrompt(frmWOComponentIssue.Serial);
+
+		
+		frmWOComponentIssue.Lot = new cdt.prompt("Lot", // Name
+				"Lot", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWOComponentIssue.pmptMain.addPrompt(frmWOComponentIssue.Lot);
+
+		frmWOComponentIssue.pmptMain_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWOComponentIssue.pmptMain_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VLLSCO",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VLLSCO","STATUS") != "Y")
+			{
+			
+			cdt.StatusBox.show("Error",cdt.VariableManager.get("Mvr.VLLSCO","RTMSG"),cdt.MessageBoxButton.Ok,3, function() { 
+			frmWOComponentIssue.pmptMain.returnToPrompt("Serial",true,false);
+			
+			currentMethod(_value, _completeAction,5, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 5:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmWOComponentIssue.pmptMain_Location_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWOComponentIssue.pmptMain_Location_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VLLSCO",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VLLSCO","STATUS") == "Y")
+			{
+			
+			pmptMain.IsValid(true);
+			if(cdt.VariableManager.getLocal("SER_CTRL") == "Y")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 5);cdt.NetworkManager.sendTransaction("WOWOIS",cdt.VariableManager.getNamespace());
+			frmWOComponentIssue.pmptMain.returnToPrompt("ItemNumber",false,false);
+			cdt.VariableManager.setLocal("SENT","Y");
+			}
+		else
+		{
+			
+			frmWOComponentIssue.pmptMain.showPrompt("Quantity");
+			}
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWOComponentIssue.Location = new cdt.prompt("Location", // Name
+				"Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmWOComponentIssue.pmptMain_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWOComponentIssue.pmptMain.addPrompt(frmWOComponentIssue.Location);
+
+		frmWOComponentIssue.pmptMain_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmWOComponentIssue.pmptMain_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("SER_CTRL") == "Y")
+			{
+			
+			if(cdt.VariableManager.getLocalNumeric("QTY") != 1
+			 && 
+			cdt.VariableManager.getLocalNumeric("QTY") != -1)
+			{
+			
+			cdt.StatusBox.show("Error","Serial Item Qty must be 1 or -1",cdt.MessageBoxButton.Ok,4, function() { 
+			frmWOComponentIssue.pmptMain.returnToPrompt("Quantity",true,false);
+			pmptMain.IsValid(false);
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 6:
+			cdt.NetworkManager.setSourceLine( 8);cdt.NetworkManager.sendTransaction("WOWOIS",cdt.VariableManager.getNamespace());
+			cdt.NetworkManager.setSourceLine( 9);cdt.NetworkManager.sendTransaction("WOCEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Successful","Transaction Sent",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 10,_shouldContinue); } );
+			return;
+		case  10:
+			frmWOComponentIssue.pmptMain.returnToPrompt("WONumber",false,false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmWOComponentIssue.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VWOQTY", // Validation
+				false, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				frmWOComponentIssue.pmptMain_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmWOComponentIssue.pmptMain.addPrompt(frmWOComponentIssue.Quantity);
+
+		frmWOComponentIssue.viewModel = new cdt.viewModel( "frmWOComponentIssue",frmWOComponentIssue.pmptMain,"frmWOComponentIssue");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmWOComponentIssue-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmWOComponentIssue-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmWOComponentIssue-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmWOComponentIssue-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmWOComponentIssue-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmWOComponentIssue-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmWOComponentIssue-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

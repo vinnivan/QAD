@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmIntersiteRequest' data-role='view' data-title='Intersite Request Maint' data-show='frmIntersiteRequest.viewModel.initialize' data-model='frmIntersiteRequest.viewModel' >
+<script>
+	var frmIntersiteRequest = frmIntersiteRequest || {};
+		frmIntersiteRequest.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmIntersiteRequest' );
+		frmIntersiteRequest.RWC_PromptControl1_Site_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Site_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("DSRSTR",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("NEW_REQ","N");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.Site = new cdt.prompt("Site", // Name
+				"Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_Site_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.Site);
+
+		frmIntersiteRequest.RWC_PromptControl1_NewEdit_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_NewEdit_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("NEW_REQ") == "")
+			{
+			
+			cdt.StatusBox.show("Error","Entry Must Be Y or N",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.ResetPrompt("NewEdit");
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 4:
+		{
+			
+			cdt.VariableManager.setLocalNumeric("TEST_STAT","YN".IndexOf(cdt.VariableManager.getLocal("NEW_REQ")));
+			if(cdt.VariableManager.getLocal("NEW_REQ") != "Y")
+			{
+			
+			if(cdt.VariableManager.getLocalNumeric("TEST_STAT") < 0)
+			{
+			
+			cdt.StatusBox.show("New Request","Enter Y or N",cdt.MessageBoxButton.Ok,3, function() { 
+			cdt.VariableManager.setLocal("NEW_REQ","N");
+			cdt.VariableManager.setLocal("TEST_STAT","0");
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("NewEdit");
+			
+			currentMethod(_value, _completeAction,12, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 12:
+		{
+			
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("Requisition");
+			}
+			}
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.NewEdit = new cdt.prompt("NewEdit", // Name
+				"New Request (Y/N)?", // Caption
+				"N", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.NEW_REQ", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_NewEdit_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.NewEdit);
+
+		frmIntersiteRequest.RWC_PromptControl1_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VDSRNW",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VDSRNW","STATUS") != "Y")
+			{
+			
+			cdt.StatusBox.show("Item Invalid","Item Not In Source Network",cdt.MessageBoxButton.Ok,3, function() { 
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("ItemNumber");
+			
+			currentMethod(_value, _completeAction,5, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 5:
+		{
+			
+			cdt.VariableManager.setLocal("DESC",cdt.VariableManager.get("Mvr.VPARTN","DESC"));
+			cdt.VariableManager.setLocal("YES_NO","N");
+			cdt.VariableManager.setLocal("YES_NO_2","N");
+			cdt.VariableManager.setLocal("STATUS2","F");
+			RWC_PromptControl1.SetDetailText("ItemNumber",cdt.VariableManager.getLocal("DESC"),false);
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("OrderDate");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"Item Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ITEM", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.ItemNumber);
+
+		frmIntersiteRequest.RWC_PromptControl1_Requisition_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Requisition_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ORD_DATE",cdt.VariableManager.get("Mvr.VDSRRQ","ORD_DATE"));
+			cdt.VariableManager.setLocal("DUE_DATE",cdt.VariableManager.get("Mvr.VDSRRQ","DUE_DATE"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VDSRRQ","QTY"));
+			cdt.VariableManager.setLocal("STATUS2",cdt.VariableManager.get("Mvr.VDSRRQ","STATUS2"));
+			cdt.VariableManager.setLocal("YES_NO","N");
+			cdt.VariableManager.setLocal("YES_NO_2","N");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.Requisition = new cdt.prompt("Requisition", // Name
+				"Req Num", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VDSRRQ", // Validation
+				false, // ValidIfNotEmpty
+				"Var.REQ_NUM", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_Requisition_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.Requisition);
+
+		frmIntersiteRequest.RWC_PromptControl1_OrderDate_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_OrderDate_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("ORD_DATE") != "")
+			{
+			
+			cdt.VariableManager.setLocal("DATE",cdt.VariableManager.getLocal("ORD_DATE"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VDATE",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VDATE","STATUS") != "Y")
+			{
+			
+			cdt.StatusBox.show("Date Format Error","Enter (mmddyy)",cdt.MessageBoxButton.Ok,3, function() { 
+			cdt.VariableManager.setLocal("ORD_DATE","");
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("OrderDate");
+			
+			currentMethod(_value, _completeAction,8, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 8:
+			cdt.VariableManager.setLocal("DATE","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.OrderDate = new cdt.prompt("OrderDate", // Name
+				"Order Dt (mmddyy)", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.ORD_DATE", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_OrderDate_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.OrderDate);
+
+		frmIntersiteRequest.RWC_PromptControl1_DueDate_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_DueDate_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("DUE_DATE") != "")
+			{
+			
+			cdt.VariableManager.setLocal("DATE",cdt.VariableManager.getLocal("DUE_DATE"));
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VDATE",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VDATE","STATUS") != "Y")
+			{
+			
+			cdt.StatusBox.show("Date Format Error","Enter (mmddyy)",cdt.MessageBoxButton.Ok,3, function() { 
+			cdt.VariableManager.setLocal("DUE_DATE","");
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("DueDate");
+			
+			currentMethod(_value, _completeAction,8, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 8:
+			cdt.VariableManager.setLocal("DATE","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.DueDate = new cdt.prompt("DueDate", // Name
+				"Due Dt (mmddyy)", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.DUE_DATE", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_DueDate_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.DueDate);
+
+		frmIntersiteRequest.RWC_PromptControl1_Qty_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Qty_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("QTY") == "")
+			{
+			
+			cdt.StatusBox.show("Error","Qty Cannot Be Blank",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.ResetPrompt("Qty");
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 4:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.Qty = new cdt.prompt("Qty", // Name
+				"Qty", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_Qty_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.Qty);
+
+		frmIntersiteRequest.RWC_PromptControl1_DSR_Status_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_DSR_Status_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("STATUS2") == "P")
+			{
+			
+			if(cdt.VariableManager.get("Mvr.VDSRRQ","STATUS2") != "P")
+			{
+			
+			cdt.VariableManager.setLocal("STATUS2",cdt.VariableManager.get("Mvr.VDSRRQ","STATUS2"));
+			cdt.StatusBox.show("Status Error","Status Options = FBEARC - P Invalid",cdt.MessageBoxButton.Ok,3, function() { 
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("DSR_Status");
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocalNumeric("TEST_STAT","PFBEARC".IndexOf(cdt.VariableManager.getLocal("STATUS2")));
+			if(cdt.VariableManager.getLocalNumeric("TEST_STAT") < 0)
+			{
+			
+			cdt.VariableManager.setLocal("STATUS2",cdt.VariableManager.get("Mvr.VDSRRQ","STATUS2"));
+			cdt.StatusBox.show("Status Error","Status Options = PFBEARC",cdt.MessageBoxButton.Ok,3, function() { 
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("DSR_Status");
+			
+			currentMethod(_value, _completeAction,13, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 13:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.DSR_Status = new cdt.prompt("DSR_Status", // Name
+				"Status", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.STATUS2", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_DSR_Status_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.DSR_Status);
+
+		
+		frmIntersiteRequest.SalesJob = new cdt.prompt("SalesJob", // Name
+				"Sales/Job", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.SO_JOB", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.SalesJob);
+
+		frmIntersiteRequest.RWC_PromptControl1_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("LOC") == "")
+			{
+			
+			cdt.StatusBox.show("Error","LOC Cannot Be Blank",cdt.MessageBoxButton.Ok,2, function() { 
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("Location");
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 4:
+		{
+			
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("Remarks");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.Location = new cdt.prompt("Location", // Name
+				"Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.Location);
+
+		frmIntersiteRequest.RWC_PromptControl1_CommentYN_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_CommentYN_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("YES_NO") != "N"
+			 && 
+			cdt.VariableManager.getLocal("YES_NO") != "Y")
+			{
+			
+			cdt.StatusBox.show("Error","Entry Must Be Y or N",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.ResetPrompt("CommentYN");
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 4:
+		{
+			
+			if(cdt.VariableManager.getLocal("YES_NO") != "Y")
+			{
+			
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("Remarks");
+			}
+		else
+		{
+			
+			if(0 == 1)
+			{
+			
+			cdt.StatusBox.show("MFG/PRO Comments","Line 1 will be Overwritten with this comment !!",cdt.MessageBoxButton.Ok,4, function() { 
+			
+			currentMethod(_value, _completeAction,10, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+			}
+		
+		case 10:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.CommentYN = new cdt.prompt("CommentYN", // Name
+				"Add Comments?", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.YES_NO", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_CommentYN_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.CommentYN);
+
+		
+		frmIntersiteRequest.CommentsDSR = new cdt.prompt("CommentsDSR", // Name
+				"Comments", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.COMMENTS", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.CommentsDSR);
+
+		
+		frmIntersiteRequest.Remarks = new cdt.prompt("Remarks", // Name
+				"Remarks", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.REMARKS", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.Remarks);
+
+		frmIntersiteRequest.RWC_PromptControl1_ShipSite_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_ShipSite_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("REQ_NUM") != "")
+			{
+			
+			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendValidation("VDSDRT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			}
+			if(cdt.VariableManager.get("Mvr.VDSDRT","STATUS") == "Y")
+			{
+			
+			cdt.VariableManager.setLocal("QTY_ORD",cdt.VariableManager.get("Mvr.VDSDRT","QTY_ORD"));
+			cdt.VariableManager.setLocal("TRANSPORT",cdt.VariableManager.get("Mvr.VDSDRT","TRANSPORT"));
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.ShipSite = new cdt.prompt("ShipSite", // Name
+				"Ship Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SHIP_FROM", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_ShipSite_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.ShipSite);
+
+		frmIntersiteRequest.RWC_PromptControl1_QtyOrdered_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_QtyOrdered_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("QTY_ORD") == "")
+			{
+			
+			cdt.StatusBox.show("Error","Qty Ord Cannot Be Blank",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.ResetPrompt("QtyOrdered");
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 4:
+		{
+			
+			if(cdt.VariableManager.getLocal("QTY_ORD") != cdt.VariableManager.getLocal("QTY"))
+			{
+			
+			cdt.VariableManager.setLocal("QTY_ORD",cdt.VariableManager.getLocal("QTY"));
+			cdt.StatusBox.show("QTY Mismatch","Qty Ordered reset to equal QTY",cdt.MessageBoxButton.Ok,2, function() { 
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("QtyOrdered");
+			
+			currentMethod(_value, _completeAction,9, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 9:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.QtyOrdered = new cdt.prompt("QtyOrdered", // Name
+				"Qty Ordered", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.QTY_ORD", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_QtyOrdered_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.QtyOrdered);
+
+		frmIntersiteRequest.RWC_PromptControl1_Transport_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Transport_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("DSRBLD",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("TM_DESC",cdt.VariableManager.get("Mvr.VTRSPT","TM_DESC"));
+			RWC_PromptControl1.SetDetailText("Transport",cdt.VariableManager.getLocal("TM_DESC"),false);
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("RemarksDSD");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.Transport = new cdt.prompt("Transport", // Name
+				"Transport Cd", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VTRSPT", // Validation
+				false, // ValidIfNotEmpty
+				"Var.TRANSPORT", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_Transport_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.Transport);
+
+		frmIntersiteRequest.RWC_PromptControl1_Comment2YN_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Comment2YN_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("YES_NO_2") != "N"
+			 && 
+			cdt.VariableManager.getLocal("YES_NO_2") != "Y")
+			{
+			
+			cdt.StatusBox.show("Error","Entry Must be N or Y",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.ResetPrompt("Comment2YN");
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 4:
+		{
+			
+			if(cdt.VariableManager.getLocal("YES_NO_2") != "Y")
+			{
+			
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("RemarksDSD");
+			}
+		else
+		{
+			
+			if(0 == 1)
+			{
+			
+			cdt.StatusBox.show("MFG/PRO Comments","Line 1 will be Overwritten with this comment !!",cdt.MessageBoxButton.Ok,4, function() { 
+			
+			currentMethod(_value, _completeAction,10, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+			}
+		
+		case 10:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.Comment2YN = new cdt.prompt("Comment2YN", // Name
+				"Add DSD Comment?", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.YES_NO_2", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_Comment2YN_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.Comment2YN);
+
+		
+		frmIntersiteRequest.CommentsDSD = new cdt.prompt("CommentsDSD", // Name
+				"DSD Comment", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.COMMENTS2", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.CommentsDSD);
+
+		frmIntersiteRequest.RWC_PromptControl1_RemarksDSD_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_RemarksDSD_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("DSREND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Transaction Sent","Successfully",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
+			return;
+		case  2:
+			frmIntersiteRequest.RWC_PromptControl1.showPrompt("Site");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmIntersiteRequest.RemarksDSD = new cdt.prompt("RemarksDSD", // Name
+				"From Remark", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.REMARKS2", // Variable
+				frmIntersiteRequest.RWC_PromptControl1_RemarksDSD_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmIntersiteRequest.RWC_PromptControl1.addPrompt(frmIntersiteRequest.RemarksDSD);
+
+		frmIntersiteRequest.viewModel = new cdt.viewModel( "frmIntersiteRequest",frmIntersiteRequest.RWC_PromptControl1,"frmIntersiteRequest");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmIntersiteRequest-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmIntersiteRequest-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmIntersiteRequest-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmIntersiteRequest-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmIntersiteRequest-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmIntersiteRequest-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmIntersiteRequest-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

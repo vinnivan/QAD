@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmTMSPickingBulk2Bin' data-role='view' data-title='frmTMSPickingBulk2Bin' data-show='frmTMSPickingBulk2Bin.viewModel.initialize' data-model='frmTMSPickingBulk2Bin.viewModel' >
+<script>
+	var frmTMSPickingBulk2Bin = frmTMSPickingBulk2Bin || {};
+		frmTMSPickingBulk2Bin.RWC_DataSet2 = new kendo.data.DataSource({ data: [{}]  });
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmTMSPickingBulk2Bin' );
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_Unit_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_Unit_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLX","ITEM"));
+			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Item # Does Not Match",cdt.MessageBoxButton.Ok,2, function() { 
+			Bulk2Bin_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 7:
+			cdt.VariableManager.setLocal("DETLABEL",cdt.VariableManager.getLocal("ILABEL"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLX","ITEM"));
+			cdt.VariableManager.setLocal("LOT_SER",cdt.VariableManager.get("Mvr.VILBLX","LOT_SER"));
+			cdt.VariableManager.setLocal("TO_LOT_SER",cdt.VariableManager.get("Mvr.VILBLX","LOT_SER"));
+			cdt.VariableManager.setLocal("QTYLABEL",cdt.VariableManager.get("Mvr.VILBLX","QTY"));
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.get("Mvr.VILBLX","SITE"));
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.get("Mvr.VILBLE","LOC"));
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.get("Mvr.VILBLX","LOT_SER"));
+			cdt.VariableManager.setLocal("REF",cdt.VariableManager.getLocal("ILABEL"));
+			cdt.VariableManager.setLocal("TO_REF",cdt.VariableManager.getLocal("ILABEL"));
+			cdt.VariableManager.setLocal("TO_LOT_SER_REF",cdt.VariableManager.getLocal("ILABEL"));
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.get("Mvr.VILBLX","SITE"));
+			cdt.VariableManager.setLocal("RANDOM",cdt.VariableManager.get("Mvr.VILBLE","IS_RANDOM"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLX","QTY"));
+			cdt.VariableManager.setLocal("INPUTQTY",cdt.VariableManager.get("Mvr.VILBLX","QTY"));
+			cdt.VariableManager.setLocal("SITELABEL",cdt.VariableManager.get("Mvr.VILBLX","SITE"));
+			cdt.VariableManager.setLocal("LOCLABEL",cdt.VariableManager.get("Mvr.VILBLX","LOC"));
+			if(cdt.VariableManager.getLocal("ILABEL").toUpperCase() != cdt.VariableManager.getLocal("TMS_ILABEL").toUpperCase())
+			{
+			
+			cdt.NetworkManager.setSourceLine( 27);cdt.NetworkManager.sendValidation("v_TMSGetTaskforIlabel",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt,cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() != "N".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Unit On Different Task",cdt.MessageBoxButton.Ok,2, function() { 
+			Bulk2Bin_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,33, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 33:
+			cdt.VariableManager.setLocal("TMS_SERIAL",cdt.VariableManager.getLocal("ILABEL"));
+			if(cdt.VariableManager.getLocal("TO_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_SITE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			}
+			if(cdt.VariableManager.getLocal("FR_LOC").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("TMS_FROM_BIN"));
+			}
+			cdt.VariableManager.setLocal("ITEM_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("ITEM_DISP")));
+			cdt.VariableManager.setLocal("LOT_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOT_DISP")));
+			cdt.VariableManager.setLocal("QTY_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("QTY_DISP")));
+			cdt.VariableManager.setLocal("SITE_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("SITE_DISP")));
+			cdt.VariableManager.setLocal("LOC_MSG",Utilities.Instance.BuildTemplateString(cdt.VariableManager.getLocal("LOC_DISP")));
+			UpdateData( false );
+			Bulk2Bin_PromptControl1.SetHistoryText("Unit","To Loc",cdt.VariableManager.getLocal("TMS_BIN"),true);
+			Bulk2Bin_PromptControl1.SetHistoryText("Unit","Item",cdt.VariableManager.getLocal("TMS_ITEM"),false);
+			Bulk2Bin_PromptControl1.SetHistoryText("Unit","Pallet",cdt.VariableManager.getLocal("TMS_SERIAL"),false);
+			Bulk2Bin_PromptControl1.SetHistoryText("Unit","From Loc",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
+			Bulk2Bin_PromptControl1.SetHistoryText("Unit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
+			cdt.VariableManager.setLocal("LOC","");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_Unit_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_Unit_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSPickingBulk2Bin.Unit = new cdt.prompt("Unit", // Name
+				"Pallet", // Caption
+				"", // Default
+				false, // ResetEnabled
+				false, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSPickingBulk2Bin.Unit_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLX", // Validation
+				false, // ValidIfNotEmpty
+				"ILABEL", // Variable
+				frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_Unit_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1.addPrompt(frmTMSPickingBulk2Bin.Unit);
+
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_ToLocation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_ToLocation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("LOC").toUpperCase() != cdt.VariableManager.getLocal("TMS_BIN").toUpperCase())
+			{
+			
+			cdt.StatusBox.show("Error","Location Does Not Match",cdt.MessageBoxButton.Ok,2, function() { 
+			Bulk2Bin_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("TO_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocalNumeric("NEWLABQTY",cdt.VariableManager.getLocalNumeric("QTYLABEL") - cdt.VariableManager.getLocalNumeric("INPUTQTY"));
+			cdt.VariableManager.setLocal("QTY","0");
+			cdt.NetworkManager.setSourceLine( 10);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("INPUTQTY"));
+			cdt.NetworkManager.setSourceLine( 12);cdt.NetworkManager.sendTransaction("ICLOLS",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("LAST_LABEL",cdt.VariableManager.getLocal("ILABEL"));
+			if(cdt.VariableManager.getLocalNumeric("NEWLABQTY") == 0)
+			{
+			
+			cdt.VariableManager.setLocal("ILBL_ST","I");
+			cdt.NetworkManager.setSourceLine( 16);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
+			}
+			cdt.NetworkManager.setSourceLine( 18);cdt.NetworkManager.sendTransaction("t_TMSStatusComplete",cdt.VariableManager.getNamespace());
+			
+			cdt.StatusBox.show("Info","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 20,_shouldContinue); } );
+			return;
+		case  20:
+			cdt.NetworkManager.setSourceLine( 21);
+			
+			UpdateData( false );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_ToLocation_OnClick3 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_ToLocation_OnClick3;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			CloseForm( );
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSPickingBulk2Bin.ToLocation = new cdt.prompt("ToLocation", // Name
+				"To Location", // Caption
+				"", // Default
+				false, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				true, // ShowButton3
+				"F4 - Abort", // Button3 Caption
+				frmTMSPickingBulk2Bin.ToLocation_Click3 , // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_ToLocation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1.addPrompt(frmTMSPickingBulk2Bin.ToLocation);
+
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_PieceCount_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_PieceCount_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocalNumeric("DWNLDQTY",cdt.VariableManager.getLocalNumeric("DWNLDQTY") + 0);
+			if(cdt.VariableManager.getLocalNumeric("DWNLDQTY") < cdt.VariableManager.getLocalNumeric("PIECES"))
+			{
+			
+			cdt.StatusBox.show("Error","Input Exceeds Avail!",cdt.MessageBoxButton.Ok,2, function() { 
+			Bulk2Bin_PromptControl1.IsValid(false);
+			CloseForm( );
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("MULTLENGTH",cdt.VariableManager.getLocal("LENGTH"));
+			cdt.VariableManager.setLocal("MULTPIECES",cdt.VariableManager.getLocal("DWNLDQTY"));
+			cdt.VariableManager.setLocalNumeric("MULTTOTAL",cdt.VariableManager.getLocalNumeric("MULTLENGTH") * cdt.VariableManager.getLocalNumeric("PIECES"));
+			cdt.VariableManager.setLocalNumeric("TOTALQTY",cdt.VariableManager.getLocalNumeric("MULTTOTAL") + cdt.VariableManager.getLocalNumeric("TOTALQTY"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("LENGTH"));
+			cdt.VariableManager.setLocalNumeric("PIECES",cdt.VariableManager.getLocalNumeric("DWNLDQTY") - cdt.VariableManager.getLocalNumeric("PIECES"));
+			cdt.NetworkManager.setSourceLine( 13);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("MULTTOTAL"));
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getGlobal("SITE"));
+			cdt.NetworkManager.setSourceLine( 16);cdt.NetworkManager.sendTransaction("ICLOLS",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("PIECES","");
+			UpdateData( false );
+			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.getLocal("DETLABEL"));
+			cdt.NetworkManager.setSourceLine( 20);Bulk2Bin_PromptControl1.ReceiveDataSetFromQueue("PieceList");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_PieceCount_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_PieceCount_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("t_TMSStatusComplete",cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("TMS_USER_ID").toUpperCase() != "".toUpperCase())
+			{
+			
+			cdt.NetworkManager.setSourceLine( 3);
+			
+			_completeAction(shouldContinue);
+			return;
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSPickingBulk2Bin.PieceCount = new cdt.prompt("PieceCount", // Name
+				"# of Pieces", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"F1 Done", // Button Caption
+				frmTMSPickingBulk2Bin.PieceCount_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"PIECES", // Variable
+				frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_PieceCount_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1.addPrompt(frmTMSPickingBulk2Bin.PieceCount);
+
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_PieceList_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_PieceList_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("DWNLDQTY",cdt.VariableManager.get("Dsv.dtsUnitToBin","PIECES"));
+			cdt.VariableManager.setLocal("LENGTH",cdt.VariableManager.get("Dsv.dtsUnitToBin","LENGTH"));
+			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.get("Dsv.dtsUnitToBin","ILABEL"));
+			frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1.showPrompt("PieceCount");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0 = new cdt.prompt( "PieceList", // name 
+			"", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1_PieceList_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1.addPrompt(frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0);
+
+
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 24%;text-align:left;'>Length:&nbsp;&nbsp;</span>";
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 24%;width: 38%;text-align:left;'>#= data.LENGTH #&nbsp;&nbsp;</span>";
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0_template += "<br/>";
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 24%;text-align:left;'>Pieces:&nbsp;&nbsp;</span>";
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 24%;width: 38%;text-align:left;'>#= data.PIECES #&nbsp;&nbsp;</span>";
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0_template += "<br /></a></li>";
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0.setLayout( kendo.template(frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0_template, { useWithBlock: false } ) );
+
+		frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1LP0.setDataSource(frmTMSPickingBulk2Bin.RWC_DataSet2);
+		frmTMSPickingBulk2Bin.viewModel = new cdt.viewModel( "frmTMSPickingBulk2Bin",frmTMSPickingBulk2Bin.Bulk2Bin_PromptControl1,"frmTMSPickingBulk2Bin");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmTMSPickingBulk2Bin-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmTMSPickingBulk2Bin-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmTMSPickingBulk2Bin-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSPickingBulk2Bin-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSPickingBulk2Bin-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmTMSPickingBulk2Bin-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmTMSPickingBulk2Bin-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

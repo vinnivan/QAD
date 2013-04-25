@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmSOPickConHonda' data-role='view' data-title='SO Pick Container Honda' data-show='frmSOPickConHonda.viewModel.initialize' data-model='frmSOPickConHonda.viewModel' >
+<script>
+	var frmSOPickConHonda = frmSOPickConHonda || {};
+		frmSOPickConHonda.dtsPreShipper = new kendo.data.DataSource({ data: [{}]  });
+		frmSOPickConHonda.pmtSOPick = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmSOPickConHonda' );
+		frmSOPickConHonda.pmtSOPick_Shipper_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_Shipper_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("BLANK","");
+			cdt.VariableManager.setLocal("SHIP_TO","00050004");
+			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VSHPID",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("CARRIER",cdt.VariableManager.get("Mvr.VSHPID","CARRIER"));
+			cdt.VariableManager.setLocal("VEH_REF",cdt.VariableManager.get("Mvr.VSHPID","VEH_REF"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOPickConHonda.Shipper = new cdt.prompt("Shipper", // Name
+				"Shipper", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VSHPPR", // Validation
+				false, // ValidIfNotEmpty
+				"SHIPPER", // Variable
+				frmSOPickConHonda.pmtSOPick_Shipper_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOPickConHonda.pmtSOPick.addPrompt(frmSOPickConHonda.Shipper);
+
+		frmSOPickConHonda.pmtSOPick_ItemSearch_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_ItemSearch_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);pmtSOPick.ReceiveDataSetFromQueue("PreShipperList");
+			cdt.VariableManager.setLocalNumeric("COUNT",pmtSOPick.GetRowCount("PreShipperList"));
+			if(cdt.VariableManager.getLocalNumeric("COUNT") < 1)
+			{
+			
+			cdt.MessageBox.show("No lines to ship on SO","Error!",cdt.MessageBoxButton.Ok,null,function() { 
+			pmtSOPick.IsValid(false);
+			shouldContinue = false;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 7:
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOPickConHonda.ItemSearch = new cdt.prompt("ItemSearch", // Name
+				"Item Search", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"ITEMSCH", // Variable
+				frmSOPickConHonda.pmtSOPick_ItemSearch_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOPickConHonda.pmtSOPick.addPrompt(frmSOPickConHonda.ItemSearch);
+
+		frmSOPickConHonda.pmtSOPick_PreShipperList_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_PreShipperList_OnSelect;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("BUILD","N");
+			cdt.VariableManager.setLocal("PART_QTY","0");
+			cdt.VariableManager.setLocal("QTY_SHIP","0");
+			cdt.VariableManager.setLocal("LIST_LOC",cdt.VariableManager.get("Dsv.dtsPreShipper","LOC"));
+			cdt.VariableManager.setLocal("LIST_ITEM",cdt.VariableManager.get("Dsv.dtsPreShipper","ITEM"));
+			cdt.VariableManager.setLocal("SV_ITEM",cdt.VariableManager.get("Dsv.dtsPreShipper","ITEM"));
+			cdt.VariableManager.setLocal("LIST_CNT_ITEM",cdt.VariableManager.get("Dsv.dtsPreShipper","CNT_ITEM"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Dsv.dtsPreShipper","ITEM"));
+			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.get("Dsv.dtsPreShipper","LOC"));
+			cdt.VariableManager.setLocal("SAL_ORD",cdt.VariableManager.get("Dsv.dtsPreShipper","SAL_ORD"));
+			cdt.VariableManager.setLocal("SAL_ORDL",cdt.VariableManager.get("Dsv.dtsPreShipper","SAL_ORDL"));
+			cdt.VariableManager.setLocal("CONF_ITEM",cdt.VariableManager.get("Dsv.dtsPreShipper","CONF_ITEM"));
+			cdt.VariableManager.setLocal("QTY_SHIP",cdt.VariableManager.get("Dsv.dtsPreShipper","QTY"));
+			cdt.VariableManager.setLocal("PO",cdt.VariableManager.get("Dsv.dtsPreShipper","PO"));
+			cdt.NetworkManager.setSourceLine( 15);cdt.NetworkManager.sendValidation("VPARTX",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			UpdateData( false );
+			frmSOPickConHonda.pmtSOPick.showPrompt("HondaPallet");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOPickConHonda.pmtSOPickLP0 = new cdt.prompt( "PreShipperList", // name 
+			"Unscanned Shippers", // Caption
+			null, // default text 
+			true, // ResetEnabled
+			true, // PreviousEnabled
+			true, // AbortEnabled
+			false, // ShowButton
+			"", // Button Caption
+			null, // ButtonClick Delegate
+			false, // ShowButton2
+			"", // Button2 Caption
+			null,  // Button2Click Delegate
+			false, // ShowButton3
+			"", // Button3 Caption
+			null,  // Button3Click Delegate
+			null, // ResetClick Delegate
+			null, // PreviousClick Delegate
+			null, // AbortClick Delegate
+
+			false, // Skipable
+			false, // Skip
+			false, // UseHistory
+			"", // Skip Default
+			false, // toUpper
+			null,  // validation
+			false, // validIfEmpty
+			null, // variable
+			frmSOPickConHonda.pmtSOPick_PreShipperList_Select , // SelectEvent Delegate
+			cdt.PromptControlType.List
+			);
+		frmSOPickConHonda.pmtSOPick.addPrompt(frmSOPickConHonda.pmtSOPickLP0);
+
+
+		frmSOPickConHonda.pmtSOPickLP0_template = "<li data-uid='#= data.uid #'><a>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 26%;text-align:left;'>Line:&nbsp;&nbsp;</span>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 26%;width: 74%;text-align:left;'>#= data.SAL_ORDL #&nbsp;&nbsp;</span>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<br/>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 26%;text-align:left;'>Item:&nbsp;&nbsp;</span>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 26%;width: 74%;text-align:left;'>#= data.DISP_ITEM #&nbsp;&nbsp;</span>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<br/>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 100%;text-align:left;'>#= data.DESC #&nbsp;&nbsp;</span>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<br/>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 26%;text-align:left;'>Loc:&nbsp;&nbsp;</span>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 26%;width: 74%;text-align:left;'>#= data.LOC #&nbsp;&nbsp;</span>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<br/>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 0%;width: 26%;text-align:left;'>Qty:&nbsp;&nbsp;</span>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<span style='position:absolute;margin:0;white-space:nowrap;left: 26%;width: 74%;text-align:left;'>#= data.QTY #&nbsp;&nbsp;</span>";
+		frmSOPickConHonda.pmtSOPickLP0_template += "<br /></a></li>";
+		frmSOPickConHonda.pmtSOPickLP0.setLayout( kendo.template(frmSOPickConHonda.pmtSOPickLP0_template, { useWithBlock: false } ) );
+
+		frmSOPickConHonda.pmtSOPickLP0.setDataSource(frmSOPickConHonda.dtsPreShipper);
+		frmSOPickConHonda.pmtSOPick_Location_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_Location_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("LIST_ITEM"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("QTY_SHIP"));
+			cdt.VariableManager.setLocal("CONT_SER_SAVE",cdt.VariableManager.getLocal("CONT_SER"));
+			cdt.VariableManager.setLocal("CONT_SER","");
+			cdt.VariableManager.setLocalNumeric("PALLET_LENGTH",cdt.VariableManager.getLocal("PALLET").Length);
+			if(cdt.VariableManager.getLocal("PALLET_LENGTH").toUpperCase() == "0".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("TYPE","X");
+			cdt.VariableManager.setLocal("IL_STATUS","A");
+			cdt.VariableManager.setLocal("QTY_SAVE",cdt.VariableManager.getLocal("QTY"));
+			cdt.VariableManager.setLocal("ITEM_SAVE",cdt.VariableManager.getLocal("ITEM"));
+			if(cdt.VariableManager.getLocal("HONDA_PALLET").toUpperCase() == "Y".toUpperCase()
+			 && 
+			cdt.VariableManager.getLocal("HONDA_BUILT").toUpperCase() == "N".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getGlobal("CNT_ITEM"));
+			}
+		else
+		{
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("LIST_CNT_ITEM"));
+			}
+			cdt.VariableManager.setLocal("QTY","1");
+			cdt.NetworkManager.setSourceLine( 17);cdt.NetworkManager.sendValidation("VGETIL",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("ITEM_SAVE"));
+			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("QTY_SAVE"));
+			cdt.VariableManager.setLocal("PALLET",cdt.VariableManager.get("Mvr.VGETIL","CONT_SER"));
+			if(cdt.VariableManager.getLocal("HONDA_PALLET").toUpperCase() == "Y".toUpperCase()
+			 && 
+			cdt.VariableManager.getLocal("HONDA_BUILT").toUpperCase() == "N".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("USE_THIS_HONDA",cdt.VariableManager.getLocal("PALLET"));
+			}
+			cdt.VariableManager.setLocal("WB","Y");
+			cdt.MessageBox.show(cdt.VariableManager.getLocal("PALLET"),"Container",cdt.MessageBoxButton.Ok,null,function() { 
+			
+			currentMethod(_value, _completeAction,26, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 26:
+			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
+			cdt.VariableManager.setLocal("QTY","0");
+			cdt.VariableManager.setLocal("LOT_SER","");
+			cdt.VariableManager.setLocal("QTY_ONLB","");
+			cdt.VariableManager.setLocal("NUM_LABELS","");
+			cdt.VariableManager.setLocal("COUNT_QTY","");
+			pmtSOPick.SetHistoryText("Location","Loc",cdt.VariableManager.getLocal("LOC"),true);
+			pmtSOPick.SetHistoryText("Location","Item",cdt.VariableManager.getLocal("SV_ITEM"),false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmSOPickConHonda.pmtSOPick_Location_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_Location_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : Var.COUNT = ListPromptGetRowCount ( pmtSOPick , PreShipperList ) 
+			// Line#  2 : If Var.COUNT < (Numeric) 1
+			// Line#  3 : MessageBox ( Finished , No more lines to ship , mbOk ) 
+			// Line#  4 : SendValidation ( VXSHRT ) 
+			// Line#  5 : If Mvr.VXSHRT.RTMSG <> (Alpha) Good
+			// Line#  6 : MessageBox ( VXSHRT , Mvr.VXSHRT.RTMSG , mbOkCancel ) 
+			// Line#  7 : End If
+			// Line#  8 : SendValidation ( VXSOPN ) 
+			// Line#  9 : If Mvr.VXSOPN.RTMSG <> (Alpha) Good
+			// Line#  10 : MessageBox ( VXSOPN , Mvr.VXSOPN.RTMSG , mbOkCancel ) 
+			// Line#  11 : End If
+			// Line#  12 : CloseForm( )
+			// Line#  13 : Else
+			// Line#  14 : Var.ITEMSCH = 
+			// Line#  15 : ShowPrompt ( pmtSOPick , ItemSearch ) 
+			// Line#  16 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOPickConHonda.Location = new cdt.prompt("Location", // Name
+				"Loc", // Caption
+				"", // Default
+				false, // ResetEnabled
+				false, // PreviousEnabled
+				false, // AbortEnabled
+				true, // ShowButton
+				"F1 Done", // Button Caption
+				frmSOPickConHonda.Location_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"LOC", // Variable
+				frmSOPickConHonda.pmtSOPick_Location_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOPickConHonda.pmtSOPick.addPrompt(frmSOPickConHonda.Location);
+
+		frmSOPickConHonda.pmtSOPick_Item_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_Item_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("ITEM").toUpperCase() != cdt.VariableManager.getLocal("LIST_ITEM").toUpperCase())
+			{
+			
+			cdt.MessageBox.show("Item must match selected item!","Error",cdt.MessageBoxButton.Ok,null,function() { 
+			pmtSOPick.IsValid(false);
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("LIST_ITEM"));
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,7, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 7:
+			cdt.VariableManager.setLocalNumeric("QTY",cdt.VariableManager.getLocalNumeric("QTY") + 1);
+			if(cdt.VariableManager.getLocalNumeric("QTY") > cdt.VariableManager.getLocalNumeric("QTY_SHIP"))
+			{
+			
+			cdt.MessageBox.show("Quantity Picked exceeds Quantity Ordered","Error!",cdt.MessageBoxButton.Ok,null,function() { 
+			pmtSOPick.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,14, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 14:
+			cdt.NetworkManager.setSourceLine( 15);cdt.NetworkManager.sendValidation("VLSQTY",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VLSQTY","STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			pmtSOPick.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			}
+			if(cdt.VariableManager.get("Mvr.VLSQTY","WARN").toUpperCase() == "Y".toUpperCase())
+			{
+			
+			cdt.MessageBox.show("Results in Negative on Hand!!!","Warning!",cdt.MessageBoxButton.Ok,null,function() { 
+			
+			currentMethod(_value, _completeAction,23, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 23:
+			cdt.VariableManager.setLocal("L_QTY","QTY");
+			cdt.VariableManager.setLocal("ITEM","");
+			cdt.VariableManager.setLocal("D_QTY",cdt.VariableManager.getLocal("L_QTY") + cdt.VariableManager.getLocal("QTY"));
+			pmtSOPick.SetHistoryText("Item","Item",cdt.VariableManager.getLocal("SV_ITEM"),true);
+			pmtSOPick.SetHistoryText("Item","Loc",cdt.VariableManager.getLocal("LOC"),false);
+			frmSOPickConHonda.pmtSOPick.showPrompt("Item");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmSOPickConHonda.pmtSOPick_Item_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_Item_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("QTY").toUpperCase() < "1".toUpperCase())
+			{
+			
+			cdt.MessageBox.show("Item Entry Required","Error",cdt.MessageBoxButton.Ok,null,function() { 
+			frmSOPickConHonda.pmtSOPick.showPrompt("Item");
+			
+			currentMethod(_value, _completeAction,4, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 4:
+		{
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("SV_ITEM"));
+			cdt.VariableManager.setLocal("QTY","");
+			pmtSOPick.SetHistoryText("Item","Item",cdt.VariableManager.getLocal("SV_ITEM"),true);
+			pmtSOPick.SetHistoryText("Item","Loc",cdt.VariableManager.getLocal("LOC"),false);
+			frmSOPickConHonda.pmtSOPick.showPrompt("Quantity");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmSOPickConHonda.pmtSOPick_Item_OnClick2 = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_Item_OnClick2;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.QTY = (Alpha) 0
+			// Line#  2 : Beep ( Exclamation ) 
+			// Line#  3 : MessageBox (  , Quantity cannot be 0 , mbOk ) 
+			// Line#  4 : PromptIsValid ( pmtSOPick , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : If Var.QTY > (Numeric) Var.QTY_SHIP
+			// Line#  9 : MessageBox ( Error! , Quantity Picked exceeds Quantity Ordered , mbOk ) 
+			// Line#  10 : PromptIsValid ( pmtSOPick , False ) 
+			// Line#  11 : CancelDefault( )
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : End If
+			// Line#  14 : Var.ITEM = Var.SV_ITEM
+			// Line#  15 : SendValidation ( VLSQTY ) 
+			// Line#  16 : If Mvr.VLSQTY.STATUS <> (Alpha) Y
+			// Line#  17 : PromptIsValid ( pmtSOPick , False ) 
+			// Line#  18 : CancelDefault( )
+			// Line#  19 : ExitEvent( )
+			// Line#  20 : End If
+			// Line#  21 : If Mvr.VLSQTY.WARN = (Alpha) Y
+			// Line#  22 : MessageBox ( Warning! , Results in Negative on Hand!!! , mbOk ) 
+			// Line#  23 : End If
+			// Line#  24 : SetHistoryTextEx ( pmtSOPick , Item , Item , Var.SV_ITEM , True ) 
+			// Line#  25 : SetHistoryTextEx ( pmtSOPick , Item , Loc , Var.LOC , False ) 
+			// Line#  26 : SetHistoryTextEx ( pmtSOPick , Item , Qty , Var.QTY , False ) 
+			// Line#  27 : SendTransaction ( DELCQT ) 
+			// Line#  28 : Var.SV_ITEM = Var.ITEM
+			// Line#  29 : Var.SV_LOC = Var.LOC
+			// Line#  30 : Var.SV_QTY = Var.QTY
+			// Line#  31 : Var.QTY_SHIP = Var.QTY_SHIP - Var.QTY
+			// Line#  32 : Var.PART_QTY = Var.PART_QTY + Var.QTY
+			// Line#  33 : Var.CNT_ITEM = Var.LIST_CNT_ITEM
+			// Line#  34 : Var.CNT_ITEM_LENGTH = Length ( Var.CNT_ITEM ) 
+			// Line#  35 : If Var.CNT_ITEM_LENGTH = (Numeric) 0
+			// Line#  36 : Var.CNT_ITEM = Gvr.CNT_ITEM
+			// Line#  37 : End If
+			// Line#  38 : Var.TYPE = D
+			// Line#  39 : Var.IL_STATUS = A
+			// Line#  40 : SendValidation ( VGETIL ) 
+			// Line#  41 : Var.CONT_SER = Mvr.VGETIL.CONT_SER
+			// Line#  42 : SendTransaction ( ILMSTR ) 
+			// Line#  43 : SendTransaction ( ILMBLD ) 
+			// Line#  44 : Var.ILBLDOPT = 2
+			// Line#  45 : SendTransaction ( ILMEND ) 
+			// Line#  46 : Var.CONT_SER = 
+			// Line#  47 : Var.ITEM = Var.SV_ITEM
+			// Line#  48 : SendTransaction ( ICLOTR ) 
+			// Line#  49 : Var.ITEM = Var.SV_ITEM
+			// Line#  50 : Var.SITE = Var.SHIP_FROM
+			// Line#  51 : Var.LOC = 
+			// Line#  52 : Var.CNT_QTY = 1
+			// Line#  53 : Var.CNT_SITE = Var.SITE
+			// Line#  54 : Var.CNT_LOC = Gvr.CNT_LOC
+			// Line#  55 : Var.LOC = Gvr.DOCK_LOC
+			// Line#  56 : Var.CONT_SER = Var.PALLET
+			// Line#  57 : Var.QTY = 
+			// Line#  58 : If 1 = (Numeric) 2
+			// Line#  59 : SendTransaction ( PINUPD ) 
+			// Line#  60 : End If
+			// Line#  61 : Var.QTY = 1
+			// Line#  62 : Var.SHIP_TYPE = C
+			// Line#  63 : If Var.HONDA_PALLET = (Alpha) Y
+			// Line#  64 : Var.ITEM = Gvr.CNT_ITEM
+			// Line#  65 : Else
+			// Line#  66 : Var.ITEM = Var.LIST_CNT_ITEM
+			// Line#  67 : End If
+			// Line#  68 : Var.QTY = 1
+			// Line#  69 : Var.ORDER = 
+			// Line#  70 : Var.LINE = 
+			// Line#  71 : Var.SHIP_PAR = Concatenate ( P , Var.SHIPPER ) 
+			// Line#  72 : Var.SHIP_ID = Var.PALLET
+			// Line#  73 : If Var.HONDA_PALLET = (Alpha) Y And Var.HONDA_BUILT = (Alpha) Y
+			// Line#  74 : Var.ITEM = Var.LIST_CNT_ITEM
+			// Line#  75 : Var.SHIP_PAR = Concatenate ( C , Var.USE_THIS_HONDA ) 
+			// Line#  76 : Else
+			// Line#  77 : Var.SHIP_PAR = Concatenate ( S , Var.SHIPPER ) 
+			// Line#  78 : End If
+			// Line#  79 : SendTransaction ( SHGATE ) 
+			// Line#  80 : Var.SHIP_PAR = Concatenate ( C , Var.PALLET ) 
+			// Line#  81 : If Var.HONDA_PALLET = (Alpha) Y And Var.HONDA_BUILT = (Alpha) N
+			// Line#  82 : Var.TYPE = X
+			// Line#  83 : Var.IL_STATUS = A
+			// Line#  84 : Var.ITEM = Var.LIST_CNT_ITEM
+			// Line#  85 : SendValidation ( VGETIL ) 
+			// Line#  86 : Var.HONDA_PALLET_ID = Mvr.VGETIL.CONT_SER
+			// Line#  87 : Var.CNT_ITEM = Var.LIST_CNT_ITEM
+			// Line#  88 : Var.SHIP_ID = Var.HONDA_PALLET_ID
+			// Line#  89 : Var.PALLET = Var.HONDA_PALLET_ID
+			// Line#  90 : SendTransaction ( ILMSTR ) 
+			// Line#  91 : SendTransaction ( ILMBLD ) 
+			// Line#  92 : SendTransaction ( ILMEND ) 
+			// Line#  93 : Var.SHIP_PAR = Concatenate ( C , Var.USE_THIS_HONDA ) 
+			// Line#  94 : SendTransaction ( SHGATE ) 
+			// Line#  95 : Var.SHIP_PAR = Concatenate ( C , Var.HONDA_PALLET_ID ) 
+			// Line#  96 : Var.HONDA_BUILT = Y
+			// Line#  97 : End If
+			// Line#  98 : Var.PART_QTY = 0
+			// Line#  99 : Var.QTY = 
+			// Line#  100 : Var.CNT_QTY = 
+			// Line#  101 : Var.CNT_LOC = 
+			// Line#  102 : Var.CONT_SER = Var.PALLET
+			// Line#  103 : Var.INT_ID = Var.SHIPPER
+			// Line#  104 : Var.SHIP_TYPE = I
+			// Line#  105 : Var.ITEM = Var.SV_ITEM
+			// Line#  106 : Var.QTY = Var.SV_QTY
+			// Line#  107 : Var.ORDER = Var.SAL_ORD
+			// Line#  108 : Var.LINE = Var.SAL_ORDL
+			// Line#  109 : Var.LOC = Var.SV_LOC
+			// Line#  110 : Var.SHIP_ID = 
+			// Line#  111 : SendTransaction ( SHGATE ) 
+			// Line#  112 : SendTransaction ( SHGEND ) 
+			// Line#  113 : Var.HONDA_BUILT = Y
+			// Line#  114 : If Var.QTY_SHIP > (Numeric) 0
+			// Line#  115 : Var.INT_ID = Var.SHIPPER
+			// Line#  116 : SendTransaction ( SHWBL2 ) 
+			// Line#  117 : SendTransaction ( SHWENX ) 
+			// Line#  118 : End If
+			// Line#  119 : StatusWindow (  , Transactions Sent! , 3 ) 
+			// Line#  120 : Var.LOC = 
+			// Line#  121 : Var.CONT_SER = Var.PALLET
+			// Line#  122 : Var.LABEL_QTY = 1
+			// Line#  123 : Var.ILBL_ST = P
+			// Line#  124 : Var.BUILD = N
+			// Line#  125 : Var.PALLET = 
+			// Line#  126 : Var.ITEMSCH = 
+			// Line#  127 : Var.LOC = 
+			// Line#  128 : StatusWindow (  , Transactions Sent! , 2 ) 
+			// Line#  129 : If Var.QTY_SHIP > (Numeric) 0
+			// Line#  130 : ShowPrompt ( pmtSOPick , Location ) 
+			// Line#  131 : Else
+			// Line#  132 : Var.COUNT = ListPromptGetRowCount ( pmtSOPick , PreShipperList ) 
+			// Line#  133 : If Var.COUNT < (Numeric) 1
+			// Line#  134 : MessageBox ( Finished , No more lines to ship , mbOk ) 
+			// Line#  135 : CloseForm( )
+			// Line#  136 : Else
+			// Line#  137 : ShowPrompt ( pmtSOPick , ItemSearch ) 
+			// Line#  138 : End If
+			// Line#  139 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOPickConHonda.Item = new cdt.prompt("Item", // Name
+				"Item", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"F1 Qty", // Button Caption
+				frmSOPickConHonda.Item_Click , // ButtonClick Delegate
+				true, // ShowButton2
+				"F5 Done", // Button2 Caption
+				frmSOPickConHonda.Item_Click2 , // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"ITEM", // Variable
+				frmSOPickConHonda.pmtSOPick_Item_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOPickConHonda.pmtSOPick.addPrompt(frmSOPickConHonda.Item);
+
+		frmSOPickConHonda.pmtSOPick_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			// Line#  1 : If Var.QTY = (Alpha) 0
+			// Line#  2 : Beep ( Exclamation ) 
+			// Line#  3 : MessageBox (  , Quantity cannot be 0 , mbOk ) 
+			// Line#  4 : PromptIsValid ( pmtSOPick , False ) 
+			// Line#  5 : CancelDefault( )
+			// Line#  6 : ExitEvent( )
+			// Line#  7 : End If
+			// Line#  8 : If Var.QTY > (Numeric) Var.QTY_SHIP
+			// Line#  9 : MessageBox ( Error! , Quantity Picked exceeds Quantity Ordered , mbOk ) 
+			// Line#  10 : PromptIsValid ( pmtSOPick , False ) 
+			// Line#  11 : CancelDefault( )
+			// Line#  12 : ExitEvent( )
+			// Line#  13 : End If
+			// Line#  14 : Var.ITEM = Var.SV_ITEM
+			// Line#  15 : SendValidation ( VLSQTY ) 
+			// Line#  16 : If Mvr.VLSQTY.STATUS <> (Alpha) Y
+			// Line#  17 : PromptIsValid ( pmtSOPick , False ) 
+			// Line#  18 : CancelDefault( )
+			// Line#  19 : ExitEvent( )
+			// Line#  20 : End If
+			// Line#  21 : If Mvr.VLSQTY.WARN = (Alpha) Y
+			// Line#  22 : MessageBox ( Warning! , Results in Negative on Hand!!! , mbOk ) 
+			// Line#  23 : End If
+			// Line#  24 : SetHistoryTextEx ( pmtSOPick , Item , Item , Var.SV_ITEM , True ) 
+			// Line#  25 : SetHistoryTextEx ( pmtSOPick , Item , Loc , Var.LOC , False ) 
+			// Line#  26 : SetHistoryTextEx ( pmtSOPick , Item , Qty , Var.QTY , False ) 
+			// Line#  27 : SendTransaction ( DELCQT ) 
+			// Line#  28 : Var.SV_ITEM = Var.ITEM
+			// Line#  29 : Var.SV_LOC = Var.LOC
+			// Line#  30 : Var.SV_QTY = Var.QTY
+			// Line#  31 : Var.QTY_SHIP = Var.QTY_SHIP - Var.QTY
+			// Line#  32 : Var.PART_QTY = Var.PART_QTY + Var.QTY
+			// Line#  33 : Var.CNT_ITEM = Var.LIST_CNT_ITEM
+			// Line#  34 : Var.CNT_ITEM_LENGTH = Length ( Var.CNT_ITEM ) 
+			// Line#  35 : If Var.CNT_ITEM_LENGTH = (Numeric) 0
+			// Line#  36 : Var.CNT_ITEM = Gvr.CNT_ITEM
+			// Line#  37 : End If
+			// Line#  38 : Var.TYPE = D
+			// Line#  39 : Var.IL_STATUS = A
+			// Line#  40 : SendValidation ( VGETIL ) 
+			// Line#  41 : Var.CONT_SER = Mvr.VGETIL.CONT_SER
+			// Line#  42 : SendTransaction ( ILMSTR ) 
+			// Line#  43 : SendTransaction ( ILMBLD ) 
+			// Line#  44 : Var.ILBLDOPT = 2
+			// Line#  45 : SendTransaction ( ILMEND ) 
+			// Line#  46 : Var.CONT_SER = 
+			// Line#  47 : Var.ITEM = Var.SV_ITEM
+			// Line#  48 : SendTransaction ( ICLOTR ) 
+			// Line#  49 : Var.ITEM = Var.SV_ITEM
+			// Line#  50 : Var.SITE = Var.SHIP_FROM
+			// Line#  51 : Var.LOC = 
+			// Line#  52 : Var.CNT_QTY = 1
+			// Line#  53 : Var.CNT_SITE = Var.SITE
+			// Line#  54 : Var.CNT_LOC = Gvr.CNT_LOC
+			// Line#  55 : Var.LOC = Gvr.DOCK_LOC
+			// Line#  56 : Var.CONT_SER = Var.PALLET
+			// Line#  57 : Var.QTY = 
+			// Line#  58 : If 1 = (Numeric) 2
+			// Line#  59 : SendTransaction ( PINUPD ) 
+			// Line#  60 : End If
+			// Line#  61 : Var.QTY = 1
+			// Line#  62 : Var.SHIP_TYPE = C
+			// Line#  63 : If Var.HONDA_PALLET = (Alpha) Y
+			// Line#  64 : Var.ITEM = Gvr.CNT_ITEM
+			// Line#  65 : Else
+			// Line#  66 : Var.ITEM = Var.LIST_CNT_ITEM
+			// Line#  67 : End If
+			// Line#  68 : Var.QTY = 1
+			// Line#  69 : Var.ORDER = 
+			// Line#  70 : Var.LINE = 
+			// Line#  71 : Var.SHIP_PAR = Concatenate ( P , Var.SHIPPER ) 
+			// Line#  72 : Var.SHIP_ID = Var.PALLET
+			// Line#  73 : If Var.HONDA_PALLET = (Alpha) Y And Var.HONDA_BUILT = (Alpha) Y
+			// Line#  74 : Var.ITEM = Var.LIST_CNT_ITEM
+			// Line#  75 : Var.SHIP_PAR = Concatenate ( C , Var.USE_THIS_HONDA ) 
+			// Line#  76 : Else
+			// Line#  77 : Var.SHIP_PAR = Concatenate ( S , Var.SHIPPER ) 
+			// Line#  78 : End If
+			// Line#  79 : SendTransaction ( SHGATE ) 
+			// Line#  80 : Var.SHIP_PAR = Concatenate ( C , Var.PALLET ) 
+			// Line#  81 : If Var.HONDA_PALLET = (Alpha) Y And Var.HONDA_BUILT = (Alpha) N
+			// Line#  82 : Var.TYPE = X
+			// Line#  83 : Var.IL_STATUS = A
+			// Line#  84 : Var.ITEM = Var.LIST_CNT_ITEM
+			// Line#  85 : SendValidation ( VGETIL ) 
+			// Line#  86 : Var.HONDA_PALLET_ID = Mvr.VGETIL.CONT_SER
+			// Line#  87 : Var.CNT_ITEM = Var.LIST_CNT_ITEM
+			// Line#  88 : Var.SHIP_ID = Var.HONDA_PALLET_ID
+			// Line#  89 : Var.PALLET = Var.HONDA_PALLET_ID
+			// Line#  90 : SendTransaction ( ILMSTR ) 
+			// Line#  91 : SendTransaction ( ILMBLD ) 
+			// Line#  92 : SendTransaction ( ILMEND ) 
+			// Line#  93 : Var.SHIP_PAR = Concatenate ( C , Var.USE_THIS_HONDA ) 
+			// Line#  94 : SendTransaction ( SHGATE ) 
+			// Line#  95 : Var.SHIP_PAR = Concatenate ( C , Var.HONDA_PALLET_ID ) 
+			// Line#  96 : Var.HONDA_BUILT = Y
+			// Line#  97 : End If
+			// Line#  98 : Var.PART_QTY = 0
+			// Line#  99 : Var.QTY = 
+			// Line#  100 : Var.CNT_QTY = 
+			// Line#  101 : Var.CNT_LOC = 
+			// Line#  102 : Var.CONT_SER = Var.PALLET
+			// Line#  103 : Var.INT_ID = Var.SHIPPER
+			// Line#  104 : Var.SHIP_TYPE = I
+			// Line#  105 : Var.ITEM = Var.SV_ITEM
+			// Line#  106 : Var.QTY = Var.SV_QTY
+			// Line#  107 : Var.ORDER = Var.SAL_ORD
+			// Line#  108 : Var.LINE = Var.SAL_ORDL
+			// Line#  109 : Var.LOC = Var.SV_LOC
+			// Line#  110 : Var.SHIP_ID = 
+			// Line#  111 : SendTransaction ( SHGATE ) 
+			// Line#  112 : SendTransaction ( SHGEND ) 
+			// Line#  113 : Var.HONDA_BUILT = Y
+			// Line#  114 : If Var.QTY_SHIP > (Numeric) 0
+			// Line#  115 : Var.INT_ID = Var.SHIPPER
+			// Line#  116 : SendTransaction ( SHWBL2 ) 
+			// Line#  117 : SendTransaction ( SHWENX ) 
+			// Line#  118 : End If
+			// Line#  119 : StatusWindow (  , Transactions Sent! , 3 ) 
+			// Line#  120 : Var.LOC = 
+			// Line#  121 : Var.CONT_SER = Var.PALLET
+			// Line#  122 : Var.LABEL_QTY = 1
+			// Line#  123 : Var.ILBL_ST = P
+			// Line#  124 : Var.BUILD = N
+			// Line#  125 : Var.PALLET = 
+			// Line#  126 : Var.ITEMSCH = 
+			// Line#  127 : Var.LOC = 
+			// Line#  128 : StatusWindow (  , Transactions Sent! , 2 ) 
+			// Line#  129 : If Var.QTY_SHIP > (Numeric) 0
+			// Line#  130 : ShowPrompt ( pmtSOPick , Location ) 
+			// Line#  131 : Else
+			// Line#  132 : Var.COUNT = ListPromptGetRowCount ( pmtSOPick , PreShipperList ) 
+			// Line#  133 : If Var.COUNT < (Numeric) 1
+			// Line#  134 : MessageBox ( Finished , No more lines to ship , mbOk ) 
+			// Line#  135 : CloseForm( )
+			// Line#  136 : Else
+			// Line#  137 : ShowPrompt ( pmtSOPick , ItemSearch ) 
+			// Line#  138 : End If
+			// Line#  139 : End If
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOPickConHonda.Quantity = new cdt.prompt("Quantity", // Name
+				"Qty", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"QTY", // Variable
+				frmSOPickConHonda.pmtSOPick_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOPickConHonda.pmtSOPick.addPrompt(frmSOPickConHonda.Quantity);
+
+		frmSOPickConHonda.pmtSOPick_HondaPallet_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmSOPickConHonda.pmtSOPick_HondaPallet_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("HONDA_PALLET").toUpperCase() != "Y".toUpperCase()
+			 && 
+			cdt.VariableManager.getLocal("HONDA_PALLET").toUpperCase() != "N".toUpperCase())
+			{
+			
+			cdt.MessageBox.show("Must enter Y or N","Error!",cdt.MessageBoxButton.Ok,null,function() { 
+			pmtSOPick.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,6, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+		
+		case 6:
+			cdt.VariableManager.setLocal("HONDA_BUILT","N");
+			UpdateData( false );
+			frmSOPickConHonda.pmtSOPick.showPrompt("Location");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmSOPickConHonda.HondaPallet = new cdt.prompt("HondaPallet", // Name
+				"Honda Pallet Y/N?", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"HONDA_PALLET", // Variable
+				frmSOPickConHonda.pmtSOPick_HondaPallet_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmSOPickConHonda.pmtSOPick.addPrompt(frmSOPickConHonda.HondaPallet);
+
+		frmSOPickConHonda.viewModel = new cdt.viewModel( "frmSOPickConHonda",frmSOPickConHonda.pmtSOPick,"frmSOPickConHonda");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmSOPickConHonda-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmSOPickConHonda-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmSOPickConHonda-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmSOPickConHonda-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmSOPickConHonda-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmSOPickConHonda-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmSOPickConHonda-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

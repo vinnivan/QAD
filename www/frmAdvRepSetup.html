@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmAdvRepSetup' data-role='view' data-title='Adv Rep Setup' data-show='frmAdvRepSetup.viewModel.initialize' data-model='frmAdvRepSetup.viewModel' >
+<script>
+	var frmAdvRepSetup = frmAdvRepSetup || {};
+		frmAdvRepSetup.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmAdvRepSetup' );
+		frmAdvRepSetup.RWC_PromptControl1_EmployeeNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_EmployeeNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.get("Mvr.VEMPLY","STATUS").toUpperCase() != "Y".toUpperCase())
+			{
+			
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepSetup.EmployeeNumber = new cdt.prompt("EmployeeNumber", // Name
+				"Employee", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VEMPLY", // Validation
+				false, // ValidIfNotEmpty
+				"EMPLOYEE", // Variable
+				frmAdvRepSetup.RWC_PromptControl1_EmployeeNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepSetup.RWC_PromptControl1.addPrompt(frmAdvRepSetup.EmployeeNumber);
+
+		frmAdvRepSetup.RWC_PromptControl1_ContainerNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_ContainerNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLX","ITEM"));
+			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("ITEM").TrimEnd(null));
+			cdt.VariableManager.setLocal("MACHINE",cdt.VariableManager.get("Mvr.VILBLX","MACHINE"));
+			cdt.VariableManager.setLocal("MACHINE",cdt.VariableManager.getLocal("MACHINE").TrimEnd(null));
+			cdt.VariableManager.setLocal("BCIL_STATUS",cdt.VariableManager.get("Mvr.VILBLX","BCIL_STATUS"));
+			if(cdt.VariableManager.getLocal("BCIL_STATUS").toUpperCase() != "W".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("BCIL_STATUS").toUpperCase() != "I".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("","Invalid Container Serial Status",cdt.MessageBoxButton.Ok,2, function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,12, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+		
+		case 12:
+			cdt.NetworkManager.setSourceLine( 14);cdt.NetworkManager.sendValidation("VRPART",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
+			if(cdt.VariableManager.get("Mvr.VRPART","STATUS") != "Y")
+			{
+			
+			cdt.MessageBox.show("Invalid!","Error!",cdt.MessageBoxButton.Ok,null,function() { 
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,20, _shouldContinue);
+			return;
+			}); 
+			return;
+		}
+		case 20:
+		{
+			
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.get("Mvr.VRPART","SITE"));
+			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("SITE").TrimEnd(null));
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepSetup.ContainerNumber = new cdt.prompt("ContainerNumber", // Name
+				"Container Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VILBLX", // Validation
+				false, // ValidIfNotEmpty
+				"CONT_SER", // Variable
+				frmAdvRepSetup.RWC_PromptControl1_ContainerNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepSetup.RWC_PromptControl1.addPrompt(frmAdvRepSetup.ContainerNumber);
+
+		frmAdvRepSetup.RWC_PromptControl1_Operation_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_Operation_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("MACHINE_TEMP",cdt.VariableManager.get("Mvr.VOPRTN","MACHINE"));
+			cdt.VariableManager.setLocal("MACHINE_TEMP",cdt.VariableManager.getLocal("MACHINE_TEMP").TrimEnd(null));
+			cdt.VariableManager.setLocal("WRK_CNTR",cdt.VariableManager.get("Mvr.VOPRTN","WRK_CNTR"));
+			cdt.VariableManager.setLocal("WRK_CNTR",cdt.VariableManager.getLocal("WRK_CNTR").TrimEnd(null));
+			if(cdt.VariableManager.getLocal("MACHINE").toUpperCase() == "".toUpperCase())
+			{
+			
+			cdt.VariableManager.setLocal("MACHINE",cdt.VariableManager.getLocal("MACHINE_TEMP"));
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepSetup.Operation = new cdt.prompt("Operation", // Name
+				"Operation", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VOPRTN", // Validation
+				false, // ValidIfNotEmpty
+				"OPERATION", // Variable
+				frmAdvRepSetup.RWC_PromptControl1_Operation_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepSetup.RWC_PromptControl1.addPrompt(frmAdvRepSetup.Operation);
+
+		
+		frmAdvRepSetup.LineNumber = new cdt.prompt("LineNumber", // Name
+				"Prod Line", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VREPLN", // Validation
+				false, // ValidIfNotEmpty
+				"LINE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepSetup.RWC_PromptControl1.addPrompt(frmAdvRepSetup.LineNumber);
+
+		frmAdvRepSetup.RWC_PromptControl1_Machine_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_Machine_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("EFF_DATE",Utilities.Instance.GetNow("MTDDYYYY"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepSetup.Machine = new cdt.prompt("Machine", // Name
+				"Machine", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VWKCTR", // Validation
+				false, // ValidIfNotEmpty
+				"MACHINE", // Variable
+				frmAdvRepSetup.RWC_PromptControl1_Machine_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepSetup.RWC_PromptControl1.addPrompt(frmAdvRepSetup.Machine);
+
+		frmAdvRepSetup.RWC_PromptControl1_SetupTime_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_SetupTime_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("TIME_TMP",cdt.VariableManager.getLocal("ACT_TIME").Substring(1 -1,1));
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "0".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "1".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "2".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "3".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "4".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "5".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "6".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "7".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "8".toUpperCase())
+			{
+			
+			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "9".toUpperCase())
+			{
+			
+			cdt.StatusBox.show("","Must Be Blank or Numeric",cdt.MessageBoxButton.Ok,2, function() { 
+			cdt.VariableManager.setLocal("ACT_TIME","");
+			UpdateData( false );
+			RWC_PromptControl1.IsValid(false);
+			shouldContinue = false;
+			_completeAction(shouldContinue);
+			return;
+			
+			currentMethod(_value, _completeAction,18, _shouldContinue);
+			return;
+			}); 
+			return;
+			}
+			}
+			}
+			}
+			}
+			}
+			}
+			}
+			}
+			}
+		
+		case 18:
+			cdt.VariableManager.setLocal("EARN_CD","REG");
+			cdt.VariableManager.setLocal("ROUTING","");
+			cdt.VariableManager.setLocal("BOM_CODE","");
+			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 31,_shouldContinue); } );
+			return;
+		case  31:
+			cdt.NetworkManager.setSourceLine( 32);cdt.NetworkManager.sendTransaction("ARSETL",cdt.VariableManager.getNamespace());
+			cdt.VariableManager.setLocal("EFF_DATE",Utilities.Instance.GetNow("YYYYMTDDHHMMSS"));
+			frmAdvRepSetup.RWC_PromptControl1.returnToPrompt("EmployeeNumber",true,true);
+			shouldContinue = false;
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmAdvRepSetup.SetupTime = new cdt.prompt("SetupTime", // Name
+				"Actual Setup Time", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"ACT_TIME", // Variable
+				frmAdvRepSetup.RWC_PromptControl1_SetupTime_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmAdvRepSetup.RWC_PromptControl1.addPrompt(frmAdvRepSetup.SetupTime);
+
+		frmAdvRepSetup.viewModel = new cdt.viewModel( "frmAdvRepSetup",frmAdvRepSetup.RWC_PromptControl1,"frmAdvRepSetup");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmAdvRepSetup-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmAdvRepSetup-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmAdvRepSetup-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmAdvRepSetup-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmAdvRepSetup-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmAdvRepSetup-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmAdvRepSetup-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>

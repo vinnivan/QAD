@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div id='frmUnplannedIssue' data-role='view' data-title='Unplanned Issues' data-show='frmUnplannedIssue.viewModel.initialize' data-model='frmUnplannedIssue.viewModel' >
+<script>
+	var frmUnplannedIssue = frmUnplannedIssue || {};
+		frmUnplannedIssue.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'frmUnplannedIssue' );
+		frmUnplannedIssue.RWC_PromptControl1_ItemNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_ItemNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("LOT_SER","");
+			cdt.VariableManager.setLocal("PART",cdt.VariableManager.getLocal("ITEM"));
+			cdt.VariableManager.setLocal("DESC",cdt.VariableManager.get("Mvr.VPARTN","DESC"));
+			RWC_PromptControl1.SetDetailText("ItemNumber",cdt.VariableManager.getLocal("DESC"),false);
+			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
+			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
+			cdt.NetworkManager.setSourceLine( 7);cdt.NetworkManager.sendTransaction("UISSTR",cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("LOT_CTRL") == "N"
+			 && 
+			cdt.VariableManager.getLocal("SER_CTRL") == "N")
+			{
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("FromSite");
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocal("LOT_CTRL") == "Y")
+			{
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("Lot");
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocal("SER_CTRL") == "Y")
+			{
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("Serial");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedIssue.ItemNumber = new cdt.prompt("ItemNumber", // Name
+				"ItemNumber", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VPARTN", // Validation
+				false, // ValidIfNotEmpty
+				"ITEM", // Variable
+				frmUnplannedIssue.RWC_PromptControl1_ItemNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.ItemNumber);
+
+		frmUnplannedIssue.RWC_PromptControl1_Serial_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_Serial_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			if(cdt.VariableManager.getLocal("LOT_CTRL") == "N")
+			{
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("FromSite");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmUnplannedIssue.RWC_PromptControl1_Serial_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_Serial_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("WONumber");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedIssue.Serial = new cdt.prompt("Serial", // Name
+				"Serial", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"DONE", // Button Caption
+				frmUnplannedIssue.Serial_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSENUE", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				frmUnplannedIssue.RWC_PromptControl1_Serial_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.Serial);
+
+		frmUnplannedIssue.RWC_PromptControl1_Lot_OnClick = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_Lot_OnClick;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("WONumber");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedIssue.Lot = new cdt.prompt("Lot", // Name
+				"Lot", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				true, // ShowButton
+				"DONE", // Button Caption
+				frmUnplannedIssue.Lot_Click , // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.LOT_SER", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.Lot);
+
+		frmUnplannedIssue.RWC_PromptControl1_FromSite_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_FromSite_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedIssue.FromSite = new cdt.prompt("FromSite", // Name
+				"From Site", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VSITEN", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SITE", // Variable
+				frmUnplannedIssue.RWC_PromptControl1_FromSite_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.FromSite);
+
+		
+		frmUnplannedIssue.FromLocation = new cdt.prompt("FromLocation", // Name
+				"From Location", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VLOCNO", // Validation
+				false, // ValidIfNotEmpty
+				"Var.LOC", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.FromLocation);
+
+		
+		frmUnplannedIssue.ReferenceNumber = new cdt.prompt("ReferenceNumber", // Name
+				"Reference Number", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.REF", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.ReferenceNumber);
+
+		frmUnplannedIssue.RWC_PromptControl1_Quantity_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_Quantity_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("ICUNIS",cdt.VariableManager.getNamespace());
+			if(cdt.VariableManager.getLocal("LOT_CTRL") == "N"
+			 && 
+			cdt.VariableManager.getLocal("SER_CTRL") == "N")
+			{
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("Site");
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocal("LOT_CTRL") == "Y")
+			{
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("Lot");
+			}
+		else
+		{
+			}
+			else if(cdt.VariableManager.getLocal("SER_CTRL") == "Y")
+			{
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("Serial");
+			}
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedIssue.Quantity = new cdt.prompt("Quantity", // Name
+				"Quantity", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"VLSQTY", // Validation
+				false, // ValidIfNotEmpty
+				"Var.QTY", // Variable
+				frmUnplannedIssue.RWC_PromptControl1_Quantity_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.Quantity);
+
+		frmUnplannedIssue.RWC_PromptControl1_WONumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_WONumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("LineNumber");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmUnplannedIssue.RWC_PromptControl1_WONumber_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_WONumber_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			frmUnplannedIssue.RWC_PromptControl1.showPrompt("LineNumber");
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedIssue.WONumber = new cdt.prompt("WONumber", // Name
+				"Order", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.WO_NUM", // Variable
+				frmUnplannedIssue.RWC_PromptControl1_WONumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.WONumber);
+
+		
+		frmUnplannedIssue.LineNumber = new cdt.prompt("LineNumber", // Name
+				"Line", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ORDERLINE", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.LineNumber);
+
+		
+		frmUnplannedIssue.SalesJob = new cdt.prompt("SalesJob", // Name
+				"Sales/Job", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.SO_JOB", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.SalesJob);
+
+		
+		frmUnplannedIssue.Address = new cdt.prompt("Address", // Name
+				"Address", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ADDR", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.Address);
+
+		
+		frmUnplannedIssue.Remarks = new cdt.prompt("Remarks", // Name
+				"Remarks", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.REMARKS", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.Remarks);
+
+		
+		frmUnplannedIssue.ProjectNumber = new cdt.prompt("ProjectNumber", // Name
+				"Project", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.PROJECT", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.ProjectNumber);
+
+		frmUnplannedIssue.RWC_PromptControl1_AccountNumber_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_AccountNumber_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.VariableManager.setLocal("DR_ACTNUM",cdt.VariableManager.getLocal("ACTNUM"));
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedIssue.AccountNumber = new cdt.prompt("AccountNumber", // Name
+				"Account", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"VGLACC", // Validation
+				false, // ValidIfNotEmpty
+				"Var.ACTNUM", // Variable
+				frmUnplannedIssue.RWC_PromptControl1_AccountNumber_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.AccountNumber);
+
+		
+		frmUnplannedIssue.CostCenter = new cdt.prompt("CostCenter", // Name
+				"Cost Center", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				true, // ToUpper
+				"", // Validation
+				false, // ValidIfNotEmpty
+				"Var.CST_CTR", // Variable
+				null, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.CostCenter);
+
+		frmUnplannedIssue.RWC_PromptControl1_EffectiveDate_ValidEvent = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_EffectiveDate_ValidEvent;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("UISEND",cdt.VariableManager.getNamespace());
+			cdt.StatusBox.show("Success","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
+			return;
+		case  2:
+			frmUnplannedIssue.RWC_PromptControl1.returnToPrompt("ItemNumber",false,false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		frmUnplannedIssue.RWC_PromptControl1_EffectiveDate_OnError = function(_value, _completeAction, _continuationLine, _shouldContinue) {
+		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_EffectiveDate_OnError;
+		try{
+		switch (_continuationLine) {
+			case undefined:
+			
+			cdt.StatusBox.show("Error","Transaction Not Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 1,_shouldContinue); } );
+			return;
+		case  1:
+			frmUnplannedIssue.RWC_PromptControl1.returnToPrompt("ItemNumber",false,false);
+			
+		} // end of switch
+		}catch(ex){ alert(ex); }
+		_completeAction(shouldContinue);
+		};
+		
+		
+		frmUnplannedIssue.EffectiveDate = new cdt.prompt("EffectiveDate", // Name
+				"Effective Date", // Caption
+				"", // Default
+				true, // ResetEnabled
+				true, // PreviousEnabled
+				true, // AbortEnabled
+				false, // ShowButton
+				"", // Button Caption
+				null, // ButtonClick Delegate
+				false, // ShowButton2
+				"", // Button2 Caption
+				null, // ButtonClick2 Delegate
+				false, // ShowButton3
+				"", // Button3 Caption
+				null, // ButtonClick3 Delegate
+				null, // Reset Click
+				null, // Previous Click
+				null, // Abort Click
+				false, // Skipable
+				false, // Skip
+				false, // UseHistory
+				"", // Skip Default
+				false, // ToUpper
+				"", // Validation
+				true, // ValidIfNotEmpty
+				"Var.EFF_DATE", // Variable
+				frmUnplannedIssue.RWC_PromptControl1_EffectiveDate_ValidEvent, // OnValid Delegate
+				cdt.PromptControlType.Text
+				);
+
+		frmUnplannedIssue.RWC_PromptControl1.addPrompt(frmUnplannedIssue.EffectiveDate);
+
+		frmUnplannedIssue.viewModel = new cdt.viewModel( "frmUnplannedIssue",frmUnplannedIssue.RWC_PromptControl1,"frmUnplannedIssue");
+</script>
+	        <header data-role='header'>
+	            <div data-role='navbar'>
+	                <div data-role='view-title'></div>
+	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
+	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	            </div>
+	        </header>
+	        <div data-bind='invisible: isLoggedIn'>
+	            <div data-bind='visible: promptControl.isCurrentPromptList' >
+	                <ul id='frmUnplannedIssue-listControl' data-role='listview' ></ul>
+	            </div>
+	            <div id='frmUnplannedIssue-historyScroller' data-role='scroller' class='historyScroller' >
+	                <ul id='frmUnplannedIssue-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptText' >
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmUnplannedIssue-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmUnplannedIssue-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	                <div class='promptControlLeft' >
+	                    <div><label for='frmUnplannedIssue-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                    <div><input style='width: 100%;'  id='frmUnplannedIssue-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
+	                </div>
+	                <div class='promptControlRight'>
+	                    <div style='height:46px'></div>
+	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
+	                </div>
+	            </div>
+	        </div>
+</div>
+</body>
+</html>
