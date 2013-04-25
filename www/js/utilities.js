@@ -34,6 +34,10 @@ var menuItemSelected = function (e) {
     // Get History Cleared
     showView = e.dataItem.view;
     kendo.history.navigate("#:back");
+
+
+    $("<div> menuSelected showView:" + showView + "</div>").appendTo('#debugDiv')
+
 };
 
 $(window).bind("hashchange", function (e) {
@@ -47,17 +51,28 @@ $(window).bind("hashchange", function (e) {
 
     //alert(url + "\r\nMain:" + main);
 
+    var state = [];
+    state.push("Url:"+ url)
+
+
     var width = mm.width();
 
     if (url == "#main") {
-        //alert(url);
+        state.push("found main!")
+
         main.animate({ left: '+=' + width }, 200, function () { cdt.Application.getCurrentViewModel().setIsMenuOpen(true); });
         mm.show(0);
         mm.css("left", -width);
         mm.animate({ left: '+=' + width }, 200);
+
     } else if (url == cdt.Application.getStartView()) {
 
+        state.push("Start View:" + cdt.Application.getStartView());
+
         if (showView == undefined) {
+
+            state.push("Undifined!!");
+
             if (main.css("left") != "0px") {
                 main.animate({ left: '-=' + width }, 400);
                 mm.animate({ left: '-=' + width }, 400, function () { mm.data().kendoMobileScroller.reset(); mm.hide(0); cdt.Application.getCurrentViewModel().setIsMenuOpen(false); });
@@ -70,6 +85,7 @@ $(window).bind("hashchange", function (e) {
             //showView = undefined;
 
 
+            state.push("showView - set to undefined");
             main.animate({ left: '-=' + width }, 400);
             mm.animate({ left: '-=' + width }, 400, function () {
 
@@ -82,4 +98,6 @@ $(window).bind("hashchange", function (e) {
 
         }
     }
+    $("<div>" + state.join(" - ") + "</div>").appendTo('#debugDiv')
+
 });
