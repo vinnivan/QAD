@@ -73,7 +73,7 @@ $(window).bind("hashchange", function (e) {
 
     } else if (url == cdt.Application.getStartView()) {
 
-        state.push("Start View:" + cdt.Application.getStartView());
+        state.push("Start View:" + cdt.Application.getStartView() + " current view:" + kendo.history.current );
 
         if (showView == undefined) {
 
