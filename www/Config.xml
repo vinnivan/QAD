@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.radley.cdt-ax"
+        id        = "com.radley.cdt-qad"
         version   = "2.3.0">
-    <name>CDT AX</name>
+    <name>CDT QAD</name>
 
     <description>
-        Sample demo of AX transactions
+        Sample demo of QAD transactions
     </description>
 
     <author href="http://phonegap.com" email="support@phonegap.com">
