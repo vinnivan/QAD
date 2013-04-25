@@ -48,8 +48,14 @@ $(window).bind("hashchange", function (e) {
     if (cdt.Application.getCurrentViewModel() == null)
         return;
 
-    if (url == "" || url == "#/") {
-        $("<div>Ignore unknown url</div>").appendTo('#debugDiv')
+    if (url == "") {
+        $("<div>Ignore empty url</div>").appendTo('#debugDiv')
+        return;
+    }
+
+    if (url == "#/") {
+        $("<div>Ignore root url</div>").appendTo('#debugDiv')
+        kendo.history.navigate("#logon.html");
         return;
     }
 
