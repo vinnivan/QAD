@@ -47,6 +47,11 @@ $(window).bind("hashchange", function (e) {
     if (cdt.Application.getCurrentViewModel() == null)
         return;
 
+    if (url == "" || url == "/") {
+        $("<div>Ignore unknown url</div>").appendTo('#debugDiv')
+        return;
+    }
+
     var main = $("#" + cdt.Application.getCurrentViewModel().viewId);
 
     //alert(url + "\r\nMain:" + main);
