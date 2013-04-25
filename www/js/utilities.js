@@ -7,11 +7,15 @@
 var showMenu = function () {
     var mm = $("#mainMenuContainer");
 
+
     if (mm.is(":visible")) {
+        $("<div> showMenu - Back</div>").appendTo('#debugDiv')
 
         kendo.history.navigate("#:back");
         //kendo.history.navigate("#logon.html");
     } else {
+        $("<div> showMenu - #main</div>").appendTo('#debugDiv')
+
         kendo.history.navigate("#main");
     }
 };
@@ -33,11 +37,8 @@ var showView = undefined;
 var menuItemSelected = function (e) {
     // Get History Cleared
     showView = e.dataItem.view;
-    kendo.history.navigate("#:back");
-
-
     $("<div> menuSelected showView:" + showView + "</div>").appendTo('#debugDiv')
-
+    kendo.history.navigate("#:back");
 };
 
 $(window).bind("hashchange", function (e) {
