@@ -12,9 +12,11 @@ var showMenu = function () {
         $("<div> History count:" + history.length + " showMenu - Current:" + kendo.history.current + " - Back</div>").appendTo('#debugDiv')
 
         // On Android phonegap build history comes in empty and will redirect to unknown page without this
-        if (history.length <= 1) {
+        if (history.length <= 2) {
+            alert("head back to logon");
             kendo.history.navigate("#logon.html");
         } else {
+            alert("head #back");
             kendo.history.navigate("#:back");
         }
 
