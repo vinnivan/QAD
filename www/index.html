@@ -10,6 +10,21 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="barcodescanner.js"></script>
  	
+    <script type="text/javascript">
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            document.addEventListener("backbutton", handleBackButton, true);
+        }
+
+        function handleBackButton() {
+            console.log("back clicked");
+            alert("Back button!");
+            window.history.back();
+        }
+    </script>
+
+
     <script src="js/jquery.min.js"></script>
     <!--<script src="js/jquery.ba-bbq.min.js"></script>-->
     <script src="js/kendo.mobile.min.js"></script>
@@ -97,6 +112,12 @@
 
     </div>
 
+
+    <div id="overview" data-role="view" data-title="CDT" data-model="viewModel" data-layout="menuLayout" data-transition="slide:left reverse" >
+        <h1>Overview!</h1>
+        <a data-role="button" href="logon.html">Home</a>
+    </div>
+
     <div id="notSupported" data-role="view" data-title="Unsupported" data-model="viewModel" data-layout="menuLayout" data-transition="slide:left reverse" >
         <h1>Unsupported View!</h1>
         <a data-role="button" href="logon.html">Home</a>
@@ -146,9 +167,9 @@
         var app = new kendo.mobile.Application(document.body, {
             transition: 'slide',
             platform: "ios",
-           
+            initial: "#overview"
         });
-        //  initial: "logon.html"
+        
         cdt.Application.initialize(app);
 
         $("#mainMenu").kendoMobileListView({
@@ -170,10 +191,11 @@
 
         $(window).resize(resizeMenuContainer);
 
-        $(document).ready(function () {
-            kendo.history.navigate("#logon.html");
-            app.navigate("logon.html");
-        });
+        //$(document).ready(function () {
+        //    kendo.history.navigate("#logon.html");
+        //    app.navigate("logon.html");
+        //});
+
 
 
     </script>
