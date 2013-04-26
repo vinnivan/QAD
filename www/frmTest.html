@@ -11,7 +11,7 @@
 		var currentMethod = frmTest.RWC_PromptControl1_First_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.MessageBox.show("Hello World","Test",cdt.MessageBoxButton.Ok,"var.Result",function() { currentMethod(_value,_completeAction, 1,_shouldContinue); } );
 			return;
@@ -50,7 +50,7 @@
 			cdt.MessageBox.show("Hello World2","Test4",cdt.MessageBoxButton.Ok,"var.Result",function() { currentMethod(_value,_completeAction, 12,_shouldContinue); } );
 			return;
 		case  12:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -94,7 +94,7 @@
 		var currentMethod = frmTest.RWC_PromptControl1_Second_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("Result").toUpperCase() > "299".toUpperCase())
 			{
@@ -135,7 +135,7 @@
 			
 			}
 			cdt.VariableManager.setLocal("Result","100");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

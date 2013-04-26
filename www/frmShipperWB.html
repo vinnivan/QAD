@@ -11,11 +11,11 @@
 		var currentMethod = frmShipperWB.RWC_PromptControl1_ShipTo_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("SHWSTR",cdt.VariableManager.getNamespace());
 			RWC_PromptControl1.SetDetailText("ShipTo",cdt.VariableManager.get("Mvr.VSHPST","CUST_NAME"),false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -59,7 +59,7 @@
 		var currentMethod = frmShipperWB.RWC_PromptControl1_ContainerNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("PEG",cdt.VariableManager.get("Mvr.VILBLE","PEG"));
 			cdt.VariableManager.setLocal("RAN",cdt.VariableManager.get("Mvr.VILBLE","REF"));
@@ -91,7 +91,7 @@
 			shouldContinue = false;
 			cdt.VariableManager.setLocal("STAY","1");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -102,14 +102,14 @@
 		var currentMethod = frmShipperWB.RWC_PromptControl1_ContainerNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("SHWEND",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("","Shipper Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
 			return;
 		case  2:
 			RWC_PageControl1.ResetAll( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -186,7 +186,7 @@
 		var currentMethod = frmShipperWB.RWC_PromptControl1_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("SHWBLD",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("","Container Serial Sent!",cdt.MessageBoxButton.Ok,1, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
@@ -204,7 +204,7 @@
 			cdt.VariableManager.setLocal("CONT_SER","");
 			frmShipperWB.RWC_PromptControl1.returnToPrompt("ContainerNumber",false,false);
 			shouldContinue = false;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

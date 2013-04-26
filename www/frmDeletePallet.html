@@ -11,12 +11,12 @@
 		var currentMethod = frmDeletePallet.RWC_PromptControl1_Shipper2_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("INT_ID",Utilities.Instance.GetNow("YYYYMTDDHHMMSS"));
 			cdt.VariableManager.setLocal("SHIP_TO",cdt.VariableManager.get("Mvr.VSHPPR","ABS_SHIPTO"));
 			cdt.VariableManager.setLocal("TO_STATUS","A");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -60,7 +60,7 @@
 		var currentMethod = frmDeletePallet.RWC_PromptControl1_Pallet2_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("SHWBDC",cdt.VariableManager.getNamespace());
 			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("SHWBDE",cdt.VariableManager.getNamespace());
@@ -68,7 +68,7 @@
 			cdt.VariableManager.setLocal("CONT_SER","");
 			cdt.NetworkManager.setSourceLine( 5);cdt.NetworkManager.sendTransaction("SHWBDS",cdt.VariableManager.getNamespace());
 			frmDeletePallet.RWC_PromptControl1.showPrompt("Shipper2");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

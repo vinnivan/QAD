@@ -11,7 +11,7 @@
 		var currentMethod = frmShipperVerify.RWC_PromptControl1_Shipper_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.get("Mvr.VSHPPR","CONFIRMED") == "Y")
 			{
@@ -30,7 +30,7 @@
 			cdt.VariableManager.setLocal("SHIP_TO",cdt.VariableManager.get("Mvr.VSHPPR","ABS_SHIPTO"));
 			cdt.NetworkManager.setSourceLine( 6);cdt.NetworkManager.sendTransaction("SHVSTR",cdt.VariableManager.getNamespace());
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -74,7 +74,7 @@
 		var currentMethod = frmShipperVerify.RWC_PromptControl1_ContainerNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","PART"));
 			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
@@ -86,7 +86,7 @@
 			RWC_PromptControl1.SetDetailText("ContainerNumber",cdt.VariableManager.getLocal("DISP_DESC"),false);
 			RWC_PromptControl1.SetDetailText("ContainerNumber",cdt.VariableManager.getLocal("DISP_ITEM"),false);
 			UpdateData( false );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -97,7 +97,7 @@
 		var currentMethod = frmShipperVerify.RWC_PromptControl1_ContainerNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VSHCMP",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			if(cdt.VariableManager.get("Mvr.VSHCMP","STATUS") == "Y")
@@ -125,7 +125,7 @@
 			}
 		
 		case 9:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -169,7 +169,7 @@
 		var currentMethod = frmShipperVerify.RWC_PromptControl1_VehicleReference_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("VEHICLE") == "")
 			{
@@ -208,7 +208,7 @@
 			cdt.VariableManager.setLocal("CONT_SER","");
 			frmShipperVerify.RWC_PromptControl1.returnToPrompt("ContainerNumber",false,false);
 			shouldContinue = false;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

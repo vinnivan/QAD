@@ -11,7 +11,7 @@
 		var currentMethod = frmRemoveFromMaster.RWC_PromptControl1_MasterNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("CONT_SER_MASTER",cdt.VariableManager.getLocal("CONT_SER"));
 			if(cdt.VariableManager.get("Mvr.VINTLI","IL_STATUS").toUpperCase() == "A".toUpperCase())
@@ -54,7 +54,7 @@
 			}
 		
 		case 12:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -98,7 +98,7 @@
 		var currentMethod = frmRemoveFromMaster.RWC_PromptControl1_ContainerNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LABEL_QTY","1");
 			cdt.VariableManager.setLocal("CONT_SER",cdt.VariableManager.getLocal("CONT_SER_DETAIL"));
@@ -109,7 +109,7 @@
 			cdt.VariableManager.setLocal("ILABEL","");
 			frmRemoveFromMaster.RWC_PromptControl1.showPrompt("ContainerNumber");
 			shouldContinue = false;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -120,11 +120,11 @@
 		var currentMethod = frmRemoveFromMaster.RWC_PromptControl1_ContainerNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("DILEND",cdt.VariableManager.getNamespace());
 			frmRemoveFromMaster.viewModel.promptControl.reset( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

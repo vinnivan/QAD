@@ -11,13 +11,13 @@
 		var currentMethod = frmSOShipment.pmtSOShipment_SalesOrder_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("INT_ID",Utilities.Instance.GetNow("MTDDYYYYHHMMSS"));
 				/* A boolean to test if we've sent a SOSBLD yet.	*/ 
 			cdt.VariableManager.setLocal("SENT","N");
 			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("SOSSTR",cdt.VariableManager.getNamespace());
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -61,7 +61,7 @@
 		var currentMethod = frmSOShipment.pmtSOShipment_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LOT_SER","");
 			cdt.VariableManager.setLocal("ORDERLINE",cdt.VariableManager.get("Mvr.VSOITM","SO_LINE"));
@@ -77,7 +77,7 @@
 			
 			cdt.VariableManager.setLocal("ABC",cdt.VariableManager.get("Mvr.VPARTN","ABC"));
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -88,7 +88,7 @@
 		var currentMethod = frmSOShipment.pmtSOShipment_ItemNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("SENT") == "Y")
 			{
@@ -105,7 +105,7 @@
 		case 4:
 			cdt.VariableManager.setLocal("SAL_ORD","");
 			frmSOShipment.pmtSOShipment.returnToPrompt("ShipFrom",false,false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -149,7 +149,7 @@
 		var currentMethod = frmSOShipment.pmtSOShipment_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.SER_CTRL = Y
 			// Line#  2 : ShowPrompt ( pmtSOShipment , Serial ) 
@@ -158,7 +158,7 @@
 			// Line#  5 : Else
 			// Line#  6 : ShowPrompt ( pmtSOShipment , Quantity ) 
 			// Line#  7 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -202,7 +202,7 @@
 		var currentMethod = frmSOShipment.pmtSOShipment_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
 			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE"));
@@ -225,7 +225,7 @@
 			cdt.VariableManager.setLocal("FR_LOT_SER","");
 			cdt.VariableManager.setLocal("ITEM","");
 			cdt.VariableManager.setLocal("QTY","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -269,10 +269,10 @@
 		var currentMethod = frmSOShipment.pmtSOShipment_Lot_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -316,7 +316,7 @@
 		var currentMethod = frmSOShipment.pmtSOShipment_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
 			cdt.VariableManager.setLocal("TO_SITE",cdt.VariableManager.getLocal("SITE"));
@@ -350,7 +350,7 @@
 			cdt.VariableManager.setLocal("QTY","");
 			frmSOShipment.pmtSOShipment.showPrompt("ItemNumber");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -394,7 +394,7 @@
 		var currentMethod = frmSOShipment.pmtSOShipment_Count_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.getLocal("FR_LOC"));
 			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("COUNT_QTY"));
@@ -413,7 +413,7 @@
 			cdt.VariableManager.setLocal("QTY","");
 			cdt.VariableManager.setLocal("REMARKS","");
 			frmSOShipment.pmtSOShipment.showPrompt("ItemNumber");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

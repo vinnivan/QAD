@@ -12,7 +12,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Task_List_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.TRAN_TYPE = ICLOLS
 			// Line#  2 : Var.TMS_REGION = Gvr.TMS_REGION
@@ -90,7 +90,7 @@
 			// Line#  74 : Else If Var.TMS_TASK_TYPE = (Alpha) Bulk2Shipping Or Var.TMS_TASK_TYPE = (Alpha) PickingBulk2Shipping
 			// Line#  75 : ShowPrompt ( RWC_PromptControl1 , Bulk2ShipperUnit ) 
 			// Line#  76 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -101,10 +101,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Task_List_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -170,7 +170,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
 			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
@@ -275,7 +275,7 @@
 			RWC_PromptControl1.SetHistoryText("Bulk2StageUnit","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
 			RWC_PromptControl1.SetHistoryText("Bulk2StageUnit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
 			frmTMSTaskPromptList.RWC_PromptControl1.showPrompt("Bulk2StageToLocation");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -286,7 +286,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("URGENCY",cdt.VariableManager.getLocal("TMS_PRIORITY"));
 			cdt.VariableManager.setLocal("NUM_UNITS","1");
@@ -324,7 +324,7 @@
 			RWC_PromptControl1.SetHistoryText("Task_List","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
 			RWC_PromptControl1.SetHistoryText("Task_List","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
 			RWC_PromptControl1.Focus();
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -335,7 +335,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			RWC_PromptControl1.ReturnToPrompt("Task_List",false,false);
 			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSetFromQueue("Task_List");
@@ -343,7 +343,7 @@
 			UpdateData( false );
 			_completeAction(shouldContinue);
 			return;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -354,10 +354,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageUnit_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -401,7 +401,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.TMS_TASK_ID <> (Alpha) ""
 			// Line#  2 : If Var.LOC <> (Alpha) Var.TMS_BIN
@@ -466,7 +466,7 @@
 			// Line#  61 : CancelDefault( )
 			// Line#  62 : ExitEvent( )
 			// Line#  63 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -477,10 +477,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmTMSTaskPromptList.RWC_PromptControl1.returnToPrompt("Bulk2StageUnit",true,true);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -491,10 +491,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2StageToLocation_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -538,7 +538,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
 			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
@@ -634,7 +634,7 @@
 			RWC_PromptControl1.SetHistoryText("Stage2PickingBulkUnit","Unit",cdt.VariableManager.getLocal("TMS_SERIAL"),false);
 			RWC_PromptControl1.SetHistoryText("Stage2PickingBulkUnit","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
 			RWC_PromptControl1.SetHistoryText("Stage2PickingBulkUnit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -645,7 +645,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			RWC_PromptControl1.ReturnToPrompt("Task_List",false,false);
 			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSetFromQueue("Task_List");
@@ -653,7 +653,7 @@
 			UpdateData( false );
 			_completeAction(shouldContinue);
 			return;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -664,10 +664,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkUnit_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -711,7 +711,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.LOC_SNGL = Mvr.VLOCNO.LOC_SNGL
 			// Line#  2 : If Var.LOC_SNGL <> (Alpha) N
@@ -757,7 +757,7 @@
 			// Line#  42 : CancelDefault( )
 			// Line#  43 : ExitEvent( )
 			// Line#  44 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -768,10 +768,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmTMSTaskPromptList.RWC_PromptControl1.returnToPrompt("Stage2PickingBulkUnit",true,true);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -782,10 +782,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Stage2PickingBulkToLocation_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -829,7 +829,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinUnit_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLX","ITEM"));
 			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
@@ -915,7 +915,7 @@
 			RWC_PromptControl1.SetHistoryText("PickingBulk2BinUnit","From Loc",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
 			RWC_PromptControl1.SetHistoryText("PickingBulk2BinUnit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
 			cdt.VariableManager.setLocal("LOC","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -926,10 +926,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinUnit_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -973,7 +973,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinToLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("LOC").toUpperCase() != cdt.VariableManager.getLocal("TMS_BIN").toUpperCase())
 			{
@@ -1012,7 +1012,7 @@
 			cdt.NetworkManager.setSourceLine( 21);RWC_PromptControl1.ReceiveDataSetFromQueue("Task_List");
 			RWC_PromptControl1.MoveToRow("Task_List",0);
 			UpdateData( false );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1023,10 +1023,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinToLocation_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1070,7 +1070,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceCount_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocalNumeric("DWNLDQTY",cdt.VariableManager.getLocalNumeric("DWNLDQTY") + 0);
 			if(cdt.VariableManager.getLocalNumeric("DWNLDQTY") < cdt.VariableManager.getLocalNumeric("PIECES"))
@@ -1101,7 +1101,7 @@
 			UpdateData( false );
 			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.getLocal("DETLABEL"));
 			cdt.NetworkManager.setSourceLine( 20);RWC_PromptControl1.ReceiveDataSetFromQueue("PickingBulk2BinPieceList");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1112,7 +1112,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceCount_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("t_TMSStatusComplete",cdt.VariableManager.getNamespace());
 			if(cdt.VariableManager.getLocal("TMS_USER_ID").toUpperCase() != "".toUpperCase())
@@ -1123,7 +1123,7 @@
 			_completeAction(shouldContinue);
 			return;
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1167,13 +1167,13 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_PickingBulk2BinPieceList_OnSelect;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("DWNLDQTY",cdt.VariableManager.get("Dsv.dtsUnitToBin","PIECES"));
 			cdt.VariableManager.setLocal("LENGTH",cdt.VariableManager.get("Dsv.dtsUnitToBin","LENGTH"));
 			cdt.VariableManager.setLocal("ILABEL",cdt.VariableManager.get("Dsv.dtsUnitToBin","ILABEL"));
 			frmTMSTaskPromptList.RWC_PromptControl1.showPrompt("PickingBulk2BinPieceCount");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1228,7 +1228,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
 			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
@@ -1333,7 +1333,7 @@
 			RWC_PromptControl1.SetHistoryText("Bulk2ShipperUnit","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
 			RWC_PromptControl1.SetHistoryText("Bulk2ShipperUnit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
 			frmTMSTaskPromptList.RWC_PromptControl1.showPrompt("Bulk2ShipperToLocation");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1344,7 +1344,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("URGENCY",cdt.VariableManager.getLocal("TMS_PRIORITY"));
 			cdt.VariableManager.setLocal("NUM_UNITS","1");
@@ -1383,7 +1383,7 @@
 			RWC_PromptControl1.SetHistoryText("Task_List","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
 			RWC_PromptControl1.SetHistoryText("Task_List","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
 			RWC_PromptControl1.Focus();
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1394,7 +1394,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			RWC_PromptControl1.ReturnToPrompt("Task_List",false,false);
 			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSetFromQueue("Task_List");
@@ -1402,7 +1402,7 @@
 			UpdateData( false );
 			_completeAction(shouldContinue);
 			return;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1413,10 +1413,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperUnit_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1460,7 +1460,7 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.TMS_TASK_ID <> (Alpha) ""
 			// Line#  2 : If Var.LOC <> (Alpha) Var.TMS_BIN
@@ -1507,7 +1507,7 @@
 			// Line#  43 : CancelDefault( )
 			// Line#  44 : ExitEvent( )
 			// Line#  45 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1518,10 +1518,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmTMSTaskPromptList.RWC_PromptControl1.returnToPrompt("Bulk2ShipperUnit",true,true);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1532,10 +1532,10 @@
 		var currentMethod = frmTMSTaskPromptList.RWC_PromptControl1_Bulk2ShipperToLocation_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

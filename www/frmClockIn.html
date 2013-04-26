@@ -11,14 +11,14 @@
 		var currentMethod = frmClockIn.RWC_PromptControl1_Emp_Number_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.StatusBox.show("Welcome",cdt.VariableManager.get("Mvr.VEMPNO","EMP_NAME"),cdt.MessageBoxButton.Ok,4, function() { currentMethod(_value,_completeAction, 1,_shouldContinue); } );
 			return;
 		case  1:
 			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("CLKIN",cdt.VariableManager.getNamespace());
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

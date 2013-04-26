@@ -11,7 +11,7 @@
 		var currentMethod = frmTMSChangeRegion.RWC_PromptControl1_Region_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("TMS_COMPANY",cdt.VariableManager.getGlobal("TMS_COMPANY"));
 			cdt.VariableManager.setLocal("TMS_IP_ADD",Utilities.Instance.GetIPAddress());
@@ -20,7 +20,7 @@
 			cdt.NetworkManager.setSourceLine( 5);cdt.NetworkManager.sendTransaction("t_TMSTaskON",cdt.VariableManager.getNamespace());
 			cdt.VariableManager.setGlobal("TMS_REGION",cdt.VariableManager.getLocal("TMS_REGION"));
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

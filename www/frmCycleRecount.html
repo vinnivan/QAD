@@ -11,11 +11,11 @@
 		var currentMethod = frmCycleRecount.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
 			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -26,14 +26,14 @@
 		var currentMethod = frmCycleRecount.RWC_PromptControl1_ItemNumber_OnError;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("ITEM") == "")
 			{
 			
 			CloseForm( );
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -176,7 +176,7 @@
 		var currentMethod = frmCycleRecount.RWC_PromptControl1_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("ICCCAR",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
@@ -184,7 +184,7 @@
 		case  2:
 			frmCycleRecount.viewModel.promptControl.reset( );
 			shouldContinue = false;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

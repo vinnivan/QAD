@@ -11,14 +11,14 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
 			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
 			cdt.VariableManager.setLocal("LOT_SER","");
 			cdt.VariableManager.setLocal("FR_LOT_SER","");
 			cdt.VariableManager.setLocal("TO_LOT_SER","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -62,11 +62,11 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_FromSite_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
 			cdt.VariableManager.set("Mvr.VLSQTY","SITE",cdt.VariableManager.getLocal("SITE"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -110,11 +110,11 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_FromLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LOCATION",cdt.VariableManager.getLocal("LOC"));
 			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -158,10 +158,10 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ReferenceNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.set("Mvr.VLSQTY","REF",cdt.VariableManager.getLocal("REF"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -205,12 +205,12 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_FromSerial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
 			cdt.VariableManager.set("Mvr.VLSQTY","LOT_SER",cdt.VariableManager.getLocal("FR_LOT_SER"));
 			frmInventoyTransfer.RWC_PromptControl1.showPrompt("Quantity");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -254,11 +254,11 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_FromLot_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
 			cdt.VariableManager.set("Mvr.VLSQTY","LOT_SER",cdt.VariableManager.getLocal("FR_LOT_SER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -335,7 +335,7 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToSite_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("TEMP",cdt.VariableManager.getLocal("SITE"));
 			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("TO_SITE"));
@@ -347,7 +347,7 @@
 			frmInventoyTransfer.RWC_PromptControl1.returnToPrompt("ToSite",false,false);
 			}
 			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("TEMP"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -424,7 +424,7 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToRef_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("SER_CTRL") == "Y")
 			{
@@ -469,7 +469,7 @@
 			}
 		
 		case 14:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -480,7 +480,7 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToRef_OnError;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("SER_CTRL") == "N"
 			 && 
@@ -530,7 +530,7 @@
 			}
 		
 		case 10:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -574,7 +574,7 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToLot_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VTSTAT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			if(cdt.VariableManager.get("Mvr.VTSTAT","STATUS") == "Y")
@@ -602,7 +602,7 @@
 			}
 		
 		case 9:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -646,7 +646,7 @@
 		var currentMethod = frmInventoyTransfer.RWC_PromptControl1_ToSerial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VTSTAT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			if(cdt.VariableManager.get("Mvr.VTSTAT","STATUS") == "Y")
@@ -674,7 +674,7 @@
 			}
 		
 		case 9:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

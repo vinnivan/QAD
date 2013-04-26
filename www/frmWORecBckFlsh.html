@@ -12,7 +12,7 @@
 		var currentMethod = frmWORecBckFlsh.RWC_PromptControl2_WONumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("WO_LOT",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
 			cdt.VariableManager.setLocal("WOID",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
@@ -23,7 +23,7 @@
 			cdt.VariableManager.setLocal("TO_STATUS","A");
 			cdt.VariableManager.setLocal("BACK_TYPE","W");
 			cdt.VariableManager.setLocal("CLOSE","N");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -67,12 +67,12 @@
 		var currentMethod = frmWORecBckFlsh.RWC_PromptControl2_Cont_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","PART"));
 			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
 			cdt.VariableManager.setLocal("LOT_SER",cdt.VariableManager.get("Mvr.VILBLE","LOT_SER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -149,7 +149,7 @@
 		var currentMethod = frmWORecBckFlsh.RWC_PromptControl2_LOCATION_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VTSTAT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			if(cdt.VariableManager.get("Mvr.VTSTAT","STATUS").toUpperCase() != "Y".toUpperCase())
@@ -173,7 +173,7 @@
 			return;
 		case  9:
 			frmWORecBckFlsh.viewModel.promptControl.reset( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -217,7 +217,7 @@
 		var currentMethod = frmWORecBckFlsh.RWC_PromptControl1_WONumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("WO_LOT",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
 			cdt.VariableManager.setLocal("WOID",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
@@ -227,7 +227,7 @@
 			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VWRKID","SER_CTRL"));
 			cdt.VariableManager.setLocal("TO_STATUS","A");
 			cdt.VariableManager.setLocal("BACK_TYPE","W");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -271,12 +271,12 @@
 		var currentMethod = frmWORecBckFlsh.RWC_PromptControl1_Container_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","PART"));
 			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
 			cdt.VariableManager.setLocal("LOT_SER",cdt.VariableManager.get("Mvr.VILBLE","LOT_SER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -320,10 +320,10 @@
 		var currentMethod = frmWORecBckFlsh.RWC_PromptControl1_Site_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmWORecBckFlsh.RWC_PromptControl1.returnToPrompt("ItemNumber",false,false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -367,14 +367,14 @@
 		var currentMethod = frmWORecBckFlsh.RWC_PromptControl1_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("WOISRC",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
 			return;
 		case  2:
 			frmWORecBckFlsh.viewModel.promptControl.reset( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

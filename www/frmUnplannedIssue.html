@@ -11,7 +11,7 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LOT_SER","");
 			cdt.VariableManager.setLocal("PART",cdt.VariableManager.getLocal("ITEM"));
@@ -43,7 +43,7 @@
 			
 			frmUnplannedIssue.RWC_PromptControl1.showPrompt("Serial");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -87,14 +87,14 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("LOT_CTRL") == "N")
 			{
 			
 			frmUnplannedIssue.RWC_PromptControl1.showPrompt("FromSite");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -105,10 +105,10 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_Serial_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmUnplannedIssue.RWC_PromptControl1.showPrompt("WONumber");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -152,10 +152,10 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_Lot_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmUnplannedIssue.RWC_PromptControl1.showPrompt("WONumber");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -199,10 +199,10 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_FromSite_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -312,7 +312,7 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("ICUNIS",cdt.VariableManager.getNamespace());
 			if(cdt.VariableManager.getLocal("LOT_CTRL") == "N"
@@ -338,7 +338,7 @@
 			
 			frmUnplannedIssue.RWC_PromptControl1.showPrompt("Serial");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -382,10 +382,10 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_WONumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmUnplannedIssue.RWC_PromptControl1.showPrompt("LineNumber");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -396,10 +396,10 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_WONumber_OnError;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmUnplannedIssue.RWC_PromptControl1.showPrompt("LineNumber");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -608,10 +608,10 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_AccountNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("DR_ACTNUM",cdt.VariableManager.getLocal("ACTNUM"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -688,14 +688,14 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_EffectiveDate_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("UISEND",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("Success","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
 			return;
 		case  2:
 			frmUnplannedIssue.RWC_PromptControl1.returnToPrompt("ItemNumber",false,false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -706,13 +706,13 @@
 		var currentMethod = frmUnplannedIssue.RWC_PromptControl1_EffectiveDate_OnError;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.StatusBox.show("Error","Transaction Not Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 1,_shouldContinue); } );
 			return;
 		case  1:
 			frmUnplannedIssue.RWC_PromptControl1.returnToPrompt("ItemNumber",false,false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

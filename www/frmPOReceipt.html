@@ -14,7 +14,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_PO_Number_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.SITE = Gvr.SITE
 			// Line#  2 : Var.USE_IL = N
@@ -34,7 +34,7 @@
 			// Line#  16 : ShowPrompt ( RWC_PromptControl1 , Item_Number ) 
 			// Line#  17 : End If
 			// Line#  18 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -78,14 +78,14 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_PONumber_OnSelect;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.PO = Dsv.PONumber.PO
 			// Line#  2 : Var.SITE = Dsv.PONumber.SITE
 			// Line#  3 : Var.VENDOR = Dsv.PONumber.VENDOR
 			// Line#  4 : Var.DUE_DATE = Dsv.PONumber.DUE_DATE
 			// Line#  5 : SetHistoryTextEx ( RWC_PromptControl1 , PO_Number , @PO Number , Var.PO , True ) 
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -140,7 +140,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Item_Number_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.ITEM = (Alpha) ""
 			// Line#  2 : DownloadListPrompt ( RWC_PromptControl1 , POLine ) 
@@ -168,7 +168,7 @@
 			// Line#  24 : ShowPrompt ( RWC_PromptControl1 , Quantity ) 
 			// Line#  25 : End If
 			// Line#  26 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -179,12 +179,12 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Item_Number_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SendTransaction ( POREND ) 
 			// Line#  2 : StatusWindow (  , Transaction Sent , 3 ) 
 			// Line#  3 : ResetForm( )
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -228,7 +228,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_POLine_OnSelect;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.PO_LINE = Dsv.POLines.PO_LINE
 			// Line#  2 : Var.SITE = Dsv.POLines.SITE
@@ -253,7 +253,7 @@
 			// Line#  21 : Else
 			// Line#  22 : ShowPrompt ( RWC_PromptControl1 , Quantity ) 
 			// Line#  23 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -331,13 +331,13 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Lot_Number_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SendTransaction ( PORECT ) 
 			// Line#  2 : StatusWindow ( Success , Transaction Sent! , 3 ) 
 			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , Item_Number ) 
 			// Line#  4 : CancelDefault( )
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -381,13 +381,13 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Serial_Number_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SendTransaction ( PORECT ) 
 			// Line#  2 : StatusWindow ( Success , Transaction Sent! , 3 ) 
 			// Line#  3 : ShowPrompt ( RWC_PromptControl1 , Item_Number ) 
 			// Line#  4 : CancelDefault( )
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -431,7 +431,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.SER_CTRL = Y
 			// Line#  2 : If Var.QTY = 1 Or Var.QTY = -1
@@ -446,7 +446,7 @@
 			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , Print_Barcode_Label ) 
 			// Line#  12 : CancelDefault( )
 			// Line#  13 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -457,7 +457,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Quantity_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.ITEM = (Alpha) 48175
 			// Line#  2 : ShowImage ( bmp\48175.bmp ) 
@@ -474,7 +474,7 @@
 			// Line#  13 : If Var.ITEM = (Alpha) 0995576-0019
 			// Line#  14 : ShowImage ( bmp\0995576-0019.bmp ) 
 			// Line#  15 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -551,7 +551,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SendValidation ( VTSTAT ) 
 			// Line#  2 : If Mvr.VTSTAT.STATUS <> (Alpha) Y
@@ -562,7 +562,7 @@
 			// Line#  7 : End If
 			// Line#  8 : SendTransaction ( PORECT ) 
 			// Line#  9 : StatusWindow (  , Transaction Sent! , 2 ) 
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -573,7 +573,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Location_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.TEMP_REF = Var.REF
 			// Line#  2 : Var.TEMP_LOC = Var.LOC
@@ -586,7 +586,7 @@
 			// Line#  9 : Var.REF = Var.TEMP_REF
 			// Line#  10 : Var.LOT_SER = Var.TEMP_LOT_SER
 			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , CurrentInv ) 
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -630,7 +630,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Print_Barcode_Label_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.PRT_BARC <> N And Var.PRT_BARC <> Y
 			// Line#  2 : StatusWindow ( Error , Value entered must be Y or N , 4 ) 
@@ -660,7 +660,7 @@
 			// Line#  26 : CancelDefault( )
 			// Line#  27 : End If
 			// Line#  28 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -704,7 +704,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Label_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SendTransaction ( LPOREC ) 
 			// Line#  2 : StatusWindow (  , Label Sent! , 1 ) 
@@ -716,7 +716,7 @@
 			// Line#  8 : Var.PO_LINE = 
 			// Line#  9 : Var.LOC = 
 			// Line#  10 : ReturnToPrompt ( RWC_PromptControl1 , Item_Number , True , True ) 
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -760,7 +760,7 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_Quantity_on_Label_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.LBL_QTY = Var.QTY_ONLB
 			// Line#  2 : Var.LABEL_QTY = Var.QTY_ONLB
@@ -776,7 +776,7 @@
 			// Line#  12 : Var.QTY = 
 			// Line#  13 : Var.LOC = 
 			// Line#  14 : ReturnToPrompt ( RWC_PromptControl1 , Item_Number , True , True ) 
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -820,10 +820,10 @@
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_CurrentInv_OnSelect;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : ReturnToPrompt ( RWC_PromptControl1 , Location , False , False ) 
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

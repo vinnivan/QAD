@@ -11,7 +11,7 @@
 		var currentMethod = frmTMSBinReplenishment.pmtTMSBinReplenishment_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("UNITS","1");
 			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getGlobal("SITE"));
@@ -127,7 +127,7 @@
 		
 		case 59:
 			cdt.VariableManager.setLocal("TMS_ZONE",cdt.VariableManager.get("Mvr.v_TMSPassBin","TMS_ZONE"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -171,7 +171,7 @@
 		var currentMethod = frmTMSBinReplenishment.pmtTMSBinReplenishment_Units_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocalNumeric("UNITS") > 0)
 			{
@@ -192,7 +192,7 @@
 		case 5:
 			cdt.VariableManager.setLocal("NUM_UNITS",cdt.VariableManager.getLocal("UNITS"));
 			pmtTMSBinReplenishment.SetHistoryText("Units","Units",cdt.VariableManager.getLocal("UNITS"),true);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -236,7 +236,7 @@
 		var currentMethod = frmTMSBinReplenishment.pmtTMSBinReplenishment_Urgent_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("URGENT").toUpperCase() == "Y".toUpperCase()
 			 || 
@@ -283,7 +283,7 @@
 			}
 		
 		case 14:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

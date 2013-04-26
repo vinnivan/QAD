@@ -11,7 +11,7 @@
 		var currentMethod = frmWOReceipt.RWC_PromptControl1_WO_Number_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("WOID","");
 			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendValidation("VWRKID",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
@@ -27,7 +27,7 @@
 			cdt.VariableManager.setLocal("WOID",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
 			cdt.NetworkManager.setSourceLine( 11);cdt.NetworkManager.sendTransaction("WORSTR",cdt.VariableManager.getNamespace());
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -71,10 +71,10 @@
 		var currentMethod = frmWOReceipt.RWC_PromptControl1_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("QTY","1");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -184,10 +184,10 @@
 		var currentMethod = frmWOReceipt.RWC_PromptControl1_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("WOWORC",cdt.VariableManager.getNamespace());
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -231,7 +231,7 @@
 		var currentMethod = frmWOReceipt.RWC_PromptControl1_Barcode_Label_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			RWC_PromptControl1.SetHistoryText("Barcode_Label","Print?",cdt.VariableManager.getLocal("LABEL"),false);
 			if(cdt.VariableManager.getLocal("LABEL") != "Y"
@@ -254,7 +254,7 @@
 			
 			cdt.VariableManager.setLocal("LABEL_QTY","1");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -298,7 +298,7 @@
 		var currentMethod = frmWOReceipt.RWC_PromptControl1_Num_of_Labels_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			RWC_PromptControl1.SetHistoryText("Num_of_Labels","# Labels",cdt.VariableManager.getLocal("LABEL_QTY"),false);
 			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("LWOREC",cdt.VariableManager.getNamespace());
@@ -311,7 +311,7 @@
 		case  5:
 			frmWOReceipt.viewModel.promptControl.reset( );
 			shouldContinue = false;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

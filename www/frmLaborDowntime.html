@@ -12,7 +12,7 @@
 		var currentMethod = frmLaborDowntime.RWC_PromptControl1_EmployeeNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.get("Mvr.VEMPNO","ACTIVE_JBS").toUpperCase() == "Y".toUpperCase())
 			{
@@ -68,7 +68,7 @@
 			}
 		
 		case 38:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -112,12 +112,12 @@
 		var currentMethod = frmLaborDowntime.RWC_PromptControl1_WONumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SETRUN","R");
 			cdt.VariableManager.setLocal("REF",cdt.VariableManager.get("Mvr.VWRKIX","REF"));
 			cdt.VariableManager.setLocal("ITEM1",cdt.VariableManager.get("Mvr.VWRKIX","ITEM") + "/");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -161,7 +161,7 @@
 		var currentMethod = frmLaborDowntime.RWC_PromptControl1_Operation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("WRK_CNTR",cdt.VariableManager.get("Mvr.VWRKOP","WRK_CNTR"));
 			cdt.VariableManager.setLocal("OPEN_QTY",cdt.VariableManager.get("Mvr.VWRKOP","QTY_OPEN"));
@@ -171,7 +171,7 @@
 			cdt.VariableManager.setLocal("TYPE","ISS-WO");
 			cdt.VariableManager.setLocal("WO_NBR",cdt.VariableManager.getLocal("WO_NUM"));
 			cdt.NetworkManager.setSourceLine( 8);RWC_PromptControl1.ReceiveDataSetFromQueue("Heat");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -215,13 +215,13 @@
 		var currentMethod = frmLaborDowntime.RWC_PromptControl1_Heat_OnSelect;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("HEAT",cdt.VariableManager.get("Dsv.RWC_DataSet1","REF"));
 			cdt.VariableManager.setLocal("REF",cdt.VariableManager.getLocal("HEAT"));
 			cdt.VariableManager.setLocal("ITEMHEAT",cdt.VariableManager.getLocal("ITEM1") + cdt.VariableManager.getLocal("HEAT"));
 			frmLaborDowntime.RWC_PromptControl1.showPrompt("WorkCenter");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -273,11 +273,11 @@
 		var currentMethod = frmLaborDowntime.RWC_PromptControl1_WorkCenter_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			RWC_PromptControl1.SetHistoryText("WorkCenter","Work Center",cdt.VariableManager.getLocal("WRK_CNTR"),false);
 			RWC_PromptControl1.SetHistoryText("WorkCenter","Item/Heat",cdt.VariableManager.getLocal("ITEMHEAT"),false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -321,7 +321,7 @@
 		var currentMethod = frmLaborDowntime.RWC_PromptControl1_ReasonCode_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("CLK_DATE",Utilities.Instance.GetNow("YYYYMTDD"));
 			cdt.VariableManager.setLocal("SETRUN","S");
@@ -330,7 +330,7 @@
 			return;
 		case  4:
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -407,7 +407,7 @@
 		var currentMethod = frmLaborDowntime.RWC_PromptControl1_Printer_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("CLK_DATE",Utilities.Instance.GetNow("YYYYMTDD"));
 			cdt.VariableManager.setLocal("CLK_TIME",Utilities.Instance.GetNow("HHMMSS"));
@@ -427,7 +427,7 @@
 			RWC_PromptControl1.SetHistoryText("WONumber","Employee",cdt.VariableManager.getLocal("CLK_NBR"),false);
 			RWC_PromptControl1.SetHistoryText("WONumber","START WORK ORDER","",false);
 			frmLaborDowntime.RWC_PromptControl1.showPrompt("WONumber");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

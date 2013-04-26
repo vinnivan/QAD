@@ -11,13 +11,13 @@
 		var currentMethod = frmCycleCountIL.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
 			cdt.VariableManager.setLocal("LOT_SER",cdt.VariableManager.get("Mvr.VILBLE","LOT_SER"));
 			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
 			cdt.VariableManager.setLocal("INITIAL","INITIAL");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -28,10 +28,10 @@
 		var currentMethod = frmCycleCountIL.RWC_PromptControl1_ItemNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -108,7 +108,7 @@
 		var currentMethod = frmCycleCountIL.RWC_PromptControl1_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			RWC_PromptControl1.SetHistoryText("Quantity","Qty Cntd",cdt.VariableManager.getLocal("QTY"),false);
 			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("ICCCAJ",cdt.VariableManager.getNamespace());
@@ -116,7 +116,7 @@
 			return;
 		case  3:
 			frmCycleCountIL.RWC_PromptControl1.returnToPrompt("ItemNumber",true,true);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

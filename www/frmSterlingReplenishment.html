@@ -12,13 +12,13 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SER_CTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
 			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
 			cdt.VariableManager.setLocal("LOT_SER","");
 			cdt.VariableManager.setLocal("FR_LOT_SER","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -29,12 +29,12 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_ItemNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("T_PROMPT","ITEM");
 			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSet("Repleinshment");
 			frmSterlingReplenishment.RWC_PromptControl1.showPrompt("Repleinshment");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -78,10 +78,10 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_FromLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -92,12 +92,12 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_FromLocation_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("T_PROMPT","FRLOC");
 			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSet("Repleinshment");
 			frmSterlingReplenishment.RWC_PromptControl1.showPrompt("Repleinshment");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -141,10 +141,10 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -155,12 +155,12 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_Serial_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("T_PROMPT","SER");
 			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSet("Repleinshment");
 			frmSterlingReplenishment.RWC_PromptControl1.showPrompt("Repleinshment");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -204,10 +204,10 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_Lot_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -218,12 +218,12 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_Lot_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("T_PROMPT","LOT");
 			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSet("Repleinshment");
 			frmSterlingReplenishment.RWC_PromptControl1.showPrompt("Repleinshment");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -267,10 +267,10 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LOC","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -281,12 +281,12 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_Quantity_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("T_PROMPT","QTY");
 			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSet("Repleinshment");
 			frmSterlingReplenishment.RWC_PromptControl1.showPrompt("Repleinshment");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -330,7 +330,7 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_ToLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.TO_LOC = Var.LOC
 			// Line#  2 : Var.LOC = Var.FR_LOC
@@ -352,7 +352,7 @@
 			// Line#  18 : Else
 			// Line#  19 : ReturnToPrompt ( RWC_PromptControl1 , ItemNumber , False , True ) 
 			// Line#  20 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -363,12 +363,12 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_ToLocation_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("T_PROMPT","TOLOC");
 			cdt.NetworkManager.setSourceLine( 2);RWC_PromptControl1.ReceiveDataSet("Repleinshment");
 			frmSterlingReplenishment.RWC_PromptControl1.showPrompt("Repleinshment");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -412,7 +412,7 @@
 		var currentMethod = frmSterlingReplenishment.RWC_PromptControl1_Repleinshment_OnSelect;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.T_PROMPT = (Alpha) ITEM
 			// Line#  2 : ReturnToPrompt ( RWC_PromptControl1 , ItemNumber , True , True ) 
@@ -429,7 +429,7 @@
 			// Line#  13 : Else
 			// Line#  14 : ReturnToPrompt ( RWC_PromptControl1 , FromSite , True , True ) 
 			// Line#  15 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

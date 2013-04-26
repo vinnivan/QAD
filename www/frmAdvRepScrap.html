@@ -11,10 +11,10 @@
 		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_Employee_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -58,7 +58,7 @@
 		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_ContainerNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLX","ITEM"));
 			cdt.VariableManager.setLocal("ITEM_QTY",cdt.VariableManager.get("Mvr.VILBLX","QTY"));
@@ -76,7 +76,7 @@
 			cdt.VariableManager.setLocal("ITEM_DISP","Part - " + cdt.VariableManager.getLocal("ITEM"));
 			RWC_PromptControl1.SetDetailText("ContainerNumber",cdt.VariableManager.getLocal("ITEM_DISP"),false);
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -120,13 +120,13 @@
 		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_Operation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("WRK_CNTR",cdt.VariableManager.get("Mvr.VOPRTN","WRK_CNTR"));
 			cdt.VariableManager.setLocal("MACHINE",cdt.VariableManager.get("Mvr.VOPRTN","MACHINE"));
 			cdt.VariableManager.setLocal("WRK_DISP","Work Center - " + cdt.VariableManager.getLocal("WRK_CNTR"));
 			RWC_PromptControl1.SetDetailText("Operation",cdt.VariableManager.getLocal("WRK_DISP"),false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -203,11 +203,11 @@
 		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_Machine_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("QTY_DISPLAY_1","Output Queue Qty - " + cdt.VariableManager.getLocal("OUTPUT_QTY"));
 			RWC_PromptControl1.SetDetailText("Machine",cdt.VariableManager.getLocal("QTY_DISPLAY_1"),false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -251,7 +251,7 @@
 		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_RejectQty_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocalNumeric("RJCT_QTY") > cdt.VariableManager.getLocalNumeric("OUTPUT_QTY"))
 			{
@@ -267,7 +267,7 @@
 			}
 		
 		case 5:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -311,7 +311,7 @@
 		var currentMethod = frmAdvRepScrap.RWC_PromptControl1_RejectReason_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("RJCT_RSN",cdt.VariableManager.getLocal("RSN_CODE"));
 			cdt.VariableManager.setLocal("RSN_CODE","");
@@ -325,7 +325,7 @@
 			cdt.NetworkManager.setSourceLine( 8);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
 			frmAdvRepScrap.RWC_PromptControl1.returnToPrompt("ContainerNumber",true,false);
 			shouldContinue = false;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

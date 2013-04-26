@@ -11,7 +11,7 @@
 		var currentMethod = frmPhysicalRecount.pmtMain_PITag_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VTAGNO","ITEM"));
 			cdt.VariableManager.setLocal("LOC",cdt.VariableManager.get("Mvr.VTAGNO","LOC"));
@@ -23,7 +23,7 @@
 			UpdateData( true );
 			RWC_PageControl1.ShowPage("BulkDisplay");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -100,11 +100,11 @@
 		var currentMethod = frmPhysicalRecount.pmtMain_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SERCTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
 			cdt.VariableManager.setLocal("LOTCTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -214,7 +214,7 @@
 		var currentMethod = frmPhysicalRecount.pmtMain_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("PITCMR",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
@@ -222,7 +222,7 @@
 		case  2:
 			frmPhysicalRecount.viewModel.promptControl.reset( );
 			shouldContinue = false;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

@@ -11,7 +11,7 @@
 		var currentMethod = frmTMSBulk2Shipper.RWC_PromptControl1_Unit_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM_TEMP",cdt.VariableManager.get("Mvr.VILBLE","ITEM"));
 			if(cdt.VariableManager.getLocal("ITEM_TEMP").toUpperCase() != cdt.VariableManager.getLocal("TMS_ITEM").toUpperCase())
@@ -116,7 +116,7 @@
 			RWC_PromptControl1.SetHistoryText("Unit","From Bin",cdt.VariableManager.getLocal("TMS_FROM_BIN"),false);
 			RWC_PromptControl1.SetHistoryText("Unit","Task Type",cdt.VariableManager.getLocal("TMS_TASK_TYPE"),false);
 			frmTMSBulk2Shipper.RWC_PromptControl1.showPrompt("ToLocation");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -127,7 +127,7 @@
 		var currentMethod = frmTMSBulk2Shipper.RWC_PromptControl1_Unit_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("URGENCY",cdt.VariableManager.getLocal("TMS_PRIORITY"));
 			cdt.VariableManager.setLocal("NUM_UNITS","1");
@@ -166,7 +166,7 @@
 			
 			
 			RWC_PromptControl1.Focus();
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -177,7 +177,7 @@
 		var currentMethod = frmTMSBulk2Shipper.RWC_PromptControl1_Unit_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			
 			cdt.NetworkManager.setSourceLine( 2);
@@ -185,7 +185,7 @@
 			UpdateData( false );
 			_completeAction(shouldContinue);
 			return;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -196,10 +196,10 @@
 		var currentMethod = frmTMSBulk2Shipper.RWC_PromptControl1_Unit_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -243,7 +243,7 @@
 		var currentMethod = frmTMSBulk2Shipper.RWC_PromptControl1_ToLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.TMS_TASK_ID <> (Alpha) ""
 			// Line#  2 : If Var.LOC <> (Alpha) Var.TMS_BIN
@@ -290,7 +290,7 @@
 			// Line#  43 : CancelDefault( )
 			// Line#  44 : ExitEvent( )
 			// Line#  45 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -301,10 +301,10 @@
 		var currentMethod = frmTMSBulk2Shipper.RWC_PromptControl1_ToLocation_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmTMSBulk2Shipper.RWC_PromptControl1.returnToPrompt("Unit",true,true);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -315,10 +315,10 @@
 		var currentMethod = frmTMSBulk2Shipper.RWC_PromptControl1_ToLocation_OnClick3;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

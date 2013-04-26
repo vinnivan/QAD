@@ -11,7 +11,7 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.DESC = Mvr.VPARTN.DESC
 			// Line#  2 : SetDetailText ( pmtUnplannedReceipt , ItemNumber , Var.DESC , False ) 
@@ -26,7 +26,7 @@
 			// Line#  11 : Else If Var.ITEM <> (Alpha) ""
 			// Line#  12 : ShowPrompt ( pmtUnplannedReceipt , Location ) 
 			// Line#  13 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -37,14 +37,14 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_ItemNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("RAN_ONCE") == "Y")
 			{
 			
 			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Order");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -88,10 +88,10 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Location");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -102,14 +102,14 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Serial_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("RAN_ONCE") == "Y")
 			{
 			
 			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Order");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -153,10 +153,10 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Lot_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Location");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -167,14 +167,14 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Lot_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("RAN_ONCE") == "Y")
 			{
 			
 			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Order");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -218,14 +218,14 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Site_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("RAN_ONCE") == "Y")
 			{
 			
 			frmUnplannedReceipts.pmtUnplannedReceipt.showPrompt("Order");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -269,14 +269,14 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Location_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("URCEND",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("Unplanned Receipt","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
 			return;
 		case  2:
 			frmUnplannedReceipts.pmtUnplannedReceipt.returnToPrompt("ItemNumber",true,true);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -320,7 +320,7 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("ICUNRC",cdt.VariableManager.getNamespace());
 			cdt.VariableManager.setLocal("RAN_ONCE","Y");
@@ -330,7 +330,7 @@
 			return;
 		case  5:
 			frmUnplannedReceipts.pmtUnplannedReceipt.returnToPrompt("ItemNumber",true,true);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -374,14 +374,14 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_LabelQuantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("USE_IL") != "Y")
 			{
 			
 			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("LNITEM",cdt.VariableManager.getNamespace());
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -425,7 +425,7 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_QtyOnLabel_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SendTransaction ( ICRCPR ) 
 			// Line#  2 : If Var.SER_CTRL = Y
@@ -435,7 +435,7 @@
 			// Line#  6 : Else
 			// Line#  7 : ReturnToPrompt ( pmtUnplannedReceipt , Site , True , False ) 
 			// Line#  8 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -743,14 +743,14 @@
 		var currentMethod = frmUnplannedReceipts.pmtUnplannedReceipt_EffectiveDate_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("URCEND",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("Unplanned Receipt","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
 			return;
 		case  2:
 			frmUnplannedReceipts.pmtUnplannedReceipt.returnToPrompt("ItemNumber",true,true);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

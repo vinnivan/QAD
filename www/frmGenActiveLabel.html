@@ -11,11 +11,11 @@
 		var currentMethod = frmGenActiveLabel.RWC_PromptControl1_Item_Number_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("PART",cdt.VariableManager.getLocal("ITEM"));
 			cdt.VariableManager.setLocal("LBL_QTY","1");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -92,10 +92,10 @@
 		var currentMethod = frmGenActiveLabel.RWC_PromptControl1_Serial_Number_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("QTY","1");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -172,14 +172,14 @@
 		var currentMethod = frmGenActiveLabel.RWC_PromptControl1_Number_of_Labels_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ILBL_ST","A");
 			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("LBLPRT",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 3,_shouldContinue); } );
 			return;
 		case  3:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

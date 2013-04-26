@@ -11,7 +11,7 @@
 		var currentMethod = frmLocationTransferIL.RWC_PromptControl1_ContainerNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SetHistoryTextEx ( RWC_PromptControl1 , ContainerNumber , Container , Var.CONT_SER , False ) 
 			// Line#  2 : If Var.CONT_SER <> ""
@@ -29,7 +29,7 @@
 			// Line#  14 : End If
 			// Line#  15 : End If
 			// Line#  16 : Var.REMARKS = Var.CONT_SER
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -73,11 +73,11 @@
 		var currentMethod = frmLocationTransferIL.RWC_PromptControl1_FromLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
 			cdt.VariableManager.setLocal("LOC","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -121,7 +121,7 @@
 		var currentMethod = frmLocationTransferIL.RWC_PromptControl1_ToLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.FR_LOC = (Alpha) Var.LOC
 			// Line#  2 : StatusWindow ( Error! , From Loc and To Loc cannot be the same , 1 ) 
@@ -145,7 +145,7 @@
 			// Line#  20 : StatusWindow (  , Transaction Sent! , 1 ) 
 			// Line#  21 : Var.CONT_SER = 
 			// Line#  22 : ReturnToPrompt ( RWC_PromptControl1 , ContainerNumber , False , True ) 
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

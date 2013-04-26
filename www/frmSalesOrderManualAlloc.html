@@ -11,11 +11,11 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_SalesOrder_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ALLC_DAY",cdt.VariableManager.get("Mvr.VSONMA","ALLC_DAY"));
 			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("SMASTR",cdt.VariableManager.getNamespace());
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -26,14 +26,14 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_SalesOrder_OnError;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("SAL_ORD") == "")
 			{
 			
 			CloseForm( );
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -77,10 +77,10 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_AllocateDays_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ALLC_AVL","Y");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -124,7 +124,7 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_AllocateAvailable_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("DET_ALLC","N");
 			if(cdt.VariableManager.getLocal("ALLC_AVL") != "Y"
@@ -143,7 +143,7 @@
 			}
 		
 		case 6:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -187,7 +187,7 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_DetailAlloc_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("DET_ALLC") != "Y"
 			 && 
@@ -205,7 +205,7 @@
 			}
 		
 		case 5:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -249,10 +249,10 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_FromSite_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_SITE",cdt.VariableManager.getLocal("SITE"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -296,7 +296,7 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SAL_ORDL",cdt.VariableManager.get("Mvr.VSOITM","SO_LINE"));
 			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VSOITM","QTY").Trim());
@@ -354,7 +354,7 @@
 			}
 		
 		case 28:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -365,7 +365,7 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_ItemNumber_OnError;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("ITEM") == "")
 			{
@@ -378,7 +378,7 @@
 			frmSalesOrderManualAlloc.RWC_PromptControl1.showPrompt("SalesOrder");
 			shouldContinue = false;
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -488,7 +488,7 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("LOC") == "")
 			{
@@ -496,7 +496,7 @@
 			RWC_PromptControl1.IsValid(false);
 			shouldContinue = false;
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -606,11 +606,11 @@
 		var currentMethod = frmSalesOrderManualAlloc.RWC_PromptControl1_QuantityPicked_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("BUILD_SENT","Y");
 			cdt.NetworkManager.setSourceLine( 2);cdt.NetworkManager.sendTransaction("SMABLD",cdt.VariableManager.getNamespace());
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

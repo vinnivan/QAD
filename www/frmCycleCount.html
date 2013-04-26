@@ -11,12 +11,12 @@
 		var currentMethod = frmCycleCount.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SERCTRL",cdt.VariableManager.get("Mvr.VPARTN","SER_CTRL"));
 			cdt.VariableManager.setLocal("LOTCTRL",cdt.VariableManager.get("Mvr.VPARTN","LOT_CTRL"));
 			cdt.VariableManager.setLocal("INITIAL","INITIAL");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -27,10 +27,10 @@
 		var currentMethod = frmCycleCount.RWC_PromptControl1_ItemNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -107,10 +107,10 @@
 		var currentMethod = frmCycleCount.RWC_PromptControl1_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmCycleCount.RWC_PromptControl1.showPrompt("ReferenceNumber");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -187,7 +187,7 @@
 		var currentMethod = frmCycleCount.RWC_PromptControl1_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SetHistoryTextEx ( RWC_PromptControl1 , Quantity , Qty Cntd , Var.QTY , False ) 
 			// Line#  2 : SendValidation ( VCYTOL ) 
@@ -222,7 +222,7 @@
 			// Line#  31 : StatusWindow ( Cycle Count , Transaction Sent! , 2 ) 
 			// Line#  32 : ReturnToPrompt ( RWC_PromptControl1 , ItemNumber , True , True ) 
 			// Line#  33 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -266,7 +266,7 @@
 		var currentMethod = frmCycleCount.RWC_PromptControl1_OOTolerance_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SetHistoryTextEx ( RWC_PromptControl1 , OOTolerance , Tol. Recount? , Var.RECOUNT , False ) 
 			// Line#  2 : If Var.RECOUNT = Y
@@ -277,7 +277,7 @@
 			// Line#  7 : PromptIsValid ( RWC_PromptControl1 , False ) 
 			// Line#  8 : CancelDefault( )
 			// Line#  9 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -321,7 +321,7 @@
 		var currentMethod = frmCycleCount.RWC_PromptControl1_QtyRecount_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			RWC_PromptControl1.SetHistoryText("QtyRecount","Qty Rcnt",cdt.VariableManager.getLocal("QTY"),false);
 			cdt.VariableManager.setLocal("INITIAL","RECOUNT");
@@ -331,7 +331,7 @@
 		case  4:
 			frmCycleCount.viewModel.promptControl.reset( );
 			shouldContinue = false;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

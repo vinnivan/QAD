@@ -12,11 +12,11 @@
 		var currentMethod = frmSOPickNoCtr.sa_Shipper_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SHIP_TO",cdt.VariableManager.get("Mvr.VSHPPR","ABS_SHIPTO"));
 			cdt.VariableManager.setLocal("INT_ID",cdt.VariableManager.getLocal("SHIPPER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -60,11 +60,11 @@
 		var currentMethod = frmSOPickNoCtr.sa_Carrier_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SHIP_VIA",cdt.VariableManager.getLocal("CARRIER"));
 			cdt.VariableManager.setLocal("CARRIER","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -108,10 +108,10 @@
 		var currentMethod = frmSOPickNoCtr.sa_TrackNum_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("INT_ID",cdt.VariableManager.getLocal("SHIPPER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -155,10 +155,10 @@
 		var currentMethod = frmSOPickNoCtr.sa_Item_Search_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);sa.ReceiveDataSetFromQueue("PreShipperList");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -202,7 +202,7 @@
 		var currentMethod = frmSOPickNoCtr.sa_PreShipperList_OnSelect;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LIST_LOC",cdt.VariableManager.get("Dsv.dtsPreShipper","LOC"));
 			cdt.VariableManager.setLocal("LIST_ITEM",cdt.VariableManager.get("Dsv.dtsPreShipper","ITEM"));
@@ -221,7 +221,7 @@
 			cdt.VariableManager.setLocal("LOC","");
 			cdt.VariableManager.setLocal("ITEM","");
 			cdt.VariableManager.setLocal("SEND_END","N");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -232,7 +232,7 @@
 		var currentMethod = frmSOPickNoCtr.sa_PreShipperList_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("SEND_END").toUpperCase() == "Y".toUpperCase())
 			{
@@ -251,7 +251,7 @@
 			cdt.NetworkManager.setSourceLine( 6);cdt.NetworkManager.sendValidation("VXSHRT",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			cdt.NetworkManager.setSourceLine( 7);cdt.NetworkManager.sendValidation("VXSOPN",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -314,13 +314,13 @@
 		var currentMethod = frmSOPickNoCtr.sa_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOC",cdt.VariableManager.getLocal("LOC"));
 			cdt.VariableManager.setLocal("QTY","0");
 			sa.SetHistoryText("Location","Loc",cdt.VariableManager.getLocal("LOC"),true);
 			sa.SetHistoryText("Location","Item",cdt.VariableManager.getLocal("SV_ITEM"),false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -331,7 +331,7 @@
 		var currentMethod = frmSOPickNoCtr.sa_Location_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEMSCH","");
 			cdt.NetworkManager.setSourceLine( 2);sa.ReceiveDataSetFromQueue("PreShipperList");
@@ -371,7 +371,7 @@
 			cdt.VariableManager.setLocal("ITEMSCH","");
 			frmSOPickNoCtr.sa.returnToPrompt("Item_Search",false,false);
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -415,7 +415,7 @@
 		var currentMethod = frmSOPickNoCtr.sa_Item_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("ITEM").toUpperCase() != cdt.VariableManager.getLocal("LIST_ITEM").toUpperCase())
 			{
@@ -438,7 +438,7 @@
 			sa.SetHistoryText("Item","Item",cdt.VariableManager.getLocal("SV_ITEM"),true);
 			sa.SetHistoryText("Item","Loc",cdt.VariableManager.getLocal("LOC"),false);
 			frmSOPickNoCtr.sa.showPrompt("Item");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -449,7 +449,7 @@
 		var currentMethod = frmSOPickNoCtr.sa_Item_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("QTY").toUpperCase() < "1".toUpperCase())
 			{
@@ -472,7 +472,7 @@
 			sa.SetHistoryText("Item","Loc",cdt.VariableManager.getLocal("LOC"),false);
 			cdt.VariableManager.setLocal("QTY","");
 			frmSOPickNoCtr.sa.showPrompt("Quantity");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -483,7 +483,7 @@
 		var currentMethod = frmSOPickNoCtr.sa_Item_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("QTY").toUpperCase() < "1".toUpperCase())
 			{
@@ -555,7 +555,7 @@
 			sa.SetHistoryText("Item","Item",cdt.VariableManager.getLocal("SV_ITEM"),false);
 			sa.SetHistoryText("Item","Loc",cdt.VariableManager.getLocal("LOC"),false);
 			frmSOPickNoCtr.sa.showPrompt("Location");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -599,7 +599,7 @@
 		var currentMethod = frmSOPickNoCtr.sa_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("QTY").toUpperCase() == "0".toUpperCase())
 			{
@@ -685,7 +685,7 @@
 			sa.SetHistoryText("Quantity","Item",cdt.VariableManager.getLocal("SV_ITEM"),false);
 			sa.SetHistoryText("Quantity","Loc",cdt.VariableManager.getLocal("LOC"),false);
 			frmSOPickNoCtr.sa.showPrompt("Location");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

@@ -11,7 +11,7 @@
 		var currentMethod = frmLocationTransfer.RWC_PromptControl1_ContainerNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : SetHistoryTextEx ( RWC_PromptControl1 , ContainerNumber , Container , Var.CONT_SER , False ) 
 			// Line#  2 : If Var.CONT_SER <> ""
@@ -27,7 +27,7 @@
 			// Line#  12 : CancelDefault( )
 			// Line#  13 : End If
 			// Line#  14 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -71,7 +71,7 @@
 		var currentMethod = frmLocationTransfer.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocalNumeric("ITEM_LENGTH",cdt.VariableManager.getLocal("ITEM").Length);
 			cdt.VariableManager.setLocal("ITEM_DESC","");
@@ -112,7 +112,7 @@
 			cdt.VariableManager.setLocal("LOT_SER","");
 			cdt.VariableManager.setLocal("FR_LOT_SER","");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -156,7 +156,7 @@
 		var currentMethod = frmLocationTransfer.RWC_PromptControl1_FromLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.FR_LOC = Var.LOC
 			// Line#  2 : If Var.ITEM_DESC <> (Alpha) ""
@@ -171,7 +171,7 @@
 			// Line#  11 : ShowPrompt ( RWC_PromptControl1 , Quantity ) 
 			// Line#  12 : Var.LOT_SER = 
 			// Line#  13 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -215,10 +215,10 @@
 		var currentMethod = frmLocationTransfer.RWC_PromptControl1_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -262,10 +262,10 @@
 		var currentMethod = frmLocationTransfer.RWC_PromptControl1_Lot_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("FR_LOT_SER",cdt.VariableManager.getLocal("LOT_SER"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -309,10 +309,10 @@
 		var currentMethod = frmLocationTransfer.RWC_PromptControl1_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LOC","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -356,7 +356,7 @@
 		var currentMethod = frmLocationTransfer.RWC_PromptControl1_ToLocation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.TO_LOC = Var.LOC
 			// Line#  2 : Var.LOC = Var.FR_LOC
@@ -382,7 +382,7 @@
 			// Line#  22 : Var.QTY = 
 			// Line#  23 : ReturnToPrompt ( RWC_PromptControl1 , ItemNumber , False , True ) 
 			// Line#  24 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

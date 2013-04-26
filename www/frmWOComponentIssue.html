@@ -12,14 +12,14 @@
 		var currentMethod = frmWOComponentIssue.pmptMain_WONumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 				/* A boolean to test if we've sent a WOWOIS.	*/ 
 			cdt.VariableManager.setLocal("SENT","N");
 			cdt.VariableManager.setLocal("WOID",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
 			cdt.VariableManager.setLocal("WO_LOT",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
 			cdt.NetworkManager.setSourceLine( 4);cdt.NetworkManager.sendTransaction("WORSTR",cdt.VariableManager.getNamespace());
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -30,10 +30,10 @@
 		var currentMethod = frmWOComponentIssue.pmptMain_WONumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -77,7 +77,7 @@
 		var currentMethod = frmWOComponentIssue.pmptMain_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("ITEM").toUpperCase() == "".toUpperCase())
 			{
@@ -119,7 +119,7 @@
 			}
 		
 		case 22:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -163,7 +163,7 @@
 		var currentMethod = frmWOComponentIssue.pmptMain_WO_Lines_OnSelect;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.LOT_SER = 
 			// Line#  2 : Var.SITE = Gvr.SITE
@@ -180,7 +180,7 @@
 			// Line#  13 : Else
 			// Line#  14 : ShowPrompt ( pmptMain , Location ) 
 			// Line#  15 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -246,11 +246,11 @@
 		var currentMethod = frmWOComponentIssue.pmptMain_Serial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("QTY","1");
 			frmWOComponentIssue.pmptMain.showPrompt("Site");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -327,7 +327,7 @@
 		var currentMethod = frmWOComponentIssue.pmptMain_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VLLSCO",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			if(cdt.VariableManager.get("Mvr.VLLSCO","STATUS") != "Y")
@@ -343,7 +343,7 @@
 			}
 		
 		case 5:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -354,7 +354,7 @@
 		var currentMethod = frmWOComponentIssue.pmptMain_Location_OnError;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VLLSCO",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			if(cdt.VariableManager.get("Mvr.VLLSCO","STATUS") == "Y")
@@ -374,7 +374,7 @@
 			frmWOComponentIssue.pmptMain.showPrompt("Quantity");
 			}
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -418,7 +418,7 @@
 		var currentMethod = frmWOComponentIssue.pmptMain_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("SER_CTRL") == "Y")
 			{
@@ -446,7 +446,7 @@
 			return;
 		case  10:
 			frmWOComponentIssue.pmptMain.returnToPrompt("WONumber",false,false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

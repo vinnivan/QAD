@@ -12,12 +12,12 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_EmployeeNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("TO_STATUS","A");
 			cdt.VariableManager.setLocal("BKFL_TYPE","A");
 			cdt.VariableManager.setLocal("CLK_NBR",cdt.VariableManager.getLocal("EMPLOYEE"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -61,7 +61,7 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_ContainerNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.QTY_SCRAP = 
 			// Line#  2 : Var.QTY_REJECT = 
@@ -96,7 +96,7 @@
 			// Line#  31 : ShowPrompt ( RWC_PromptControl1 , ItemNumber ) 
 			// Line#  32 : End If
 			// Line#  33 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -140,7 +140,7 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ROUTING",cdt.VariableManager.get("Mvr.VRPART","ROUTING"));
 			cdt.VariableManager.setLocal("LOT_CTRL",cdt.VariableManager.get("Mvr.VRPART","LOT_CTRL"));
@@ -162,7 +162,7 @@
 			RWC_PromptControl1.SetDetailText("ItemNumber",cdt.VariableManager.getLocal("CONT_DETAIL"),false);
 			cdt.NetworkManager.setSourceLine( 17);cdt.NetworkManager.sendTransaction("ARBSTR",cdt.VariableManager.getNamespace());
 			UpdateData( false );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -206,11 +206,11 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_QuantityProcessed_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("OUTPUT_QTY",cdt.VariableManager.getLocal("QTY_PROC"));
 			frmBackFlush.RWC_PromptControl1.showPrompt("Operation");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -320,13 +320,13 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_Operation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("MACHINE",cdt.VariableManager.get("Mvr.VOPRTN","MACHINE"));
 			cdt.VariableManager.setLocal("WRK_CNTR",cdt.VariableManager.get("Mvr.VOPRTN","WRK_CNTR"));
 			cdt.VariableManager.setLocal("LAST_OP",cdt.VariableManager.get("Mvr.VOPRTN","LAST_OP"));
 			cdt.VariableManager.setLocal("LAST_OP",cdt.VariableManager.getLocal("LAST_OP").TrimEnd(null));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -370,7 +370,7 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_LineNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LOC","LINESIDE");
 			if(cdt.VariableManager.getLocal("LAST_OP").toUpperCase() == "Y".toUpperCase())
@@ -383,7 +383,7 @@
 			
 			frmBackFlush.RWC_PromptControl1.showPrompt("Print_Barcode_Label");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -394,10 +394,10 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_LineNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmBackFlush.RWC_PromptControl1.showPrompt("ARScrapScrapQty");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -408,10 +408,10 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_LineNumber_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			frmBackFlush.RWC_PromptControl1.showPrompt("ARRejectRejectQty");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -455,10 +455,10 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_CompLoc_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("COMP_LOC",cdt.VariableManager.getLocal("LOC"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -535,7 +535,7 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_Print_Barcode_Label_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.PRTLBL <> Y
 			// Line#  2 : SendTransaction ( ARBEND ) 
@@ -578,7 +578,7 @@
 			// Line#  39 : Var.LOT_SER = 
 			// Line#  40 : ReturnToPrompt ( RWC_PromptControl1 , ContainerNumber , True , True ) 
 			// Line#  41 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -589,11 +589,11 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_Print_Barcode_Label_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("PARENT_CHECK","Y");
 			frmBackFlush.RWC_PromptControl1.showPrompt("AdvRepScrapRejectQty");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -637,7 +637,7 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_NumberOfLabels_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("LABEL_QTY","1");
 			// Line#  2 : Var.LABEL_QTY = Var.LBL_QTY
@@ -710,7 +710,7 @@
 			cdt.VariableManager.setLocal("LINE","");
 			cdt.VariableManager.setLocal("YES_NO","Y");
 			cdt.VariableManager.setLocal("LOT_SER","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -754,7 +754,7 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_ARScrapScrapQty_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocalNumeric("BAD_QTY",cdt.VariableManager.getLocalNumeric("QTY_REJECT") + cdt.VariableManager.getLocalNumeric("QTY_SCRAP"));
 			cdt.VariableManager.setLocalNumeric("QTY_DIFF",cdt.VariableManager.getLocalNumeric("QTY_PROC") - cdt.VariableManager.getLocalNumeric("BAD_QTY"));
@@ -774,7 +774,7 @@
 			cdt.VariableManager.setLocal("TRX_CODE","ARBKFL");
 			cdt.VariableManager.setLocal("TRX_TYPE","S");
 			cdt.VariableManager.setLocal("SCRAP_TXT","Scrap Qty:" + cdt.VariableManager.getLocal("QTY_SCRAP"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -818,12 +818,12 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_ARScrapScrapReason_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SCRAP_RSN",cdt.VariableManager.getLocal("RSN_CODE"));
 			RWC_PromptControl1.SetDetailText("Operation",cdt.VariableManager.getLocal("SCRAP_TXT"),false);
 			RWC_PromptControl1.ReturnToPrompt("LineNumber",true,false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -867,7 +867,7 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_ARRejectRejectQty_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocalNumeric("BAD_QTY",cdt.VariableManager.getLocalNumeric("QTY_REJECT") + cdt.VariableManager.getLocalNumeric("QTY_SCRAP"));
 			cdt.VariableManager.setLocalNumeric("QTY_DIFF",cdt.VariableManager.getLocalNumeric("QTY_PROC") - cdt.VariableManager.getLocalNumeric("BAD_QTY"));
@@ -887,7 +887,7 @@
 			cdt.VariableManager.setLocal("REJECT_TXT","Reject Qty:" + cdt.VariableManager.getLocal("QTY_REJECT"));
 			cdt.VariableManager.setLocal("TRX_CODE","ARBKFL");
 			cdt.VariableManager.setLocal("TRX_TYPE","R");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -931,12 +931,12 @@
 		var currentMethod = frmBackFlush.RWC_PromptControl1_ARRejectRejectReason_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("RJCT_RSN",cdt.VariableManager.getLocal("RSN_CODE"));
 			RWC_PromptControl1.SetDetailText("Operation",cdt.VariableManager.getLocal("REJECT_TXT"),false);
 			RWC_PromptControl1.ReturnToPrompt("LineNumber",true,false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

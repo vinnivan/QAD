@@ -11,7 +11,7 @@
 		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_EmployeeNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.get("Mvr.VEMPLY","STATUS").toUpperCase() != "Y".toUpperCase())
 			{
@@ -21,7 +21,7 @@
 			_completeAction(shouldContinue);
 			return;
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -65,7 +65,7 @@
 		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_ContainerNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.get("Mvr.VILBLX","ITEM"));
 			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("ITEM").TrimEnd(null));
@@ -113,7 +113,7 @@
 			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.get("Mvr.VRPART","SITE"));
 			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("SITE").TrimEnd(null));
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -157,7 +157,7 @@
 		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_Operation_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("MACHINE_TEMP",cdt.VariableManager.get("Mvr.VOPRTN","MACHINE"));
 			cdt.VariableManager.setLocal("MACHINE_TEMP",cdt.VariableManager.getLocal("MACHINE_TEMP").TrimEnd(null));
@@ -168,7 +168,7 @@
 			
 			cdt.VariableManager.setLocal("MACHINE",cdt.VariableManager.getLocal("MACHINE_TEMP"));
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -245,10 +245,10 @@
 		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_Machine_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("EFF_DATE",Utilities.Instance.GetNow("MTDDYYYY"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -292,7 +292,7 @@
 		var currentMethod = frmAdvRepSetup.RWC_PromptControl1_SetupTime_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("TIME_TMP",cdt.VariableManager.getLocal("ACT_TIME").Substring(1 -1,1));
 			if(cdt.VariableManager.getLocal("TIME_TMP").toUpperCase() != "0".toUpperCase())
@@ -359,7 +359,7 @@
 			cdt.VariableManager.setLocal("EFF_DATE",Utilities.Instance.GetNow("YYYYMTDDHHMMSS"));
 			frmAdvRepSetup.RWC_PromptControl1.returnToPrompt("EmployeeNumber",true,true);
 			shouldContinue = false;
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

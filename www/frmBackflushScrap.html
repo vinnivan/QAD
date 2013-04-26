@@ -11,7 +11,7 @@
 		var currentMethod = frmBackflushScrap.RWC_PromptControl1_ScrapQty_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocalNumeric("BAD_QTY",cdt.VariableManager.getLocalNumeric("QTY_REJECT") + cdt.VariableManager.getLocalNumeric("QTY_SCRAP"));
 			cdt.VariableManager.setLocalNumeric("QTY_DIFF",cdt.VariableManager.getLocalNumeric("QTY_PROC") - cdt.VariableManager.getLocalNumeric("BAD_QTY"));
@@ -31,7 +31,7 @@
 			cdt.VariableManager.setLocal("TRX_CODE","ARBKFL");
 			cdt.VariableManager.setLocal("TRX_TYPE","S");
 			cdt.VariableManager.setLocal("SCRAP_TXT","Scrap Qty:" + cdt.VariableManager.getLocal("QTY_SCRAP"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -75,12 +75,12 @@
 		var currentMethod = frmBackflushScrap.RWC_PromptControl1_ScrapReason_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("SCRAP_RSN",cdt.VariableManager.getLocal("RSN_CODE"));
 			
 			
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

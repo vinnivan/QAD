@@ -11,7 +11,7 @@
 		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_LabelType_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("BCIL_TYPE").toUpperCase() != "X".toUpperCase()
 			 && 
@@ -33,7 +33,7 @@
 			cdt.VariableManager.setLocal("LBL_TYPE",cdt.VariableManager.getLocal("BCIL_TYPE"));
 			RWC_PromptControl1.SetHistoryText("LabelType","Label Type",cdt.VariableManager.getLocal("BCIL_TYPE"),false);
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -77,7 +77,7 @@
 		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_Choice_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("TO_STATUS","M");
 			cdt.VariableManager.setLocal("INT_ID",Utilities.Instance.GetNow("YYYYMTDDHHMMSS"));
@@ -161,7 +161,7 @@
 		
 		case 23:
 			RWC_PromptControl1.SetHistoryText("Choice","Choice",cdt.VariableManager.getLocal("CHOICE_DISP"),false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -205,7 +205,7 @@
 		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_MasterSerial_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("MASTER_ITEM",cdt.VariableManager.get("Mvr.VINTLI","PART"));
 			if(cdt.VariableManager.get("Mvr.VINTLI","IL_STATUS").toUpperCase() == "A".toUpperCase())
@@ -244,7 +244,7 @@
 			}
 		
 		case 10:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -288,7 +288,7 @@
 		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_ContainerNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.get("Mvr.VINTLI","DUPLICATE").toUpperCase() != "Y".toUpperCase())
 			{
@@ -370,7 +370,7 @@
 			}
 		
 		case 38:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -381,14 +381,14 @@
 		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_ContainerNumber_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("ILMEND",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("Information","Transaction Complete.",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
 			return;
 		case  2:
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -432,14 +432,14 @@
 		var currentMethod = frmMasterMixBuild.RWC_PromptControl1_LabelQuantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("ILMEND",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("Information","Transaction Complete.",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
 			return;
 		case  2:
 			CloseForm( );
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

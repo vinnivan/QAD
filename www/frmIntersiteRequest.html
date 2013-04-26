@@ -11,11 +11,11 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Site_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("DSRSTR",cdt.VariableManager.getNamespace());
 			cdt.VariableManager.setLocal("NEW_REQ","N");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -59,7 +59,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_NewEdit_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("NEW_REQ") == "")
 			{
@@ -99,7 +99,7 @@
 			}
 			}
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -143,7 +143,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_ItemNumber_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendValidation("VDSRNW",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			if(cdt.VariableManager.get("Mvr.VDSRNW","STATUS") != "Y")
@@ -167,7 +167,7 @@
 			RWC_PromptControl1.SetDetailText("ItemNumber",cdt.VariableManager.getLocal("DESC"),false);
 			frmIntersiteRequest.RWC_PromptControl1.showPrompt("OrderDate");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -211,7 +211,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Requisition_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ORD_DATE",cdt.VariableManager.get("Mvr.VDSRRQ","ORD_DATE"));
 			cdt.VariableManager.setLocal("DUE_DATE",cdt.VariableManager.get("Mvr.VDSRRQ","DUE_DATE"));
@@ -219,7 +219,7 @@
 			cdt.VariableManager.setLocal("STATUS2",cdt.VariableManager.get("Mvr.VDSRRQ","STATUS2"));
 			cdt.VariableManager.setLocal("YES_NO","N");
 			cdt.VariableManager.setLocal("YES_NO_2","N");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -263,7 +263,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_OrderDate_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("ORD_DATE") != "")
 			{
@@ -286,7 +286,7 @@
 		
 		case 8:
 			cdt.VariableManager.setLocal("DATE","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -330,7 +330,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_DueDate_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("DUE_DATE") != "")
 			{
@@ -353,7 +353,7 @@
 		
 		case 8:
 			cdt.VariableManager.setLocal("DATE","");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -397,7 +397,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Qty_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("QTY") == "")
 			{
@@ -412,7 +412,7 @@
 			}
 		
 		case 4:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -456,7 +456,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_DSR_Status_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("STATUS2") == "P")
 			{
@@ -491,7 +491,7 @@
 			}
 		
 		case 13:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -568,7 +568,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("LOC") == "")
 			{
@@ -586,7 +586,7 @@
 			
 			frmIntersiteRequest.RWC_PromptControl1.showPrompt("Remarks");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -630,7 +630,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_CommentYN_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("YES_NO") != "N"
 			 && 
@@ -670,7 +670,7 @@
 			}
 		
 		case 10:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -780,7 +780,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_ShipSite_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("REQ_NUM") != "")
 			{
@@ -793,7 +793,7 @@
 			cdt.VariableManager.setLocal("QTY_ORD",cdt.VariableManager.get("Mvr.VDSDRT","QTY_ORD"));
 			cdt.VariableManager.setLocal("TRANSPORT",cdt.VariableManager.get("Mvr.VDSDRT","TRANSPORT"));
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -837,7 +837,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_QtyOrdered_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("QTY_ORD") == "")
 			{
@@ -868,7 +868,7 @@
 			}
 		
 		case 9:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -912,13 +912,13 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Transport_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("DSRBLD",cdt.VariableManager.getNamespace());
 			cdt.VariableManager.setLocal("TM_DESC",cdt.VariableManager.get("Mvr.VTRSPT","TM_DESC"));
 			RWC_PromptControl1.SetDetailText("Transport",cdt.VariableManager.getLocal("TM_DESC"),false);
 			frmIntersiteRequest.RWC_PromptControl1.showPrompt("RemarksDSD");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -962,7 +962,7 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_Comment2YN_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("YES_NO_2") != "N"
 			 && 
@@ -1002,7 +1002,7 @@
 			}
 		
 		case 10:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -1079,14 +1079,14 @@
 		var currentMethod = frmIntersiteRequest.RWC_PromptControl1_RemarksDSD_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("DSREND",cdt.VariableManager.getNamespace());
 			cdt.StatusBox.show("Transaction Sent","Successfully",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
 			return;
 		case  2:
 			frmIntersiteRequest.RWC_PromptControl1.showPrompt("Site");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

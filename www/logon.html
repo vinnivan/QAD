@@ -11,7 +11,7 @@
 		var currentMethod = logon.RWC_PromptControl1_Username_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("USERID",cdt.VariableManager.getGlobal("USERID"));
 			cdt.VariableManager.setLocal("ATTEMPTS","0");
@@ -42,7 +42,7 @@
 			// Line#  15 : CancelDefault( )
 			}
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -86,7 +86,7 @@
 		var currentMethod = logon.RWC_PromptControl1_Password_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setGlobal("PASSWD",cdt.VariableManager.getLocal("PASSWD"));
 			cdt.VariableManager.setLocal("VER","1.0.B");
@@ -105,8 +105,8 @@
 			// Line#  15 : End If
 			// Line#  16 : Var.ATTEMPTS = Var.ATTEMPTS + 1
 			logon.viewModel.logIn(cdt.VariableManager.get("Mvr.VLOGON","USER_NAME"));
-			//showMenu();
-			
+			showMenu();
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -190,7 +190,6 @@
 	                <div data-role='header'>
 	                    <div data-role='navbar'>Overview</div>
 	                </div>
-                    <div id="debugDiv" ></div>
 	                <span style='font:x-large;margin-right:5px;'>User:</span><span style='font:large' data-bind='text: currentUser'></span>
 	                <div style='width:50px;margin-left:auto;margin-right:auto;margin-top:20px;'>
 	                    <a  data-role='button' data-click='logon.viewModel.logOut'>Logout</a>

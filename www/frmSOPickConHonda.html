@@ -12,14 +12,14 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_Shipper_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("BLANK","");
 			cdt.VariableManager.setLocal("SHIP_TO","00050004");
 			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendValidation("VSHPID",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			cdt.VariableManager.setLocal("CARRIER",cdt.VariableManager.get("Mvr.VSHPID","CARRIER"));
 			cdt.VariableManager.setLocal("VEH_REF",cdt.VariableManager.get("Mvr.VSHPID","VEH_REF"));
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -63,7 +63,7 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_ItemSearch_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);pmtSOPick.ReceiveDataSetFromQueue("PreShipperList");
 			cdt.VariableManager.setLocalNumeric("COUNT",pmtSOPick.GetRowCount("PreShipperList"));
@@ -81,7 +81,7 @@
 			}
 		
 		case 7:
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -125,7 +125,7 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_PreShipperList_OnSelect;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("BUILD","N");
 			cdt.VariableManager.setLocal("PART_QTY","0");
@@ -144,7 +144,7 @@
 			cdt.NetworkManager.setSourceLine( 15);cdt.NetworkManager.sendValidation("VPARTX",cdt.VariableManager.getNamespace(),cdt.ValidationAction.ReturnToPrompt,cdt.ValidationAction.ReturnToPrompt);
 			UpdateData( false );
 			frmSOPickConHonda.pmtSOPick.showPrompt("HondaPallet");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -207,7 +207,7 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_Location_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			cdt.VariableManager.setLocal("ITEM",cdt.VariableManager.getLocal("LIST_ITEM"));
 			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.getLocal("QTY_SHIP"));
@@ -263,7 +263,7 @@
 			cdt.VariableManager.setLocal("COUNT_QTY","");
 			pmtSOPick.SetHistoryText("Location","Loc",cdt.VariableManager.getLocal("LOC"),true);
 			pmtSOPick.SetHistoryText("Location","Item",cdt.VariableManager.getLocal("SV_ITEM"),false);
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -274,7 +274,7 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_Location_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : Var.COUNT = ListPromptGetRowCount ( pmtSOPick , PreShipperList ) 
 			// Line#  2 : If Var.COUNT < (Numeric) 1
@@ -292,7 +292,7 @@
 			// Line#  14 : Var.ITEMSCH = 
 			// Line#  15 : ShowPrompt ( pmtSOPick , ItemSearch ) 
 			// Line#  16 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -336,7 +336,7 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_Item_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("ITEM").toUpperCase() != cdt.VariableManager.getLocal("LIST_ITEM").toUpperCase())
 			{
@@ -399,7 +399,7 @@
 			pmtSOPick.SetHistoryText("Item","Item",cdt.VariableManager.getLocal("SV_ITEM"),true);
 			pmtSOPick.SetHistoryText("Item","Loc",cdt.VariableManager.getLocal("LOC"),false);
 			frmSOPickConHonda.pmtSOPick.showPrompt("Item");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -410,7 +410,7 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_Item_OnClick;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("QTY").toUpperCase() < "1".toUpperCase())
 			{
@@ -432,7 +432,7 @@
 			pmtSOPick.SetHistoryText("Item","Loc",cdt.VariableManager.getLocal("LOC"),false);
 			frmSOPickConHonda.pmtSOPick.showPrompt("Quantity");
 			}
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -443,7 +443,7 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_Item_OnClick2;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.QTY = (Alpha) 0
 			// Line#  2 : Beep ( Exclamation ) 
@@ -584,7 +584,7 @@
 			// Line#  137 : ShowPrompt ( pmtSOPick , ItemSearch ) 
 			// Line#  138 : End If
 			// Line#  139 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -628,7 +628,7 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_Quantity_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			// Line#  1 : If Var.QTY = (Alpha) 0
 			// Line#  2 : Beep ( Exclamation ) 
@@ -769,7 +769,7 @@
 			// Line#  137 : ShowPrompt ( pmtSOPick , ItemSearch ) 
 			// Line#  138 : End If
 			// Line#  139 : End If
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -813,7 +813,7 @@
 		var currentMethod = frmSOPickConHonda.pmtSOPick_HondaPallet_ValidEvent;
 		try{
 		switch (_continuationLine) {
-			case undefined:
+			case undefined:/*
 			
 			if(cdt.VariableManager.getLocal("HONDA_PALLET").toUpperCase() != "Y".toUpperCase()
 			 && 
@@ -836,7 +836,7 @@
 			cdt.VariableManager.setLocal("HONDA_BUILT","N");
 			UpdateData( false );
 			frmSOPickConHonda.pmtSOPick.showPrompt("Location");
-			
+			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
