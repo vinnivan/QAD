@@ -104,9 +104,9 @@
 			// Line#  14 : ReturnToPrompt ( RWC_PromptControl1 , Username , True , True ) 
 			// Line#  15 : End If
 			// Line#  16 : Var.ATTEMPTS = Var.ATTEMPTS + 1
-			logon.viewModel.logIn(cdt.VariableManager.get("Mvr.VLOGON","USER_NAME"));
-			showMenu();
 			*/
+			logon.viewModel.logIn(cdt.VariableManager.get("Mvr.VLOGON", "USER_NAME"));
+			showMenu();
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
