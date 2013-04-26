@@ -9,19 +9,19 @@ var showMenu = function () {
 
 
     if (mm.is(":visible")) {
-        $("<div> History count:" + history.length + " showMenu - Current:" + kendo.history.current + " - Back</div>").appendTo('#debugDiv')
+       // $("<div> History count:" + history.length + " showMenu - Current:" + kendo.history.current + " - Back</div>").appendTo('#debugDiv')
 
         // On Android phonegap build history comes in empty and will redirect to unknown page without this
         if (history.length <= 2) {
-            alert("head back to logon");
-            kendo.history.navigate("#logon.html");
+          //  alert("head back to logon");
+            app.navigate("#logon.html");
         } else {
-            alert("head #back");
+            //alert("head #back");
             kendo.history.navigate("#:back");
         }
 
     } else {
-        $("<div> History count:" + history.length + " showMenu - Current:" + kendo.history.current + " - Main</div>").appendTo('#debugDiv')
+        //$("<div> History count:" + history.length + " showMenu - Current:" + kendo.history.current + " - Main</div>").appendTo('#debugDiv')
 
         kendo.history.navigate("#main");
     }
@@ -44,15 +44,16 @@ var showView = undefined;
 var menuItemSelected = function (e) {
     // Get History Cleared
     showView = e.dataItem.view;
-    $("<div> menuSelected showView:" + showView + "</div>").appendTo('#debugDiv')
+    //$("<div> menuSelected showView:" + showView + "</div>").appendTo('#debugDiv')
 
-    alert("History length:" + history.length)
+    //alert("History length:" + history.length)
 
+    
     if (history.length <= 2) {
-        alert("head back to logon");
-        kendo.history.navigate("#logon.html");
+      //  alert("head back to logon");
+        app.navigate("#logon.html");
     } else {
-        alert("head #back");
+      //  alert("head #back");
         kendo.history.navigate("#:back");
     }
 };
@@ -65,13 +66,12 @@ $(window).bind("hashchange", function (e) {
         return;
 
     if (url == "") {
-        $("<div>Ignore empty url</div>").appendTo('#debugDiv')
+        //$("<div>Ignore empty url</div>").appendTo('#debugDiv')
         return;
     }
 
     if (url == "#/") {
-        $("<div>Ignore root url</div>").appendTo('#debugDiv')
-        kendo.history.navigate("#logon.html");
+        //$("<div>Ignore root url</div>").appendTo('#debugDiv')
         return;
     }
 
@@ -120,12 +120,13 @@ $(window).bind("hashchange", function (e) {
                 cdt.Application.getCurrentViewModel().setIsMenuOpen(false);
                 mm.data().kendoMobileScroller.reset();
                 mm.hide(0);
-                kendo.history.navigate(showView);
+                app.navigate(showView);
+                //kendo.history.navigate(showView);
                 showView = undefined;
             });
 
         }
     }
-    $("<div>" + state.join(" - ") + "</div>").appendTo('#debugDiv')
+//    $("<div>" + state.join(" - ") + "</div>").appendTo('#debugDiv')
 
 });
