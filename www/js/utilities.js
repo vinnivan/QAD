@@ -14,7 +14,7 @@ var showMenu = function () {
         // On Android phonegap build history comes in empty and will redirect to unknown page without this
         if (history.length <= 2) {
           //  alert("head back to logon");
-            app.navigate("#logon.html");
+            kendo.history.navigate("#logon.html");
         } else {
             //alert("head #back");
             kendo.history.navigate("#:back");
@@ -51,7 +51,7 @@ var menuItemSelected = function (e) {
     
     if (history.length <= 2) {
       //  alert("head back to logon");
-        app.navigate("#logon.html");
+        kendo.history.navigate("#logon.html");
     } else {
       //  alert("head #back");
         kendo.history.navigate("#:back");
@@ -120,8 +120,7 @@ $(window).bind("hashchange", function (e) {
                 cdt.Application.getCurrentViewModel().setIsMenuOpen(false);
                 mm.data().kendoMobileScroller.reset();
                 mm.hide(0);
-                app.navigate(showView);
-                //kendo.history.navigate(showView);
+                kendo.history.navigate(showView);
                 showView = undefined;
             });
 
