@@ -11,8 +11,8 @@
     <script type="text/javascript" src="barcodescanner.js"></script>
  	
     <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.ba-bbq.min.js"></script>
-    <script src="js/kendo.mobile.min.js"></script>
+    <!--<script src="js/jquery.ba-bbq.min.js"></script>-->
+    <script src="js/kendo.mobile.js"></script>
     <script src="js/cdt-1.0.0.js"></script>
     <script src="js/menuItems.js"></script>
     <script src="js/utilities.js"></script>
@@ -165,16 +165,6 @@
         kendo.bind($("#configurationModalView"), cdt.Application.configuration);
         //kendo.bind($("#messageBoxDialog"), cdt.MessageBox);
 
-        var resizeMenuContainer = function () {
-
-            var height = $(window).height();
-            var width = $(window).width() - 50;
-           // alert("Width:" + $(window).width() + " Height:" + $(window).height());
-            
-            $("#mainMenuContainer").height(height);
-            $("#mainMenuContainer").width(width);
-
-        };
 
         resizeMenuContainer();
 
