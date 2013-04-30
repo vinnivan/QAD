@@ -105,8 +105,9 @@
 			// Line#  15 : End If
 			// Line#  16 : Var.ATTEMPTS = Var.ATTEMPTS + 1
 			*/
-			logon.viewModel.logIn(cdt.VariableManager.get("Mvr.VLOGON", "USER_NAME"));
-			showMenu();
+			    cdt.Application.logIn(cdt.VariableManager.getGlobal("USERID"));
+			    shouldContinue = false;
+			//showMenu();
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
@@ -151,40 +152,37 @@
 	            <div data-role='navbar'>
 	                <div data-role='view-title'></div>
 	                <a data-role='button' data-align='right' data-rel='popover' href='#popupMenu' data-icon='settings'></a>
-	                <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
 	            </div>
 	        </header>
-	        <div data-bind='invisible: isLoggedIn'>
-	            <div data-bind='visible: promptControl.isCurrentPromptList' >
-	                <ul id='logon-listControl' data-role='listview' ></ul>
+	        <div data-bind='visible: promptControl.isCurrentPromptList' >
+	            <ul id='logon-listControl' data-role='listview' ></ul>
+	        </div>
+	        <div id='logon-historyScroller' data-role='scroller' class='historyScroller' >
+	            <ul id='logon-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	        </div>
+	        <div data-bind='visible: promptControl.isCurrentPromptText' >
+	            <div class='promptControlLeft' >
+	                <div><label for='logon-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
+	                <div><input style='width: 100%;'  id='logon-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
 	            </div>
-	            <div id='logon-historyScroller' data-role='scroller' class='historyScroller' >
-	                <ul id='logon-historyList' data-role='listview' data-template='historyTemplate' data-bind='visible: promptControl.isHistoryVisible' style='margin-bottom: 20px; margin-left: 0px;'></ul>
+	            <div class='promptControlRight'>
+	                <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
+	                <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
 	            </div>
-	            <div data-bind='visible: promptControl.isCurrentPromptText' >
-	                <div class='promptControlLeft' >
-	                    <div><label for='logon-textInput' data-bind='text: promptControl.textControl.caption'></label></div>
-	                    <div><input style='width: 100%;'  id='logon-textInput' type='text' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.textControl.text' data-value-update='keyup' /></div>
-	                </div>
-	                <div class='promptControlRight'>
-	                    <div><img src='images/barcode.png' style='width:32px; height:32px;' onclick='showScanner()' /></div>
-	                    <div><img src='images/reset.png' id='Img1' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
-	                </div>
+	        </div>
+	        <div data-bind='visible: promptControl.isCurrentPromptPassword'>
+	            <div class='promptControlLeft' >
+	                <div><label for='logon-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
+	                <div><input style='width: 100%;'  id='logon-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
 	            </div>
-	            <div data-bind='visible: promptControl.isCurrentPromptPassword'>
-	                <div class='promptControlLeft' >
-	                    <div><label for='logon-passwordInput' data-bind='text: promptControl.passwordControl.caption'></label></div>
-	                    <div><input style='width: 100%;'  id='logon-passwordInput' type='password' data-bind='style: {text-transform: promptControl.textControl.toUpperStyle},value: promptControl.passwordControl.text' data-value-update='keyup' /></div>
-	                </div>
-	                <div class='promptControlRight'>
-	                    <div style='height:46px'></div>
-	                    <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
-	                </div>
+	            <div class='promptControlRight'>
+	                <div style='height:46px'></div>
+	                <div><img src='images/reset.png' data-bind='click: promptControl.resetText' style='width:32px; height:32px;' /></div>
 	            </div>
 	        </div>
 	
 
-	        <div data-bind='visible: isLoggedIn'>
+<!--	        <div data-bind='visible: isLoggedIn'>
 	            <img data-bind='attr: { src: customerLogo }' class='overviewLogo' />
 	            <div id='overview'>
 	                <div data-role='header'>
@@ -196,10 +194,10 @@
 	                </div>
 	            </div>
 	            <img data-bind='attr: { src: radleyLogo }' class='overviewLogo' />
-	        </div>
+	        </div>-->
 	
 
-	        <div data-role='popover' id='popupMenu' data-popup='{'height': 280, 'width': 280}'>
+<!--	        <div data-role='popover' id='popupMenu' data-popup='{'height': 280, 'width': 280}'>
 	            <div data-role='view' data-title='Options'>
 	                <div data-role='header'>
 	                    <div data-role='navbar'>
@@ -215,7 +213,7 @@
 	                    <li data-icon='settings'><a data-role='listview-link' data-rel='modalview' href='#configurationModalView' id='configurationOpenButton'>Configuration</a></li>
 	                </ul>
 	            </div>
-	        </div>
+	        </div>-->
 </div>
 </body>
 </html>

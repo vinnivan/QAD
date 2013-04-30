@@ -21,7 +21,8 @@ var resizeMenuContainer = function () {
 var showMenu = function () {
     var mm = $("#mainMenuContainer");
     var width = mm.width();
-    var main = $("#" + cdt.Application.getCurrentViewModel().viewId);
+    //var main = $("#" + cdt.Application.getCurrentViewModel().viewId);
+    var main = $("#overview");
 
     if (mm.is(":visible")) {
        // $("<div> History count:" + history.length + " showMenu - Current:" + kendo.history.current + " - Back</div>").appendTo('#debugDiv')
@@ -29,7 +30,7 @@ var showMenu = function () {
         main.animate({ left: '-=' + width }, 400);
         mm.animate({ left: '-=' + width }, 400, function () {
 
-            cdt.Application.getCurrentViewModel().setIsMenuOpen(false);
+            cdt.Application.setIsMenuOpen(false);
             mm.data().kendoMobileScroller.reset();
             mm.hide(0);
             if (showView != undefined) {
@@ -52,7 +53,7 @@ var showMenu = function () {
         //$("<div> History count:" + history.length + " showMenu - Current:" + kendo.history.current + " - Main</div>").appendTo('#debugDiv')
 
 
-        main.animate({ left: '+=' + width }, 400, function () { cdt.Application.getCurrentViewModel().setIsMenuOpen(true); });
+        main.animate({ left: '+=' + width }, 400, function () { cdt.Application.setIsMenuOpen(true); });
         mm.show(0);
         mm.css("left", -width);
         mm.animate({ left: '+=' + width }, 400);

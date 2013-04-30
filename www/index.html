@@ -18,8 +18,8 @@
         }
 
         function handleBackButton() {
-            console.log("back clicked");
-            alert("Back button!");
+            //console.log("back clicked");
+            //alert("Back button!");
             window.history.back();
         }
     </script>
@@ -32,6 +32,7 @@
     <script src="js/menuItems.js"></script>
     <script src="js/utilities.js"></script>
     <script src="js/message.js"></script>
+    <script src="js/config.js"></script>
 
 
     <script type="text/x-kendo-template" id="mainMenuTemplate">
@@ -53,9 +54,6 @@
     <script type="text/x-kendo-template" id="historyTemplate">
         <span style="font-size: x-large">#=getHistory().caption#</span><span style="font-size: x-large">#=getHistory().text#</span>
     </script>
-
-
-
 
 </head>
 <body>
@@ -113,12 +111,39 @@
     </div>
 
 
-    <div id="overview" data-role="view" data-title="CDT" data-model="viewModel" data-layout="menuLayout" data-transition="slide:left reverse" >
-        <h1>Overview!</h1>
-        <a data-role="button" href="logon.html">Home</a>
-    </div>
+    <div id="overview" data-role="view" data-title="CDT" data-model="cdt.Application" data-show="cdt.Application.overviewReady"  data-transition="slide:left reverse" >
+	    <div data-role='navbar'>
+	        <div data-role='view-title'></div>
+	        <a data-role='button' data-align='right' data-rel='popover' href='#overviewPopup' data-icon='settings'></a>
+	        <a data-bind='visible: isMenuVisible' data-role='button' data-align='left' data-click='showMenu' data-icon='organize' ></a>
+	    </div>
 
-    <div id="notSupported" data-role="view" data-title="Unsupported" data-model="viewModel" data-layout="menuLayout" data-transition="slide:left reverse" >
+	        <img data-bind='attr: { src: customerLogo }' class='overviewLogo' />
+	        <div id='overviewDetail'>
+	            <div data-role='header'>
+	                <div data-role='navbar'>Overview</div>
+	            </div>
+	            <span style='font:x-large;margin-right:5px;'>User:</span><span style='font:large' data-bind='text: currentUser'></span>
+
+	            <div data-bind='visible: isLoggedIn'>
+	                <div style='width:50px;margin-left:auto;margin-right:auto;margin-top:20px;'>
+	                    <a  data-role='button' data-click='cdt.Application.logOut'>Logout</a>
+	                </div>
+                </div>
+
+	            <div data-bind='invisible: isLoggedIn'>
+	                <div style='width:50px;margin-left:auto;margin-right:auto;margin-top:20px;'>
+	                    <a  data-role='button' href="logon.html" >Login</a>
+	                </div>
+                </div>
+
+	        </div>
+
+
+	        <img data-bind='attr: { src: radleyLogo }' class='overviewLogo' />
+	    </div>
+
+    <div id="notSupported" data-role="view" data-title="Unsupported" data-layout="menuLayout" data-transition="slide:left reverse" >
         <h1>Unsupported View!</h1>
         <a data-role="button" href="logon.html">Home</a>
     </div>
@@ -141,7 +166,7 @@
             </div>
         </header>
 
-        <div data-role='popover' id='popupMenu' data-popup="{'height': 280, 'width': 280}">
+        <div data-role='popover' id='popupMenu' data-popup="{'height': 200, 'width': 280}">
 	        <div data-role='view' data-title='Options'>
 	            <div data-role='header'>
 	                <div data-role='navbar'>
@@ -153,12 +178,23 @@
 	                <li data-icon='refresh'><a data-role='listview-link' id='resetPopup'>Reset</a></li>
 	                <li  data-icon='reply'><a data-role='listview-link' id='previousPopup' >Previous</a></li>
 	                <li  data-icon='action'><a data-role='listview-link' id='abortPopup' >Abort</a></li>
-	                <li></li>
-	                <li data-icon='settings'><a data-role='listview-link' data-rel='modalview' href='#configurationModalView' id='configurationOpenButton'>Configuration</a></li>
 	            </ul>
 	        </div>
 	    </div>
 
+        <div data-role='popover' id='overviewPopup' data-popup="{'height': 200, 'width': 280}">
+	        <div data-role='view' data-title='Options'>
+	            <div data-role='header'>
+	                <div data-role='navbar'>
+	                    <span data-role='view-title'></span>
+	                    <a data-role='button' data-align='right' data-click='closeParentPopover'>Close</a>
+	                </div>
+	            </div>
+	                <ul data-role='listview' data-click='cdt.Application.onPopupItemClick'>
+	                <li data-icon='settings'><a data-role='listview-link' data-rel='modalview' href='#configurationModalView' id='A4'>Configuration</a></li>
+	            </ul>
+	        </div>
+	    </div>
 
     </section>
 

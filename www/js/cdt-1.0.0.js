@@ -1389,6 +1389,15 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
         showFirstPrompt(_useFocus);
     };
 
+    var hardReset = function () {
+
+        promptHistoryStack.length = 0;
+        currentPrompt = null;
+        promptList.length = 0;
+        historyScroller.reset();
+        isInitialize = false;
+    };
+
     var resetText = function () {
         //cdt.Utilities.hideKeyboard($("#textInput"));
         //$("#textInput").blur();
@@ -1598,6 +1607,7 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
         addHistoryText: addHistoryText,
         addDetailText: addDetailText,
         setPromptItems: setPromptItems,
+        hardReset: hardReset,
         reset: reset,
         abort: abort,
         resetText: resetText,
@@ -1895,23 +1905,9 @@ cdt.viewModel = function (_captionId, _promptControl, _viewId) {
     var captionId = _captionId;
     var caption = cdt.EmptyString;
     var promptControl = _promptControl;
-    var isMenuVisible = false;
-    var isMenuOpen = false;
-    var isLoggedIn = false;
-    var isLoggedOut = true;
-    var overviewVisible = false;
-    var currentUser;
     var viewId = _viewId;
     var view;
     var isInitialized = false;
-    var overviewList = new kendo.data.DataSource({ data: [ { TEST: "Test" }]});
-
-    
-
-    var customerLogo = "images/customerLogo.png";
-    var radleyLogo = "images/radleyLogo.png";
-
-
     var model;
 
 
@@ -1925,25 +1921,19 @@ cdt.viewModel = function (_captionId, _promptControl, _viewId) {
             loadResources();
 
             promptControl.initialize();
+        } else {
+
+            // Are we already at this view?
+            //if (cdt.Application.getCurrentViewModel() == model) {
+            //    return;
+            //}
         }
-
-        if (window.location.hash == "#main")
-            return;
-
-        // Are we already at this view?
-        if (cdt.Application.getCurrentViewModel() == model) {
-            return;
-        }
-
-        overviewList.add({ TEST: "Hello World!"});
-
-
         cdt.Application.setCurrentViewModel(model);
         cdt.VariableManager.setNamespace(model.viewId);
 
-        if (model.get("isLoggedIn") == false) {
+        //if (cdt.Application.isLoggedIn == false) {
             promptControl.onActivate();
-        }
+        //}
     };
 
     var loadResources = function () {
@@ -1953,38 +1943,12 @@ cdt.viewModel = function (_captionId, _promptControl, _viewId) {
 
     var uninitialize = function () {
         cdt.ResourceManager.cultureChanged.subscribe(onCultureChanged);
+        isInitialized = false;
     };
 
     var onCultureChanged = function () {
         loadResources();
     };
-
-    var logIn = function (_user) {
-
-        resetScroller();
-        model.set("currentUser", _user);
-        model.set("isLoggedIn", true);
-        model.set("isLoggedOut", false);
-        model.set("isMenuVisible", true);
-    }
-
-    var logOut = function () {
-
-        if (model.get("isMenuOpen") == true)
-            return;
-
-        model.set("currentUser", cdt.EmptyString);
-        model.set("isLoggedIn", false);
-        model.set("isLoggedOut", true);
-        model.set("isMenuVisible", false);
-        promptControl.reset(true);
-    }
-
-    var setIsMenuOpen = function (_menuState) {
-
-        model.set("isMenuOpen", _menuState);
-        
-    }
 
     var resetScroller = function () {
 
@@ -1998,21 +1962,6 @@ cdt.viewModel = function (_captionId, _promptControl, _viewId) {
         }
 
         view.kendoMobileView.scroller.reset();
-        
-    }
-
-    var showOverview = function (_show) {
-
-        model.set("overviewVisible", _show);
-    }
-
-    var setCustomerLogo = function (_logo) {
-
-        model.set("customerLogo", _logo);
-    }
-
-    var setRadleyLogo = function (_logo) {
-        model.set("radleyLogo", _logo);
     }
 
     // interface 
@@ -2024,27 +1973,12 @@ cdt.viewModel = function (_captionId, _promptControl, _viewId) {
         captionId: captionId,
         caption: caption,
         promptControl: promptControl,
-        isMenuVisible: isMenuVisible,
-        isMenuOpen: isMenuOpen,
-        overviewVisible: overviewVisible,
-        isLoggedIn: isLoggedIn,
-        isLoggedOut: isLoggedOut,
-        currentUser: currentUser,
         viewId: viewId,
-        customerLogo: customerLogo,
-        radleyLogo: radleyLogo,
-        overviewList: overviewList,
         // methods
         initialize: initialize,
         uninitialize: uninitialize,
-        logIn: logIn,
-        logOut: logOut,
-        setIsMenuOpen: setIsMenuOpen,
-        resetScroller: resetScroller,
-        showOverview: showOverview,
-        setCustomerLogo: setCustomerLogo,
-        setRadleyLogo: setRadleyLogo,
-        getOverviewList: function () { return overviewList;}
+        resetScroller: resetScroller
+
     });
 
     return model;
@@ -2223,14 +2157,75 @@ cdt.Application = (function () {
     var kendoApp;
     var configuration = new cdt.configuration();
     var startView;
+    var model;
+
+    var isMenuVisible = false;
+    var isMenuOpen = false;
+    var isLoggedIn = false;
+    var isLoggedOut = true;
+    var overviewVisible = false;
+    var firstLoad = false;
+    var currentUser;
+    var overviewList = new kendo.data.DataSource({ data: [{ TEST: "Test" }] });
+    var customerLogo = "images/customerLogo.png";
+    var radleyLogo = "images/radleyLogo.png";
 
     var initialize = function (_app) {
         kendoApp = _app;
+        firstLoad = true;
     };
 
     var getKendoApp = function () {
         return kendoApp;
     };
+
+    var logIn = function (_user) {
+
+        model.set("currentUser", _user);
+        model.set("isLoggedIn", true);
+        model.set("isLoggedOut", false);
+        model.set("isMenuVisible", true);
+        getCurrentViewModel().promptControl.abort();
+        currentViewModel = null;
+        //setTimeout(function () {
+        //    kendo.history.navigate("#:back");
+        //}, 200);
+        //kendo.history.navigate("#:back");
+        
+    }
+
+    var logOut = function () {
+
+        if (model.get("isMenuOpen") == true)
+            return;
+
+        model.set("currentUser", cdt.EmptyString);
+        model.set("isLoggedIn", false);
+        model.set("isLoggedOut", true);
+        model.set("isMenuVisible", false);
+        kendo.history.navigate(cdt.Config.startView);
+    }
+
+    var setIsMenuOpen = function (_menuState) {
+
+        model.set("isMenuOpen", _menuState);
+
+    }
+
+    var showOverview = function (_show) {
+
+        model.set("overviewVisible", _show);
+    }
+
+    var setCustomerLogo = function (_logo) {
+
+        model.set("customerLogo", _logo);
+    }
+
+    var setRadleyLogo = function (_logo) {
+        model.set("radleyLogo", _logo);
+    }
+
 
     var getStartView = function () {
 
@@ -2275,15 +2270,49 @@ cdt.Application = (function () {
         }
     });
 
-    return  {
+    var overviewReady = function () {
+
+        if (firstLoad) {
+            firstLoad = false;
+            setTimeout(function () {
+                kendoApp.navigate(cdt.Config.startView);
+            }, 200);
+        }
+    };
+
+
+    model =  kendo.observable({
+
+        isMenuVisible: isMenuVisible,
+        isMenuOpen: isMenuOpen,
+        overviewVisible: overviewVisible,
+        isLoggedIn: isLoggedIn,
+        isLoggedOut: isLoggedOut,
+        currentUser: currentUser,
+        customerLogo: customerLogo,
+        radleyLogo: radleyLogo,
+        overviewList: overviewList,
+
+
         getKendoApp: getKendoApp,
         initialize: initialize,
         configuration: configuration,
         getStartView: getStartView,
         getCurrentViewModel: getCurrentViewModel,
         setCurrentViewModel: setCurrentViewModel,
-        onPopupItemClick: onPopupItemClick
-    };
+        onPopupItemClick: onPopupItemClick,
+
+        logIn: logIn,
+        logOut: logOut,
+        setIsMenuOpen: setIsMenuOpen,
+        showOverview: showOverview,
+        setCustomerLogo: setCustomerLogo,
+        setRadleyLogo: setRadleyLogo,
+        getOverviewList: function () { return overviewList; },
+        overviewReady: overviewReady
+    });
+
+    return model;
 
 })();
 
