@@ -2286,12 +2286,12 @@ cdt.Application = (function () {
 
     var overviewReady = function () {
 
-        if (firstLoad) {
-            firstLoad = false;
-            setTimeout(function () {
-                kendoApp.navigate(cdt.Config.startView);
-            }, 200);
-        }
+        //if (firstLoad) {
+        //    firstLoad = false;
+        //    setTimeout(function () {
+        //        kendoApp.navigate(cdt.Config.startView);
+        //    }, 200);
+        //}
     };
 
     var windowResize = function () {
