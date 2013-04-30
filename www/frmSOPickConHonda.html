@@ -838,7 +838,12 @@
 			frmSOPickConHonda.pmtSOPick.showPrompt("Location");
 			*/
 		} // end of switch
-		}catch(ex){ alert(ex); }
+
+		frmSOPickConHonda.pmtSOPick.showPrompt("Location", true, true);
+		shouldContinue = false;
+
+
+		} catch (ex) { alert(ex); }
 		_completeAction(shouldContinue);
 		};
 		

@@ -14,7 +14,7 @@
 		switch (_continuationLine) {
 			case undefined:/*
 			
-				/* A boolean to test if we've sent a WOWOIS.	*/ 
+				/* A boolean to test if we've sent a WOWOIS.	
 			cdt.VariableManager.setLocal("SENT","N");
 			cdt.VariableManager.setLocal("WOID",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
 			cdt.VariableManager.setLocal("WO_LOT",cdt.VariableManager.get("Mvr.VWRKID","WOID"));
@@ -442,13 +442,15 @@
 		case 6:
 			cdt.NetworkManager.setSourceLine( 8);cdt.NetworkManager.sendTransaction("WOWOIS",cdt.VariableManager.getNamespace());
 			cdt.NetworkManager.setSourceLine( 9);cdt.NetworkManager.sendTransaction("WOCEND",cdt.VariableManager.getNamespace());
-			cdt.StatusBox.show("Successful","Transaction Sent",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 10,_shouldContinue); } );
-			return;
-		case  10:
-			frmWOComponentIssue.pmptMain.returnToPrompt("WONumber",false,false);
 			*/
 		} // end of switch
-		}catch(ex){ alert(ex); }
+
+		cdt.MessageBox.show("Status", "Transaction Sent", cdt.MessageBoxButton.Ok, null, function () { frmWOComponentIssue.pmptMain.returnToPrompt("WONumber", false, false); });
+			
+		shouldContinue = false;
+
+
+		} catch (ex) { alert(ex); }
 		_completeAction(shouldContinue);
 		};
 		

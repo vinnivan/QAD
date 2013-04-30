@@ -258,32 +258,32 @@
 			if(cdt.VariableManager.getLocal("STATUS").toUpperCase() == "Y".toUpperCase())
 			{
 			
-			cdt.StatusBox.show("Info","Transaction Sent",cdt.MessageBoxButton.Ok,2, function() { 
 			
-			currentMethod(_value, _completeAction,14, _shouldContinue);
-			return;
-			}); 
-			return;
-			}
-			// Line#  15 : ReturnToPrompt ( pmtTMSBinReplenishment , Location , True , True ) 
-				/* Test for memory issue	*/ 
-			frmTMSBinReplenishment.viewModel.promptControl.reset( );
-			}
-		else
-		{
+		//	}
+		//else
+		//{
 			
-			cdt.StatusBox.show("Error","Urgency must be Y or N",cdt.MessageBoxButton.Ok,2, function() { 
-			pmtTMSBinReplenishment.IsValid(false);
-			shouldContinue = false;
+		//	cdt.StatusBox.show("Error","Urgency must be Y or N",cdt.MessageBoxButton.Ok,2, function() { 
+		//	pmtTMSBinReplenishment.IsValid(false);
+		//	shouldContinue = false;
 			
-			currentMethod(_value, _completeAction,14, _shouldContinue);
-			return;
-			}); 
-			return;
-			}
+		//	currentMethod(_value, _completeAction,14, _shouldContinue);
+		//	return;
+		//	}); 
+		//	return;
+		//	}
 		
-		case 14:
+		//case 14:
 			*/
+
+			    cdt.MessageBox.show("Status","Transaction Sent",cdt.MessageBoxButton.Ok,null, function() { 
+			        frmTMSBinReplenishment.viewModel.promptControl.reset( );
+			    }); 
+			    shouldContinue = false;
+		    // Line#  15 : ReturnToPrompt ( pmtTMSBinReplenishment , Location , True , True ) 
+
+
+
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

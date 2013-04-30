@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head></head>
 <body>
-<div id='main' data-role='view' data-title='Login' data-show='logon.viewModel.initialize' data-model='logon.viewModel' >
+<div id='main' data-role='view' data-title='Login' data-hide="logon.viewModel.uninitialize" data-show='logon.viewModel.initialize' data-model='logon.viewModel' >
 <script>
 	var logon = logon || {};
 		logon.RWC_PromptControl1 = new cdt.promptControl('Reset','Previous', 'Abort', 'Options' , 'logon' );
@@ -96,7 +96,7 @@
 			// Line#  6 : StatusWindow ( Welcome! , Var.USER_DESC , 2 ) 
 			// Line#  7 : CloseForm( )
 			// Line#  8 : Else If Var.ATTEMPTS >= 2
-			// Line#  9 : StatusWindow ( Security Error , Your 3 attempts have failed. , 4 ) 
+			// StatusWindow ( Security Error , Your 3 attempts have failed. , 4 ) 
 			// Line#  10 : Var.Temppassword = Gvr.PASSWD
 			// Line#  11 : Var.Tempusername = Gvr.USERID
 			// Line#  12 : Gvr.PASSWD = 
@@ -105,8 +105,11 @@
 			// Line#  15 : End If
 			// Line#  16 : Var.ATTEMPTS = Var.ATTEMPTS + 1
 			*/
-			    cdt.Application.logIn(cdt.VariableManager.getGlobal("USERID"));
+			    cdt.MessageBox.show("Welcome!", cdt.VariableManager.getGlobal("USERID"), cdt.MessageBoxButton.Ok, null, function () { cdt.Application.logIn(cdt.VariableManager.getGlobal("USERID")); });
+			    
 			    shouldContinue = false;
+
+
 			//showMenu();
 		} // end of switch
 		}catch(ex){ alert(ex); }

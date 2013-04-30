@@ -324,8 +324,11 @@
 			cdt.VariableManager.setLocalNumeric("QTY",cdt.VariableManager.getLocalNumeric("OUTPUT_QTY") - cdt.VariableManager.getLocalNumeric("RJCT_QTY"));
 			cdt.NetworkManager.setSourceLine( 8);cdt.NetworkManager.sendTransaction("PINUPD",cdt.VariableManager.getNamespace());
 			frmAdvRepScrap.RWC_PromptControl1.returnToPrompt("ContainerNumber",true,false);
-			shouldContinue = false;
+			
 			*/
+			    shouldContinue = false;
+			    frmAdvRepScrap.RWC_PromptControl1.returnToPrompt("ContainerNumber", true, false);
+
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

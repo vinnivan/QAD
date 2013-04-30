@@ -142,11 +142,22 @@
 			// Line#  17 : End If
 			// Line#  18 : End If
 			// Line#  19 : SendTransaction ( ICLOTR ) 
-			// Line#  20 : StatusWindow (  , Transaction Sent! , 1 ) 
-			// Line#  21 : Var.CONT_SER = 
-			// Line#  22 : ReturnToPrompt ( RWC_PromptControl1 , ContainerNumber , False , True ) 
 			*/
 		} // end of switch
+
+
+		    // Line#  20 : StatusWindow (  , Transaction Sent! , 1 ) 
+		    // Line#  21 : Var.CONT_SER = 
+		    // Line#  22 : ReturnToPrompt ( RWC_PromptControl1 , ContainerNumber , False , True ) 
+
+
+		cdt.MessageBox.show("Status", "Transaction Sent!", cdt.MessageBoxButton.Ok, null, function () {
+		    frmLocationTransferIL.RWC_PromptControl1.returnToPrompt("ContainerNumber", false, true);
+		});
+		shouldContinue = false;
+
+
+
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
 		};

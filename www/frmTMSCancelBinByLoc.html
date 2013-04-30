@@ -27,14 +27,14 @@
 			cdt.VariableManager.setLocal("TMS_TASK_TYPE","PickingBulk2Bin");
 			cdt.VariableManager.setLocal("TMS_TASK_TYPE2","Bulk2Stage");
 			cdt.NetworkManager.setSourceLine( 11);cdt.NetworkManager.sendTransaction("t_TMS_Cancel_TaskByBin",cdt.VariableManager.getNamespace());
-			cdt.StatusBox.show("Info","Transaction Sent",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 12,_shouldContinue); } );
-			return;
-		case  12:
-			cdt.VariableManager.setLocal("LOC","");
-			frmTMSCancelBinByLoc.pmtTMSCancelBinByLoc.returnToPrompt("Location",true,true);
 			*/
 		} // end of switch
-		}catch(ex){ alert(ex); }
+
+		cdt.MessageBox.show("Info", "Transaction Sent", cdt.MessageBoxButton.Ok, null, function () { frmTMSCancelBinByLoc.pmtTMSCancelBinByLoc.returnToPrompt("Location", true, true); });
+		shouldContinue = false;
+
+
+		} catch (ex) { alert(ex); }
 		_completeAction(shouldContinue);
 		};
 		

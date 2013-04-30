@@ -1494,8 +1494,6 @@
 			// Line#  30 : Var.TO_LOC = Var.LOC
 			// Line#  31 : SendTransaction ( ICLOTR ) 
 			// Line#  32 : SendTransaction ( t_TMSStatusComplete ) 
-			// Line#  33 : StatusWindow ( Info , Transaction Sent! , 2 ) 
-			// Line#  34 : ReturnToParentPrompt ( RWC_PromptControl1 , Task_List , False , False ) 
 			// Line#  35 : DownloadParentListPromptFromQueue ( RWC_PromptControl1 , Task_List ) 
 			// Line#  36 : ParentListPromptMoveToRow ( RWC_PromptControl1 , Task_List , 0 ) 
 			// Line#  37 : UpdateData ( Get ) 
@@ -1509,6 +1507,11 @@
 			// Line#  45 : End If
 			*/
 		} // end of switch
+
+		cdt.MessageBox.show("Status", "Transaction Sent", cdt.MessageBoxButton.Ok, null, function () { frmTMSTaskPromptList.RWC_PromptControl1.returnToPrompt("Task_List", false, false); });
+		shouldContinue = false;
+
+
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
 		};

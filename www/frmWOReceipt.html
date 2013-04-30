@@ -309,11 +309,15 @@
 			cdt.StatusBox.show("","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 5,_shouldContinue); } );
 			return;
 		case  5:
-			frmWOReceipt.viewModel.promptControl.reset( );
-			shouldContinue = false;
 			*/
 		} // end of switch
-		}catch(ex){ alert(ex); }
+
+		cdt.MessageBox.show("Status", "Label Sent!", cdt.MessageBoxButton.Ok, null, function () { frmWOReceipt.viewModel.promptControl.reset(); });
+		
+		shouldContinue = false;
+
+
+		} catch (ex) { alert(ex); }
 		_completeAction(shouldContinue);
 		};
 		

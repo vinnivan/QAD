@@ -326,14 +326,13 @@
 			RWC_PromptControl1.SetHistoryText("QtyRecount","Qty Rcnt",cdt.VariableManager.getLocal("QTY"),false);
 			cdt.VariableManager.setLocal("INITIAL","RECOUNT");
 			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("ICCCAR",cdt.VariableManager.getNamespace());
-			cdt.StatusBox.show("Cycle Count","Transaction Sent!",cdt.MessageBoxButton.Ok,2, function() { currentMethod(_value,_completeAction, 4,_shouldContinue); } );
-			return;
-		case  4:
-			frmCycleCount.viewModel.promptControl.reset( );
-			shouldContinue = false;
 			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
+
+		cdt.MessageBox.show("Status", "Transaction Sent!", cdt.MessageBoxButton.Ok, null, function () { frmCycleCount.viewModel.promptControl.reset(); });
+        shouldContinue = false;
+
 		_completeAction(shouldContinue);
 		};
 		

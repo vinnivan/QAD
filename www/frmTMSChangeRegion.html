@@ -22,6 +22,11 @@
 			CloseForm( );
 			*/
 		} // end of switch
+
+		shouldContinue = false;
+		frmTMSChangeRegion.RWC_PromptControl1.abort();
+
+
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
 		};

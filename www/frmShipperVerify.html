@@ -193,7 +193,6 @@
 		
 		case 9:
 			cdt.NetworkManager.setSourceLine( 10);cdt.NetworkManager.sendTransaction("SHVBLD",cdt.VariableManager.getNamespace());
-			cdt.StatusBox.show("","Container Serial Sent!",cdt.MessageBoxButton.Ok,1, function() { currentMethod(_value,_completeAction, 11,_shouldContinue); } );
 			return;
 		case  11:
 			if(cdt.VariableManager.getGlobal("TRACE").toUpperCase() == "ON".toUpperCase())
@@ -206,11 +205,16 @@
 			ConfigManager.Instance.ChangeSetting("Port",cdt.VariableManager.getLocal("SAVE_PORT"),false);
 			}
 			cdt.VariableManager.setLocal("CONT_SER","");
-			frmShipperVerify.RWC_PromptControl1.returnToPrompt("ContainerNumber",false,false);
-			shouldContinue = false;
+			
 			*/
 		} // end of switch
-		}catch(ex){ alert(ex); }
+
+		cdt.MessageBox.show("", "Container Serial Sent!", cdt.MessageBoxButton.Ok, null, function () { frmShipperVerify.RWC_PromptControl1.returnToPrompt("ContainerNumber", false, false); });
+		shouldContinue = false;
+
+
+		} catch (ex) { alert(ex); }
+
 		_completeAction(shouldContinue);
 		};
 		

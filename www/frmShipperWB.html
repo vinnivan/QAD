@@ -24,7 +24,7 @@
 		
 		frmShipperWB.ShipTo = new cdt.prompt("ShipTo", // Name
 				"Ship To", // Caption
-				"Var.SHIP_TO", // Default
+				"", // Default
 				true, // ResetEnabled
 				true, // PreviousEnabled
 				true, // AbortEnabled
@@ -189,7 +189,6 @@
 			case undefined:/*
 			
 			cdt.NetworkManager.setSourceLine( 1);cdt.NetworkManager.sendTransaction("SHWBLD",cdt.VariableManager.getNamespace());
-			cdt.StatusBox.show("","Container Serial Sent!",cdt.MessageBoxButton.Ok,1, function() { currentMethod(_value,_completeAction, 2,_shouldContinue); } );
 			return;
 		case  2:
 			if(cdt.VariableManager.getGlobal("TRACE").toUpperCase() == "ON".toUpperCase())
@@ -202,9 +201,14 @@
 			ConfigManager.Instance.ChangeSetting("Port",cdt.VariableManager.getLocal("SAVE_PORT"),false);
 			}
 			cdt.VariableManager.setLocal("CONT_SER","");
-			frmShipperWB.RWC_PromptControl1.returnToPrompt("ContainerNumber",false,false);
-			shouldContinue = false;
 			*/
+
+			    cdt.MessageBox.show("Satus", "Container Serial Sent!", cdt.MessageBoxButton.Ok, null, function () {
+			        frmShipperWB.RWC_PromptControl1.returnToPrompt("ContainerNumber", false, false);
+			    });
+			    shouldContinue = false;
+
+
 		} // end of switch
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);

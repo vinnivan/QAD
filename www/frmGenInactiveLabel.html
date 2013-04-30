@@ -134,7 +134,11 @@
 			CloseForm( );
 			*/
 		} // end of switch
-		}catch(ex){ alert(ex); }
+
+		cdt.MessageBox.show("Status", "Transaction Sent!", cdt.MessageBoxButton.Ok, null, function () { frmGenInactiveLabel.RWC_PromptControl1.abort(); });
+		shouldContinue = false;
+
+		} catch (ex) { alert(ex); }
 		_completeAction(shouldContinue);
 		};
 		

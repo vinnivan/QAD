@@ -61,9 +61,13 @@
 		switch (_continuationLine) {
 			case undefined:/*
 			
-			frmInventoryInquiryByItem.viewModel.promptControl.reset( );
+			
 			*/
 		} // end of switch
+
+
+		frmInventoryInquiryByItem.viewModel.promptControl.reset();
+		shouldContinue = false;
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
 		};
@@ -96,7 +100,7 @@
 			null,  // validation
 			false, // validIfEmpty
 			null, // variable
-			frmInventoryInquiryByItem.pmtInventoryInquiry_InventoryDownload_Select , // SelectEvent Delegate
+			frmInventoryInquiryByItem.pmtInventoryInquiry_InventoryDownload_OnSelect , // SelectEvent Delegate
 			cdt.PromptControlType.List
 			);
 		frmInventoryInquiryByItem.pmtInventoryInquiry.addPrompt(frmInventoryInquiryByItem.pmtInventoryInquiryLP0);

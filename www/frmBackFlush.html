@@ -935,10 +935,14 @@
 			
 			cdt.VariableManager.setLocal("RJCT_RSN",cdt.VariableManager.getLocal("RSN_CODE"));
 			RWC_PromptControl1.SetDetailText("Operation",cdt.VariableManager.getLocal("REJECT_TXT"),false);
-			RWC_PromptControl1.ReturnToPrompt("LineNumber",true,false);
 			*/
 		} // end of switch
-		}catch(ex){ alert(ex); }
+
+		frmBackFlush.RWC_PromptControl1.returnToPrompt("LineNumber", true, false);
+		shouldContinue = false;
+		} catch (ex) { alert(ex); }
+
+
 		_completeAction(shouldContinue);
 		};
 		

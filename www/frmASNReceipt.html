@@ -140,11 +140,13 @@
 			cdt.VariableManager.setLocal("QTY",cdt.VariableManager.get("Mvr.VILBLE","QTY"));
 			cdt.NetworkManager.setSourceLine( 3);cdt.NetworkManager.sendTransaction("SHVBLD",cdt.VariableManager.getNamespace());
 			cdt.VariableManager.setLocal("CONT_SER","");
-			frmASNReceipt.RWC_PromptControl1.showPrompt("ContainerNumber");
-			shouldContinue = false;
 			*/
 		} // end of switch
-		}catch(ex){ alert(ex); }
+
+		frmASNReceipt.RWC_PromptControl1.showPrompt("ContainerNumber");
+		shouldContinue = false;
+
+		} catch (ex) { alert(ex); }
 		_completeAction(shouldContinue);
 		};
 		
@@ -183,8 +185,15 @@
 		
 		case 10:
 			*/
+
+			    cdt.MessageBox.show("Status", "Transaction Sent!", cdt.MessageBoxButton.Ok, null, null);
+			    frmASNReceipt.RWC_PromptControl1.showPrompt("ContainerNumber", true, true);
+			    shouldContinue = false;
+
 		} // end of switch
 		}catch(ex){ alert(ex); }
+
+
 		_completeAction(shouldContinue);
 		};
 		

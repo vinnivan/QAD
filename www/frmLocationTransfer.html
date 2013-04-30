@@ -384,6 +384,9 @@
 			// Line#  24 : End If
 			*/
 		} // end of switch
+
+		frmLocationTransfer.RWC_PromptControl1.returnToPrompt("ItemNumber", true, true);
+    shouldContinue = false;
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
 		};

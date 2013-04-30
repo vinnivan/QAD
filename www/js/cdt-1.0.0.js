@@ -1471,7 +1471,7 @@ cdt.promptControl = function (_resetCaptionId, _previousCaptionId, _abortCaption
         });
 
         if (currentPrompt != null && currentPrompt.promptControlType == cdt.PromptControlType.Text)
-            textControl.set("caption",currentPrompt.caption());
+            textControl.set("caption",currentPrompt.caption);
     };
 
     var initialize = function () {
@@ -1920,6 +1920,8 @@ cdt.viewModel = function (_captionId, _promptControl, _viewId) {
             cdt.ResourceManager.cultureChanged.subscribe(onCultureChanged);
             loadResources();
 
+           // $("#" + viewId).width = cdt.Application.getWindowWidth();
+
             promptControl.initialize();
         } else {
 
@@ -1944,6 +1946,18 @@ cdt.viewModel = function (_captionId, _promptControl, _viewId) {
     var uninitialize = function () {
         cdt.ResourceManager.cultureChanged.subscribe(onCultureChanged);
         isInitialized = false;
+
+        /* remove old form views */
+        $('div[data-role=view]').each(function (i, elem) {
+
+            if ($(elem).attr('data-url') && $(elem).attr('data-url') != window.location.hash.replace(/#/, '')) {
+
+                $(elem).remove();
+            }
+
+        });
+
+
     };
 
     var onCultureChanged = function () {
@@ -2158,7 +2172,7 @@ cdt.Application = (function () {
     var configuration = new cdt.configuration();
     var startView;
     var model;
-
+    var windowWidth;
     var isMenuVisible = false;
     var isMenuOpen = false;
     var isLoggedIn = false;
@@ -2187,10 +2201,10 @@ cdt.Application = (function () {
         model.set("isMenuVisible", true);
         getCurrentViewModel().promptControl.abort();
         currentViewModel = null;
-        //setTimeout(function () {
-        //    kendo.history.navigate("#:back");
-        //}, 200);
-        //kendo.history.navigate("#:back");
+        setTimeout(function () {
+            showMenu();
+        }, 200);
+        kendo.history.navigate("#:back");
         
     }
 
@@ -2280,6 +2294,17 @@ cdt.Application = (function () {
         }
     };
 
+    var windowResize = function () {
+        
+        windowWidth = $(window).width();
+        resizeMenuContainer();
+    };
+
+    var getWindowWidth = function () {
+
+        return windowWidth;
+    }
+
 
     model =  kendo.observable({
 
@@ -2309,7 +2334,9 @@ cdt.Application = (function () {
         setCustomerLogo: setCustomerLogo,
         setRadleyLogo: setRadleyLogo,
         getOverviewList: function () { return overviewList; },
-        overviewReady: overviewReady
+        overviewReady: overviewReady,
+        windowResize: windowResize,
+        getWindowWidth: getWindowWidth
     });
 
     return model;

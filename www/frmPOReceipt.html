@@ -817,6 +817,7 @@
 
 		frmPOReceipt.RWC_PromptControl1_CurrentInv_OnSelect = function(_value, _completeAction, _continuationLine, _shouldContinue) {
 		var shouldContinue = (_shouldContinue == undefined) ? true : _shouldContinue;
+		                    
 		var currentMethod = frmPOReceipt.RWC_PromptControl1_CurrentInv_OnSelect;
 		try{
 		switch (_continuationLine) {
@@ -825,8 +826,15 @@
 			// Line#  1 : ReturnToPrompt ( RWC_PromptControl1 , Location , False , False ) 
 			*/
 		} // end of switch
-		}catch(ex){ alert(ex); }
+
+		shouldContinue = false;
+		frmPOReceipt.RWC_PromptControl1.returnToPrompt("Location", false, false)
+
 		_completeAction(shouldContinue);
+
+
+		} catch (ex) { alert(ex); }
+
 		};
 		
 		
@@ -857,7 +865,7 @@
 			null,  // validation
 			false, // validIfEmpty
 			null, // variable
-			frmPOReceipt.RWC_PromptControl1_CurrentInv_Select , // SelectEvent Delegate
+			frmPOReceipt.RWC_PromptControl1_CurrentInv_OnSelect , // SelectEvent Delegate
 			cdt.PromptControlType.List
 			);
 		frmPOReceipt.RWC_PromptControl1.addPrompt(frmPOReceipt.RWC_PromptControl1LP2);

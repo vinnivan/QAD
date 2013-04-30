@@ -431,6 +431,9 @@
 			// Line#  15 : End If
 			*/
 		} // end of switch
+
+		frmSterlingReplenishment.RWC_PromptControl1.returnToPrompt("ItemNumber", true, true);
+		shouldContinue = false;
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
 		};
@@ -463,7 +466,7 @@
 			null,  // validation
 			false, // validIfEmpty
 			null, // variable
-			frmSterlingReplenishment.RWC_PromptControl1_Repleinshment_Select , // SelectEvent Delegate
+			frmSterlingReplenishment.RWC_PromptControl1_Repleinshment_OnSelect , // SelectEvent Delegate
 			cdt.PromptControlType.List
 			);
 		frmSterlingReplenishment.RWC_PromptControl1.addPrompt(frmSterlingReplenishment.RWC_PromptControl1LP0);

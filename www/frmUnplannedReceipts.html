@@ -753,6 +753,12 @@
 			*/
 		} // end of switch
 		}catch(ex){ alert(ex); }
+
+
+		    cdt.MessageBox.show("Unplanned Receipt","Transaction Sent!",cdt.MessageBoxButton.Ok,null,null);
+            frmUnplannedReceipts.pmtUnplannedReceipt.returnToPrompt("ItemNumber",true,true);
+            shouldContinue = false;
+
 		_completeAction(shouldContinue);
 		};
 		

@@ -728,7 +728,6 @@
 			cdt.VariableManager.setLocal("CONT_SER","");
 			cdt.VariableManager.setLocal("SITE",cdt.VariableManager.getLocal("SHIP_FROM"));
 			cdt.VariableManager.setLocal("LOC","");
-			cdt.StatusBox.show("","Transactions Sent!",cdt.MessageBoxButton.Ok,2, function() { 
 			
 			currentMethod(_value, _completeAction,36, _shouldContinue);
 			return;
@@ -742,9 +741,14 @@
 			cdt.VariableManager.setLocal("LOC","");
 			cdt.VariableManager.setLocal("DONE","");
 			RWC_PromptControl1.SetHistoryText("ContainerDone","ITEM",cdt.VariableManager.getLocal("SV_ITEM"),true);
-			frmDOPickCon.RWC_PromptControl1.showPrompt("Location");
+			
 			*/
 		} // end of switch
+
+
+		cdt.MessageBox.show("Status", "Transactions Sent!", cdt.MessageBoxButton.Ok, null, function () { frmDOPickCon.RWC_PromptControl1.showPrompt("Location") });
+		shouldContinue = false;
+
 		}catch(ex){ alert(ex); }
 		_completeAction(shouldContinue);
 		};
